@@ -6,7 +6,7 @@
     "session": false,
     "sockets": false,
     "pubsub": false,
-    "views": false,
-    "csrf": false
+    "csrf": false,
+    "grunt": false
   }
 }
