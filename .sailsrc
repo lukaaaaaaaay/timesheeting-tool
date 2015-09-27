@@ -6,7 +6,6 @@
     "session": false,
     "sockets": false,
     "pubsub": false,
-    "csrf": false,
-    "grunt": false
+    "csrf": false
   }
 }
