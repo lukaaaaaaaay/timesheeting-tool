@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('fullstackFunApp')
+angular.module('tsm')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main', {
