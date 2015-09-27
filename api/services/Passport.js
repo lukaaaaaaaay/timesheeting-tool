@@ -153,7 +153,7 @@ passport.loadStrategies = function () {
       }
     } else {
       // TODO
-      res.forbidden("error in loadStrategies");
+      console.log("error in loadStrategies");
     }
   });
 };
