@@ -90,23 +90,31 @@ passport.callback = function (req, res, next) {
   var provider = req.param('provider', 'local');
   var action = req.param('action');
 
+  // console.log("in callback");
+  
   if (provider === 'local' && action !== undefined) {
     if (action === 'register' && !req.user) {
+      // console.log("action is register");
       this.protocols.local.register(req, res, next);
     }
     else if (action === 'connect' && req.user) {
+      // console.log("action is connect");
       this.protocols.local.connect(req, res, next);
     }
     else if (action === 'disconnect' && req.user) {
+      // console.log("action is disconnect");
       this.protocols.local.disconnect(req, res, next);
     }
     else {
-      next(new Error('Invalid action'));
+      console.log("invalid action");
+      next();
     }
   } else {
     if (action === 'disconnect' && req.user) {
+      // console.log("other disconnect");
       this.disconnect(req, res, next) ;
     } else {
+      // console.log("authenticate");
       this.authenticate(provider, next)(req, res, req.next);
     }
   }

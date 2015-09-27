@@ -4,7 +4,7 @@
 module.exports = {
 
   /**
-   * Log out a user and return success json
+   * Log out an account and return success json
    */
   logout: function (req, res) {
     // todo
@@ -25,11 +25,11 @@ module.exports = {
    * Create a authentication callback endpoint
    *
    * This endpoint handles everything related to creating and verifying Pass-
-   * ports and users, both locally and from third-aprty providers.
+   * ports and accounts, both locally and from third-aprty providers.
    *
    * Passport exposes a login() function on req (also aliased as logIn()) that
    * can be used to establish a login session. When the login operation
-   * completes, user will be assigned to req.user.
+   * completes, accounts will be assigned to req.account.
    *
    * For more information on logging in users in Passport.js, check out:
    * http://passportjs.org/guide/login/
@@ -40,19 +40,22 @@ module.exports = {
   callback: function (req, res) {
     function tryAgain (err) {
       // todo what happens if there is an error in auth?
-      res.forbidden(err);
+      res.forbidden("err is " + err);
     }
 
-      sails.services.passport.callback(req, res, function (err, user) {
+      sails.services.passport.callback(req, res, function (err, account) {
 
-      if (err || !user) {
+        res.forbidden("callback done", err);
+
+      if (err || !account) {
         sails.log.warn(err);
         return tryAgain();
       }
 
+  res.forbidden("err");
       console.log("logging in");
 
-      req.login(user, function (err) {
+      req.login(account, function (err) {
         if (err) {
           sails.log.warn(err);
           return tryAgain();
@@ -60,16 +63,16 @@ module.exports = {
 
         req.session.authenticated = true;
 
-        sails.log.info('user', user, 'authenticated successfully');
+        sails.log.info('account', account, 'authenticated successfully');
 
-        // Returns the logged in user.
-        return res.json(user);
+        // Returns the logged in account.
+        return res.json(account);
       });
     });
   },
 
   /**
-   * Disconnect a passport from a user
+   * Disconnect a passport from an account
    *
    * @param {Object} req
    * @param {Object} res
