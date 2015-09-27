@@ -6,14 +6,14 @@
  * You can apply one or more policies to a given controller, or protect
  * its actions individually.
  *
- * Any policy file (e.g. `api/policies/authenticated.js`) can be accessed
- * below by its filename, minus the extension, (e.g. "authenticated")
+ * Any policy file (e.g. `api/policies/isAdmin.js`) can be accessed
+ * below by its filename, minus the extension, (e.g. "isAdmin")
  *
  * For more information on how policies work, see:
- * http://sailsjs.org/#!/documentation/concepts/Policies
+ * http://sailsjs.org/documentation/concepts/policies
  *
  * For more information on configuring policies, check out:
- * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.policies.html
+ * http://sailsjs.org/documentation/reference/configuration/sails-config-policies
  */
 
 
@@ -28,24 +28,24 @@ module.exports.policies = {
 
   // '*': true,
 
+
   /***************************************************************************
   *                                                                          *
-  * Here's an example of mapping some policies to run before a controller    *
-  * and its actions                                                          *
+  * Account policies                                                         *
+  * TODO: Secure these actions                                                                  *
   *                                                                          *
   ***************************************************************************/
-	// RabbitController: {
 
-		// Apply the `false` policy as the default for all of RabbitController's actions
-		// (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
-		// '*': false,
+  // AccountController: {
+    // Apply 'false' by default to all actions that are NOT specified below
+    // '*': false,
+    
+    // find: true,
+    // findOne: true,
+    // create: ['isAdmin', 'isLoggedIn'],      // if (isAdmin && isLoggedin)
+    // update: true,
+    // destroy: true
+  // },
 
-		// For the action `nurture`, apply the 'isRabbitMother' policy
-		// (this overrides `false` above)
-		// nurture	: 'isRabbitMother',
 
-		// Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
-		// before letting any users feed our rabbits
-		// feed : ['isNiceToAnimals', 'hasRabbitFood']
-	// }
 };

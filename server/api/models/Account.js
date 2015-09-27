@@ -1,7 +1,7 @@
 /**
-* User.js
+* Account.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: This model represents an account in the system
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
@@ -20,6 +20,9 @@ module.exports = {
       unique: true,
       index: true
     },
+    role: {
+      type: 'string',
+    },
 
     // Associations (aka relational attributes)
 
@@ -29,7 +32,14 @@ module.exports = {
     },
 
     /** INSTANCE METHODS **/
-    // toJSON: function () {}
+    toJSON: function () {
+      var account = this.toObject();
+      // delete account.password;
+      // delete account.passports;
+      // account.gravatarUrl = this.getGravatarUrl();
+      account.fullName = this.getFullName();
+      return account;
+    }
   },
 
 };

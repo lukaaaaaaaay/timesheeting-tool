@@ -11,7 +11,15 @@
 
 module.exports.bootstrap = function(cb) {
 
+    console.log("Create an Admin account");
+    Account.findOrCreate(
+        // Search for user with "admin" role
+        {role: 'admin'},
+        // Create one if no such user is found
+        {firstName: 'Admin', lastName: 'User', email: 'admin@example.org', role: 'admin'}
+    ).exec(cb);
+
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+  // cb();
 };
