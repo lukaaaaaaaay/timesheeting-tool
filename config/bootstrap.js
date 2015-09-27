@@ -10,16 +10,25 @@
  */
 
 module.exports.bootstrap = function(cb) {
+  // Load Passport strategies
+  sails.services.passport.loadStrategies();
 
-    console.log("Create an Admin account");
-    Account.findOrCreate(
-        // Search for user with "admin" role
-        {role: 'admin'},
-        // Create one if no such user is found
-        {firstName: 'Admin', lastName: 'User', email: 'admin@example.org', role: 'admin'}
-    ).exec(cb);
+  // setup initial test data
+
+    Account.register( {
+      firstName: 'Admin', 
+      lastName: 'User', 
+      email: 'admin@example.org', 
+      role: 'admin',
+      password: 'password'
+    } ).then(function (account) {
+    sails.log('created new account', account);
+  })
+  .catch(function (error) {
+    sails.log.error(error);
+  });
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  // cb();
+  cb();
 };

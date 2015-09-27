@@ -16,10 +16,17 @@ module.exports = {
         //TODO. Find an account
     // },
 
+
     /** POST /api/accounts/ **/
-    // create: function (req, res, next) {
-        //TODO. Create an account
-    // },
+    create: function (req, res, next) {
+        sails.services.passport.protocols.local.register(req.body, function (err, account) {
+          if (err) return res.negotiate(err);
+
+          console.log("created: " + account);
+
+          res.ok(account);
+        });
+      },
 
     /** PUT /api/accounts/:id **/
     // update: function (req, res, next) {
