@@ -20,6 +20,7 @@ module.exports.bootstrap = function(cb) {
       lastName: 'User', 
       email: 'admin@example.org', 
       role: 'admin',
+      token: '12345',
       password: 'password'
     } ).then(function (user) {
     sails.log('created new user', user);
