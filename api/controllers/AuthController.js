@@ -4,10 +4,16 @@
 module.exports = {
 
   /**
-   * Log out an account and return success json
+   * Log out an account and return success
    */
   logout: function (req, res) {
     // todo
+      req.logout();
+      delete req.user;
+      delete req.passport;
+      req.authenticated = false;
+
+      res.ok();
   },
 
   /**
@@ -17,8 +23,7 @@ module.exports = {
    * @param {Object} res
    */
   provider: function (req, res) {
-    // TODO
-    //sails.services.passport.endpoint(req, res);
+    sails.services.passport.endpoint(req, res);
   },
 
   /**
@@ -38,35 +43,37 @@ module.exports = {
    * @param {Object} res
    */
   callback: function (req, res) {
-    function tryAgain (err) {
-      // todo what happens if there is an error in auth?
-      res.forbidden("err is " + err);
+    var action = req.param('action');
+
+    function negotiateError (err) {
+        // make sure the server always returns a response to the client
+        // i.e passport-local bad username/email or password
+        res.forbidden(err);
     }
 
-      sails.services.passport.callback(req, res, function (err, account) {
-
-        res.forbidden("callback done", err);
-
-      if (err || !account) {
-        sails.log.warn(err);
-        return tryAgain();
+    sails.services.passport.callback(req, res, function (err, user) {
+      if (err || !user) {
+        sails.log.warn(user, err);
+        return negotiateError(err);
       }
 
-  res.forbidden("err");
-      console.log("logging in");
-
-      req.login(account, function (err) {
+      req.login(user, function (err) {
         if (err) {
           sails.log.warn(err);
-          return tryAgain();
+          return negotiateError(err);
         }
 
-        req.session.authenticated = true;
+        req.authenticated = true;
 
-        sails.log.info('account', account, 'authenticated successfully');
+        // Upon successful login, optionally redirect the user if there is a
+        // `next` query param
+        if (req.query.next) {
+          var url = sails.services.authservice.buildCallbackNextUrl(req);
+          res.status(302).set('Location', url);
+        }
 
-        // Returns the logged in account.
-        return res.json(account);
+        sails.log.info('user', user, 'authenticated successfully');
+        return res.json(user);
       });
     });
   },
