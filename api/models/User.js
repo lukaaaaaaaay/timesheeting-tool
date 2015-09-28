@@ -1,14 +1,14 @@
 /**
- * Account Model
+ * User Model
  *
- * The Account model handles the account details of everyone who uses this
+ * The User model handles the account details of everyone who uses this
  * system.
  */
-var Account = {
+var User = {
   attributes: {
 
     // A firstName and lastName are used to generate a fullName,
-    // which is used to refer to an Account user,
+    // which is used to refer to a User,
     firstName: {type: 'string', required: true},
     lastName: {type: 'string', required: true},
 
@@ -20,7 +20,7 @@ var Account = {
     role: {type: 'string'},
 
     // Associations (aka relational attributes)
-    passports: {collection: 'Passport', via: 'account'},
+    passports: {collection: 'Passport', via: 'user'},
 
     // organizations: {},
 
@@ -29,21 +29,21 @@ var Account = {
     },
 
     toJSON: function () {
-      var account = this.toObject();
-      // delete account.password;
-      // delete account.passports;
-      // account.gravatarUrl = this.getGravatarUrl();
-      account.fullName = this.getFullName();
-      return account;
+      var user = this.toObject();
+      // delete user.password;
+      // delete user.passports;
+      // user.gravatarUrl = this.getGravatarUrl();
+      user.fullName = this.getFullName();
+      return user;
     }
   },
 
   /**
-   * Register a new Account with a passport
+   * Register a new User with a passport
    */
-  register: function (account) {
+  register: function (user) {
     return new Promise(function (resolve, reject) {
-      sails.services.passport.protocols.local.createAccount(account, function (error, created) {
+      sails.services.passport.protocols.local.createUser(user, function (error, created) {
         if (error) return reject(error);
 
         resolve(created);
@@ -53,4 +53,4 @@ var Account = {
 
 };
 
-module.exports = Account;
+module.exports = User;

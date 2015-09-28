@@ -6,34 +6,34 @@
  */
 
 module.exports = {
-    /** GET /api/accounts/ **/
+    /** GET /api/users/ **/
     // find: function (req, res, next) {
         //TODO. Find all accounts
     // },
 
-    /** GET /api/accounts/:id **/
+    /** GET /api/users/:id **/
     // findOne: function (req, res, next) {
         //TODO. Find an account
     // },
 
 
-    /** POST /api/accounts/ **/
+    /** POST /api/users/ **/
     create: function (req, res, next) {
-        sails.services.passport.protocols.local.register(req.body, function (err, account) {
+        sails.services.passport.protocols.local.register(req.body, function (err, user) {
           if (err) return res.negotiate(err);
 
-          console.log("created: " + account);
+          console.log("created: " + user);
 
-          res.ok(account);
+          res.ok(user);
         });
       },
 
-    /** PUT /api/accounts/:id **/
+    /** PUT /api/users/:id **/
     // update: function (req, res, next) {
         //TODO. Update an account
     // },
 
-    /** DEL /api/accounts/:id **/
+    /** DEL /api/users/:id **/
     // destroy: function (req, res, next) {
         //TODO. Delete an account. 
     // },

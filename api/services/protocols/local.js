@@ -1,9 +1,10 @@
+// var SAError = require('../../../lib/error/SAError.js');
+
 /**
  * Local Authentication Protocol
  *
- * The most widely used way for websites to authenticate accounts is via a email as well as a password. 
- * This module provides functions both for registering entirely new accounts, assigning passwords to 
- * already registered accounts and validating login requesting.
+ * This module provides functions both for registering entirely new users, 
+ * assigning passwords to already registered users and validating login requesting.
  *
  * For more information on local authentication in Passport.js, check out:
  * http://passportjs.org/guide/username-password/
@@ -14,64 +15,75 @@
  * @param {Object}   res
  * @param {Function} next
  */
-exports.register = function (account, next) {
-  exports.createAccount(account, next);
+exports.register = function (user, next) {
+  exports.createUser(user, next);
 };
 
 /**
- * Register a new account
+ * Register a new user
  *
- * This method creates a new account from a specified email and password
- * and assign the newly created account a local Passport.
+ * This method creates a new user from a specified email and password
+ * and assign the newly created user a local Passport.
  *
+ * @param {String}   username
  * @param {String}   email
  * @param {String}   password
  * @param {Function} next
  */
-exports.createAccount = function (_account, next) {
-  var password = _account.password;
-  delete _account.password;
+exports.createUser = function (_user, next) {
+  var password = _user.password;
+  delete _user.password;
 
-  return sails.models.account.create(_account, function (err, account) {
+  return sails.models.user.create(_user, function (err, user) {
     if (err) {
       sails.log(err);
+
+      if (err.code === 'E_VALIDATION') {
+        res.forbidden(err);
+      }
+      
       return next(err);
     }
 
     sails.models.passport.create({
       protocol : 'local'
     , password : password
-    , account     : account.id
+    , user     : user.id
     }, function (err, passport) {
-      if (err) {        
-        return account.destroy(function (destroyErr) {
+      if (err) {
+        if (err.code === 'E_VALIDATION') {
+          // err = new SAError({originalError: err});
+        }
+        
+        return user.destroy(function (destroyErr) {
           next(destroyErr || err);
         });
       }
 
-      next(null, account);
+      next(null, user);
     });
   });
 };
 
 /**
- * Assign local Passport to account
+ * Assign local Passport to user
  *
- * This function can be used to assign a local Passport to an account who doens't
- * have one already.
+ * This function can be used to assign a local Passport to a user who doens't
+ * have one already. This would be the case if the user was registered by an
+ * admin and therefore never set a password.
  *
  * @param {Object}   req
  * @param {Object}   res
  * @param {Function} next
  */
 exports.connect = function (req, res, next) {
-  var account     = req.account
+  var user     = req.user
     , password = req.param('password')
     , Passport = sails.models.passport;
 
   Passport.findOne({
     protocol : 'local'
-  , account     : account.id
+  , user     : user.id
   }, function (err, passport) {
     if (err) {
       return next(err);
@@ -81,13 +93,13 @@ exports.connect = function (req, res, next) {
       Passport.create({
         protocol : 'local'
       , password : password
-      , account     : account.id
+      , user     : user.id
       }, function (err, passport) {
-        next(err, account);
+        next(err, user);
       });
     }
     else {
-      next(null, account);
+      next(null, user);
     }
   });
 };
@@ -95,12 +107,12 @@ exports.connect = function (req, res, next) {
 /**
  * Validate a login request
  *
- * Looks up an account using email and then attempts to find a local Passport 
- * associated with the user. If a Passport is found, its password is 
- * checked against the password supplied in the form.
+ * Looks up a user using the supplied email and then
+ * attempts to find a local Passport associated with the user. If a Passport is
+ * found, its password is checked against the password supplied in the form.
  *
  * @param {Object}   req
- * @param {string}   email
+ * @param {string}   identifier
  * @param {string}   password
  * @param {Function} next
  */
@@ -111,23 +123,27 @@ exports.login = function (req, email, password, next) {
   if (isEmail) {
     query.email = email;
   } else {
-    res.forbidden('Error.Passport.Email.NotValid');
-    return next(null, false)
+    res.forbidden('Error.Passport.Email.Invalid');
   }
 
-  sails.models.account.findOne(query, function (err, account) {
+  sails.models.user.findOne(query, function (err, user) {
     if (err) {
       return next(err);
     }
 
-    if (!account) {
-      res.forbidden('Error.Passport.Email.NotFound');
+    if (!user) {
+      if (isEmail) {
+        res.forbidden('Error.Passport.Email.NotFound');
+      } else {
+        res.forbidden('Error.Passport.Username.NotFound');
+      }
+
       return next(null, false);
     }
 
     sails.models.passport.findOne({
       protocol : 'local'
-    , account     : account.id
+    , user     : user.id
     }, function (err, passport) {
       if (passport) {
         passport.validatePassword(password, function (err, res) {
@@ -136,17 +152,15 @@ exports.login = function (req, email, password, next) {
           }
 
           if (!res) {
-            //todo: We turned off sessions. This doesn't work 
-            // req.flash('error', 'Error.Passport.Password.Wrong');
+            res.forbidden('error', 'Error.Passport.Password.Wrong');
             return next(null, false);
           } else {
-            return next(null, account, passport);
+            return next(null, user, passport);
           }
         });
       }
       else {
-        //todo: We turned off sessions. This doesn't work 
-        //req.flash('error', 'Error.Passport.Password.NotSet');
+        req.flash('error', 'Error.Passport.Password.NotSet');
         return next(null, false);
       }
     });

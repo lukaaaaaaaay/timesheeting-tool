@@ -15,14 +15,14 @@ module.exports.bootstrap = function(cb) {
 
   // setup initial test data
 
-    Account.register( {
+    User.register( {
       firstName: 'Admin', 
       lastName: 'User', 
       email: 'admin@example.org', 
       role: 'admin',
       password: 'password'
-    } ).then(function (account) {
-    sails.log('created new account', account);
+    } ).then(function (user) {
+    sails.log('created new user', user);
   })
   .catch(function (error) {
     sails.log.error(error);
