@@ -36,7 +36,18 @@ module.exports.routes = {
   //   view: 'homepage'
   // }
 
-  'get /api/users/me': 'UserController.me',
+
+  'post /auth/register': 'UserController.create',
+  'get /auth/logout': 'AuthController.logout',
+
+  'post /auth/local': 'AuthController.callback',
+  'post /auth/local/:action': 'AuthController.callback',
+
+  'get /auth/:provider': 'AuthController.provider',
+  'get /auth/:provider/callback': 'AuthController.callback',
+  'get /auth/:provider/:action': 'AuthController.callback',
+
+  'get /api/me': 'UserController.me',
 
   'get /api/users': 'UserController.find',
   'post /api/users': 'UserController.create',
@@ -44,7 +55,6 @@ module.exports.routes = {
   'put /api/users/:id': 'UserController.update',
   'del /api/users/:id': 'UserController.destroy',
 
-  'post /auth/local': 'AuthController.callback',
 
   /***************************************************************************
   *                                                                          *
