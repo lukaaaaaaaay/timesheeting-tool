@@ -25,7 +25,7 @@ module.exports = function (req, res, next) {
       return next(error);
     }
     if (!user) {
-      req.session.authenticated = false;
+      req.authenticated = false;
       return res.status(403).json({ error: 'Could not authenticate user '+ email });
     }
 

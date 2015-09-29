@@ -14,7 +14,7 @@
                   <div class="input-group">
                     <span class="input-group-addon">
                     <i class="fa fa-envelope-o"></i></span>
-                    <input type="email" name="email" id="email" class="form-control" required />
+                    <input type="email" name="email" id="email" class="form-control" ng-model="user.email" required />
                     <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
                   </div>
                 </div>
@@ -22,7 +22,7 @@
                   <label>Password</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="password" name="password" id="password" class="form-control" required />
+                    <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
                     <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
                         
                   </div>

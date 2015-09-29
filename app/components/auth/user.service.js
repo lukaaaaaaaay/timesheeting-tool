@@ -12,7 +12,7 @@ users.factory('Users', function ($resource) {
 
 users.factory('User', function ($resource) {
     return $resource('/api/users/:id/:action', {}, {
-        get: { method: 'GET' },
+        get: { method: 'GET', isArray: true },
         update: { method: 'PUT', params: {id: '@id'} },
         delete: { method: 'DELETE', params: {id: '@id'} },
         // changePassword: { method: 'DELETE', params: {id: '@id', action: 'password'} },

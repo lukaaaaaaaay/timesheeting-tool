@@ -6,6 +6,7 @@ angular.module('tsm', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
+  'base64',
   'tsm.users',
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
@@ -20,8 +21,8 @@ angular.module('tsm', [
       // Add authorization token to headers
       request: function (config) {
         config.headers = config.headers || {};
-        if ($cookieStore.get('password')) {
-          config.headers.Authorization = 'Bearer ' + $cookieStore.get('password');
+        if ($cookieStore.get('token')) {
+          config.headers.Authorization = 'Basic ' + $cookieStore.get('token');
         }
         // if ($cookieStore.get('token')) {
         //   config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');

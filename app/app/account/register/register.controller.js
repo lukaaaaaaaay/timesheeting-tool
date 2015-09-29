@@ -8,8 +8,6 @@ angular.module('tsm')
       $scope.register = function(form) {
         $scope.submitted = true;
 
-        console.log($scope.user);
-
         if(form.$valid) {
           Auth.createUser({
             firstName: $scope.user.firstName,
@@ -19,8 +17,8 @@ angular.module('tsm')
             confirmPassword: $scope.user.confirmPassword
           })
           .then( function() {
-            // Account created, redirect to home
-            $location.path('/');
+            // Account created, redirect to dashboard
+            $location.path('/dashboard');
           })
           .catch( function(err) {
             err = err.data;
