@@ -38,5 +38,8 @@ module.exports = {
         //TODO. Delete an account. 
     // },
 
+    me: function (req, res) {
+      res.ok(req.user);
+    }
 };
 
