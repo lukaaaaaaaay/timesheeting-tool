@@ -259,3 +259,8 @@ a:hover, a:focus {
   padding: 20px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.error {
+  color: #B91F03;
+  font-size: 90%;
+}

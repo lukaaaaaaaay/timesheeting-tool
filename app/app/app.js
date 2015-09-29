@@ -44,6 +44,14 @@ angular.module('tsm', [
       }
     };
   })
+  .factory('tstBodyClass', function() {
+    return {
+      returned: {
+        formsClass: 'tst-single-form',
+        all: '',
+      }
+    }
+  })
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
