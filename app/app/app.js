@@ -44,6 +44,8 @@ angular.module('tsm', [
       }
     };
   })
+  // set the class on the body tag in index.html - adds required styling. 
+  // $rootScope.bodyClass must be set in each controller eg. dashboard, register or login controllers.
   .factory('tstBodyClass', function() {
     return {
       returned: {
@@ -62,6 +64,7 @@ angular.module('tsm', [
       });
     });
   })
+  // used for form validation to compare to fields.
   .directive("compareTo", function() {
     return {
         require: "ngModel",
