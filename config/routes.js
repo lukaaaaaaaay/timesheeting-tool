@@ -35,8 +35,15 @@ module.exports.routes = {
   // '/': {
   //   view: 'homepage'
   // }
-  'get /api/user': 'UserController.find',
-  'post /api/user': 'UserController.create',
+
+  'get /api/users/me': 'UserController.me',
+
+  'get /api/users': 'UserController.find',
+  'post /api/users': 'UserController.create',
+  'get /api/users/:id': 'UserController.findOne',
+  'put /api/users/:id': 'UserController.update',
+  'del /api/users/:id': 'UserController.destroy',
+
   'post /auth/local': 'AuthController.callback',
 
   /***************************************************************************

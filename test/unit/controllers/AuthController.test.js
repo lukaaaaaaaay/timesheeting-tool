@@ -12,7 +12,7 @@ describe('Auth Controller', function () {
         request(sails.hooks.http.app)
             .post('/auth/local')
             .send({
-              identifier: 'existing.user@email.com',
+              email: 'existing.user@email.com',
               password: 'admin1234'
             })
             .expect(200)
@@ -27,7 +27,7 @@ describe('Auth Controller', function () {
         request(sails.hooks.http.app)
             .post('/auth/local')
             .send({
-              identifier: 'invalid@email.com',
+              email: 'invalid@email.com',
               password: 'admin1234'
             })
             .expect(403)
@@ -42,7 +42,7 @@ describe('Auth Controller', function () {
         request(sails.hooks.http.app)
             .post('/auth/local')
             .send({
-              identifier: 'existing.user@email.com',
+              email: 'existing.user@email.com',
               password: 'invalid1235'
             })
             .expect(403)

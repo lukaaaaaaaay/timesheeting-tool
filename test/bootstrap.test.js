@@ -1,5 +1,6 @@
-var Sails = require('sails'),
-  sails;
+var Sails = require('sails');
+var request = require('supertest');
+var sails;
 
 before(function(done) {
 
@@ -12,7 +13,21 @@ before(function(done) {
     sails = server;
     if (err) return done(err);
     // here you can load fixtures, etc.
-    done(err, sails);
+
+
+    request(sails.hooks.http.app)
+      .post('/api/users')
+      .send({
+        firstName: 'Existing', 
+        lastName: 'User',
+        role: 'admin',
+        email: 'existing.user@email.com',
+        password: 'admin1234'
+      })
+      .end(function(err) {
+        done(err, sails);
+      });
+    // done(err, sails);
   });
 });
 

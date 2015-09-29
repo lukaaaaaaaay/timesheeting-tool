@@ -46,6 +46,9 @@ describe('User Controller', function () {
         request(sails.hooks.http.app)
             .post('/api/users')
             .send({
+              firstName: 'New', 
+              lastName: 'User',
+              role: 'admin',
               email: 'new.user@email.com',
               password: 'admin1234'
             })
@@ -61,6 +64,9 @@ describe('User Controller', function () {
         request(sails.hooks.http.app)
             .post('/api/users')
             .send({
+              firstName: 'New', 
+              lastName: 'User',
+              role: 'admin',
               email: 'new.user@email.com',
               password: 'admin1234'
             })
@@ -87,7 +93,7 @@ describe('User Controller', function () {
         agent
             .post('/auth/local')
             .send({
-              identifier: 'existing.user@email.com',
+              email: 'existing.user@email.com',
               password: 'admin1234'
             })
             .expect(200, function (err, res) {
