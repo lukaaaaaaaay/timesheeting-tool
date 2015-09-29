@@ -44,7 +44,6 @@ angular.module('tsm', [
       }
     };
   })
-
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
@@ -54,4 +53,24 @@ angular.module('tsm', [
         }
       });
     });
-  });
+  })
+  .directive("compareTo", function() {
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
+             
+            ngModel.$validators.compareTo = function(modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+ 
+            scope.$watch("otherModelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    }
+});
+
+
