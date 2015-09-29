@@ -48,7 +48,7 @@ angular.module('tsm', [
     return {
       returned: {
         formsClass: 'tst-single-form',
-        all: '',
+        dashboard: 'tst-body',
       }
     }
   })
