@@ -3,14 +3,15 @@
 angular.module('tsm')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
-    if($cookieStore.get('token')) {
+    //if($cookieStore.get('token')) {
+    if($cookieStore.get('password')) {
       currentUser = User.get();
     }
 
     return {
 
       /**
-       * Authenticate user and save token
+       * Authenticate user and save password
        *
        * @param  {Object}   user     - login info
        * @param  {Function} callback - optional
@@ -25,7 +26,10 @@ angular.module('tsm')
           password: user.password
         }).
         success(function(data) {
-          $cookieStore.put('token', data.token);
+          console.log("login success");
+
+          $cookieStore.put('password', user.password);
+          //$cookieStore.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);
           return cb();
@@ -45,7 +49,9 @@ angular.module('tsm')
        * @param  {Function}
        */
       logout: function() {
-        $cookieStore.remove('token');
+        $cookieStore.remove('password');
+
+        //$cookieStore.remove('token');
         currentUser = {};
       },
 
@@ -61,7 +67,9 @@ angular.module('tsm')
 
         return User.save(user,
           function(data) {
-            $cookieStore.put('token', data.token);
+            $cookieStore.put('password', user.password);
+            //$cookieStore.put('token', data.token);
+
             currentUser = User.get();
             return cb(user);
           },
@@ -80,16 +88,16 @@ angular.module('tsm')
        * @return {Promise}
        */
       changePassword: function(oldPassword, newPassword, callback) {
-        var cb = callback || angular.noop;
+        // var cb = callback || angular.noop;
 
-        return User.changePassword({ id: currentUser._id }, {
-          oldPassword: oldPassword,
-          newPassword: newPassword
-        }, function(user) {
-          return cb(user);
-        }, function(err) {
-          return cb(err);
-        }).$promise;
+        // return User.changePassword({ id: currentUser._id }, {
+        //   oldPassword: oldPassword,
+        //   newPassword: newPassword
+        // }, function(user) {
+        //   return cb(user);
+        // }, function(err) {
+        //   return cb(err);
+        // }).$promise;
       },
 
       /**
@@ -107,7 +115,7 @@ angular.module('tsm')
        * @return {Boolean}
        */
       isLoggedIn: function() {
-        return currentUser.hasOwnProperty('role');
+        return currentUser.hasOwnProperty('token');
       },
 
       /**
@@ -120,7 +128,7 @@ angular.module('tsm')
           }).catch(function() {
             cb(false);
           });
-        } else if(currentUser.hasOwnProperty('role')) {
+        } else if(currentUser.hasOwnProperty('token')) {
           cb(true);
         } else {
           cb(false);

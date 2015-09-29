@@ -1,4 +1,4 @@
-// var SAError = require('../../../lib/error/SAError.js');
+var SAError = require('../../../lib/error/SAError.js');
 
 /**
  * Local Authentication Protocol
@@ -39,7 +39,7 @@ exports.createUser = function (_user, next) {
       sails.log(err);
 
       if (err.code === 'E_VALIDATION') {
-        res.forbidden(err);
+         return next(new SAError({originalError: err}));
       }
       
       return next(err);
@@ -52,7 +52,7 @@ exports.createUser = function (_user, next) {
     }, function (err, passport) {
       if (err) {
         if (err.code === 'E_VALIDATION') {
-          // err = new SAError({originalError: err});
+          err = new SAError({originalError: err});
         }
         
         return user.destroy(function (destroyErr) {
@@ -123,7 +123,7 @@ exports.login = function (req, email, password, next) {
   if (isEmail) {
     query.email = email;
   } else {
-    res.forbidden('Error.Passport.Email.Invalid');
+    next('Error.Passport.Email.Invalid');
   }
 
   sails.models.user.findOne(query, function (err, user) {
@@ -133,9 +133,9 @@ exports.login = function (req, email, password, next) {
 
     if (!user) {
       if (isEmail) {
-        res.forbidden('Error.Passport.Email.NotFound');
+        return next(err);
       } else {
-        res.forbidden('Error.Passport.Username.NotFound');
+        return next(err);
       }
 
       return next(null, false);
@@ -152,16 +152,14 @@ exports.login = function (req, email, password, next) {
           }
 
           if (!res) {
-            res.forbidden('error', 'Error.Passport.Password.Wrong');
-            return next(null, false);
+            return next('Error.Passport.Password.Wrong', false);
           } else {
             return next(null, user, passport);
           }
         });
       }
       else {
-        req.flash('error', 'Error.Passport.Password.NotSet');
-        return next(null, false);
+        return next('Error.Passport.Password.NotSet', false);
       }
     });
   });
