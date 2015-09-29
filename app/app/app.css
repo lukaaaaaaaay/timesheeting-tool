@@ -68,14 +68,18 @@ a:hover, a:focus {
 
 .btn-primary:hover, 
 .btn-primary:focus, 
-.btn-primary[disabled] {
+.btn-primary[disabled],
+.btn-primary:active {
   background-color: #DA5405;
   border-color: #DA5405; }
 
 .btn-default {
   border-color: #E0DFDF; }
 
-.btn-default:hover, .btn-default:focus {
+.btn-default:hover,
+.btn-default:focus,
+.btn-default[disabled],
+.btn-default:active {
   background-color: #F3F2F2;
   border-color: #D4D4D4; }
 
