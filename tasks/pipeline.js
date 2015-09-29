@@ -29,6 +29,7 @@ var jsFilesToInject = [
   // bower components here
   '/bower_components/jquery/dist/jquery.js',
   '/bower_components/angular/angular.js',
+  '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-route/angular-route.js',
   '/bower_components/angular-cookies/angular-cookies.js',
   '/bower_components/angular-resource/angular-resource.js',
