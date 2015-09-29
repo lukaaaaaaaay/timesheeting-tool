@@ -66,14 +66,20 @@ a:hover, a:focus {
   background-color: #D66A2B;
   border-color: #D66A2B; }
 
-.btn-primary:hover {
+.btn-primary:hover, 
+.btn-primary:focus, 
+.btn-primary[disabled],
+.btn-primary:active {
   background-color: #DA5405;
   border-color: #DA5405; }
 
 .btn-default {
   border-color: #E0DFDF; }
 
-.btn-default:hover {
+.btn-default:hover,
+.btn-default:focus,
+.btn-default[disabled],
+.btn-default:active {
   background-color: #F3F2F2;
   border-color: #D4D4D4; }
 
@@ -109,7 +115,13 @@ a:hover, a:focus {
 
 /***** DASHBOARD *****/
 .tst-body {
-  padding-top: 50px; }
+  padding-top: 50px; 
+height: 100%;}
+
+.tst-sidebar-wrap {
+  min-height: 100%;
+
+}
 
 /* Side Menu */
 .tst-sidebar {
@@ -259,3 +271,8 @@ a:hover, a:focus {
   padding: 20px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.error {
+  color: #B91F03;
+  font-size: 90%;
+}
