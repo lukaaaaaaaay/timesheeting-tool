@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('tsm')
-    .controller('RegisterCtrl', function ($scope, Auth, $location) {
+    .controller('RegisterCtrl', function ($scope, Auth, $location, $rootScope, tstBodyClass) {
       $scope.user = {};
       $scope.errors = {};
+      // validate email entered on the fly
+      $scope.emailPattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+      // add body class
+      $rootScope.bodyClass = tstBodyClass.returned.formsClass;
 
       $scope.register = function(form) {
         $scope.submitted = true;
