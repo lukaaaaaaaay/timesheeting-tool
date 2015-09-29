@@ -1,82 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-ms-offset-3 panel">
+      <form class="form" name="form" ng-submit="register(form)" novalidate>
 
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-ms-offset-3 panel">
-          <form class="form" name="form" ng-submit="register(form)" novalidate>
-
-            <div class="panel-heading text-center">
-              <h3>Register</h3>
-            </div>
-            <div class="panel-body">
-
-              <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
-                                            'has-error': form.firstName.$invalid && submitted }">
-                <label>First Name</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control" name="firstName" ng-model="user.firstName" required/>
-                </div>
-              </div>
-
-              <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
-                                            'has-error': form.lastName.$invalid && submitted }">
-                <label>Last Name</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control" name="lastName" ng-model="user.lastName" required/>
-                </div>
-              </div>
-
-              <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
-                                                  'has-error': form.email.$invalid && submitted }">
-                <label>Email</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                  <input type="email" class="form-control" name="email" ng-model="user.email" required/>
-
-                </div>
-              </div>
-
-              <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
-                                                  'has-error': form.password.$invalid && submitted }">
-                <label>Password</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                  <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required/>
-                </div>
-              </div>
-
-              <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && submitted,
-                                                  'has-error': form.confirmPassword.$invalid && submitted }">
-                <label>Confirm Password</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                  <input type="password" class="form-control" ng-model="user.confirmPassword" name="confirmPassword" required/>
-                </div>
-              </div>
-
-            </div>
-            <div class="panel-footer">
-              <input type="submit" class="btn btn-primary btn-block" value="Log In"/>
-              <div class="lower-footer text-center">
-                <a href="login.html" class="small-link">Already have an account?</a>
-              </div>
-            </div>
-          </form>
+        <div class="panel-heading text-center">
+          <h3>Register</h3>
         </div>
-      </div>
+        <div class="panel-body">
+
+          <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
+          'has-error': form.firstName.$invalid && submitted }">
+            <label>First Name</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" name="firstName" ng-model="user.firstName" required/>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
+        'has-error': form.lastName.$invalid && submitted }">
+            <label>Last Name</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" name="lastName" ng-model="user.lastName" required/>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+      'has-error': form.email.$invalid && submitted }">
+            <label>Email</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+              <input type="email" class="form-control" name="email" ng-model="user.email" required/>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+    'has-error': form.password.$invalid && submitted }">
+            <label>Password</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-key"></i></span>
+              <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required/>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && submitted,
+  'has-error': form.confirmPassword.$invalid && submitted }">
+            <label>Confirm Password</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-key"></i></span>
+              <input type="password" class="form-control" ng-model="user.confirmPassword" name="confirmPassword" required/>
+            </div>
+          </div>
+
+        </div>
+        <div class="panel-footer">
+          <input type="submit" class="btn btn-primary btn-block" value="Log In"/>
+          <div class="lower-footer text-center">
+            <a href="login.html" class="small-link">Already have an account?</a>
+          </div>
+        </div>
+
+      </form>
     </div>
-
-
-
-
-
-
-
+  </div>
+</div>
 
 <footer class="footer">
   <div class="container">
-      
+
   </div>
 </footer>

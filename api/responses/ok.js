@@ -44,5 +44,4 @@ module.exports = function sendOK (data, options) {
   else return res.guessView({ data: data }, function couldNotGuessView () {
     return res.jsonx(data);
   });
-
 };
