@@ -44,7 +44,16 @@ angular.module('tsm', [
       }
     };
   })
-
+  // set the class on the body tag in index.html - adds required styling. 
+  // $rootScope.bodyClass must be set in each controller eg. dashboard, register or login controllers.
+  .factory('tstBodyClass', function() {
+    return {
+      returned: {
+        formsClass: 'tst-single-form',
+        dashboard: 'tst-body',
+      }
+    }
+  })
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
@@ -54,4 +63,25 @@ angular.module('tsm', [
         }
       });
     });
-  });
+  })
+  // used for form validation to compare to fields.
+  .directive("compareTo", function() {
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
+             
+            ngModel.$validators.compareTo = function(modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+ 
+            scope.$watch("otherModelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    }
+});
+
+
