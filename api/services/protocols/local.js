@@ -152,8 +152,7 @@ exports.login = function (req, email, password, next) {
           }
 
           if (!res) {
-            res.forbidden('error', 'Error.Passport.Password.Wrong');
-            return next(null, false);
+            return next('Error.Passport.Password.Wrong', false);
           } else {
             return next(null, user, passport);
           }
