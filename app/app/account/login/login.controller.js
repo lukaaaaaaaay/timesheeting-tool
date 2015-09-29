@@ -18,7 +18,7 @@ angular.module('tsm')
           $location.path('/dashboard');
         })
         .catch( function(err) {
-          $scope.errors.other = err.message;
+          $scope.errors.other = err;
         });
       }
     }
