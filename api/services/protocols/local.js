@@ -123,7 +123,7 @@ exports.login = function (req, email, password, next) {
   if (isEmail) {
     query.email = email;
   } else {
-    next('Error.Passport.Email.Invalid');
+    next(req.__('Error.Passport.Email.Invalid'));
   }
 
   sails.models.user.findOne(query, function (err, user) {
@@ -152,14 +152,14 @@ exports.login = function (req, email, password, next) {
           }
 
           if (!res) {
-            return next('Error.Passport.Password.Wrong', false);
+            return next(req.__('Error.Passport.Password.Wrong'), false);
           } else {
             return next(null, user, passport);
           }
         });
       }
       else {
-        return next('Error.Passport.Password.NotSet', false);
+        return next(req.__('Error.Passport.Password.NotSet'), false);
       }
     });
   });
