@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tsm')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, Users, $cookieStore, $q) {
     var currentUser = {};
     //if($cookieStore.get('token')) {
     if($cookieStore.get('password')) {
@@ -26,7 +26,6 @@ angular.module('tsm')
           password: user.password
         }).
         success(function(data) {
-          console.log("login success");
 
           $cookieStore.put('password', user.password);
           //$cookieStore.put('token', data.token);
@@ -65,7 +64,7 @@ angular.module('tsm')
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
 
-        return User.save(user,
+        return Users.create(user,
           function(data) {
             $cookieStore.put('password', user.password);
             //$cookieStore.put('token', data.token);
