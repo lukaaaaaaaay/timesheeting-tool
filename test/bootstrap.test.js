@@ -20,7 +20,6 @@ before(function(done) {
       .send({
         firstName: 'Existing', 
         lastName: 'User',
-        role: 'admin',
         email: 'existing.user@email.com',
         password: 'admin1234'
       })

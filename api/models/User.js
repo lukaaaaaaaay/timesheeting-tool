@@ -4,6 +4,7 @@
  * The User model handles the account details of everyone who uses this
  * system.
  */
+
 var User = {
   attributes: {
 
@@ -16,8 +17,8 @@ var User = {
     email: {type: 'email', unique: true, index: true, required: true},
 
     // A role can be 'admin'. 'director' etc.
-    // TODO: make it an enum for slightly more security than a string?
-    role: {type: 'string'},
+    // TODO: make this an enum for slightly more security than a string?
+    role: {type: 'string', enum: ['admin', 'director', 'staff']},
 
     // Associations (aka relational attributes)
     passports: {collection: 'Passport', via: 'user'},
@@ -39,7 +40,10 @@ var User = {
   },
 
   /**
-   * Register a new User with a passport
+   * Register a new user
+   * Returns a promise.
+   *
+   * @param {Object}   user The soon-to-be-created User
    */
   register: function (user) {
     return new Promise(function (resolve, reject) {

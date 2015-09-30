@@ -134,7 +134,7 @@ exports.login = function (req, email, password, next) {
           next(err);
         }
 
-        return next("no user", false);
+        return next(null, false);
       }
 
       sails.models.passport.findOne({
