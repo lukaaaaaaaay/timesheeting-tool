@@ -25,7 +25,6 @@ exports.register = function (user, next) {
  * This method creates a new user from a specified email and password
  * and assign the newly created user a local Passport.
  *
- * @param {String}   username
  * @param {String}   email
  * @param {String}   password
  * @param {Function} next
@@ -112,58 +111,57 @@ exports.connect = function (req, res, next) {
  * found, its password is checked against the password supplied in the form.
  *
  * @param {Object}   req
- * @param {string}   identifier
+ * @param {string}   email
  * @param {string}   password
  * @param {Function} next
  */
 exports.login = function (req, email, password, next) {
-  var isEmail = validateEmail(email)
-    , query   = {};
 
-  if (isEmail) {
-    query.email = email;
-  } else {
-    next(req.__('Error.Passport.Email.Invalid'));
-  }
+    var isEmail = validateEmail(email)
+      , query   = {};
 
-  sails.models.user.findOne(query, function (err, user) {
-    if (err) {
-      return next(err);
+    if (isEmail) {
+      query.email = email;
     }
 
-    if (!user) {
-      if (isEmail) {
-        return next(err);
-      } else {
+    sails.models.user.findOne(query, function (err, user) {
+      if (err) {
         return next(err);
       }
 
-      return next(null, false);
-    }
+      if (!user) {
+        if (isEmail) {
+          next(err);
+        }
 
-    sails.models.passport.findOne({
-      protocol : 'local'
-    , user     : user.id
-    }, function (err, passport) {
-      if (passport) {
-        passport.validatePassword(password, function (err, res) {
-          if (err) {
-            return next(err);
-          }
+        return next(null, false);
+      }
 
-          if (!res) {
-            return next(req.__('Error.Passport.Password.Wrong'), false);
-          } else {
-            return next(null, user, passport);
-          }
-        });
-      }
-      else {
-        return next(req.__('Error.Passport.Password.NotSet'), false);
-      }
+      sails.models.passport.findOne({
+        protocol : 'local'
+      , user     : user.id
+      }, function (err, passport) {
+        if (passport) {
+          passport.validatePassword(password, function (err, res) {
+            if (err) {
+              return next(err);
+            }
+
+            if (!res) {
+              //next(req.__('Error.Passport.Password.Wrong'));
+              // req.flash('error', 'Error.Passport.Password.Wrong');
+              return next(null, false);
+            } else {
+              return next(null, user, passport);
+            }
+          });
+        }
+        else {
+          return next(req.__('Error.Passport.Password.NotSet'), false);
+        }
+      });
     });
-  });
-};
+  };
 
 var EMAIL_REGEX = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i;
 

@@ -48,6 +48,8 @@ module.exports = {
     function negotiateError (err) {
         // make sure the server always returns a response to the client
         // i.e passport-local bad username/email or password
+
+        
         res.forbidden(err);
     }
 
@@ -67,10 +69,10 @@ module.exports = {
 
         // Upon successful login, optionally redirect the user if there is a
         // `next` query param
-        if (req.query.next) {
-          var url = sails.services.authservice.buildCallbackNextUrl(req);
-          res.status(302).set('Location', url);
-        }
+        // if (req.query.next) {
+        //   var url = sails.services.authservice.buildCallbackNextUrl(req);
+        //   res.status(302).set('Location', url);
+        // }
 
         sails.log.info('user', user, 'authenticated successfully');
         return res.json(user);
