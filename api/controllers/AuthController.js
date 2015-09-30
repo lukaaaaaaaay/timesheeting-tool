@@ -46,12 +46,8 @@ module.exports = {
     var action = req.param('action');
 
     function negotiateError (err) {
-        // make sure the server always returns a response to the client
-        // i.e passport-local bad username/email or password
-
-        
-        res.forbidden(err);
-    }
+        res.forbidden();
+    };
 
     sails.services.passport.callback(req, res, function (err, user) {
       if (err || !user) {
