@@ -19,7 +19,6 @@ describe('Auth Controller', function () {
             .end(function(err) {
               done(err);
             });
-
       });
 
       it ('passport-local authentication should fail and return error code if email is invalid', function (done) {
@@ -34,7 +33,6 @@ describe('Auth Controller', function () {
             .end(function(err) {
               done(err);
             });
-
       });
 
       it ('passport-local authentication should fail and return error code if password is invalid', function (done) {
@@ -49,11 +47,7 @@ describe('Auth Controller', function () {
             .end(function(err) {
               done(err);
             });
-
       });
-
     });
-
   });
-
 });

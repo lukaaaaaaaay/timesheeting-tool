@@ -72,6 +72,4 @@ module.exports = function serverError (data, options) {
 
     return res.send(html);
   });
-
 };
-

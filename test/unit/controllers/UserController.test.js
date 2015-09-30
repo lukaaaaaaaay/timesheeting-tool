@@ -56,7 +56,6 @@ describe('User Controller', function () {
             .end(function (err) {
               done(err);
             });
-
       });
 
       it('should return error if user already exists', function (done) {
@@ -74,9 +73,7 @@ describe('User Controller', function () {
             .end(function (err) {
               done(err);
             });
-
       });
-
     });
   });
 
@@ -110,7 +107,6 @@ describe('User Controller', function () {
                     done(err);
                   });
             });
-
       });
 
       // it('should not find user if they have logged out', function (done) {
@@ -131,12 +127,7 @@ describe('User Controller', function () {
       //               done(err);
       //             });
       //       });
-
       // });
-
     });
-
-
   });
-
 });

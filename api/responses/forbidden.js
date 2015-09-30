@@ -72,6 +72,4 @@ module.exports = function forbidden (data, options) {
 
     return res.send(html);
   });
-
 };
-

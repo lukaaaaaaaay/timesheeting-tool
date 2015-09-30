@@ -77,6 +77,4 @@ module.exports = function notFound (data, options) {
 
     return res.send(html);
   });
-
 };
-

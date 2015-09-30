@@ -82,7 +82,6 @@ var Passport = {
     validatePassword: function (password, next) {
       bcrypt.compare(password, this.password, next);
     }
-
   },
 
   /**

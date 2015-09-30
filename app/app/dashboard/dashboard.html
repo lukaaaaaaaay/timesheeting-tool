@@ -1,176 +1,156 @@
 <!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
 
+<!-- HTML CODE PASTE -->
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Timesheeting Tool</a>
+    </div>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown dropdown-user">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <img src="images/grumpy-cat.jpg" class="img-circle avatar"> User <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-cogs"></i> Account Settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li><a href="#" title="Log out"><i class="fa fa-sign-out"></i> Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
+<div class="tst-sidebar-wrap">
+  <div class="tst-sidebar tst-sidebar-full">
+    <div class="tst-sidebar-toggle-wrap text-right">
+      <a href="javascript:;" class="tst-sidebar-toggler">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <ul class="tst-sidebar-menu">
+      <li class="active">
+        <a href="javascript:;">
+          <i class="fa fa-tachometer"></i>
+          <span class="title">Dashboard</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:;">
+          <i class="fa fa-building"></i>
+          <span class="title">Company</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu">
+          <li>
+            <a href="">
+              View Details
+            </a>
+          </li>
+          <li>
+            <a href="">
+              Create Department
+            </a>
+          </li>
+          <li>
+            <a href="">
+              Department List
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:;">
+          <i class="fa fa-bar-chart"></i>
+          <span class="title">Project</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu">
+          <li>
+            <a href="">Create Project</a>
+          </li>
+          <li>
+            <a href="">Project List</a>
+          </li>
+          <li>
+            <a href="">Department List</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:;">
+          <i class="fa fa-tasks"></i>
+          <span class="title">Tasks</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:;">
+          <i class="fa fa-users"></i>
+          <span class="title">Staff</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="tst-page-container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        Text
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+$(document).ready(function() {
+  $(".tst-sidebar.tst-sidebar-full .tst-sidebar-menu li a").on("click", function() {
+    $(this).next().slideToggle();
+    if($(this).parent().has(".tst-sidebar-submenu").length > 0) {
+      if($(this).parent().hasClass("open")) {
+        $(this).parent().removeClass("open");
+      }
+      else {
+        $(this).parent().addClass("open");
+      }
+    }
+  });
 
+  $(".tst-sidebar-toggler").on("click", function() {
+    if($(".tst-sidebar").hasClass("tst-sidebar-full")) {
+      $(".tst-sidebar").removeClass("tst-sidebar-full");  
+      $(".tst-sidebar").addClass("tst-sidebar-collapsed");
+    }
+    else {
+      $(".tst-sidebar").addClass("tst-sidebar-full"); 
+      $(".tst-sidebar").removeClass("tst-sidebar-collapsed");
+    }
 
-
-
-    <!-- HTML CODE PASTE -->
-
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Timesheeting Tool</a>
-              </div>
-              <div class="collapse navbar-collapse" id="nav">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown dropdown-user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <img src="images/grumpy-cat.jpg" class="img-circle avatar"> User <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#"><i class="fa fa-cogs"></i> Account Settings</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#" title="Log out"><i class="fa fa-sign-out"></i> Log out</a></li>
-                </ul>
-              </div>
-          </div>
-        </nav>
-
-        <div class="tst-sidebar-wrap">
-          <div class="tst-sidebar tst-sidebar-full">
-            <div class="tst-sidebar-toggle-wrap text-right">
-              <a href="javascript:;" class="tst-sidebar-toggler">
-                <i class="fa fa-bars"></i>
-              </a>
-            </div>
-            <ul class="tst-sidebar-menu">
-              <li class="active">
-                <a href="javascript:;">
-                  <i class="fa fa-tachometer"></i>
-                  <span class="title">Dashboard</span>
-                  <span class="arrow"></span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <i class="fa fa-building"></i>
-                  <span class="title">Company</span>
-                  <span class="arrow"></span>
-                </a>
-                <ul class="tst-sidebar-submenu">
-                  <li>
-                    <a href="">
-                      View Details
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Create Department
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      Department List
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <i class="fa fa-bar-chart"></i>
-                  <span class="title">Project</span>
-                  <span class="arrow"></span>
-                </a>
-                <ul class="tst-sidebar-submenu">
-                  <li>
-                    <a href="">Create Project</a>
-                  </li>
-                  <li>
-                    <a href="">Project List</a>
-                  </li>
-                  <li>
-                    <a href="">Department List</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <i class="fa fa-tasks"></i>
-                  <span class="title">Tasks</span>
-                  <span class="arrow"></span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <i class="fa fa-users"></i>
-                  <span class="title">Staff</span>
-                  <span class="arrow"></span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="tst-page-container">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-sm-12">
-              Text
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        
-        <script>
-          $(document).ready(function() {
-            $(".tst-sidebar.tst-sidebar-full .tst-sidebar-menu li a").on("click", function() {
-              $(this).next().slideToggle();
-              if($(this).parent().has(".tst-sidebar-submenu").length > 0) {
-                if($(this).parent().hasClass("open")) {
-                  $(this).parent().removeClass("open");
-                }
-                else {
-                  $(this).parent().addClass("open");
-                }
-              }
-            });
-
-            $(".tst-sidebar-toggler").on("click", function() {
-              if($(".tst-sidebar").hasClass("tst-sidebar-full")) {
-                $(".tst-sidebar").removeClass("tst-sidebar-full");  
-                $(".tst-sidebar").addClass("tst-sidebar-collapsed");
-              }
-              else {
-                $(".tst-sidebar").addClass("tst-sidebar-full"); 
-                $(".tst-sidebar").removeClass("tst-sidebar-collapsed");
-              }
-
-              if($("body").hasClass("sidebar-closed")) {
-                $("body").removeClass("sidebar-closed");
-              }
-              else {
-                $("body").addClass("sidebar-closed"); 
-              }
-
-              
-            });
-          });
-        </script>
-
-
-
-
-
-
-
-
-
+    if($("body").hasClass("sidebar-closed")) {
+      $("body").removeClass("sidebar-closed");
+    }
+    else {
+      $("body").addClass("sidebar-closed"); 
+    }
+  });
+});
+</script>
 
 <footer class="footer">
   <div class="container">
-      
+
   </div>
 </footer>
