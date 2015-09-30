@@ -1,5 +1,5 @@
 {
     "Error.Passport.Email.Invalid": "Your email is invalid",
     "Error.Passport.Password.Wrong": "Your password is wrong",
-    "Error.Passport.Password.NotSet": "Your password is not set",
+    "Error.Passport.Password.NotSet": "Your password is not set"
 }

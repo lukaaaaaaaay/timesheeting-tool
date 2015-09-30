@@ -58,7 +58,7 @@ exports.createUser = function (_user, next) {
           next(destroyErr || err);
         });
       }
-
+      
       next(null, user);
     });
   });
@@ -134,7 +134,7 @@ exports.login = function (req, email, password, next) {
           next(err);
         }
 
-        return next(null, false);
+        return next(err, false);
       }
 
       sails.models.passport.findOne({

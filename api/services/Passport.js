@@ -92,7 +92,7 @@ passport.connect = function (req, query, profile, next) {
     // If an email was not available in the profile, we don't
     // have a way of identifying the user in the future. Throw an error and let
     // whoever's next in the line take care of it.
-    return next(new Error('Neither a username nor email was available'));
+    return next(new Error('An email was unavailable'));
   }
 
   sails.models.passport.findOne({
@@ -168,7 +168,7 @@ passport.connect = function (req, query, profile, next) {
 passport.endpoint = function (req, res) {
   var strategies = sails.config.passport;
   var provider = req.param('provider');
-  var options = { session: false };
+  var options = { };
 
   // If a provider doesn't exist for this endpoint, send the user back to the
   // login page
@@ -180,6 +180,9 @@ passport.endpoint = function (req, res) {
   if (_.has(strategies[provider], 'scope')) {
     options.scope = strategies[provider].scope;
   }
+
+  // Set session as false
+  options.session = false;
 
   // Redirect the user to the provider for authentication. When complete,
   // the provider will redirect the user back to the application at
@@ -200,8 +203,10 @@ passport.endpoint = function (req, res) {
 passport.callback = function (req, res, next) {
   var provider = req.param('provider', 'local');
   var action = req.param('action');
-  var options = { session: false };
+  var options = { };
 
+  // Set session as false
+  options.session = false;
 
   // Passport.js wasn't really built for local user registration, but it's nice
   // having it tied into everything else.
