@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('tsm')
-  .controller('DashboardCtrl', function ($scope, $http, $rootScope, tstBodyClass) {
-    $scope.awesomeThings = [];
+  .controller('DashboardCtrl', function ($scope, $http, Auth, $rootScope, tstBodyClass) {
+    $scope.user = [];
+
     // add body class
     $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+    // add user to scope
+    $scope.user = Auth.getCurrentUser();
 
+    console.log($scope.user);
   });

@@ -8,6 +8,10 @@ angular.module('tsm')
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginCtrl'
       })
+      .state('logout', {
+        url: '/logout',
+        controller: 'LogoutCtrl'
+      })
       .state('register', {
         url: '/register',
         templateUrl: 'app/account/register/register.html',

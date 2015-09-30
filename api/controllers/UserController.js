@@ -1,45 +1,38 @@
 /**
- * AccountController
+ * UserController
  *
- * @description :: Server-side logic for managing Accounts in our system
+ * @description :: Server-side logic for managing Users in our system
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
 module.exports = {
-    /** GET /api/users/ **/
-    // find: function (req, res, next) {
-        //TODO. Find all accounts
-    // },
 
-    /** GET /api/users/:id **/
-    // findOne: function (req, res, next) {
-        //TODO. Find an account
-    // },
-
-
-    /** POST /api/users/ **/
-    create: function (req, res, next) {
+    /**
+     * Create a new user
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+    create: function (req, res) {
         sails.services.passport.protocols.local.register(req.body, function (err, user) {
           if (err) return res.negotiate(err);
-
-          console.log("created: " + user);
 
           res.ok(user);
         });
       },
 
-    /** PUT /api/users/:id **/
-    // update: function (req, res, next) {
-        //TODO. Update an account
-    // },
-
-    /** DEL /api/users/:id **/
-    // destroy: function (req, res, next) {
-        //TODO. Delete an account. 
-    // },
-
+    /**
+     * If the user is authorized, let them through.
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
     me: function (req, res) {
-      res.ok(req.user);
+        if(req.user) {
+            res.ok(req.user);
+        } else {
+            res.forbidden();
+        }
     }
 };
 

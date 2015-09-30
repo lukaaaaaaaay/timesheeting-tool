@@ -29,6 +29,7 @@ var jsFilesToInject = [
   // bower components here
   '/bower_components/jquery/dist/jquery.js',
   '/bower_components/angular/angular.js',
+  '/bower_components/bootstrap/dist/js/bootstrap.js',
   '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-route/angular-route.js',
   '/bower_components/angular-cookies/angular-cookies.js',
@@ -36,7 +37,6 @@ var jsFilesToInject = [
   '/bower_components/angular-sanitize/angular-sanitize.js',
   '/bower_components/angular-ui-router/release/angular-ui-router.js',
   '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-  '/bower_components/bootstrap/dist/js/boostrap.js',
   
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',

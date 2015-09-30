@@ -1,9 +1,12 @@
+var Gravatar = require('machinepack-gravatar');
+
 /**
  * User Model
  *
  * The User model handles the account details of everyone who uses this
  * system.
  */
+
 var User = {
   attributes: {
 
@@ -16,13 +19,22 @@ var User = {
     email: {type: 'email', unique: true, index: true, required: true},
 
     // A role can be 'admin'. 'director' etc.
-    // TODO: make it an enum for slightly more security than a string?
-    role: {type: 'string'},
+    // TODO: make this an enum for slightly more security than a string?
+    role: {type: 'string', enum: ['admin', 'director', 'staff']},
 
     // Associations (aka relational attributes)
     passports: {collection: 'Passport', via: 'user'},
 
     // organizations: {},
+
+    getGravatarUrl: function () {
+      return Gravatar.getImageUrl({
+        emailAddress: this.email,
+        gravatarSize: 400,
+        rating: 'g',
+        useHttps: true,
+      }).execSync();
+    },
 
     getFullName: function (){
         return this.firstName + ' ' + this.lastName;
@@ -30,16 +42,20 @@ var User = {
 
     toJSON: function () {
       var user = this.toObject();
-      // delete user.password;
-      // delete user.passports;
-      // user.gravatarUrl = this.getGravatarUrl();
+      user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
+      delete user.password;
+      delete user.confirmPassword;
+      delete user.passports;
       return user;
     }
   },
 
   /**
-   * Register a new User with a passport
+   * Register a new user
+   * Returns a promise.
+   *
+   * @param {Object}   user The soon-to-be-created User
    */
   register: function (user) {
     return new Promise(function (resolve, reject) {

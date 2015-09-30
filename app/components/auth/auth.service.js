@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('tsm')
-  .factory('Auth', function Auth($location, $base64, $rootScope, $http, User, Users, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $base64, $rootScope, $http, Me, User, Users, $cookieStore, $q) {
     var currentUser = {};
-    //if($cookieStore.get('token')) {
+
     if($cookieStore.get('token')) {
-      currentUser = User.get();
+      currentUser = Me.get();
     }
 
     return {
@@ -29,7 +29,7 @@ angular.module('tsm')
 
           $cookieStore.put('token', $base64.encode(user.email + ':' + user.password));
           //$cookieStore.put('token', data.token);
-          currentUser = User.get();
+          currentUser = Me.get();
           deferred.resolve(data);
           return cb();
         }).
@@ -50,6 +50,7 @@ angular.module('tsm')
       logout: function() {
         $cookieStore.remove('token');
         currentUser = {};
+        $location.path('/');
       },
 
       /**
@@ -67,7 +68,7 @@ angular.module('tsm')
             $cookieStore.put('token', $base64.encode(user.email + ':' + user.password));
             //$cookieStore.put('token', data.token);
 
-            currentUser = User.get();
+            currentUser = Me.get();
             return cb(user);
           },
           function(err) {

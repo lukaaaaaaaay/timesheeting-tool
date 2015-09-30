@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
     }
     if (!user) {
       req.authenticated = false;
-      return res.status(403).json({ error: 'Could not authenticate user '+ email });
+      return next();
     }
 
     req.user = user;
