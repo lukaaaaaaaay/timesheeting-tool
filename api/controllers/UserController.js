@@ -7,9 +7,13 @@
 
 module.exports = {
     /** GET /api/users/ **/
-    // find: function (req, res, next) {
-        //TODO. Find all accounts
-    // },
+    find: function (req, res, next) {
+        User.find(function foundUsers(err, users) {
+            if (err) return next(err);
+            // pass the array down to the client
+            res.json(users);
+        });
+    },
 
     /** GET /api/users/:id **/
     // findOne: function (req, res, next) {

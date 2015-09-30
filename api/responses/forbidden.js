@@ -37,7 +37,11 @@ module.exports = function forbidden (data, options) {
 
   // Always respond with JSON
   if (req.wantsJSON) {
-    return res.jsonx();
+    if (data) {
+      return res.jsonx(data);
+    } else {
+      return res.jsonx();
+    }
   }
 
   // If second argument is a string, we take that to mean it refers to a view.
