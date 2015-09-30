@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
     }
     if (!user) {
       req.authenticated = false;
-      // return res.forbidden('Could not authenticate user '+ email);
+      return next();
     }
 
     req.user = user;

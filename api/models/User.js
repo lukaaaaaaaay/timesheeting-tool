@@ -1,3 +1,5 @@
+var Gravatar = require('machinepack-gravatar');
+
 /**
  * User Model
  *
@@ -25,16 +27,26 @@ var User = {
 
     // organizations: {},
 
+    getGravatarUrl: function () {
+      return Gravatar.getImageUrl({
+        emailAddress: this.email,
+        gravatarSize: 400,
+        rating: 'g',
+        useHttps: true,
+      }).execSync();
+    },
+
     getFullName: function (){
         return this.firstName + ' ' + this.lastName;
     },
 
     toJSON: function () {
       var user = this.toObject();
-      // delete user.password;
-      // delete user.passports;
-      // user.gravatarUrl = this.getGravatarUrl();
+      user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
+      delete user.password;
+      delete user.confirmPassword;
+      delete user.passports;
       return user;
     }
   },
