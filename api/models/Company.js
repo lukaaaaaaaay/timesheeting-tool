@@ -8,7 +8,7 @@
  var Company = {
  	attributes: {
  		
- 		id {
+ 		id: {
  			type: 'int',
  			primaryKey: true,
  			unique: true,
@@ -26,7 +26,7 @@
  		},
 
  		suburb: {
- 			type: 'string'
+ 			type: 'string',
  			size: 100
  		},
 
@@ -49,9 +49,9 @@
  		},
 
  		directorId: {
- 			type: 'User'
+ 			type: 'User',
  			required: true
- 		}
+ 		},
 
  		getFullAddress: function() {
  			return this.address + ", " + this.suburb + ", " + this.state + ", " + this.country + ", " + this.postcode;

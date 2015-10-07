@@ -55,6 +55,11 @@ module.exports.routes = {
   'put /api/users/:id': 'UserController.update',
   'del /api/users/:id': 'UserController.destroy',
 
+  'get /api/companies': 'CompanyController.find',
+  'post /api/companies': 'CompanyController.create',
+  'get /api/companies/:id': 'CompanyController.findOne',
+  'put /api/companies/:id': 'CompanyController.update',
+  'del /api/companies/:id': 'CompanyController.destroy',
 
   /***************************************************************************
   *                                                                          *
