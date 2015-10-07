@@ -7,9 +7,9 @@
 
  var Company = {
  	attributes: {
- 		// will be using Mongo so string UUID is required for the id.
+ 		
  		id {
- 			type: 'string',
+ 			type: 'int',
  			primaryKey: true,
  			unique: true,
  		},
@@ -47,6 +47,11 @@
  		description: {
  			type: 'string'
  		},
+
+ 		directorId: {
+ 			type: 'User'
+ 			required: true
+ 		}
 
  		getFullAddress: function() {
  			return this.address + ", " + this.suburb + ", " + this.state + ", " + this.country + ", " + this.postcode;
