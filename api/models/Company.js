@@ -50,7 +50,7 @@
 
  		directorId: {
  			type: 'User',
- 			required: true
+ 			//required: true
  		},
 
  		getFullAddress: function() {

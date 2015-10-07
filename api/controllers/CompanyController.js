@@ -14,9 +14,18 @@ module.exports = {
      * @param {Object} res
      */
     find: function (req, res) {
-        return res.json({
-            todo: 'Not implemented yet!'
-        });
+        Company.find({}, function(err, companies) {
+            if (err) return res.negotiate(err);
+
+            // debugging - remove later.. or not, server logs are helpful.
+            if(companies.length == 0) {
+                console.log("successful transaction but no companies found..");
+            }
+            else {
+                console.log(companies.length + " companies found");
+            }
+            res.ok(companies);
+        })
     },
 
         /**
@@ -26,8 +35,18 @@ module.exports = {
      * @param {Object} res
      */
     findOne: function(req, res) {
-        return res.json({
-            todo: 'Not implemented yet!'
+        Company.findOne(req.param('id'), function(err, company) {
+            if (err) return res.negotiate(err);
+
+            if(!company) {
+                console.log('No Company with the id ' + req.param('id') + ' found');
+                res.notFound('No Company with the id ' + req.param('id') + ' found');
+            }
+            else {
+                console.log('Company Found: ' + company.companyName);
+                res.ok(company);
+            }
+            
         });
     },
 
@@ -38,8 +57,12 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        return res.json({
-            todo: 'Not implemented yet!'
+        Company.create(req.body, function (err, company) {
+            if (err) return res.negotiate(err);
+            
+            // debugging - remove later.. or not, server logs are helpful.
+            console.log('created: ' + company.companyName);
+            res.ok(company);
         });
     },
 
@@ -50,8 +73,18 @@ module.exports = {
      * @param {Object} res
      */
     update: function (req, res) {   
-        return res.json({
-            todo: 'Not implemented yet!'
+        Company.update({id: req.body.id}, req.body, function(err, updated) {
+            if (err) return res.negotiate(err);
+
+            if(!updated) {
+                console.log('No Company with the id ' + req.param('id') + ' found');
+                res.notFound('No Company with the id ' + req.param('id') + ' found');
+            }
+            else {
+                console.log('updated: ' + updated.companyName);
+                res.ok(updated);
+            }
+            
         });
     },
 
@@ -62,9 +95,13 @@ module.exports = {
      * @param {Object} res
      */
     destroy: function (req, res) {
-        return res.json({
-            todo: 'Not implemented yet!'
-        });
+        Company.destroy({id: req.param('id')}, function(err) {
+            if (err) return res.negotiate(err);
+
+            // debugging - remove later.. or not, server logs are helpful.
+            console.log('deleted a company');
+            res.ok();
+        })
     },
 
 
