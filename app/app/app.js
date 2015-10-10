@@ -8,6 +8,7 @@ angular.module('tsm', [
   'ui.bootstrap',
   'base64',
   'tsm.users',
+  'tsm.companies',
   'tsm.compareTo'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

@@ -54,17 +54,22 @@
         </a>
         <ul class="tst-sidebar-submenu">
           <li>
-            <a href="">
+            <a href="/#/dashboard/company">
               View Details
             </a>
           </li>
+                    <li>
+            <a href="/#/dashboard/company/edit">
+              Edit Details
+            </a>
+          </li>
           <li>
-            <a href="">
+            <a href="/#/dashboard/department/create">
               Create Department
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/#/dashboard/departments">
               Department List
             </a>
           </li>
@@ -106,13 +111,14 @@
   </div>
 </div>
 <div class="tst-page-container">
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12">
         Text
       </div>
     </div>
-  </div>
+  </div> -->
+  <div ui-view=""></div>
 </div>
 
 <script>
