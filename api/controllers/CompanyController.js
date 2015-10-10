@@ -19,10 +19,10 @@ module.exports = {
 
             // debugging - remove later.. or not, server logs are helpful.
             if(companies.length == 0) {
-                console.log("successful transaction but no companies found..");
+                sails.log.info("successful transaction but no companies found..");
             }
             else {
-                console.log(companies.length + " companies found");
+                 sails.log.info(companies.length + " companies found");
             }
             res.ok(companies);
         })
@@ -39,11 +39,11 @@ module.exports = {
             if (err) return res.negotiate(err);
 
             if(!company) {
-                console.log('No Company with the id ' + req.param('id') + ' found');
+                sails.log.warn('No Company with the id ' + req.param('id') + ' found');
                 res.notFound('No Company with the id ' + req.param('id') + ' found');
             }
             else {
-                console.log('Company Found: ' + company.companyName);
+                 sails.log.info('Company Found: ' + company.companyName);
                 res.ok(company);
             }
             
@@ -57,13 +57,31 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        Company.create(req.body, function (err, company) {
+        Company.findOne(req.body.id, function(err, existing) {
             if (err) return res.negotiate(err);
-            
-            // debugging - remove later.. or not, server logs are helpful.
-            console.log('created: ' + company.companyName);
-            res.ok(company);
+
+            if(existing) {
+                sails.log.warn('Company with the id ' + req.body.id + ' already exists.');
+                res.badRequest('Company with the id ' + req.body.id + ' already exists.');
+            }
+            else {
+                Company.create(req.body, function (err, company) {
+                    if (err) return res.negotiate(err);
+                
+                    // debugging - remove later.. or not, server logs are helpful.
+                    if(company) {
+                        sails.log.info('created: ' + company.companyName);
+                        res.ok(company);
+                    }
+                    else {
+                        sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');
+                        res.badRequest('Company with the id ' + req.body.id + ' could not be created.');
+                    }
+                    
+                });
+            }
         });
+        
     },
 
     /**
@@ -73,19 +91,30 @@ module.exports = {
      * @param {Object} res
      */
     update: function (req, res) {   
-        Company.update({id: req.body.id}, req.body, function(err, updated) {
+        Company.findOne(req.body.id, function(err, existing) {
             if (err) return res.negotiate(err);
 
-            if(!updated) {
-                console.log('No Company with the id ' + req.param('id') + ' found');
-                res.notFound('No Company with the id ' + req.param('id') + ' found');
+            if(existing) {
+                Company.update({id: req.body.id}, req.body, function(err, updated) {
+                    if (err) return res.negotiate(err);
+
+                    if(!updated) {
+                        sails.log.warn('Company with the id ' + req.body.id + ' could not be updated.');
+                        res.badRequest('Company with the id ' + req.body.id + ' could not be updated.');
+                    }
+                    else {
+                        sails.log.info('Updated Company: ' + updated[0].companyName);
+                        res.ok(updated);
+                    }
+                    
+                });
             }
             else {
-                console.log('updated: ' + updated.companyName);
-                res.ok(updated);
+                sails.log.warn('No company with the id ' + req.body.id + ' to update.');
+                res.notFound('No company with the id ' + req.body.id + ' to update.');
             }
-            
         });
+        
     },
 
     /**
@@ -95,11 +124,11 @@ module.exports = {
      * @param {Object} res
      */
     destroy: function (req, res) {
-        Company.destroy({id: req.param('id')}, function(err) {
+        Company.destroy({id: req.param.id}, function(err) {
             if (err) return res.negotiate(err);
 
             // debugging - remove later.. or not, server logs are helpful.
-            console.log('deleted a company');
+            sails.log.info('Company with id ' + req.param.id + ' deleted');
             res.ok();
         })
     },
