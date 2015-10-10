@@ -48,7 +48,7 @@
  			type: 'string'
  		},
 
- 		director: {
+ 		directorId: {
  			model: 'User',
  			//required: true
  		},

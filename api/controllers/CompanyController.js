@@ -124,13 +124,13 @@ module.exports = {
      * @param {Object} res
      */
     destroy: function (req, res) {
-        Company.destroy({id: req.param.id}, function(err) {
+        Company.destroy({id: req.param('id')}, function(err) {
             if (err) return res.negotiate(err);
 
             // debugging - remove later.. or not, server logs are helpful.
-            sails.log.info('Company with id ' + req.param.id + ' deleted');
+            sails.log.info('Company with id ' + req.param('id') + ' deleted');
             res.ok();
-        })
+        });
     },
 
 
