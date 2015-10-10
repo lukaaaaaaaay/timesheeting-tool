@@ -48,8 +48,8 @@
  			type: 'string'
  		},
 
- 		directorId: {
- 			type: 'User',
+ 		director: {
+ 			model: 'User',
  			//required: true
  		},
 
