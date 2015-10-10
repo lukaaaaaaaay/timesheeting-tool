@@ -113,7 +113,10 @@ after(function(done) {
               postcode: '1234'
             })
             .expect(200)
-            .end(function (err) {
+            .end(function (err, res) {
+              var company = res.body;
+              assert.equal(company.id, 2);
+              assert.equal(company.companyName, 'Another Test');
               done(err);
             });
       });
@@ -176,7 +179,9 @@ after(function(done) {
               postcode: '1234'
             })
             .expect(200)
-            .end(function (err) {
+            .end(function (err, res) {
+              var company = res.body[0];
+              assert.equal(company.companyName, 'Updated Test');
               done(err);
             });
       });
