@@ -11,7 +11,7 @@ companies.factory('Companies', function ($resource) {
 });
 
 companies.factory('Company', function ($resource) {
-    return $resource('/api/users/:id/:action', {}, {
+    return $resource('/api/companies/:id/:action', {}, {
         get: { method: 'GET', params: {id: '@id'} },
         update: { method: 'PUT', params: {id: '@id'} },
         delete: { method: 'DELETE', params: {id: '@id'} },
@@ -21,19 +21,19 @@ companies.factory('Company', function ($resource) {
 companies.factory('Departments', function ($resource) {
     return $resource('/api/departments', {}, {
         query: { method: 'GET', isArray: true },
-        create: { method: 'POST' }
+        create: { method: 'POST' },
+        getByCompanyId: {
+            method: 'GET',
+            url: '/api/departments/company/:id',
+            params: { id: '@id'},
+            isArray: true
+        },
     })
 });
 
 companies.factory('Department', function ($resource) {
     return $resource('/api/departments/:id/:action', {}, {
         get: { method: 'GET', params: {id: '@id'} },
-        getByCompanyId: {
-            method: 'GET',
-            url: '/api/departments/company/:id'
-            params: { id: '@id'},
-            isArray: true
-        },
         update: { method: 'PUT', params: {id: '@id'} },
         delete: { method: 'DELETE', params: {id: '@id'} },
     })
