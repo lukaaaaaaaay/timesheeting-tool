@@ -24,7 +24,7 @@ angular.module('tsm')
 
   	$scope.deleteDepartment = function(department) {
   		Department.delete({id: department.id}, function(success){
-
+  			alert('yep');
   		},function(error) {
   			// show error
   		});

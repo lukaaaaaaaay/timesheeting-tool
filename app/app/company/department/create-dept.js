@@ -11,15 +11,17 @@ angular.module('tsm')
     function init() {
     	Departments.query({}, function(departments) {
     		allDepartments = departments
-    		if(allDepartments) {
-    			$scope.departments.id = allDepartments[allDepartments.length-1].id + 1	
+    		if(allDepartments && allDepartments.length > 0) {
+    			$scope.department.id = allDepartments[allDepartments.length-1].id + 1	
     		} 
     		else {
-    			$scope.departments.id = 1;
+    			$scope.department.id = 1;
     		}
     		
     	})
     }
+
+    init();
 
     $scope.createDepartment = function(form) {
     	if(form.$valid) {
@@ -34,5 +36,5 @@ angular.module('tsm')
     	else {
     		// show error message.
     	}
-    }
+    };
 });
