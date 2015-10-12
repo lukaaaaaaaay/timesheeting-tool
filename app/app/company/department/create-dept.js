@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('tsm')
-.controller('CreateDepartmentCtrl', function ($scope, $location,$rootScope, tstBodyClass, Department, Departments) {
+.controller('CreateDepartmentCtrl', function ($scope, $location,$rootScope, tstBodyClass, Department, Departments, notifier) {
     $scope.department = {};
+    var empty = {};
     var allDepartments = [];
 
     // set body class
@@ -28,13 +29,20 @@ angular.module('tsm')
     		// replace with current company.
     		$scope.department.companyId = 1; 
     		Departments.create($scope.department, function(department) {
-
+    			notifier.success('Success', 'New Department created!');
+    			reset();
     		}, function(error) {
-
+    			notifier.error('Error', error);
     		});
     	}
     	else {
-    		// show error message.
+    		notifier.error('Error', 'There are validation errors in the form. Please fix before submitting.');
     	}
     };
+
+    function reset() {
+    	$scope.department = angular.copy(empty);
+    	init();
+    	$scope.createDeptForm.$setPristine();
+    }
 });

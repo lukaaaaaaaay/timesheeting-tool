@@ -16,6 +16,7 @@
 var cssFilesToInject = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
   'bower_components/font-awesome/css/font-awesome.css',
+  'bower_components/toastr/toastr.min.css',
   'styles/**/*.css'
 ];
 
@@ -37,6 +38,7 @@ var jsFilesToInject = [
   '/bower_components/angular-sanitize/angular-sanitize.js',
   '/bower_components/angular-ui-router/release/angular-ui-router.js',
   '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+  '/bower_components/toastr/toastr.min.js',
   
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
