@@ -9,7 +9,8 @@ angular.module('tsm', [
   'base64',
   'tsm.users',
   'tsm.services',
-  'tsm.compareTo'
+  'tsm.compareTo',
+  'ngDialog'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

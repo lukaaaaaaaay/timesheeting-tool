@@ -7,14 +7,14 @@
 
 			</div>
 			<div class="table-responsive">
-				<table class="table tst-list" ng-show="departments && departments.length > 0">
+				<table class="table tst-list" ng-show="departments && departments.length > 0" >
 					<tr class="blue-gray">
 						<th>Id</th>
 						<th>Department Name</th>
 						<th>Date Created</th>
 						<th/>
 					</tr>
-					<tr ng-repeat="d in departments">
+					<tr ng-repeat="d in filteredDepartments | limitTo:numPerPage">
 						<td>{{d.id}}</td>
 						<td>{{d.name}}</td>
 						<td>{{d.createdAt}}</td>
@@ -33,7 +33,7 @@
 				</p>
 			</div>
 			<div class="text-right">
-				<ul class="pagination">
+				<!-- <ul class="pagination">
 					<li>
 				      <a href="#" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
@@ -49,9 +49,14 @@
 				        <span aria-hidden="true">&raquo;</span>
 				      </a>
 				    </li>
-				</ul>
+				</ul> -->
+				<pagination 
+  					ng-model="currentPage"
+  					total-items="departments.length" 
+  					previous-text="&laquo;"
+  					next-text="&raquo;">
+				</pagination>
 			</div>
 		</div>
 	</div>
 </div>
-		

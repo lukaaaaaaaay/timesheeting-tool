@@ -8,7 +8,7 @@
 						<label class="control-label">Department Name</label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="name" ng-model="department.name" required/>
+						<input type="text" class="form-control" name="name" ng-model="department.name" placeholder="Enter new department name..." required/>
 						<div class="error" ng-show="createDeptForm.name.$dirty && createDeptForm.name.$invalid">
 							<span ng-show="createDeptForm.name.$error.required">
 								The company name is required. 
