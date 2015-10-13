@@ -58,16 +58,17 @@
  		}
  	},
  	/**
-   	* Create a new Compnay
-   	* Returns a promise.
+   	* Find a company based on its director.
    	*
-   	* @param {Object}   company The soon-to-be-created Company
+   	* @param {Object}   company - The found company
    	*/
-   	// create: function(company) {
-   	// 	return new Promise(function(resolve, reject) {
+   	findByDirectorId: function(directorId, cb) {
+   		Company.find({directorId: directorId}, limit: 1).exec(function(err, company) {
+   			if (err) return cb(err);
 
-   	// 	});
-   	// }
+   			return cb(null, company)
+   		});
+   	}
  }
 
  module.exports = Company;

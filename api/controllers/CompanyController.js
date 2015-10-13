@@ -51,6 +51,27 @@ module.exports = {
     },
 
     /**
+     * Return a single Company based on the DirectorId
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+    findByDirectorId: function(req, res) {
+        Company.findByDirectorId(req.param('id'), function(err, company) {
+            if (err) return res.negotiate(err);
+
+            if(!company) {
+                sails.log.warn('No Company with a director with the id ' + req.param('id') + ' found');
+                res.notFound('No Company with a director with the id ' + req.param('id') + ' found');
+            }
+            else {
+                 sails.log.info('Company Found: ' + company.companyName);
+                res.ok(company);
+            }
+        });
+    }
+
+    /**
      * Create a new Company
      *
      * @param {Object} req
