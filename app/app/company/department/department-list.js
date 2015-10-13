@@ -28,7 +28,7 @@ angular.module('tsm')
   	$scope.deleteDepartment = function(department) {
 		ngDialog.openConfirm({
 		  template: '/components/dialogs/confirm-delete.html',
-		  scope: $scope //Pass the scope object if you need to access in the template
+		  scope: $scope 
 		}).then(
 			function(success) {
 				Department.delete({id: department.id}, function(success){
@@ -42,12 +42,6 @@ angular.module('tsm')
 				//Cancel or do nothing
 			}
 		);
-  		// Department.delete({id: department.id}, function(success){
-  		// 	notifier.success('Success', 'Department deleted');
-  		// 	init();
-  		// },function(error) {
-  		// 	notifier.error('Error', error);
-  		// });
   	}
 
   	$scope.numPages = function () {

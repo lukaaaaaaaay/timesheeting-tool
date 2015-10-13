@@ -3,6 +3,11 @@
 angular.module('tsm')
   .config(function ($stateProvider) {
     $stateProvider
+      .state('company-create', {
+        url: '/company/create',
+        templateUrl: 'app/company/company/create-company.html',
+        controller: 'CreateCompanyCtrl'
+      })
       .state('dashboard.company-view', {
         url: '/company',
         templateUrl: 'app/company/company/company-details.html',
