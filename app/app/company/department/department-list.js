@@ -28,26 +28,44 @@ angular.module('tsm')
   	init();
 
   	$scope.renameDepartment = function(department) {
-
+      var prev = {};
+      prev = angular.copy(department);
+      $scope.editing = department;
+      ngDialog.openConfirm({
+        template: '/components/dialogs/rename-dept.html',
+        controller: ['$scope', function($scope) {
+          $scope.department = $scope.$parent.editing;
+        }],
+        scope: $scope
+      }).then(function(success) {
+          Department.update({id: department.id}, department, function(success) {
+            notifier.success('Success', 'Department renamed!');
+          }, function (error) {
+            notifier.error('Error', 'There was an error renaming the department!');
+          })
+      }, function(cancelled) {
+        $scope.editing = prev;
+      });
   	}
 
   	$scope.deleteDepartment = function(department) {
-		ngDialog.openConfirm({
-		  template: '/components/dialogs/confirm-delete.html',
-		  scope: $scope 
-		}).then(
-			function(success) {
-				Department.delete({id: department.id}, function(success){
-  					notifier.success('Success', 'Department deleted');
-  					init();
-  				},function(error) {
-  					notifier.error('Error', error);
-  				});
-			},
-			function(error) {
-				//Cancel or do nothing
-			}
-		);
+  		ngDialog.openConfirm({
+  		  template: '/components/dialogs/confirm-delete.html',
+  		  scope: $scope 
+  		}).then(
+  			function(success) {
+  				Department.delete({id: department.id}, function(success){
+    					notifier.success('Success', 'Department deleted');
+    					init();
+    				},function(error) {
+              console.log(error)
+    					notifier.error('Error', 'Unable to delete department');
+    				});
+  			},
+  			function(error) {
+  				
+  			}
+  		);
   	}
 
   	$scope.numPages = function () {

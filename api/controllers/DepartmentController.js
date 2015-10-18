@@ -127,7 +127,7 @@ module.exports = {
                     }
                     else {
                         sails.log.info('Updated Department: ' + updated[0].name);
-                        res.ok(updated);
+                        res.ok(updated[0]);
                     }
                     
                 });
