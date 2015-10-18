@@ -41,6 +41,20 @@ companies.factory('ActiveCompany', function ($resource) {
     });
 });
 
+// companies.factory('ActiveCompany', function ($http, Auth) {
+//     return {
+//         active: function() {
+//             directorId = Auth.getCurrentUser();
+//             $http.get('/api/companies/director/' + directorId).then(function (company) {
+//                 return company.data;
+//             }, function (error) {
+//                 return null;
+//             });
+//         }       
+//     }
+    
+// })
+
 companies.factory('Departments', function ($resource) {
     return $resource('/api/departments', {}, {
         query: { method: 'GET', isArray: true },

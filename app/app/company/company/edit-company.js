@@ -1,64 +1,40 @@
 'use strict';
 
 angular.module('tsm')
-.controller('EditCompanyCtrl', function ($scope, $location,$rootScope, tstBodyClass, Company, Companies) {
+.controller('EditCompanyCtrl', function ($scope, $location,$rootScope, tstBodyClass, Company, Companies, notifier, Auth, ActiveCompany) {
+    var userId = Auth.getCurrentUser().id;
     $scope.company = {};
+    var empty = {};
     // set body class
     $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
   	function init() {
-    	Company.get({id: 1}, function(company) {
-    		if(company) {
-    			$scope.company = company
-    		}
-    		else {
-    			var test = {
-        			id: 1,
-			        companyName: 'Test', 
-			        address: '1 Test Street', 
-			        suburb: 'Testville',
-			        state: 'VIC',
-			        country: 'Australia',
-			        postcode: '1234'
-			    }
-
-    			Companys.create(test, function(createdCompany) {
-    				$scope.company = createdCompany
-    			}, function(error) {
-    				alert(error);
-    			})
-    		}
-    	}, function(error) {
-    		var test = {
-        			id: 1,
-			        companyName: 'Test', 
-			        address: '1 Test Street', 
-			        suburb: 'Testville',
-			        state: 'VIC',
-			        country: 'Australia',
-			        postcode: '1234'
-			    }
-
-    			Companies.create(test, function(createdCompany) {
-    				$scope.company = createdCompany;
-    			}, function(error) {
-    				alert(error);
-    			})
-    	});
-    }
+        ActiveCompany.get({directorId: userId}, function (company) {
+                $scope.company = company;
+            }, function (error) {
+                notifier.error('Error', 'Unable to find company for logged in user. Try logging in again!');
+            });
+    }    
 
     init();
 
     $scope.updateCompany = function(form) {
     	if(form.$valid) {
     		Company.update({id: $scope.company.id}, $scope.company, function(company) {
-
+                notifier.success('Success', 'Company details updated!');
+                reset();
     		}, function(error) {
+                console.log(error);
+                notifier.error('Error', 'Unable to update company details.');
     		});
     	}
     	else {
     		// show error message
     	}
     	
+    }
+
+    function reset() {
+        $scope.editCompanyForm.$setPristine();
     }
 });

@@ -15,19 +15,16 @@ angular.module('tsm')
     	$state.transitionTo(path);
     }
 
-    function init() {
-        ActiveCompany.get({directorId: $scope.user.id}, function (company) {
-            console.log(company);
-            $rootScope.company = company;
-        }, function (error) {
+    // function init() {
+    //     ActiveCompany.get({directorId: $scope.user.id}, function (company) {
+    //         console.log(company);
+    //         $rootScope.company = company;
+    //     }, function (error) {
 
-        });
-    }
+    //     });  
+    // }
 
-    setTimeout(function() {
-        init();
-    }, 500)
-    
+    // init();
 
     console.log($scope.user);
   });

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('tsm')
-.controller('DepartmentListCtrl', function ($scope, $location,$rootScope, tstBodyClass, Departments, Department, notifier, ngDialog) {
+.controller('DepartmentListCtrl', function ($scope, $location,$rootScope, tstBodyClass, Departments, Department, notifier, ngDialog, ActiveCompany, Auth ) {
+    var userId = Auth.getCurrentUser().id;
     $scope.departments = [];
     $scope.filteredDepartments = [];
     $scope.numPerPage = 10;
@@ -10,13 +11,18 @@ angular.module('tsm')
     $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
   	function init() {
-  		// replace with company id of logged in user.
-  		Departments.getByCompanyId({id: 1}, function(departments) {
-  			$scope.departments = departments;
-  			updateList();
-  		}, function(error) {
-  			notifier.error('Error', error);
-  		})
+  		ActiveCompany.get({directorId: userId}, function (company) {
+          Departments.getByCompanyId({id: company.id}, function(departments) {
+            $scope.departments = departments;
+            updateList();
+            }, function(error) {
+              console.log(error);
+              notifier.error('Error', 'Unable to find departments for ' + company.companyName);
+          });
+      }, function (error) {
+          notifier.error('Error', 'Unable to find company for logged in user. Try logging in again!');
+      });
+
   	}
 
   	init();
