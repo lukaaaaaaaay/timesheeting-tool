@@ -1,7 +1,8 @@
+
 'use strict';
 
 angular.module('tsm')
-  .controller('DashboardCtrl', function ($scope, $http, Auth, $rootScope, tstBodyClass, $state) {
+  .controller('DashboardCtrl', function ($scope, $http, Auth, $rootScope, tstBodyClass, $state, ActiveCompany) {
     $scope.user = [];
 
     // add body class
@@ -13,6 +14,20 @@ angular.module('tsm')
     $scope.goTo = function(path) {
     	$state.transitionTo(path);
     }
+
+    function init() {
+        ActiveCompany.get({directorId: $scope.user.id}, function (company) {
+            console.log(company);
+            $rootScope.company = company;
+        }, function (error) {
+
+        });
+    }
+
+    setTimeout(function() {
+        init();
+    }, 500)
+    
 
     console.log($scope.user);
   });

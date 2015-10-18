@@ -63,10 +63,11 @@
    	* @param {Object}   company - The found company
    	*/
    	findByDirectorId: function(directorId, cb) {
-   		Company.find({directorId: directorId}, limit: 1).exec(function(err, company) {
+   		console.log(directorId)
+   		Company.find({directorId: directorId }).exec(function (err, company) {
    			if (err) return cb(err);
 
-   			return cb(null, company)
+   			return cb(null, company);
    		});
    	}
  }

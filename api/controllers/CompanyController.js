@@ -57,19 +57,31 @@ module.exports = {
      * @param {Object} res
      */
     findByDirectorId: function(req, res) {
-        Company.findByDirectorId(req.param('id'), function(err, company) {
+        Company.find({where: {directorId: req.param('directorId') },limit: 1}, function(err, companies) {
             if (err) return res.negotiate(err);
-
+            var company = companies[0];
             if(!company) {
-                sails.log.warn('No Company with a director with the id ' + req.param('id') + ' found');
-                res.notFound('No Company with a director with the id ' + req.param('id') + ' found');
+                sails.log.warn('No Company with a director with the id ' + req.param('directorId') + ' found');
+                res.notFound('No Company with a director with the id ' + req.param('directorId') + ' found');
             }
             else {
                  sails.log.info('Company Found: ' + company.companyName);
                 res.ok(company);
             }
         });
-    }
+        // Company.findByDirectorId(req.param('id'), function(err, company) {
+        //     if (err) return res.negotiate(err);
+
+        //     if(!company) {
+        //         sails.log.warn('No Company with a director with the id ' + req.param('id') + ' found');
+        //         res.notFound('No Company with a director with the id ' + req.param('id') + ' found');
+        //     }
+        //     else {
+        //          sails.log.info('Company Found: ' + company.companyName);
+        //         res.ok(company);
+        //     }
+        // });
+    },
 
     /**
      * Create a new Company

@@ -104,7 +104,7 @@ angular.module('tsm')
        * @return {Object} user
        */
       getCurrentUser: function() {
-        return currentUser;
+        return currentUser;  
       },
 
       /**

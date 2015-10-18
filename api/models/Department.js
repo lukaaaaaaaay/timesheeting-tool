@@ -30,7 +30,7 @@
    	* Returns all departments for a company
    	* Returns a promise.
    	*
-   	* @param {Object}   company The soon-to-be-created Company
+   	* @param {Object}   companyId The Id of the company.
    	*/
 
    	findAllByCompany: function(companyId, callback) {

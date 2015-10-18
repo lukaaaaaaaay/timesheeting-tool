@@ -59,7 +59,7 @@ module.exports.routes = {
   'get /api/companies': 'CompanyController.find',
   'post /api/companies': 'CompanyController.create',
   'get /api/companies/:id': 'CompanyController.findOne',
-  'get /api/companies/director/:id': 'CompanyController.findByDirectorId',
+  'get /api/companies/director/:directorId': 'CompanyController.findByDirectorId',
   'put /api/companies/:id': 'CompanyController.update',
   'delete /api/companies/:id': 'CompanyController.destroy',
 

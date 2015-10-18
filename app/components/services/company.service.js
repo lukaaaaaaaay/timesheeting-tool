@@ -7,15 +7,38 @@ companies.factory('Companies', function ($resource) {
     return $resource('/api/companies', {}, {
         query: { method: 'GET', isArray: true },
         create: { method: 'POST' }
-    })
+    });
 });
 
 companies.factory('Company', function ($resource) {
     return $resource('/api/companies/:id/:action', {}, {
-        get: { method: 'GET', params: {id: '@id'} },
-        update: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'DELETE', params: {id: '@id'} },
-    })
+        get: { 
+            method: 'GET',
+            
+            params: {id: '@id'} 
+        },
+        update: { 
+            method: 'PUT',
+            
+            params: {id: '@id'} 
+        },
+        delete: { 
+            method: 'DELETE', 
+            
+            params: {id: '@id'} 
+        },
+    });
+});
+// for some reason if I had the get by director method in the Company 
+// factory it conflicted with the get method, even though the urls were
+// different. Will try again when I have more time to investigate properly.
+companies.factory('ActiveCompany', function ($resource) {
+    return $resource('/api/companies/director/:directorId', {}, {
+        get: {
+            method: 'GET',
+            params: {directorId: '@directorId'}
+        }
+    });
 });
 
 companies.factory('Departments', function ($resource) {
@@ -28,7 +51,7 @@ companies.factory('Departments', function ($resource) {
             params: { id: '@id'},
             isArray: true
         },
-    })
+    });
 });
 
 companies.factory('Department', function ($resource) {
@@ -36,5 +59,5 @@ companies.factory('Department', function ($resource) {
         get: { method: 'GET', params: {id: '@id'} },
         update: { method: 'PUT', params: {id: '@id'} },
         delete: { method: 'DELETE', params: {id: '@id'} },
-    })
+    });
 });
