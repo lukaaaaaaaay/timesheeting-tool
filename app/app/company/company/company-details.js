@@ -7,6 +7,11 @@ angular.module('tsm').controller('CompanyCtrl', function ($scope, $location, $ro
     $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
     function init() {
+        // set sidebar menu
+        $rootScope.selectedMenu = 2;
+        $rootScope.showDropdown = true;
+
+        // get active company
         ActiveCompany.get({directorId: userId}, function (company) {
             $scope.company = company;
         }, function (error) {

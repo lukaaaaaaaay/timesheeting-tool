@@ -9,6 +9,11 @@ angular.module('tsm')
     $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
   	function init() {
+        // set sidebar menu
+        $rootScope.selectedMenu = 2;
+        $rootScope.showDropdown = true;
+
+        // get active company
         ActiveCompany.get({directorId: userId}, function (company) {
                 $scope.company = company;
             }, function (error) {

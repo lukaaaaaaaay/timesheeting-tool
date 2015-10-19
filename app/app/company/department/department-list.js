@@ -11,6 +11,11 @@ angular.module('tsm')
     $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
   	function init() {
+      // set sidebar menu
+      $rootScope.selectedMenu = 2;
+      $rootScope.showDropdown = true;
+
+      // get active company and departments for it.
   		ActiveCompany.get({directorId: userId}, function (company) {
           Departments.getByCompanyId({id: company.id}, function(departments) {
             $scope.departments = departments;
@@ -28,6 +33,7 @@ angular.module('tsm')
   	init();
 
   	$scope.renameDepartment = function(department) {
+      // show rename form model. Cancel not yet working correctly.
       var prev = {};
       prev = angular.copy(department);
       $scope.editing = department;
@@ -49,6 +55,7 @@ angular.module('tsm')
   	}
 
   	$scope.deleteDepartment = function(department) {
+      // show confirm dialog to ensure user really wants to delete something.
   		ngDialog.openConfirm({
   		  template: '/components/dialogs/confirm-delete.html',
   		  scope: $scope 
@@ -76,6 +83,7 @@ angular.module('tsm')
     	updateList();
   	});
 
+    // refreshs list on page either because of page change or deletion.
   	function updateList() {
   		var begin = (($scope.currentPage - 1) * $scope.numPerPage)
     	, end = begin + $scope.numPerPage;

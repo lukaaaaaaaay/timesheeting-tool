@@ -13,17 +13,20 @@
 	    $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
 	    function init() {
-	    	
+	    	// set sidebar menu
+	    	$rootScope.selectedMenu = 2;
+	    	$rootScope.showDropdown = true;
+
+	    	// calculate the departmentId
 	    	determineDepartmentId();
 
+	    	// get active company
 	    	ActiveCompany.get({directorId: userId}, function (company) {
             	companyId = company.id;
         	}, function (error) {
         		notifier.error('Error', 'Unable to find company for logged in user. Try logging in again!');
         	});
 	    }
-
-
 
 	    init();
 
@@ -49,6 +52,8 @@
 	    	$scope.createDeptForm.$setPristine();
 	    }
 
+	    // Query database for all departments. Newest department id is one greater than the highest record
+	    // in database.
 	    function determineDepartmentId() {
 	    	Departments.query({}, function(departments) {
 	    		allDepartments = departments

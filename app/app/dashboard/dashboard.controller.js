@@ -8,6 +8,10 @@ angular.module('tsm')
     // add body class
     $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
+    // sidebar menu - set in menu tree controllers. 
+    $rootScope.selectedMenu = 1;
+    $rootScope.showDropdown = false;
+
     // add user to scope
     $scope.user = Auth.getCurrentUser();
 
@@ -15,16 +19,14 @@ angular.module('tsm')
     	$state.transitionTo(path);
     }
 
-    // function init() {
-    //     ActiveCompany.get({directorId: $scope.user.id}, function (company) {
-    //         console.log(company);
-    //         $rootScope.company = company;
-    //     }, function (error) {
-
-    //     });  
-    // }
-
-    // init();
+    // sidebar menu
+    $scope.setSelectedMenu = function (selection) {
+        $rootScope.selectedMenu = selection;
+    }
+    // sidebar menu
+    $scope.toggleDropdown = function () {
+        $rootScope.showDropdown = !$rootScope.showDropdown;
+    }
 
     console.log($scope.user);
   });

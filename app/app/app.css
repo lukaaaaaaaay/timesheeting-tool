@@ -213,6 +213,8 @@ a:hover, a:focus {
     z-index: 10000; }
     .tst-sidebar.tst-sidebar-collapsed .tst-sidebar-menu li:hover a {
       background-color: #49525D; }
+    .tst-sidebar.tst-sidebar-collapsed .tst-sidebar-menu li.active:hover a {
+      background-color: #D66A2B; }
       .tst-sidebar.tst-sidebar-collapsed .tst-sidebar-menu li:hover a .title {
         padding-left: 20px;
         display: inline; }
@@ -289,6 +291,9 @@ a:hover, a:focus {
   .tst-sidebar-menu li.open span.arrow:after {
     content: "\f107"; }
 
+.tst-sidebar-menu li.active.open .tst-sidebar-submenu {
+      display: block;
+    }
 .tst-sidebar-submenu {
   display: none;
   list-style: none;
