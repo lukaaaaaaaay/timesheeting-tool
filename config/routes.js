@@ -53,9 +53,23 @@ module.exports.routes = {
   'post /api/users': 'UserController.create',
   'get /api/users/:id': 'UserController.findOne',
   'put /api/users/:id': 'UserController.update',
-  'del /api/users/:id': 'UserController.destroy',
+  'delete /api/users/:id': 'UserController.destroy',
 
+  // Company Routes
+  'get /api/companies': 'CompanyController.find',
+  'post /api/companies': 'CompanyController.create',
+  'get /api/companies/:id': 'CompanyController.findOne',
+  'get /api/companies/director/:directorId': 'CompanyController.findByDirectorId',
+  'put /api/companies/:id': 'CompanyController.update',
+  'delete /api/companies/:id': 'CompanyController.destroy',
 
+  // Department Routes
+  'get /api/departments': 'DepartmentController.find',
+  'get /api/departments/:id': 'DepartmentController.findOne',
+  'get /api/departments/company/:id': 'DepartmentController.findAllByCompany',
+  'post /api/departments': 'DepartmentController.create',
+  'put /api/departments/:id': 'DepartmentController.update',
+  'delete /api/departments/:id': 'DepartmentController.destroy',
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

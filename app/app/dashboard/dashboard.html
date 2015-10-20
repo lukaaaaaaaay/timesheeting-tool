@@ -39,38 +39,43 @@
       </a>
     </div>
     <ul class="tst-sidebar-menu">
-      <li class="active">
-        <a href="javascript:;">
+      <li ng-class="{active: selectedMenu == 1}">
+        <a href="/#/dashboard" ng-click="setSelectedMenu(1)">
           <i class="fa fa-tachometer"></i>
           <span class="title">Dashboard</span>
           <span class="arrow"></span>
         </a>
       </li>
-      <li>
-        <a href="javascript:;">
+      <li ng-class="{active: selectedMenu == 2, open: showDropdown}">
+        <a href="javascript:;" ng-click="toggleDropdown()">
           <i class="fa fa-building"></i>
           <span class="title">Company</span>
           <span class="arrow"></span>
         </a>
         <ul class="tst-sidebar-submenu">
           <li>
-            <a href="">
+            <a href="/#/dashboard/company">
               View Details
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/#/dashboard/company/edit">
+              Edit Details
+            </a>
+          </li>
+          <li>
+            <a href="/#/dashboard/department/create">
               Create Department
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/#/dashboard/departments">
               Department List
             </a>
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active: selectedMenu == 3, open: selectedMenu == 3}">
         <a href="javascript:;">
           <i class="fa fa-bar-chart"></i>
           <span class="title">Project</span>
@@ -88,14 +93,14 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li ng-class="{active: selectedMenu == 4}">
         <a href="javascript:;">
           <i class="fa fa-tasks"></i>
           <span class="title">Tasks</span>
           <span class="arrow"></span>
         </a>
       </li>
-      <li>
+      <li ng-class="{active: selectedMenu == 5}">
         <a href="javascript:;">
           <i class="fa fa-users"></i>
           <span class="title">Staff</span>
@@ -106,13 +111,14 @@
   </div>
 </div>
 <div class="tst-page-container">
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12">
         Text
       </div>
     </div>
-  </div>
+  </div> -->
+  <div ui-view=""></div>
 </div>
 
 <script>

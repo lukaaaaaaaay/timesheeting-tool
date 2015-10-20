@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tsm')
-  .factory('Auth', function Auth($location, $base64, $rootScope, $http, Me, User, Users, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $base64, $rootScope, $http, Me, User, Users, $cookieStore, $q, ActiveCompany) {
     var currentUser = {};
 
     if($cookieStore.get('token')) {
@@ -104,7 +104,7 @@ angular.module('tsm')
        * @return {Object} user
        */
       getCurrentUser: function() {
-        return currentUser;
+        return currentUser;  
       },
 
       /**
