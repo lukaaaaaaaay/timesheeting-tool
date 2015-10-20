@@ -8,6 +8,47 @@
 module.exports = {
 
     /**
+     * Return all the Users in the system
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+    find: function (req, res) {
+        User.find({}, function(err, users) {
+            if (err) return res.negotiate(err);
+
+            if(users.length == 0) {
+                sails.log.warn("successful transaction but no users found..");
+            }
+            else {
+                sails.log.info(users.length + " users found");
+            }
+            res.ok(users);
+        })
+    },
+
+        /**
+     * Return a single User matching the supplied Id
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+    findOne: function(req, res) {
+        User.findOne(req.param('id'), function(err, users) {
+            if (err) return res.negotiate(err);
+
+            if(!users) {
+                res.notFound('No User with the id ' + req.param('id') + ' found');
+            }
+            else {
+                sails.log.info('User Found: ' + users.fullName);
+                res.ok(users);
+            }
+            
+        });
+    },
+
+    /**
      * Create a new user
      *
      * @param {Object} req
@@ -19,6 +60,46 @@ module.exports = {
 
           res.ok(user);
         });
+      },
+
+
+      /**
+       * Update an existing User
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+      update: function (req, res) {   
+          User.update({id: req.body.id}, req.body, function(err, user) {
+              if (err) return res.negotiate(err);
+
+              if(!user) {
+                  res.notFound('No User with the id ' + req.param('id') + ' found');
+              }
+              else {
+                  sails.log.info('updated user: ' + user.email);
+                  res.ok(user);
+              }
+              
+          });
+      },
+
+      /**
+       * Delete an existing User
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+      destroy: function (req, res, next) {
+
+        User.findOne(req.param('id'), function foundUser(err, user) {
+            if (err) return next(err);
+            if (!user) return next('User doesn\'t exist.');
+            User.destroy(req.param('id'), function userDestroyed(err) {
+                   if (err) return next(err);
+                   res.ok(user.email + " has been destroyed");
+            })
+        })
       },
 
     /**
@@ -35,4 +116,3 @@ module.exports = {
         }
     }
 };
-
