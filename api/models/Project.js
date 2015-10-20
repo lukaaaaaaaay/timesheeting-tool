@@ -80,7 +80,7 @@
       *
       * @param {int}   statusId - The status id of the projects
       */
-      findAllForProjectManager: function(statusId, cb) {
+      findAllForStatus: function(statusId, cb) {
          
          Project.find({statusId: statusId }).exec(function (err, projects) {
             if (err) return cb(err);
@@ -96,7 +96,7 @@
       */
       findAllForProjectManagerAndStatus: function(query, cb) {
          
-         Project.find({projectManagerId: query.projectManagerId, statusId: query.statusId }).exec(function (err, projects) {
+         Project.find({projectManagerId: query.pmId, statusId: query.statusId }).exec(function (err, projects) {
             if (err) return cb(err);
 
             return cb(null, projects);
