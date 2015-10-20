@@ -81,14 +81,15 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        Department.findOne(req.body.id, function(err, existing) {
-            if (err) return res.negotiate(err);
+        //TODO: get new department id here
+        // Department.findOne(req.body.id, function(err, existing) {
+        //     if (err) return res.negotiate(err);
 
-            if(existing) {
-                sails.log.warn('Department with the id ' + req.body.id + ' already exists.');
-                res.badRequest('Department with the id ' + req.body.id + ' already exists.');
-            }
-            else {
+        //     if(existing) {
+        //         sails.log.warn('Department with the id ' + req.body.id + ' already exists.');
+        //         res.badRequest('Department with the id ' + req.body.id + ' already exists.');
+        //     }
+        //     else {
                 Department.create(req.body, function (err, department) {
                     if (err) return res.negotiate(err);
                 
@@ -103,8 +104,8 @@ module.exports = {
                     }
                     
                 });
-            }
-        });
+        //     }
+        // });
     },
 
     /**

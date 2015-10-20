@@ -34,7 +34,7 @@ angular.module('tsm')
     		});
     	}
     	else {
-    		// show error message
+    		notifier.error('Error!', 'There are resolved validation errors. Please resolve before re-submitting.');
     	}
     	
     }

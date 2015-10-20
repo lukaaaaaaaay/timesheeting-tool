@@ -17,9 +17,6 @@
 	    	$rootScope.selectedMenu = 2;
 	    	$rootScope.showDropdown = true;
 
-	    	// calculate the departmentId
-	    	determineDepartmentId();
-
 	    	// get active company
 	    	ActiveCompany.get({directorId: userId}, function (company) {
             	companyId = company.id;
@@ -50,24 +47,6 @@
 	    	$scope.department = angular.copy(empty);
 	    	determineDepartmentId();
 	    	$scope.createDeptForm.$setPristine();
-	    }
-
-	    // Query database for all departments. Newest department id is one greater than the highest record
-	    // in database.
-	    function determineDepartmentId() {
-	    	Departments.query({}, function(departments) {
-	    		allDepartments = departments
-	    		if(allDepartments && allDepartments.length > 0) {
-	    			$scope.department.id = parseInt(allDepartments[allDepartments.length-1].id) + 1	
-	    		} 
-	    		else {
-	    			$scope.department.id = 1;
-	    		}
-	    		
-	    	}, function(error) {
-	    		console.log(error);
-	    		notifier.error('Error', 'There was an unexpected error!');
-	    	});
 	    }
 	});
 })();

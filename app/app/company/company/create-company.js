@@ -9,18 +9,6 @@
         $rootScope.bodyClass = tstBodyClass.returned.formsClass;
 
         function init() {
-            Companies.query({}, function(companies) {
-                allCompanies = companies
-                if(allCompanies && allCompanies.length > 0) {
-                    $scope.company.id = parseInt(allCompanies[allCompanies.length-1].id) + 1 
-                } 
-                else {
-                    $scope.company.id = 1;
-                }
-                
-            }, function(error) {
-                //notifier.error('Error', error);
-            });
             $scope.company.directorId = Auth.getCurrentUser();
             console.log($scope.company.directorId);
         }
