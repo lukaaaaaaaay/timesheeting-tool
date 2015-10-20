@@ -135,8 +135,6 @@ module.exports = {
         });
     },
 
-   
-
     /**
      * Return all Projects for a Project Manager and particular Status
      *
@@ -158,6 +156,40 @@ module.exports = {
             res.ok(projects);
         });
     },
+
+
+    /**
+     * Return all the statuses in the system
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+     findStatuses: function (req, res) {
+        StatusService.find(function (err, statuses) {
+            if (err) return res.negotiate(err);
+
+            res.ok(statuses);
+        })
+     },
+
+    /**
+     * Return a single status of the given id
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+     findStatuses: function (req, res) {
+        StatusService.findOne(req.param('id'), function (err, status) {
+            if (err) return res.negotiate(err);
+
+            if(!status) {
+                res.notFound('Status with the id ' + req.param('id') ' + not found.');
+            }
+            else {
+                res.ok(statuses);    
+            }
+        });
+     },     
 
     /**
      * Create a new Project
