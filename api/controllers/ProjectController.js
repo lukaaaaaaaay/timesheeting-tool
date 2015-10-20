@@ -198,14 +198,14 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        Project.findOne(req.body.id, function(err, existing) {
-            if (err) return res.negotiate(err);
+        // Project.findOne(req.body.id, function(err, existing) {
+        //     if (err) return res.negotiate(err);
 
-            if(existing) {
-                sails.log.warn('Project with the id ' + req.body.id + ' already exists.');
-                res.badRequest('Project with the id ' + req.body.id + ' already exists.');
-            }
-            else {
+        //     if(existing) {
+        //         sails.log.warn('Project with the id ' + req.body.id + ' already exists.');
+        //         res.badRequest('Project with the id ' + req.body.id + ' already exists.');
+        //     }
+        //     else {
                 Project.create(req.body, function (err, project) {
                     if (err) return res.negotiate(err);
                 
@@ -220,8 +220,8 @@ module.exports = {
                     }
                     
                 });
-            }
-        });
+        //     }
+        // });
         
     },
 
