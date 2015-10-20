@@ -22,62 +22,126 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+  // Auth Routes
+  'POST /user/register': { 
+    controller : 'UserController',
+    action     : 'create',
+    roles      : ["public"] // Accessible to public
+   },
+  'GET /auth/logout': { //TODO: Should this be a POST?
+    controller : 'AuthController',
+    action     : 'logout',
+    roles      : ["public"]
+  },
+  'POST /auth/local': {
+    controller: 'AuthController',
+    action: 'callback',
+    roles: ["public"]
+  },
+  'POST /auth/local/:action': {
+    controller: 'AuthController',
+    action: 'callback',
+    roles: ["public"]
+  },
+  // TODO: Third-party auth
+  // 'get /auth/:provider': 'AuthController.provider',
+  // 'get /auth/:provider/callback': 'AuthController.callback',
+  // 'get /auth/:provider/:action': 'AuthController.callback',
 
-  // '/': {
-  //   view: 'homepage'
-  // }
+  // User Routes
+  'GET /api/me': {
+    controller: 'UserController',
+    action: 'me',
+    roles: ["public"]
+  },
+  'GET /api/users': {
+    controller : 'UserController',
+    action     : 'find',
+    roles      : ["admin"]
+  },
+  'POST /api/users': {
+    controller : 'UserController',
+    action     : 'create',
+    roles      : ["admin"]
+  },
+  'GET /api/users/:id': {
+    controller : 'UserController',
+    action     : 'findOne',
+    roles      : ["admin"]
+  },
+  'PUT /api/users/:id': {
+    controller : 'UserController',
+    action     : 'update',
+    roles      : ["admin"]
+  },
+  'DELETE /api/users/:id': {
+    controller : 'UserController',
+    action     : 'destroy',
+    roles      : ["admin"]
+  },
 
-
-  'post /auth/register': 'UserController.create',
-  'get /auth/logout': 'AuthController.logout',
-
-  'post /auth/local': 'AuthController.callback',
-  'post /auth/local/:action': 'AuthController.callback',
-
-  'get /auth/:provider': 'AuthController.provider',
-  'get /auth/:provider/callback': 'AuthController.callback',
-  'get /auth/:provider/:action': 'AuthController.callback',
-
-  'get /api/me': 'UserController.me',
-
-  'get /api/users': 'UserController.find',
-  'post /api/users': 'UserController.create',
-  'get /api/users/:id': 'UserController.findOne',
-  'put /api/users/:id': 'UserController.update',
-  'delete /api/users/:id': 'UserController.destroy',
 
   // Company Routes
-  'get /api/companies': 'CompanyController.find',
-  'post /api/companies': 'CompanyController.create',
-  'get /api/companies/:id': 'CompanyController.findOne',
-  'get /api/companies/director/:directorId': 'CompanyController.findByDirectorId',
-  'put /api/companies/:id': 'CompanyController.update',
-  'delete /api/companies/:id': 'CompanyController.destroy',
+  'GET /api/companies': {
+    controller : 'CompanyController',
+    action     : 'find',
+    roles      : ["admin"]
+  },
+  'POST /api/companies': {
+    controller : 'CompanyController',
+    action     : 'create',
+    roles      : ["admin"]
+  },
+  'GET /api/companies/director/:directorId': {
+    controller : 'CompanyController',
+    action     : 'findByDirectorId',
+    roles      : ["admin"]
+  },
+  'PUT /api/companies/:id': {
+    controller : 'CompanyController',
+    action     : 'update',
+    roles      : ["admin"]
+  },
+  'PUT /api/companies/:id': {
+    controller : 'CompanyController',
+    action     : 'update',
+    roles      : ["admin"]
+  },
+  'DELETE /api/companies/:id': {
+    controller : 'CompanyController',
+    action     : 'destroy',
+    roles      : ["admin"]
+  },
 
   // Department Routes
-  'get /api/departments': 'DepartmentController.find',
-  'get /api/departments/:id': 'DepartmentController.findOne',
-  'get /api/departments/company/:id': 'DepartmentController.findAllByCompany',
-  'post /api/departments': 'DepartmentController.create',
-  'put /api/departments/:id': 'DepartmentController.update',
-  'delete /api/departments/:id': 'DepartmentController.destroy',
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
-
+  'GET /api/departments': {
+    controller : 'DepartmentController',
+    action     : 'find',
+    roles      : ["admin"] 
+  },
+  'POST /api/departments': {
+    controller : 'DepartmentController',
+    action     : 'create',
+    roles      : ["admin"] 
+  },
+  'GET /api/departments/company/:id': {
+    controller : 'DepartmentController',
+    action     : 'findAllByCompany',
+    roles      : ["admin"] 
+  },
+  'GET /api/departments/:id': {
+    controller : 'DepartmentController',
+    action     : 'findOne',
+    roles      : ["admin"]
+  },
+  'PUT /api/departments/:id': {
+    controller : 'DepartmentController',
+    action     : 'update',
+    roles      : ["admin"]
+  },
+  'DELETE /api/departments/:id': {
+    controller : 'DepartmentController',
+    action     : 'destroy',
+    roles      : ["admin"]
+  }
 };
