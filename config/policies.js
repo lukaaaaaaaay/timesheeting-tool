@@ -26,29 +26,10 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': [ 'basicAuth', 'passport' ],
+  '*': [ 'basicAuth', 'passport', 'isAllowed' ],
 
   AuthController: {
     '*': [ 'passport' ]
   }
-
-  /***************************************************************************
-  *                                                                          *
-  * Account policies                                                         *
-  * TODO: Secure these actions                                                                  *
-  *                                                                          *
-  ***************************************************************************/
-
-  // AccountController: {
-    // Apply 'false' by default to all actions that are NOT specified below
-    // '*': false,
-    
-    // find: true,
-    // findOne: true,
-    // create: ['isAdmin', 'isLoggedIn'],      // if (isAdmin && isLoggedin)
-    // update: true,
-    // destroy: true
-  // },
-
-
+  
 };
