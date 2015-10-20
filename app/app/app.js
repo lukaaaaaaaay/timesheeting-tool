@@ -8,6 +8,9 @@ angular.module('tsm', [
   'ui.bootstrap',
   'base64',
   'tsm.users',
+  'tsm.services',
+  'tsm.compareTo',
+  'ngDialog'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -63,25 +66,6 @@ angular.module('tsm', [
         }
       });
     });
-  })
-  // used for form validation to compare to fields.
-  .directive("compareTo", function() {
-    return {
-        require: "ngModel",
-        scope: {
-            otherModelValue: "=compareTo"
-        },
-        link: function(scope, element, attributes, ngModel) {
-             
-            ngModel.$validators.compareTo = function(modelValue) {
-                return modelValue == scope.otherModelValue;
-            };
- 
-            scope.$watch("otherModelValue", function() {
-                ngModel.$validate();
-            });
-        }
-    }
-});
+  });
 
 

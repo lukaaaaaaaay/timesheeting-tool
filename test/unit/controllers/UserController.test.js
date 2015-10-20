@@ -109,25 +109,25 @@ describe('User Controller', function () {
             });
       });
 
-      // it('should not find user if they have logged out', function (done) {
+      it('should not find user if they have logged out', function (done) {
 
-      //   var agent = request.agent(sails.hooks.http.app);
+        var agent = request.agent(sails.hooks.http.app);
 
-      //   agent
-      //       .get('/auth/logout')
-      //       .expect(200, function (err, res) {
+        agent
+            .get('/auth/logout')
+            .expect(200, function (err, res) {
 
-      //         if (err)
-      //           return done(err);
+              if (err)
+                return done(err);
 
-      //         agent
-      //             .get('/api/me')
-      //             .expect(403)
-      //             .end(function (err) {
-      //               done(err);
-      //             });
-      //       });
-      // });
+              agent
+                  .get('/api/me')
+                  .expect(403)
+                  .end(function (err) {
+                    done(err);
+                  });
+            });
+      });
     });
   });
 });

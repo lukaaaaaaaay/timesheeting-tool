@@ -7,6 +7,6 @@ angular.module('tsm')
         url: '/dashboard',
         templateUrl: 'app/dashboard/dashboard.html',
         controller: 'DashboardCtrl',
-        authenticate: true
-      });
+        authenticate: true,  
+      })
   });

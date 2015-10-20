@@ -22,7 +22,7 @@ angular.module('tsm')
           })
           .then( function() {
             // Account created, redirect to dashboard
-            $location.path('/dashboard');
+            $location.path('/company/create');
           })
           .catch( function(err) {
             err = err.data;

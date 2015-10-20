@@ -291,6 +291,12 @@ a:hover, a:focus {
 		
 		}
 	}
+
+	.tst.sidebar-menu li.active:hover {
+		a {
+			background-color: $orange;
+		}
+	}
 }
 
 .arrow {
@@ -365,6 +371,14 @@ a:hover, a:focus {
 			content: "\f107";
 		}
 	}
+
+	li.active.open 
+	{
+		.tst-sidebar-submenu {
+      		display: block;
+      	}
+    }
+
 }
 
 .tst-sidebar-submenu {
@@ -397,7 +411,6 @@ a:hover, a:focus {
 		}
 	}
 }
-
 
 /* Page Container */
 
