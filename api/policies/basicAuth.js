@@ -32,7 +32,8 @@ module.exports = function (req, res, next) {
     req.user = user;
     req.authenticated = true;
     req.passport = passport;
-
+    req.currentRole = user.role;
+    
     next();
   });
 };
