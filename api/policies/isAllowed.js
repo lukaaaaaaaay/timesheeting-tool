@@ -3,7 +3,7 @@ var acl = require("../services/acl.js");
 module.exports = function (req, res, next) {
     var resource = req.url;
     var role     = req.currentRole || "public";
-    console.log(resource);
+
     if ( acl.isAllowed(role, resource, req.method) ) {
         sails.log.debug("is allowed");
         return next();
@@ -11,4 +11,5 @@ module.exports = function (req, res, next) {
         sails.log.debug("is not allowed");
         res.forbidden();
     }
+
 }
