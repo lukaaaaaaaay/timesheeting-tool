@@ -23,11 +23,6 @@
 module.exports.routes = {
 
   // Auth Routes
-  'POST /user/register': { 
-    controller : 'UserController',
-    action     : 'create',
-    roles      : ["public"] // Accessible to public
-   },
   'GET /auth/logout': { //TODO: Should this be a POST?
     controller : 'AuthController',
     action     : 'logout',
@@ -62,7 +57,7 @@ module.exports.routes = {
   'POST /api/users': {
     controller : 'UserController',
     action     : 'create',
-    roles      : ["admin"]
+    roles      : ["public"]
   },
   'GET /api/users/:id': {
     controller : 'UserController',
