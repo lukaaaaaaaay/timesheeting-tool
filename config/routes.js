@@ -85,7 +85,7 @@ module.exports.routes = {
   'POST /api/companies': {
     controller : 'CompanyController',
     action     : 'create',
-    roles      : ["admin"]
+    roles      : ["public"] // todo: only a 'director' can create a company
   },
   'GET /api/companies/director/:directorId': {
     controller : 'CompanyController',
