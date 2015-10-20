@@ -138,5 +138,47 @@ module.exports.routes = {
     controller : 'DepartmentController',
     action     : 'destroy',
     roles      : ["admin"]
+  },
+
+  // Project Routes
+  'GET /api/projects': {
+    controller : 'ProjectController',
+    action     : 'find',
+    roles      : ["admin"] 
+  },
+  'POST /api/projects': {
+    controller : 'ProjectController',
+    action     : 'create',
+    roles      : ["admin"] 
+  },
+  'GET /api/projects/company/:id': {
+    controller : 'ProjectController',
+    action     : 'findAllForCompany',
+    roles      : ["admin"] 
+  },
+  'GET /api/projects/user/:id': {
+    controller : 'ProjectController',
+    action     : 'findAllForProjectManager',
+    roles      : ["admin"] 
+  },
+  'GET /api/projects/status/:id': {
+    controller : 'ProjectController',
+    action     : 'findAllForStatus',
+    roles      : ["admin"] 
+  },
+  'GET /api/projects/:id': {
+    controller : 'ProjectController',
+    action     : 'findOne',
+    roles      : ["admin"]
+  },
+  'PUT /api/projects/:id': {
+    controller : 'ProjectController',
+    action     : 'update',
+    roles      : ["admin"]
+  },
+  'DELETE /api/projects/:id': {
+    controller : 'ProjectController',
+    action     : 'destroy',
+    roles      : ["admin"]
   }
 };

@@ -183,7 +183,7 @@ module.exports = {
             if (err) return res.negotiate(err);
 
             if(!status) {
-                res.notFound('Status with the id ' + req.param('id') ' + not found.');
+                res.notFound('Status with the id ' + req.param('id') + ' not found.');
             }
             else {
                 res.ok(statuses);    

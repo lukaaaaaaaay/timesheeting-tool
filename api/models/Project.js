@@ -33,7 +33,7 @@
  		},
  		
  		statusId: {
- 			model: 'Status'
+ 			model: 'Status',
          required: true
  		},
 
