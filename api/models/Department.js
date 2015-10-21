@@ -8,11 +8,11 @@
  module.exports = {
  	attributes: {
  		
- 		id: {
- 			type: 'int',
- 			primaryKey: true,
- 			unique: true,
- 		},
+ 		// id: {
+ 		// 	type: 'int',
+ 		// 	primaryKey: true,
+ 		// 	unique: true,
+ 		// },
 
  		name: {
  			type: 'string',
