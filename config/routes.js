@@ -23,11 +23,6 @@
 module.exports.routes = {
 
   // Auth Routes
-  'GET /auth/logout': { //TODO: Should this be a POST?
-    controller : 'AuthController',
-    action     : 'logout',
-    roles      : ["public"]
-  },
   'POST /auth/local': {
     controller: 'AuthController',
     action: 'callback',
@@ -47,7 +42,7 @@ module.exports.routes = {
   'GET /api/me': {
     controller: 'UserController',
     action: 'me',
-    roles: ["public"]
+    roles: ["admin", "director"]
   },
   'GET /api/users': {
     controller : 'UserController',
@@ -62,12 +57,12 @@ module.exports.routes = {
   'GET /api/users/:id': {
     controller : 'UserController',
     action     : 'findOne',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
   },
   'PUT /api/users/:id': {
     controller : 'UserController',
     action     : 'update',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
   },
   'DELETE /api/users/:id': {
     controller : 'UserController',
@@ -85,22 +80,22 @@ module.exports.routes = {
   'POST /api/companies': {
     controller : 'CompanyController',
     action     : 'create',
-    roles      : ["public"] // todo: only a 'director' can create a company
+    roles      : ["admin", "director"]
   },
   'GET /api/companies/director/:directorId': {
     controller : 'CompanyController',
     action     : 'findByDirectorId',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
+  },
+  'GET /api/companies/:id': {
+    controller : 'CompanyController',
+    action     : 'findOne',
+    roles      : ["admin", "director"]
   },
   'PUT /api/companies/:id': {
     controller : 'CompanyController',
     action     : 'update',
-    roles      : ["admin"]
-  },
-  'PUT /api/companies/:id': {
-    controller : 'CompanyController',
-    action     : 'update',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
   },
   'DELETE /api/companies/:id': {
     controller : 'CompanyController',
@@ -117,26 +112,26 @@ module.exports.routes = {
   'POST /api/departments': {
     controller : 'DepartmentController',
     action     : 'create',
-    roles      : ["admin"] 
+    roles      : ["admin", "director"] 
   },
   'GET /api/departments/company/:id': {
     controller : 'DepartmentController',
     action     : 'findAllByCompany',
-    roles      : ["admin"] 
+    roles      : ["admin", "director"] 
   },
   'GET /api/departments/:id': {
     controller : 'DepartmentController',
     action     : 'findOne',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
   },
   'PUT /api/departments/:id': {
     controller : 'DepartmentController',
     action     : 'update',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
   },
   'DELETE /api/departments/:id': {
     controller : 'DepartmentController',
     action     : 'destroy',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
   }
 };
