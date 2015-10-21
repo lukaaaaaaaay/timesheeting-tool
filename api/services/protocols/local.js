@@ -59,7 +59,7 @@ exports.createUser = function (_user, next) {
         });
       }
       
-      next(null, user);
+      next("", user);
     });
   });
 };
