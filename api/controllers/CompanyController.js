@@ -90,8 +90,8 @@ module.exports = {
                         sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');
                         res.badRequest('Company with the id ' + req.body.id + ' could not be created.');
                     }
-                    
-                });        
+                });
+
     },
 
     /**

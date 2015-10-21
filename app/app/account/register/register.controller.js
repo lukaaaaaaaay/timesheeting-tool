@@ -19,10 +19,10 @@ angular.module('tsm')
             email: $scope.user.email,
             role: 'director',
             password: $scope.user.password,
-            confirmPassword: $scope.user.confirmPassword
+            confirmPassword: $scope.user.confirmPassword,
           })
           .then( function() {
-            // Account created, redirect to dashboard
+            // Account created, redirect to company creation screen
             $location.path('/company/create');
           })
           .catch( function(err) {

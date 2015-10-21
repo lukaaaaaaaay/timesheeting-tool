@@ -10,8 +10,9 @@ angular.module('tsm')
 
     // sidebar menu - set in menu tree controllers. 
     $rootScope.selectedMenu = 1;
-    $rootScope.showDropdown = false;
-
+    $rootScope.showDropdown = false;    
+  
+    
     // add user to scope
     $scope.user = Auth.getCurrentUser();
 
