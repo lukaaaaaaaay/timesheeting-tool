@@ -170,6 +170,15 @@ a:hover, a:focus {
   background-color: #DA5405;
   border-color: #DA5405; }
 
+/* breadcrumbs */
+.breadcrumb {
+  background: none;
+  margin: 20px 0; }
+  .breadcrumb a {
+    color: #D66A2B; }
+  .breadcrumb a:hover {
+    color: #DA5405; }
+
 /***** DASHBOARD *****/
 .tst-body {
   padding-top: 50px; }
@@ -335,5 +344,20 @@ a:hover, a:focus {
 .error {
   color: #B91F03;
   font-size: 90%; }
+
+/* Account Page */
+.account-header h1 {
+  margin-top: 0; }
+
+.account-row {
+  overflow: hidden;
+  padding: 10px 0;
+  border-bottom: 1px solid #e6e6e6; }
+  .account-row .btn {
+    padding: 6px 17px; }
+  .account-row .avatar-wrap {
+    width: 100px;
+    height: 100px;
+    display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */

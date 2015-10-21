@@ -16,5 +16,10 @@ angular.module('tsm')
         url: '/register',
         templateUrl: 'app/account/register/register.html',
         controller: 'RegisterCtrl'
+      })
+      .state('manage account', {
+        url: '/account',
+        templateUrl: 'app/account/manage/manage-account.html',
+        controller: 'ManageAccountCtrl'
       });
   });
