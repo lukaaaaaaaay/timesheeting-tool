@@ -20,7 +20,6 @@ angular.module('tsm')
             role: 'director',
             password: $scope.user.password,
             confirmPassword: $scope.user.confirmPassword,
-            role: 'admin'
           })
           .then( function() {
             // Account created, redirect to company creation screen

@@ -45,7 +45,6 @@
 
 	    function reset() {
 	    	$scope.department = angular.copy(empty);
-	    	determineDepartmentId();
 	    	$scope.createDeptForm.$setPristine();
 	    }
 	});
