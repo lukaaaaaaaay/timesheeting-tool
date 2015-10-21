@@ -58,6 +58,8 @@ module.exports = {
         sails.services.passport.protocols.local.register(req.body, function (err, user) {
           if (err) return res.negotiate(err);
 
+          // todo: set the default users role as 'director'
+
           res.ok(user);
         });
       },

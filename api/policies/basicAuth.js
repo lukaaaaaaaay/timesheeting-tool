@@ -29,11 +29,13 @@ module.exports = function (req, res, next) {
       return next();
     }
 
+    // We have logged in...
+    // Add user object, passport object, authenticated flag and currentRole to the request
     req.user = user;
     req.authenticated = true;
     req.passport = passport;
     req.currentRole = user.role;
-    
+
     next();
   });
 };
