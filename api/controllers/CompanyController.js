@@ -78,15 +78,6 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        //TODO: get new company id here
-        // Company.findOne(req.body.id, function(err, existing) {
-        //     if (err) return res.negotiate(err);
-
-        //     if(existing) {
-        //         sails.log.warn('Company with the id ' + req.body.id + ' already exists.');
-        //         res.badRequest('Company with the id ' + req.body.id + ' already exists.');
-        //     }
-        //     else {
                 Company.create(req.body, function (err, company) {
                     if (err) return res.negotiate(err);
                 
@@ -99,11 +90,8 @@ module.exports = {
                         sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');
                         res.badRequest('Company with the id ' + req.body.id + ' could not be created.');
                     }
-                    
                 });
-        //     }
-        // });
-        
+
     },
 
     /**

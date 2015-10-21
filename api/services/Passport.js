@@ -170,10 +170,9 @@ passport.endpoint = function (req, res) {
   var provider = req.param('provider');
   var options = { };
 
-  // If a provider doesn't exist for this endpoint, send the user back to the
-  // login page
+  // If a provider doesn't exist for this endpoint, send back a 403
   if (!_.has(strategies, provider)) {
-    return res.redirect('/login');
+    return res.forbidden('provider is incorrect');
   }
 
   // Attach scope if it has been set in the config
@@ -240,7 +239,7 @@ passport.callback = function (req, res, next) {
 
 /**
  * Load all strategies defined in the Passport configuration
- * This initially only works with local auth config, and needs to be improved
+ * This initially only works with local auth, and needs to be improved
  * 
  * For example, we could add this to our config to use the GitHub strategy
  * with permission to access a users email address (even if it's marked as
@@ -278,36 +277,36 @@ passport.loadStrategies = function () {
       }
     }
     else {
-      var protocol = strategies[key].protocol;
-      var callback = strategies[key].callback;
+      // var protocol = strategies[key].protocol;
+      // var callback = strategies[key].callback;
 
-      if (!callback) {
-        callback = path.join('auth', key, 'callback');
-      }
+      // if (!callback) {
+      //   callback = path.join('auth', key, 'callback');
+      // }
 
-      Strategy = strategies[key].strategy;
+      // Strategy = strategies[key].strategy;
 
-      var baseUrl = sails.getBaseurl();
+      // var baseUrl = sails.getBaseurl();
 
-      switch (protocol) {
-        case 'oauth':
-        case 'oauth2':
-          options.callbackURL = url.resolve(baseUrl, callback);
-          break;
+      // switch (protocol) {
+      //   case 'oauth':
+      //   case 'oauth2':
+      //     options.callbackURL = url.resolve(baseUrl, callback);
+      //     break;
 
-        case 'openid':
-          options.returnURL = url.resolve(baseUrl, callback);
-          options.realm     = baseUrl;
-          options.profile   = true;
-          break;
-      }
+      //   case 'openid':
+      //     options.returnURL = url.resolve(baseUrl, callback);
+      //     options.realm     = baseUrl;
+      //     options.profile   = true;
+      //     break;
+      // }
 
       // Merge the default options with any options defined in the config. All
       // defaults can be overriden, but I don't see a reason why you'd want to
       // do that.
-      _.extend(options, strategies[key].options);
+      //_.extend(options, strategies[key].options);
 
-      passport.use(new Strategy(options, this.protocols[protocol]));
+      //passport.use(new Strategy(options, this.protocols[protocol]));
     }
   }, this);
 };

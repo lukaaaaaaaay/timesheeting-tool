@@ -59,7 +59,7 @@ exports.createUser = function (_user, next) {
         });
       }
       
-      next(null, user);
+      next("", user);
     });
   });
 };
@@ -134,7 +134,7 @@ exports.login = function (req, email, password, next) {
           next(err);
         }
 
-        return next(err, false);
+        return next(err);
       }
 
       sails.models.passport.findOne({
@@ -148,16 +148,14 @@ exports.login = function (req, email, password, next) {
             }
 
             if (!res) {
-              //next(req.__('Error.Passport.Password.Wrong'));
-              // req.flash('error', 'Error.Passport.Password.Wrong');
-              return next(null, false);
+              return next(req.__('Error.Passport.Password.Wrong'));
             } else {
               return next(null, user, passport);
             }
           });
         }
         else {
-          return next(req.__('Error.Passport.Password.NotSet'), false);
+          return next(req.__('Error.Passport.Password.NotSet'));
         }
       });
     });

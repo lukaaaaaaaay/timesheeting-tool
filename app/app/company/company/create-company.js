@@ -4,7 +4,7 @@
     angular.module('tsm')
     .controller('CreateCompanyCtrl', function ($scope, $location,$rootScope, tstBodyClass, Company, Companies, notifier, Auth) {
         $scope.company = {};
-        var allCompanies = [];
+
         // set body class
         $rootScope.bodyClass = tstBodyClass.returned.formsClass;
 
