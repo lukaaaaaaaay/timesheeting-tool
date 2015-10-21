@@ -53,16 +53,42 @@ $teal: #1caf9a;
 
 /* Fonts */
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, th {
 	@include ubuntu
 }
 
-p, label, a, span, input, button {
+p, label, a, span, input, button, td {
 	@include ubuntu-light
 }
 
 a:hover, a:focus {
 	text-decoration: none;
+}
+
+.bold {
+	font-weight: 600;
+}
+
+/* Colours - use these for quick font color changes */
+
+.orange {
+	color: $orange;
+}
+
+.teal {
+	color: #1CAF9A;
+}
+
+.blue {
+	color: #4984B9;
+}
+
+.purple {
+	color: #7D6A9F;
+}
+
+.blue-gray {
+	color: $dark-blue-gray;
 }
 
 /* Nav */
@@ -101,6 +127,11 @@ a:hover, a:focus {
 				background: $light-gray;
 				color: #f5f5f5;
 			}
+
+			.divider {
+				margin: 0;
+				background-color: $light-gray;
+			}
 		}
 	
 	}
@@ -110,8 +141,15 @@ a:hover, a:focus {
 	}
 }
 
-.dropdown-user a {
-	padding: 10px !important;
+.dropdown-user {
+	
+	.dropdown-menu {
+		padding: 0;
+	} 
+
+	a {
+		padding: 10px !important;
+	}
 }
 
 .avatar {
@@ -124,6 +162,7 @@ a:hover, a:focus {
 .btn {
 	padding: 8px 20px;
 	border-radius: 2px;
+	@include ubuntu-light
 }
 
 .btn-primary {
@@ -131,16 +170,40 @@ a:hover, a:focus {
 	border-color: $orange;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus, 
+.btn-primary[disabled],
+.btn-primary:active {
 	background-color: #DA5405;
 	border-color: #DA5405;
+}
+
+.btn-danger {
+	background-color: #E35B5A;
+	border-color: #E35B5A;
+}
+
+.btn-danger:hover,
+.btn-danger:focus, 
+.btn-danger[disabled],
+.btn-danger:active {
+	background-color: #E04B4A;
+	border-color: #E04B4A;
+}
+
+.btn-info {
+	background-color: #1CAF9A;
+	border-color: #1CAF9A;
 }
 
 .btn-default {
 	border-color: #E0DFDF	
 }
 
-.btn-default:hover {
+.btn-default:hover,
+.btn-default:focus,
+.btn-default[disabled],
+.btn-default:active {
 	background-color: #F3F2F2;
     border-color: #D4D4D4;
 }
@@ -168,6 +231,10 @@ a:hover, a:focus {
 	margin-top: -15px;
 }
 
+.form-buttons {
+	margin-top: 20px;
+}
+
 /* panels */
 
 .panel {
@@ -187,6 +254,29 @@ a:hover, a:focus {
 
 	a {
 		color: #337ab7;
+	}
+}
+
+/* pagination */
+
+.pagination {
+	li>a {
+		color: #666;
+	}
+
+	li>a:hover {
+		color: $orange;
+	}
+
+	li.active>a {
+		color: #fff;
+		border-color: $orange;
+		background-color: $orange;
+	}
+
+	li.active>a:hover {
+		background-color: #DA5405;
+		border-color: #DA5405;
 	}
 }
 
@@ -220,6 +310,10 @@ a:hover, a:focus {
     		}
     	}
     }
+
+    .first {
+		border-top: 1px solid #4C535A;
+	}	
 }
 
 .tst-sidebar:before {
@@ -291,12 +385,6 @@ a:hover, a:focus {
 		
 		}
 	}
-
-	.tst.sidebar-menu li.active:hover {
-		a {
-			background-color: $orange;
-		}
-	}
 }
 
 .arrow {
@@ -364,6 +452,10 @@ a:hover, a:focus {
 		span.arrow {
 			color: #f5f5f5;
 		}
+
+		.tst-sidebar-submenu li a:hover {
+			background-color: #3d4957;
+		}
 	}
 
 	li.open {
@@ -371,14 +463,6 @@ a:hover, a:focus {
 			content: "\f107";
 		}
 	}
-
-	li.active.open 
-	{
-		.tst-sidebar-submenu {
-      		display: block;
-      	}
-    }
-
 }
 
 .tst-sidebar-submenu {
@@ -407,7 +491,8 @@ a:hover, a:focus {
 
 		a:hover {
 			text-decoration: none;
-			background-color: #515B67;
+			// background-color: #515B67;
+			background-color: #3d4957;
 		}
 	}
 }
@@ -424,3 +509,20 @@ a:hover, a:focus {
 	padding: 20px;
 }
 
+.page-heading {
+	margin-bottom: 20px;
+}
+
+.tst-list {
+
+	.btn {
+		padding: 8px 15px;
+
+	}
+}
+
+/* Errors */
+.error {
+	color: #B91F03;
+	font-size: 90%;
+}
