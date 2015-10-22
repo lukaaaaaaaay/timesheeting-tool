@@ -76,14 +76,16 @@
     /*
      * Permit the given role access to the given resources.
      */   
-    acl.allow = function (roles, resources) {
-        // todo: retrieveResource and push roles to the object
+    acl.allow = function (role, resourceName, method) {
+        var resource = this.retrieveResource(method + " " + resourceName);
+        resource.roles.push(role);
     };
     /*
      * Removes the given roles access to the given resources.
      */   
-    acl.removeAllow = function (roles, resources) {
-        // todo: retrieveResource and remove roles from the object
+    acl.removeAllow = function (role, resourceName, method) {
+        var resource = this.retrieveResource(method + " " + resourceName);
+        resource.roles.splice(resource.roles.indexOf(role),1);
     };   
 
     /**
