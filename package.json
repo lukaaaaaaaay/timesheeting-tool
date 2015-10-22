@@ -1,8 +1,8 @@
 {
   "name": "timesheeting-tool",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.1.0",
+  "description": "a timesheeting application",
   "keywords": [],
   "dependencies": {
     "bcryptjs": "^2.3.0",
@@ -38,15 +38,22 @@
     "type": "git",
     "url": "git://github.com/CPT331/timesheeting-tool.git"
   },
-  "author": "Chris Clayton <s3427916@student.rmit.edu.au>",
   "contributors": [
     {
       "name": "Chris Clayton",
       "email": "s3427916@student.rmit.edu.au"
     },
     {
-      "name": "Luke",
-      "email": "xxx@student.rmit.edu.au"
+      "name": "Luke Phelan",
+      "email": "s3197473@student.rmit.edu.au"
+    },
+    {
+      "name": "Craig McQuinn",
+      "email": "s3437693@student.rmit.edu.au"
+    },
+    {
+      "name": "Yimming Wang",
+      "email": "s3418827@student.rmit.edu.au"
     }
   ],
   "license": "MIT",
