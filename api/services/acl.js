@@ -6,6 +6,89 @@
     var defaultPolicy = "allow";
     var acl = {};
 
+    /**
+     * Returns Boolean if role is permitted to access resource
+     */
+    acl.isAllowed = function (role, resourceName, method) {
+        var isAllowed;
+
+        if (role == null || role == "")
+        {
+            role = defaultRole;
+        }
+
+        var resource = this.retrieveResource(method + " " + resourceName);
+
+        //No ACL define so it's the default behavior
+        if (resource == null || (resource != null && typeof resource.roles == "undefined")) {
+            isAllowed = defaultPolicy == "allow";
+        }
+        else {
+            if (resource.roles.indexOf(role) == -1) {
+                isAllowed = false;
+            }
+            else {
+                isAllowed = true;
+            }
+        }
+
+        return isAllowed;
+    };
+       
+    /*
+     * Adds role to a given user id.
+     */   
+    acl.addUserRoles = function (user, role) {
+        // todo
+    };
+    /*
+     * Remove role from a given user.
+     */   
+     acl.removeUserRoles = function (user, role) {
+        // todo
+    };
+    /*
+     * Return the role of the given user
+     */   
+    acl.getRoleForUser = function (user) {
+        // todo
+    };
+    /*
+     * Return all users who have a given role
+     */   
+    acl.getUsersbyRole = function (role) {
+        // todo
+    };
+    /*
+     * Return boolean whether user has the given role
+     */   
+    acl.hasRole = function (user, role) {
+        // todo
+    };
+    /*
+     * Removes a role from the system
+     */   
+    acl.removeRole = function (role) {
+        // todo
+    };
+
+
+    /*
+     * Permit the given role access to the given resources.
+     */   
+    acl.allow = function (roles, resources) {
+        // todo: retrieveResource and push roles to the object
+    };
+    /*
+     * Removes the given roles access to the given resources.
+     */   
+    acl.removeAllow = function (roles, resources) {
+        // todo: retrieveResource and remove roles from the object
+    };   
+
+    /**
+     *
+     */
     acl.checkRouteRegEx = function (resource, routes) {
         var result = null;
         for (var route in routes)
@@ -50,36 +133,4 @@
         return result;
     };
 
-    /**
-     *
-     */
-    acl.isAllowed = function (role, resourceName, method) {
-        var isAllowed;
-
-        if (role == null || role == "")
-        {
-            role = defaultRole;
-        }
-
-        var resource = this.retrieveResource(method + " " + resourceName);
-
-        //No ACL define so it's the default behavior
-        if (resource == null || (resource != null && typeof resource.roles == "undefined")) {
-            isAllowed = defaultPolicy == "allow";
-        }
-        else {
-            if (resource.roles.indexOf(role) == -1) {
-                isAllowed = false;
-            }
-            else {
-                isAllowed = true;
-            }
-        }
-
-        return isAllowed;
-    };
-         
-    /**
-     *
-     */
     module.exports = acl;
