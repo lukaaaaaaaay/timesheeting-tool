@@ -235,6 +235,19 @@ a:hover, a:focus {
 	margin-top: 20px;
 }
 
+/* tables */
+table {
+	td {
+		a {
+			color: #333;
+		}
+
+		a:hover {
+			color: $orange;
+		}
+	}
+}
+
 /* panels */
 
 .panel {
@@ -285,6 +298,7 @@ a:hover, a:focus {
 .breadcrumb {
 	background: none;
 	margin: 20px 0;
+	padding: 8px 0;
 
 	a {
 		color: $orange

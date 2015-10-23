@@ -28,4 +28,9 @@ angular.module('tsm')
         templateUrl: 'app/company/department/create-dept.html',
         controller: 'CreateDepartmentCtrl',
       })
+      .state('dashboard.view-department', {
+        url: '/department/:id',
+        templateUrl: 'app/company/department/view-department.html',
+        controller: 'DepartmentCtrl'
+      });
   });

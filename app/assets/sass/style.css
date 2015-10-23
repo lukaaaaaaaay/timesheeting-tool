@@ -145,6 +145,12 @@ a:hover, a:focus {
 .form-buttons {
   margin-top: 20px; }
 
+/* tables */
+table td a {
+  color: #333; }
+table td a:hover {
+  color: #D66A2B; }
+
 /* panels */
 .panel {
   border: 1px solid #ccc; }
@@ -173,7 +179,8 @@ a:hover, a:focus {
 /* breadcrumbs */
 .breadcrumb {
   background: none;
-  margin: 20px 0; }
+  margin: 20px 0;
+  padding: 8px 0; }
   .breadcrumb a {
     color: #D66A2B; }
   .breadcrumb a:hover {

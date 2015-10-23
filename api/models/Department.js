@@ -19,6 +19,10 @@
  			required: true,
  		},
 
+      description: {
+         type: 'string',
+      }
+
  		companyId: {
  			model: 'Company',
  			required: true
