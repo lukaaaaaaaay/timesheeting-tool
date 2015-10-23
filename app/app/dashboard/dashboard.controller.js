@@ -33,20 +33,25 @@ angular.module('tsm')
 
     // sidebar menu
     $scope.toggleDropdown = function (selection) {
-        $rootScope.sidebarMenu.showDropdown = !$rootScope.sidebarMenu.showDropdown;
-        if($rootScope.sidebarMenu.showDropdown) {
-            $rootScope.sidebarMenu.activeSubmenu = selection;
+        var prev = $rootScope.sidebarMenu.activeSubmenu;
+
+        $rootScope.sidebarMenu.activeSubmenu = selection;
+
+        // toggling
+        if(prev == 0 || prev == $rootScope.sidebarMenu.activeSubmenu) {
+            $rootScope.sidebarMenu.showDropdown = !$rootScope.sidebarMenu.showDropdown;  
         }
-        else {
-            $rootScope.sidebarMenu.activeSubmenu = 0;    
+
+        if(!$rootScope.sidebarMenu.showDropdown) {
+            $rootScope.sidebarMenu.activeSubmenu = 0;
         }
+
         console.log($rootScope.sidebarMenu);
     };
 
     $scope.toggleCollapsed = function () {
         $rootScope.sidebarMenu.collapsed = !$rootScope.sidebarMenu.collapsed
-        $rootScope.sidebarMenu.showDropdown = $rootScope.sidebarMenu.collapsed ? true: false;
     };
-
+    console.log($rootScope.sidebarMenu);
     console.log($scope.user);
   });

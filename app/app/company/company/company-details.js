@@ -8,8 +8,9 @@ angular.module('tsm').controller('CompanyCtrl', function ($scope, $location, $ro
 
     function init() {
         // set sidebar menu
-        $rootScope.selectedMenu = 2;
-        $rootScope.showDropdown = true;
+        $rootScope.sidebarMenu.selected = 2;
+        $rootScope.sidebarMenu.showDropdown = true;
+        $rootScope.sidebarMenu.activeSubmenu = 1;
 
         // get active company
         ActiveCompany.get({directorId: userId}, function (company) {

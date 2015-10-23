@@ -46,7 +46,7 @@
           <span class="arrow"></span>
         </a>
       </li>
-      <li ng-class="{active: sidebarMenu.selected == 2, open: sidebarMenu.showDropdown}">
+      <li ng-class="{active: sidebarMenu.selected == 2, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1}">
         <a href="javascript:;" ng-click="toggleDropdown(1)">
           <i class="fa fa-building"></i>
           <span class="title">Company</span>
@@ -75,7 +75,7 @@
           </li>
         </ul>
       </li>
-      <li ng-class="{active: sidebarMenu.selectedMenu == 3, open: sidebarMenu.selectedMenu == 3}">
+      <li ng-class="{active: sidebarMenu.selected == 3, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 2}">
         <a href="javascript:;" ng-click="toggleDropdown(2)">
           <i class="fa fa-bar-chart"></i>
           <span class="title">Project</span>
@@ -93,14 +93,14 @@
           </li>
         </ul>
       </li>
-      <li ng-class="{active: sidebarMenu.selectedMenu == 4}">
+      <li ng-class="{active: sidebarMenu.selected == 4}">
         <a href="javascript:;">
           <i class="fa fa-tasks"></i>
           <span class="title">Tasks</span>
           <span class="arrow"></span>
         </a>
       </li>
-      <li ng-class="{active: sidebarMenu.selectedMenu == 5}">
+      <li ng-class="{active: sidebarMenu.selected == 5}">
         <a href="javascript:;">
           <i class="fa fa-users"></i>
           <span class="title">Staff</span>
@@ -125,15 +125,6 @@
 $(document).ready(function() {
 
   $(".tst-sidebar-toggler").on("click", function() {
-    // if($(".tst-sidebar").hasClass("tst-sidebar-full")) {
-    //   $(".tst-sidebar").removeClass("tst-sidebar-full");  
-    //   $(".tst-sidebar").addClass("tst-sidebar-collapsed");
-    // }
-    // else {
-    //   $(".tst-sidebar").addClass("tst-sidebar-full"); 
-    //   $(".tst-sidebar").removeClass("tst-sidebar-collapsed");
-    // }
-
     if($("body").hasClass("sidebar-closed")) {
       $("body").removeClass("sidebar-closed");
     }
