@@ -58,11 +58,42 @@ module.exports = {
         sails.services.passport.protocols.local.register(req.body, function (err, user) {
           if (err) return res.negotiate(err);
 
-          // todo: set the default users role as 'director'
+          // find the director role
+          Role.findOne({name: 'admin' }).exec(function findOneCB(err, found){
+            if (err) return next(err);
+            if (found) {
+              // add the role to the created user
+              user.role = found.id;
+              user.save();  // save role
+            }
+            res.ok(user);
+          });
 
-          res.ok(user);
         });
       },
+
+      /**
+       * Create a new user
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+      createDirector: function (req, res) {
+          sails.services.passport.protocols.local.register(req.body, function (err, user) {
+            if (err) return res.negotiate(err);
+
+            // find the director role
+            Role.findOne({name: 'admin' }).exec(function findOneCB(err, found){
+              if (err) return next(err);
+              if (found) {
+                // assign the director role to the created user
+                user.role = found; // the role is the id we found
+                user.save();  // save new user object
+              }
+              res.ok(user);
+            });
+          });
+        },
 
 
       /**
