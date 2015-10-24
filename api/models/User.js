@@ -45,9 +45,9 @@ var User = {
       var user = this.toObject();
       user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
-      // delete user.password;
-      // delete user.confirmPassword;
-      // delete user.passports;
+      delete user.password;
+      delete user.confirmPassword;
+      delete user.passports;
       return user;
     }
   },
