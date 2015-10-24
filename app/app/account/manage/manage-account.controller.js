@@ -15,7 +15,8 @@
 
         $scope.changeFirstName = function(form) {
             if(form.$valid) {
-                updateUser("first name");
+                updateUser(form, "first name");
+                
             }
             else {
                 notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
@@ -24,7 +25,7 @@
 
         $scope.changeLastName = function(form) {
             if(form.$valid) {
-                updateUser("last name");
+                updateUser(form, "last name");
             }
             else {
                 notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
@@ -33,7 +34,7 @@
 
         $scope.changeEmail = function(form) {
             if(form.$valid) {
-                updateUser("email");
+                updateUser(form, "email");
             }
             else {
                 notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
@@ -50,7 +51,9 @@
         
         function updateUser(fieldName) {
             User.update({id: $scope.user.id}, $scope.user, function (updatedUser) {
-                $scope.user = updateUser;
+                $scope.user = updatedUser;
+                form.$setPristine();
+                notifier.success('Success!', 'User ' + fieldName + ' updated');
             }, function (error) {
                 notifier.error('Error!', 'There was an error updating the ' + fieldName + ' field');
             })

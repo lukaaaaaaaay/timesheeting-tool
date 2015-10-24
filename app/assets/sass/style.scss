@@ -208,6 +208,18 @@ a:hover, a:focus {
     border-color: #D4D4D4;
 }
 
+.btn-success {
+	background-color: #1CAF9A;;
+	border-color: #1CAF9A;	
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success[disabled],
+.btn-success:active {
+	background-color: #118C7A;
+    border-color: #118C7A;
+}
 
 /* forms */
 .form-control {
