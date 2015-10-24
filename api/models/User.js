@@ -19,8 +19,9 @@ var User = {
     email: {type: 'email', unique: true, index: true, required: true},
 
     // A role can be 'admin'. 'director' etc.
-    // TODO: make this an enum for slightly more security than a string?
-    role: {type: 'string', enum: ['admin', 'director', 'staff']},
+    role: {
+        model: 'Role'
+    },
 
     // Associations (aka relational attributes)
     passports: {collection: 'Passport', via: 'user'},
@@ -44,9 +45,9 @@ var User = {
       var user = this.toObject();
       user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
-      delete user.password;
-      delete user.confirmPassword;
-      delete user.passports;
+      // delete user.password;
+      // delete user.confirmPassword;
+      // delete user.passports;
       return user;
     }
   },
