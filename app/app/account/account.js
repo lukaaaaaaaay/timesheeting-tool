@@ -21,5 +21,10 @@ angular.module('tsm')
         url: '/account',
         templateUrl: 'app/account/manage/manage-account.html',
         controller: 'ManageAccountCtrl'
+      })
+      .state('reset password - logged in' , {
+        url: '/account/reset-password',
+        templateUrl: 'app/account/manage/reset-password.html',
+        controller: 'ManageResetPwCtrl'
       });
   });

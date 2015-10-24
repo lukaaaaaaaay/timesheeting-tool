@@ -87,6 +87,45 @@ module.exports = {
       },
 
       /**
+       * Confirm an existing User's password. Step 1 in logged in reset password process.
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+       confirmPassword: function(req, response, next) {
+        
+          var password = req.body.password;
+          var userId = req.body.userId
+          User.findOne(userId, function (err, user) {
+            if (err) return next(err);
+          
+
+            if (!user) return next(err);
+      
+            sails.models.passport.findOne({
+              protocol: 'local', user: user.id }, function (err, passport) {
+                console.log(passport);
+              if (passport) {
+                passport.validatePassword(password, function (err, res) {
+                  if (err) {
+                    return next(err);
+                  }
+
+                  if (!res) {
+                    return next(req.__('Error.Passport.Password.Wrong'));
+                  } else {
+                    return response.ok();
+                  }
+                });
+              }
+              else {
+                return next(req.__('Error.Passport.Password.NotSet'));
+              }
+            });
+          });
+       },
+
+      /**
        * Delete an existing User
        *
        * @param {Object} req

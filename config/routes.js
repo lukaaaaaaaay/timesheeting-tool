@@ -44,6 +44,11 @@ module.exports.routes = {
     action: 'me',
     roles: ["admin", "director"]
   },
+  'POST /api/me/confirmpw': {
+    controller: 'UserController',
+    action: 'confirmPassword',
+    roles: ["admin", "director"]
+  },
   'GET /api/users': {
     controller : 'UserController',
     action     : 'find',

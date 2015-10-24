@@ -171,8 +171,9 @@ table td a:hover {
     background: transparent; }
   .panel .lower-footer {
     padding-top: 20px; }
-  .panel a {
-    color: #337ab7; }
+
+.tst-single-form .panel a {
+  color: #337ab7; }
 
 /* pagination */
 .pagination li > a {

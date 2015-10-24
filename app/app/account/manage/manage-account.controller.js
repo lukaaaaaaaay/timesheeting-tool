@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('tsm')
-    .controller('ManageAccountCtrl', function ($scope, $location,$rootScope, tstBodyClass, notifier, Auth, User, Users) {
+    .controller('ManageAccountCtrl', function ($scope, $location,$rootScope, tstBodyClass, notifier, Auth, User, Users, $state) {
         $scope.user = {};
         // set body class
         $rootScope.bodyClass = tstBodyClass.returned.dashboard;
@@ -42,14 +42,10 @@
         };
 
         $scope.resetPassword = function() {
-
-        };
-
-        $scope.updateDisplayPicture = function(form) {
-
+            $state.transitionTo('reset password - logged in');
         };
         
-        function updateUser(fieldName) {
+        function updateUser(form, fieldName) {
             User.update({id: $scope.user.id}, $scope.user, function (updatedUser) {
                 $scope.user = updatedUser;
                 form.$setPristine();
