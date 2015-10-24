@@ -79,8 +79,8 @@ module.exports = {
                   res.notFound('No User with the id ' + req.param('id') + ' found');
               }
               else {
-                  sails.log.info('updated user: ' + user.email);
-                  res.ok(user);
+                  sails.log.info('updated user: ' + user[0].email);
+                  res.ok(user[0]);
               }
               
           });

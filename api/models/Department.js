@@ -21,7 +21,7 @@
 
       description: {
          type: 'string',
-      }
+      },
 
  		companyId: {
  			model: 'Company',

@@ -49,11 +49,16 @@
 						</div>
 						<div class="col-sm-9">
 							<div class="input-group">
-		      					<input type="text" class="form-control" name="name" ng-model="user.firstName">
+		      					<input type="text" class="form-control" name="name" ng-model="user.firstName" required>
 		      					<span class="input-group-btn">
-		        					<button class="btn btn-primary" type="button"><i class="fa fa-floppy-o"></i></button>
+		        					<button class="btn btn-default" type="button" ng-click="changeFirstName(firstNameForm)"><i class="fa fa-floppy-o"></i></button>
 		      					</span>
 		    				</div>
+		    				<div class="error" ng-show="firstNameForm.name.$dirty && firstNameForm.name.$invalid" >
+              					<span ng-show="firstNameForm.name.$error.required">
+                					The first name field is required!
+             					</span>
+            				</div>
 						</div>
 					</form>
 				</div>
@@ -66,9 +71,14 @@
 							<div class="input-group">
 		      					<input type="text" class="form-control" name="name" ng-model="user.lastName">
 		      					<span class="input-group-btn">
-		        					<button class="btn btn-primary" type="button"><i class="fa fa-floppy-o"></i></button>
+		        					<button class="btn btn-default" type="button" ng-click="changeLastName(lastNameForm)"><i class="fa fa-floppy-o"></i></button>
 		      					</span>
 		    				</div>
+		    				<div class="error" ng-show="lastNameForm.name.$dirty && lastNameForm.name.$invalid" >
+              					<span ng-show="lastNameForm.name.$error.required">
+                					The last name field is required!
+             					</span>
+            				</div>
 						</div>
 					</form>
 				</div>
@@ -81,9 +91,14 @@
 							<div class="input-group">
 		      					<input type="text" class="form-control" name="email" ng-model="user.email">
 		      					<span class="input-group-btn">
-		        					<button class="btn btn-primary" type="button"><i class="fa fa-floppy-o"></i></button>
+		        					<button class="btn btn-default" type="button" ng-click="changeEmail(emailForm)"><i class="fa fa-floppy-o"></i></button>
 		      					</span>
 		    				</div>
+		    				<div class="error" ng-show="emailForm.email.$dirty && emailForm.email.$invalid" >
+              					<span ng-show="emailForm.email.$error.required">
+                					The email field is required!
+             					</span>
+            				</div>
 						</div>
 					</form>
 				</div>
@@ -95,7 +110,7 @@
 							********
 	      			</div>		
 	      			<div class="col-sm-5 text-right">		
-	        				<button class="btn btn-primary" type="button">Reset Password</button>
+	        				<button class="btn btn-default" type="button">Reset Password</button>
 					</div>
 				</div>
 				<div class="account-row">
@@ -109,7 +124,7 @@
 							</div>
 							<div style="display:inline-block; vertical-align: top;" class="text-right">
 								<input type="file" name="uploadFile" id="uploadFile" />
-								<button class="btn btn-primary" type="button" ng-click="uploadFile()" style="display: block; margin-top: 10px;">Change</button>
+								<button class="btn btn-default" type="button" ng-click="uploadFile()" style="display: block; margin-top: 10px;">Change</button>
 
 							</div>
 							
