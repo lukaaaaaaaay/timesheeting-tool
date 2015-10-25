@@ -16,5 +16,15 @@ angular.module('tsm')
         url: '/register',
         templateUrl: 'app/account/register/register.html',
         controller: 'RegisterCtrl'
+      })
+      .state('manage account', {
+        url: '/account',
+        templateUrl: 'app/account/manage/manage-account.html',
+        controller: 'ManageAccountCtrl'
+      })
+      .state('reset password - logged in' , {
+        url: '/account/reset-password',
+        templateUrl: 'app/account/manage/reset-password.html',
+        controller: 'ManageResetPwCtrl'
       });
   });

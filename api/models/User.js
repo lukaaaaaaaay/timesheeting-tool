@@ -19,8 +19,9 @@ var User = {
     email: {type: 'email', unique: true, index: true, required: true},
 
     // A role can be 'admin'. 'director' etc.
-    // TODO: make this an enum for slightly more security than a string?
-    role: {type: 'string', enum: ['admin', 'director', 'staff']},
+    role: {
+        model: 'Role'
+    },
 
     // Associations (aka relational attributes)
     passports: {collection: 'Passport', via: 'user'},

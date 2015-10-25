@@ -21,6 +21,14 @@ users.factory('User', function ($resource) {
 
 users.factory('Me', function ($resource) {
     return $resource('/api/me', {}, {
-        get: { method: 'GET' }
+        get: { method: 'GET' },
+        confirmPassword: {
+            method: 'POST',
+            url: '/api/me/confirmpw'
+        },
+        resetPassword: {
+            method: 'POST',
+            url: '/api/me/resetpw'
+        }
     })
 });
