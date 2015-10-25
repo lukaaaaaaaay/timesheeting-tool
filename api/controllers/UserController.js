@@ -107,18 +107,96 @@ module.exports = {
       update: function (req, res) {   
           User.update({id: req.body.id}, req.body, function(err, user) {
               if (err) return res.negotiate(err);
-
+              
               if(!user) {
                   res.notFound('No User with the id ' + req.param('id') + ' found');
               }
               else {
-                  sails.log.info('updated user: ' + user.email);
-                  res.ok(user);
+                  sails.log.info('updated user: ' + user[0].email);
+                  res.ok(user[0]);
               }
               
           });
       },
 
+      /**
+       * Confirm an existing User's password. Step 1 in logged in reset password process.
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+       confirmPassword: function(req, response, next) {
+        
+          var password = req.body.password;
+          var userId = req.body.userId
+          User.findOne(userId, function (err, user) {
+            if (err) return next(err);
+          
+
+            if (!user) return next(err);
+      
+            sails.models.passport.findOne({
+              protocol: 'local', user: user.id }, function (err, passport) {
+                console.log(passport);
+              if (passport) {
+                passport.validatePassword(password, function (err, res) {
+                  if (err) {
+                    return next(err);
+                  }
+
+                  if (!res) {
+                    return next(req.__('Error.Passport.Password.Wrong'));
+                  } else {
+                    return response.ok();
+                  }
+                });
+              }
+              else {
+                return next(req.__('Error.Passport.Password.NotSet'));
+              }
+            });
+          });
+       },
+
+      /**
+       * Reset a users Password.
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+       resetPassword: function(req, response, next) {
+          var password = req.body.newPassword;
+          User.findOne(req.body.userId, function(err, user) {
+            if (err) return next(err);
+
+            if (!user) return next(err);
+            // find users current passport 
+            sails.models.passport.findOne({
+              protocol: 'local', user: user.id }, function (err, passport) {
+                
+              if (passport) {
+                //update the password and hash
+                passport.password = password;
+                passport.beforeUpdate(passport, function (err, res) {
+                  if (err) {
+                    return next(err);
+                  }
+                  
+                  if (!res) {
+                    return next(req.__('Error.Passport.Password.NotSet'));
+                  } else {
+                    //hashing worked, save new password
+                    passport.save();
+                    return response.ok();
+                  }
+                });
+              }
+              else {
+                return next(req.__('Error.Passport.Password.NotSet'));
+              }
+            });
+          });
+       },
       /**
        * Delete an existing User
        *
