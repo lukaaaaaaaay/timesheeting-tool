@@ -17,7 +17,6 @@ angular.module('tsm')
             firstName: $scope.user.firstName,
             lastName: $scope.user.lastName,
             email: $scope.user.email,
-            role: 2,
             password: $scope.user.password,
             confirmPassword: $scope.user.confirmPassword,
           })

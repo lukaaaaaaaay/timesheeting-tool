@@ -73,7 +73,8 @@ var Passport = {
     // https://github.com/balderdashy/waterline
     user: { model: 'User', required: true },
 
-    /**
+
+      /**
      * Validate password used by the local strategy.
      *
      * @param {string}   password The password to validate
@@ -81,16 +82,6 @@ var Passport = {
      */
     validatePassword: function (password, next) {
       bcrypt.compare(password, this.password, next);
-    },
-
-    /**
-    * Callback to be run before creating a Passport.
-    *
-    * @param {Object}   passport The soon-to-be-created Passport
-    * @param {Function} next
-    */
-    beforeCreate: function (passport, next) {
-      hashPassword(passport, next);
     },
 
     /**
@@ -102,9 +93,20 @@ var Passport = {
     beforeUpdate: function (passport, next) {
       hashPassword(passport, next);
     }
-  },
+  },  
 
-  
+
+
+      /**
+    * Callback to be run before creating a Passport.
+    *
+    * @param {Object}   passport The soon-to-be-created Passport
+    * @param {Function} next
+    */
+    beforeCreate: function (passport, next) {
+      hashPassword(passport, next);
+    },
+
 };
 
 module.exports = Passport;

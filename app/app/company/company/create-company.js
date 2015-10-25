@@ -2,14 +2,15 @@
     'use strict';
 
     angular.module('tsm')
-    .controller('CreateCompanyCtrl', function ($scope, $location,$rootScope, tstBodyClass, Company, Companies, notifier, Auth) {
+    .controller('CreateCompanyCtrl', function ($scope, $location,$rootScope, tstBodyClass, Company, Companies, notifier, Auth, User) {
         $scope.company = {};
-
+        var user = {};
         // set body class
         $rootScope.bodyClass = tstBodyClass.returned.formsClass;
 
         function init() {
-            $scope.company.directorId = Auth.getCurrentUser();
+            user = Auth.getCurrentUser();
+            $scope.company.directorId = user;
             console.log($scope.company.directorId);
         }
 
@@ -17,10 +18,18 @@
 
         $scope.createCompany = function(form) {
             if(form.$valid) {
-                Companies.create($scope.company, function(company) {
-                    $location.path('/dashboard');
-                }, function(error) {
 
+                Companies.create($scope.company, function(company) {
+                    user.companyId = company.id;
+                    User.update({id: user.id}, user, function (updatedUser) {
+                        $location.path('/dashboard');
+                    }, function (error) {
+                        notifier.info('Warning!', 'Company created but user was not updated');
+                        $location.path('/dashboard');
+                    })
+                    
+                }, function(error) {
+                    notifier.error('Error!', 'Unable to create company');
                 });
             }
             else {

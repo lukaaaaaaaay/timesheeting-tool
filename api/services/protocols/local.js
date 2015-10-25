@@ -43,7 +43,7 @@ exports.createUser = function (_user, next) {
       
       return next(err);
     }
-
+    
     sails.models.passport.create({
       protocol : 'local'
     , password : password

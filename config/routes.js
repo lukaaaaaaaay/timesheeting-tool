@@ -67,7 +67,7 @@ module.exports.routes = {
   'POST /api/users': {
     controller : 'UserController',
     action     : 'create',
-    roles      : ["public"]
+    //roles      : ["public"]
   },
   'GET /api/users/:id': {
     controller : 'UserController',
