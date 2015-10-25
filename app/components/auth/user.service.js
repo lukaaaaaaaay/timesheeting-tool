@@ -25,6 +25,10 @@ users.factory('Me', function ($resource) {
         confirmPassword: {
             method: 'POST',
             url: '/api/me/confirmpw'
+        },
+        resetPassword: {
+            method: 'POST',
+            url: '/api/me/resetpw'
         }
     })
 });

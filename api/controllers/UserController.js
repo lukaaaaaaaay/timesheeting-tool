@@ -126,6 +126,45 @@ module.exports = {
        },
 
       /**
+       * Reset a users Password.
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+       resetPassword: function(req, response, next) {
+          var password = req.body.newPassword;
+          User.findOne(req.body.userId, function(err, user) {
+            if (err) return next(err);
+
+            if (!user) return next(err);
+            // find users current passport 
+            sails.models.passport.findOne({
+              protocol: 'local', user: user.id }, function (err, passport) {
+                
+              if (passport) {
+                //update the password and hash
+                passport.password = password;
+                passport.beforeUpdate(passport, function (err, res) {
+                  if (err) {
+                    return next(err);
+                  }
+                  
+                  if (!res) {
+                    return next(req.__('Error.Passport.Password.NotSet'));
+                  } else {
+                    //hashing worked, save new password
+                    passport.save();
+                    return response.ok();
+                  }
+                });
+              }
+              else {
+                return next(req.__('Error.Passport.Password.NotSet'));
+              }
+            });
+          });
+       },
+      /**
        * Delete an existing User
        *
        * @param {Object} req

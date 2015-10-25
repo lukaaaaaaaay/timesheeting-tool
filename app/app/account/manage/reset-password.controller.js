@@ -10,6 +10,11 @@
             confirmNewPassword: ''
         };
         $scope.passwordConfirmed = false;
+        $scope.passwordReset = false;
+        $scope.errors = {
+            isValid: true,
+            message: ''
+        }
         // set body class
         $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
@@ -23,9 +28,11 @@
             if(form.$valid) {
                 Me.confirmPassword({userId: $scope.user.id, password: $scope.passwords.current}, function (success) {
                     $scope.passwordConfirmed = true;
+                    $scope.errors.isValid = true;
                 }, function (error) {
-                    console.log(error);
-                    notifier.error('Error!', 'The password entered doesn\'t match the one stored for this user');
+                    $scope.errors.isValid = false;
+                    $scope.errors.message = 'Unable to validate the password: ' + error.data;
+                    notifier.error('Error!', $scope.errors.message);
                 });
             }
             else {
@@ -33,8 +40,32 @@
             }
         };
 
-        $scope.resetPassword = function() {
-            
+        $scope.resetPassword = function(form) {
+            if(form.$valid) {
+                Me.resetPassword({userId: $scope.user.id, newPassword: $scope.passwords.newPassword}, function (success) {
+                    notifier.success('Success', 'Your password has been reset');
+                    // log the user back in with the new password. Ensures session has updated password.
+                    Auth.login({
+                        email: $scope.user.email,
+                        password: $scope.passwords.newPassword
+                    })
+                    .then( function() {
+                        // Logged in, show updated section
+                        $scope.errors.isValid = true;
+                        $scope.passwordReset = true;
+                    })
+                    .catch( function(err) {
+                        $scope.errors.other = err;
+                    });
+                }, function (error) {
+                    $scope.errors.isValid = false;
+                    $scope.errors.message = 'Unable to update the password: ' + error.data;
+                    notifier.error('Error!', $scope.errors.message);
+                });
+            }
+            else {
+               notifier.error('Error!', 'There are valiation errors with your submission. Please fix before continuing.'); 
+            }
         };
         
         function updateUser(fieldName) {
