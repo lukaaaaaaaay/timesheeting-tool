@@ -107,7 +107,7 @@ module.exports = {
       update: function (req, res) {   
           User.update({id: req.body.id}, req.body, function(err, user) {
               if (err) return res.negotiate(err);
-
+              
               if(!user) {
                   res.notFound('No User with the id ' + req.param('id') + ' found');
               }

@@ -51,7 +51,20 @@
                 form.$setPristine();
                 notifier.success('Success!', 'User ' + fieldName + ' updated');
             }, function (error) {
-                notifier.error('Error!', 'There was an error updating the ' + fieldName + ' field');
+                var message = 'There was an error updating the ' + fieldName + ' field.';
+                switch(fieldName) {
+                    case 'first name':
+                        break; 
+                    case 'last name':
+                        break;
+                    case 'email': 
+                        if(error.status == 400) {
+                            message =  error.data.invalidAttributes.email[0].message;
+                        }
+
+                        break;
+                }
+                notifier.error('Error!', message);
             })
         }
     });
