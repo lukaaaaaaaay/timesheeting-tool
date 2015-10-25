@@ -27,6 +27,27 @@ module.exports = {
         })
     },
 
+    /**
+     * Return all the Users in the system associated with a particular company
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+    findAllForCompany: function (req, res) {
+        Users.find({companyId: req.param('id')}, function (err, users) {
+          if (err) return res.negotiate(err);
+
+          if(users && users.length == 0) {
+              sails.log.warn("successful transaction but no users found..");
+          }
+          else {
+              sails.log.info(users.length + " users found");
+          }
+
+          res.ok(users);
+        });
+    },
+
         /**
      * Return a single User matching the supplied Id
      *
@@ -56,6 +77,8 @@ module.exports = {
      */
     create: function (req, res) {
         // todo
+
+        console.log("user controller.");
         if (!req.user) {
           this.createDirector(req, res);
         } else {
@@ -96,7 +119,6 @@ module.exports = {
             });
           });
         },
-
 
       /**
        * Update an existing User

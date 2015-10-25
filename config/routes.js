@@ -59,6 +59,11 @@ module.exports.routes = {
     action     : 'find',
     roles      : ["admin"]
   },
+  'GET /api/users/company/:id' : {
+    controller : 'UserController',
+    action: 'findAllForCompany',
+    roles: ["admin", "director"]
+  },
   'POST /api/users': {
     controller : 'UserController',
     action     : 'create',
@@ -160,7 +165,7 @@ module.exports.routes = {
     action     : 'findAllForCompany',
     roles      : ["admin", "director"]
   },
-  'GET /api/projects/user/:id': {
+  'GET /api/projects/manager/:id': {
     controller : 'ProjectController',
     action     : 'findAllForProjectManager',
     roles      : ["admin", "director"]

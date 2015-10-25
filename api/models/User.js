@@ -23,6 +23,10 @@ var User = {
         model: 'Role'
     },
 
+    companyId: {
+        model: 'Company'
+    },
+
     // Associations (aka relational attributes)
     passports: {collection: 'Passport', via: 'user'},
 
