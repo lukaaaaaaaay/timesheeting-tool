@@ -34,7 +34,7 @@ module.exports = {
      * @param {Object} res
      */
     findAllForCompany: function (req, res) {
-        Users.find({companyId: req.param('id')}, function (err, users) {
+        User.find({companyId: req.param('id')}, function (err, users) {
           if (err) return res.negotiate(err);
 
           if(users && users.length == 0) {

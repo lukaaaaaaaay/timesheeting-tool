@@ -38,7 +38,7 @@
             if(form.$valid) {
                 $scope.project.companyId = company.id;
                 $scope.project.statusId = 1; // default to incomplete
-                Projects.create($project, function (project) {
+                Projects.create($scope.project, function (project) {
                     notifier.success('Success!', 'New project created: ' + project.name);
                     form.$setPristine();
                     $scope.project = angular.copy(empty);
