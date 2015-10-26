@@ -35,7 +35,7 @@ module.exports = {
      * @param {Object} res
      */
     findOne: function(req, res) {
-        Company.findOne(req.param('id'), function(err, project) {
+        Project.findOne(req.param('id'), function(err, project) {
             if (err) return res.negotiate(err);
 
             if(!project) {
@@ -43,10 +43,9 @@ module.exports = {
                 res.notFound('No Project with the id ' + req.param('id') + ' found');
             }
             else {
-                 sails.log.info('Project Found: ' + project.name);
+                sails.log.info('Project Found: ' + project.name);
                 res.ok(project);
             }
-            
         });
     },
 
@@ -57,12 +56,12 @@ module.exports = {
      * @param {Object} res
      */
     findAllForCompany: function(req, res) {
-        Project.findAllForCompany(req.param('companyId'), function(err, projects) {
+        Project.findAllForCompany(req.param('id'), function(err, projects) {
             if (err) return res.negotiate(err);
 
             // debugging - remove later.. or not, server logs are helpful.
             if(projects.length == 0) {
-                sails.log.info("No projects found for the company with the id: " + req.param('companyId'));
+                sails.log.info("No projects found for the company with the id: " + req.param('id'));
             }
             else {
                  sails.log.info(projects.length + " projects found");
@@ -78,12 +77,12 @@ module.exports = {
      * @param {Object} res
      */
     findAllForProjectManager: function(req, res) {
-        Project.findAllForProjectManager(req.param('pmId'), function(err, projects) {
+        Project.findAllForProjectManager(req.param('id'), function(err, projects) {
             if (err) return res.negotiate(err);
 
             // debugging - remove later.. or not, server logs are helpful.
             if(projects.length == 0) {
-                sails.log.info("No projects found for the project manager with the id: " + req.param('pmId'));
+                sails.log.info("No projects found for the project manager with the id: " + req.param('id'));
             }
             else {
                  sails.log.info(projects.length + " projects found");
@@ -99,12 +98,12 @@ module.exports = {
      * @param {Object} res
      */
     findAllForStatus: function(req, res) {
-        Project.findAllForStatus(req.param('statusId'), function(err, projects) {
+        Project.findAllForStatus(req.param('id'), function(err, projects) {
             if (err) return res.negotiate(err);
 
             // debugging - remove later.. or not, server logs are helpful.
             if(projects.length == 0) {
-                sails.log.info("No projects found with a status id of: " + req.param('statusId'));
+                sails.log.info("No projects found with a status id of: " + req.param('id'));
             }
             else {
                  sails.log.info(projects.length + " projects found");
@@ -157,7 +156,6 @@ module.exports = {
         });
     },
 
-
     /**
      * Return all the statuses in the system
      *
@@ -178,7 +176,7 @@ module.exports = {
      * @param {Object} req
      * @param {Object} res
      */
-     findStatuses: function (req, res) {
+     findStatus: function (req, res) {
         StatusService.findOne(req.param('id'), function (err, status) {
             if (err) return res.negotiate(err);
 
@@ -186,7 +184,7 @@ module.exports = {
                 res.notFound('Status with the id ' + req.param('id') + ' not found.');
             }
             else {
-                res.ok(statuses);    
+                res.ok(status);    
             }
         });
      },     

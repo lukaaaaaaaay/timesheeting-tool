@@ -189,6 +189,17 @@ module.exports.routes = {
     controller : 'ProjectController',
     action     : 'destroy',
     roles      : ["admin", "director"]
-  }
-  
+  },
+
+  // Status Routes
+  'GET /api/statuses': {
+    controller : 'ProjectController',
+    action: 'findStatuses',
+    //roles: ["admin", "director"]
+  },
+  'GET /api/statuses/:id': {
+    controller : 'ProjectController',
+    action: 'findStatus',
+    //roles: ["admin", "director"]
+  }  
 };

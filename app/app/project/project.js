@@ -20,5 +20,11 @@ angular.module('tsm')
         templateUrl: 'app/project/view-project.html',
         controller: 'ViewProjectCtrl',
         authenticate: true,
-      });
+      })
+      // .state('dashboard.project-edit', {
+      //   url: 'project/edit/:id',
+      //   templateUrl: 'app/project/edit-project.html',
+      //   controller: 'EditProjectCtrl',
+      //   authenticate: true,
+      // });
   });

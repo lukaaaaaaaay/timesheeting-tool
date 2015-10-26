@@ -44,3 +44,16 @@ projects.factory('Project', function ($resource) {
         },
     });
 });
+
+projects.factory('Status', function ($resource) {
+    return $resource('/api/statuses/:id', {}, {
+        query: { 
+            method: 'GET', 
+            isArray: true 
+        },
+        get: {
+            method: 'GET', 
+            params: {id: '@id'}
+        }
+    });
+})
