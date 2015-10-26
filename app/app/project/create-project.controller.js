@@ -5,6 +5,7 @@
         var userId = Auth.getCurrentUser().id;
         var empty = {};
         var company = {};
+        var now = new Date();
         $scope.project = {};
         $scope.managers = [];
         // set body class
@@ -49,8 +50,34 @@
                 });
             }
             else {
+                angular.forEach(form.$error.required, function(field) {
+                    field.$setDirty();
+                });
                 notifier.error('Error!', 'There are validation errors with your form. Please correct before continuing.');
             }
+        };
+
+        $scope.validateDate = function(form, start, end) {
+            // if(start) {
+            //     if(start < now) {
+            //         form.startDate.$setValidity('greaterThan', false);
+            //     }
+            //     else {
+            //         form.startDate.$setValidity('greaterThan', true);
+            //     }
+            // }
+            // // validate both
+            if(end) {
+                if(end <= start) {
+                    form.dueDate.$setValidity('invalidDate', false);
+                    form.startDate.$setValidity('invalidDate', false);
+                }
+                else {
+                    form.dueDate.$setValidity('invalidDate', true);
+                    form.startDate.$setValidity('invalidDate', true);
+                }
+            }
+
         }
     });
 })();

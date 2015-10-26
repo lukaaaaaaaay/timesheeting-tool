@@ -2,13 +2,18 @@
 	<div class="row">
 		<div class="col-sm-8">
 			<h3 class="page-heading teal">Create Project</h3>
-			<form name="createProjectForm" class="form-horizontal">
+			<form name="createProjectForm" class="form-horizontal" novalidate>
 				<div class="form-group">
 					<div class="col-sm-3 text-right">
 						<label class="control-label">Project Name</label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="projectName" ng-model="project.name"/>
+						<input type="text" class="form-control" name="projectName" ng-model="project.name" required/>
+						<div class="error" ng-show="createProjectForm.projectName.$dirty && createProjectForm.projectName.$invalid" >
+				            <span ng-show="createProjectForm.projectName.$error.required">
+				              The project name is required!
+				            </span>
+				        </div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -16,14 +21,40 @@
 						<label class="control-label">Start Date</label>
 					</div>
 					<div class="col-sm-3">
-						<input type="date" class="form-control" name="startDate" ng-model="project.startDate"/>
+						<input type="date" 
+								class="form-control" 
+								name="startDate" 
+								ng-model="project.startDate" 
+								required 
+								ng-change="validateDate(createProjectForm, project.startDate, project.dueDate)"/>
+						<div class="error" ng-show="createProjectForm.startDate.$dirty && createProjectForm.startDate.$invalid" >
+				            <span ng-show="createProjectForm.startDate.$error.required">
+				              The project start date is required!
+				            </span>
+				        </div>
 					</div>
 					<div class="col-sm-2">
 						<label class="control-label">Due Date</label>
 					</div>
 					<div class="col-sm-3">
-						<input type="date" class="form-control" name="dueDate" ng-model="project.dueDate"/>
+						<input type="date" 
+								class="form-control" 
+								name="dueDate" 
+								ng-model="project.dueDate" 
+								required 
+								ng-change="validateDate(createProjectForm, project.startDate, project.dueDate)"/>
+						<div class="error" ng-show="createProjectForm.dueDate.$dirty && createProjectForm.dueDate.$invalid" >
+				            <span ng-show="createProjectForm.dueDate.$error.required">
+				              The project due date is required!
+				            </span>
+				        </div>
 					</div>
+					<div class="col-sm-9 col-sm-offset-3 error" ng-show="(createProjectForm.startDate.$dirty && createProjectForm.projectName.$invalid) 
+												&& (createProjectForm.dueDate.$dirty && createProjectForm.dueDate.$invalid)" >
+			            <span ng-show="createProjectForm.startDate.$error.invalidDate && createProjectForm.dueDate.$error.invalidDate">
+			              The due date must be greater than the start date.
+			            </span>
+			        </div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3 text-right">
@@ -31,9 +62,14 @@
 					</div>
 					<div class="col-sm-4">
 						<select class="form-control" name="projectManager" ng-model="project.projectManagerId" 
-								ng-options="item.id as item.fullName for item in managers">
-							<option value="0">Please select..</option>
+								ng-options="item.id as item.fullName for item in managers" required>
+							<option value="">Please select..</option>
 						</select>
+						<div class="error" ng-show="createProjectForm.projectManager.$dirty && createProjectForm.projectManager.$invalid" >
+				            <span ng-show="createProjectForm.projectManager.$error.required">
+				              You must assign a project manager!
+				            </span>
+				        </div>
 					</div>
 				</div>
 				<!-- <div class="form-group">
