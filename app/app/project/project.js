@@ -21,10 +21,10 @@ angular.module('tsm')
         controller: 'ViewProjectCtrl',
         authenticate: true,
       })
-      // .state('dashboard.project-edit', {
-      //   url: 'project/edit/:id',
-      //   templateUrl: 'app/project/edit-project.html',
-      //   controller: 'EditProjectCtrl',
-      //   authenticate: true,
-      // });
+      .state('dashboard.project-edit', {
+        url: '/projects/edit/:id',
+        templateUrl: 'app/project/edit-project.html',
+        controller: 'EditProjectCtrl',
+        authenticate: true,
+      });
   });
