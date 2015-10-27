@@ -72,6 +72,7 @@ var Passport = {
     // For more information on associations in Waterline, check out:
     // https://github.com/balderdashy/waterline
     user: { model: 'User', required: true },
+  }, // End of Attributes
 
     /**
      * Validate password used by the local strategy.
@@ -102,7 +103,6 @@ var Passport = {
     beforeUpdate: function (passport, next) {
       hashPassword(passport, next);
     }
-  },
 
   
 };
