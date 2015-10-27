@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('tsm').controller('EditProjectCtrl', function ($scope, $location, $rootScope, tstBodyClass, Auth, Projects, Project, notifier, Users, $stateParams) {
+    angular.module('tsm').controller('EditProjectCtrl', function ($scope, $location, $rootScope, tstBodyClass, Auth, Projects, Project, notifier, Users, $stateParams ) {
         var user = Auth.getCurrentUser();
         var empty = {};
         var company = {};
@@ -82,6 +82,7 @@
                 }
             }
 
-        }
+        };
+
     });
 })();

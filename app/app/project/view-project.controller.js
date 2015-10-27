@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('tsm').controller('ViewProjectCtrl', function ($scope, $location, $rootScope, tstBodyClass, Auth, Project, Status, $stateParams, notifier) {
+    angular.module('tsm').controller('ViewProjectCtrl', function ($scope, $location, $rootScope, tstBodyClass, Auth, Project, Status, $stateParams, notifier, ngDialog) {
         var userId = Auth.getCurrentUser().id;
         $scope.project = {};
         $scope.statuses = [];
@@ -37,6 +37,27 @@
                 return status.name;
 
             return '';
+        };
+
+        $scope.deleteProject = function () {
+            // show confirm dialog to ensure user really wants to delete something.
+            ngDialog.openConfirm({
+              template: '/components/dialogs/confirm-delete.html',
+              scope: $scope 
+            }).then(
+                function(success) {
+                    Project.delete({id: $scope.project.id}, function(success){
+                            notifier.success('Success', 'Project deleted');
+                            $location.path('/dashboard/projects');
+                        },function(error) {
+                            console.log(error)
+                            notifier.error('Error', 'Unable to delete project');
+                        });
+                },
+                function(error) {
+                    // do nothing
+                }
+            );
         };
     });
 })();
