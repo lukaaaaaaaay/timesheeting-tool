@@ -80,7 +80,10 @@ module.exports = {
        * @param {Object} res
        */
       createDirector: function (req, res) {
+        var user;
 
+        user = req.allParams();
+        
         User.register(user)
           .then(function (user) {
             sails.log('created new user', user);
