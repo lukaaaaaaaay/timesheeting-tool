@@ -72,7 +72,6 @@ var Passport = {
     // For more information on associations in Waterline, check out:
     // https://github.com/balderdashy/waterline
     user: { model: 'User', required: true },
-  }, // End of Attributes
 
     /**
      * Validate password used by the local strategy.
@@ -83,6 +82,7 @@ var Passport = {
     validatePassword: function (password, next) {
       bcrypt.compare(password, this.password, next);
     },
+  }, // End of Attributes
 
     /**
     * Callback to be run before creating a Passport.
