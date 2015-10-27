@@ -55,7 +55,6 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        // todo
         if (!req.user) {
           this.createDirector(req, res);
         } else {
@@ -81,20 +80,18 @@ module.exports = {
        * @param {Object} res
        */
       createDirector: function (req, res) {
-          sails.services.passport.protocols.local.register(req.body, function (err, user) {
-            if (err) return res.negotiate(err);
 
-            // find the director role
-            Role.findOne({name: 'director' }).exec(function findOneCB(err, found){
-              if (err) return next(err);
-              if (found) {
-                // assign the director role to the created user
-                user.role = found.id; // the role is the id we found
-                user.save();  // save new user object
-              }
-              res.ok(user);
-            });
+        User.register(user)
+          .then(function (user) {
+            sails.log('created new user', user);
+            res.ok(user);
+          })
+          .catch(function (error) {
+            sails.log.error(error);
+            res.badRequest(error);
           });
+
+          
         },
 
 

@@ -19,8 +19,9 @@ var User = {
     email: {type: 'email', unique: true, index: true, required: true},
 
     // A role can be 'admin'. 'director' etc.
-    role: {
-        model: 'Role'
+    roles: {
+        collection: 'Role',
+        via: 'users'
     },
 
     // Associations (aka relational attributes)
@@ -62,6 +63,15 @@ var User = {
     return new Promise(function (resolve, reject) {
       sails.services.passport.protocols.local.createUser(user, function (error, created) {
         if (error) return reject(error);
+
+        Role.findOne({name: 'director' }).exec(function findOneCB(err, found){
+              if (err) return next(err);
+              if (found) {
+                // assign the director role to the created user
+                created.role = found.id; // the role is the id we found
+                created.save();  // save new user object
+              }
+            });
 
         resolve(created);
       });

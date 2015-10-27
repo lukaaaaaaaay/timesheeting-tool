@@ -20,7 +20,7 @@ module.exports = {
     },
     users: {
       collection: 'User',
-      via: 'role'
+      via: 'roles'
     },
     // permissions: {
     //   type: 'array'
