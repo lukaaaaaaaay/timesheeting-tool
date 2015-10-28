@@ -9,6 +9,10 @@
                 controller: tst.modules.auth.controllers.login,
                 templateUrl: 'js/modules/auth/html/login.tmpl.html'
             });
+            $routeProvider.when(tst.modules.auth.routes.register, {
+                controller: tst.modules.auth.controllers.register,
+                templateUrl: 'js/modules/auth/html/register.tmpl.html'
+            });
             $routeProvider.when(tst.modules.auth.routes.notAuthorised, {
                 controller: tst.modules.auth.controllers.login,
                 templateUrl: 'js/modules/auth/html/not-authorised.tmpl.html'

@@ -58,8 +58,8 @@ var jsFilesToInject = [
     'js/tst.js',
 
     'js/modules/core/module.core.js',
-    'js/modules/core/services/eventbus.js',
-    'js/modules/core/services/bodyclass.js',
+    //'js/modules/core/module.core.routes.js',
+    'js/modules/core/**/*.js',
     'js/modules/core/module.core.run.js',
 
     'js/modules/auth/module.auth.js',
@@ -69,7 +69,7 @@ var jsFilesToInject = [
 
     'js/modules/dashboard/module.dashboard.js',
     'js/modules/dashboard/module.dashboard.routes.js',
-    'js/modules/dashboard/controllers/dashboardCtrl.js',
+    'js/modules/dashboard/**/*.js',
 
     'js/app.js'
 

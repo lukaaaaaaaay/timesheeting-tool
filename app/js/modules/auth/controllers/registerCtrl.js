@@ -6,21 +6,30 @@
         '$location',
         tst.modules.auth.services.authentication,
         function ($scope, $location, authentication) {
-            $scope.registerModel = {};
-            $scope.isBusy = false;
-            $scope.invalidLogin = false;
+            $scope.user = {};
+            $scope.errors = {};
 
-            $scope.login = function () {
-                $scope.invalidLogin = false;
+            // validate email entered on the fly
+            $scope.emailPattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+            $scope.register = function () {
+                $scope.invalidRegistration = false;
                 $scope.isBusy = true;
-                authentication.login($scope.loginModel.email, $scope.loginModel.password).then(function () {
-                    $location.path(tst.modules.dashboard.routes.home);
-                }, function () {
-                    $scope.invalidLogin = true;
-                })['finally'](function () {
-                    $scope.isBusy = false;
-                });
-            };
-        }
+                authentication.createUser({
+                    firstName: $scope.loginModel.firstName,
+                    lastName: $scope.loginModel.lastName,
+                    email: $scope.loginModel.email,
+                    password: $scope.loginModel.password,
+                    confirmPassword: $scope.loginModel.confirmPassword,
+                }).then(function () {
+                        //todo: redirect to initial company creation page
+                        $location.path(tst.modules.dashboard.routes.home);
+                    }, function () {
+                        $scope.invalidRegistration = true;
+                    })['finally'](function () {
+                        $scope.isBusy = false;
+                    });
+                };
+            }
     ]);
 }(angular, tst));
