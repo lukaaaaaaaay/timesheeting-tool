@@ -8,6 +8,9 @@
         function ($q, $http, eventbus) {
             var currentUser,
 
+            /**
+             *
+             */
             login = function (email, password) {
                 var defer = $q.defer();
 
@@ -18,11 +21,15 @@
                 .success(function(data) {
                     currentUser = data;
 
-                    $http.get(tst.modules.app.url + '/user/'+ data.id +'/roles')
-                    .then(function (roles) {
-                      currentUser.roles = [roles.data[0].name];
-                      defer.resolve(currentUser);
-                     });
+                    // We're logged in, but we don't know roles. :(. 
+                    // Let's change that.
+                    if(!data.roles) {
+                        $http.get(tst.modules.app.url + '/user/'+ data.id +'/roles')
+                        .then(function (roles) {
+                          currentUser.roles = [roles.data[0].name];
+                          defer.resolve(currentUser);
+                         });
+                    };
 
                     // Broadcasts a userLoggedIn event for subscribers.
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, currentUser);
@@ -35,6 +42,9 @@
                 return defer.promise;
             },
 
+            /**
+             *
+             */
             logout = function () {
                 // we should only remove the current user.
                 // routing back to login login page is something we shouldn't
@@ -44,6 +54,9 @@
                 eventbus.broadcast(tst.modules.auth.events.userLoggedOut);
             },
 
+            /**
+             *
+             */
             getCurrentLoginUser = function () {
                 return currentUser;
             };

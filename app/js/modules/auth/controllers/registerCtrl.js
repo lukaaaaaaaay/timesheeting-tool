@@ -16,11 +16,11 @@
                 $scope.invalidRegistration = false;
                 $scope.isBusy = true;
                 authentication.createUser({
-                    firstName: $scope.loginModel.firstName,
-                    lastName: $scope.loginModel.lastName,
-                    email: $scope.loginModel.email,
-                    password: $scope.loginModel.password,
-                    confirmPassword: $scope.loginModel.confirmPassword,
+                    firstName: $scope.registerModel.firstName,
+                    lastName: $scope.registerModel.lastName,
+                    email: $scope.registerModel.email,
+                    password: $scope.registerModel.password,
+                    confirmPassword: $scope.registerModel.confirmPassword,
                 }).then(function () {
                         //todo: redirect to initial company creation page
                         $location.path(tst.modules.dashboard.routes.home);
