@@ -43,6 +43,7 @@ var jsFilesToInject = [
   '/bower_components/toastr/toastr.min.js',
   '/bower_components/ng-dialog/js/ngDialog.min.js',
   '/bower_components/underscore/underscore-min.js',
+  '/bower_components/moment/min/moment.min.js',
   
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',

@@ -16,6 +16,8 @@
 
             Project.get({id: $stateParams.id}, function (project) {
                 $scope.project = project;
+                $scope.project.startDate = moment($scope.project.startDate).format("d MMM YYYY");
+                $scope.project.dueDate = moment($scope.project.dueDate).format("d MMM YYYY");
             }, function (error) {
                 console.log(error);
                 notifier.error('Error!', error.data);

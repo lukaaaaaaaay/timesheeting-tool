@@ -1,13 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('tsm').controller('EditProjectCtrl', function ($scope, $location, $rootScope, tstBodyClass, Auth, Projects, Project, notifier, Users, $stateParams ) {
+    function editProjectCtrl ($scope, $location, $rootScope, tstBodyClass, Status, Auth, Projects, Project, notifier, Users, $stateParams, ngDialog ) {
         var user = Auth.getCurrentUser();
         var empty = {};
         var company = {};
         var now = new Date();
         $scope.project = {};
         $scope.managers = [];
+        $scope.statuses = [];
         // set body class
         $rootScope.bodyClass = tstBodyClass.returned.dashboard;
 
@@ -17,36 +18,40 @@
             $rootScope.sidebarMenu.showDropdown = true;
             $rootScope.sidebarMenu.activeSubmenu = 2;
 
-            // get active company
-            //ActiveCompany.get({directorId: userId}, function (returned) {
-                //company = returned;
-                //TODO: filter out admin and directors....
-                Users.findAllForCompany({id: user.companyId}, function (users) {
-                    $scope.managers = users;
-                }, function (error) {
-                    notifier.error('Error', 'Unable to find users for company ' + user.companyId);    
-                });
-            // }, function (error) {
-            //     notifier.error('Error', 'Unable to find company for logged in user. Try logging in again!');
-            // });
-
+            //TODO: filter out admin and directors....
+            Users.findAllForCompany({id: user.companyId}, function (users) {
+                $scope.managers = users;
+            }, function (error) {
+                notifier.error('Error', 'Unable to find users for company ' + user.companyId);    
+            });
+            
             Project.get({id: $stateParams.id}, function (project) {
-                $scope.project = project;
+                setProject(project);
+                
             }, function (error) {
                 notifier.error('Error', 'Unable to find project ' + $stateParams.id);    
             });
 
-
+            Status.query({}, function (statuses) {
+                $scope.statuses = statuses;
+            }, function (error) {
+                console.log(error);
+                notifier.error('Error', 'Unable to retrieve system statuses');
+            });
         }    
 
-        init();
+        function setProject (project) {
+            $scope.project = project;
+            $scope.project.startDate = new Date($scope.project.startDate.toString());
+            $scope.project.dueDate = new Date($scope.project.dueDate.toString());
+        }
 
         $scope.updateProject = function (form) {
             if(form.$valid) {
-                Projects.update({id: $scope.project.id}, $scope.project, function (project) {
+                Project.update({id: $scope.project.id}, $scope.project, function (project) {
                     notifier.success('Success!', 'Project updated: ' + project.name);
                     form.$setPristine();
-                    $scope.project = project;
+                    setProject(project);
 
                 }, function (error) {
                     console.log(error);
@@ -62,15 +67,6 @@
         };
 
         $scope.validateDate = function(form, start, end) {
-            // if(start) {
-            //     if(start < now) {
-            //         form.startDate.$setValidity('greaterThan', false);
-            //     }
-            //     else {
-            //         form.startDate.$setValidity('greaterThan', true);
-            //     }
-            // }
-            // // validate both
             if(end) {
                 if(end <= start) {
                     form.dueDate.$setValidity('invalidDate', false);
@@ -84,5 +80,29 @@
 
         };
 
-    });
+        $scope.deleteProject = function () {
+            // show confirm dialog to ensure user really wants to delete something.
+            ngDialog.openConfirm({
+              template: '/components/dialogs/confirm-delete.html',
+              scope: $scope 
+            }).then(
+                function(success) {
+                    Project.delete({id: $scope.project.id}, function(success){
+                            notifier.success('Success', 'Project deleted');
+                            $location.path('/dashboard/projects');
+                        },function(error) {
+                            console.log(error);
+                            notifier.error('Error', 'Unable to delete project');
+                        });
+                },
+                function(error) {
+                    // do nothing
+                }
+            );
+        };
+
+        init();
+    }
+
+    angular.module('tsm').controller('EditProjectCtrl', editProjectCtrl);
 })();

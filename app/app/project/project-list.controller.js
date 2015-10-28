@@ -7,7 +7,7 @@
         $scope.projects = [];
         $scope.statuses = [];
         $scope.filteredProjects = [];
-        $scope.numPerPage = 10;
+        $scope.numPerPage = 2;
         $scope.currentPage = 1;
         // set body class
         $rootScope.bodyClass = tstBodyClass.returned.dashboard;
@@ -20,6 +20,7 @@
 
             Projects.findAllForCompany({id: user.companyId}, function (projects) {
                 $scope.projects = projects;
+                console.log($scope.projects);
                 updateList();
             }, function (error) {
                 console.log(error);
@@ -80,6 +81,10 @@
                 }
             );
         };
+
+        $scope.formatDate = function (date) {
+            return moment(date).format('D/MM/YYYY');
+        }
     });
 })(); 
 
