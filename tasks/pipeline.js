@@ -43,20 +43,36 @@ var jsFilesToInject = [
   '/bower_components/toastr/toastr.min.js',
   '/bower_components/ng-dialog/js/ngDialog.min.js',
   
-  // Dependencies like jQuery, or Angular are brought in here
-  'js/dependencies/**/*.js',
-
-  'app/app/app.js',
-
-  'app/*.js',
-
-  'components/**/*.js',
-
-  'app/**/*.js',
+  // OLD TST
+  // 'app/app/app.js',
+  // 'app/*.js',
+  // 'components/**/*.js',
+  // 'app/**/*.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/**/*.js'
+  // 'js/**/*.js'
+
+
+    // NEW TST
+    'js/tst.js',
+
+    'js/modules/core/module.core.js',
+    'js/modules/core/services/eventbus.js',
+    'js/modules/core/services/bodyclass.js',
+    'js/modules/core/module.core.run.js',
+
+    'js/modules/auth/module.auth.js',
+    'js/modules/auth/module.auth.routes.js',
+    'js/modules/auth/**/*.js',
+    'js/modules/auth/module.auth.run.js',
+
+    'js/modules/dashboard/module.dashboard.js',
+    'js/modules/dashboard/module.dashboard.routes.js',
+    'js/modules/dashboard/controllers/dashboardCtrl.js',
+
+    'js/app.js'
+
 ];
 
 
