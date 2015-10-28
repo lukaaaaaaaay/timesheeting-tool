@@ -7,7 +7,7 @@
         $scope.projects = [];
         $scope.statuses = [];
         $scope.filteredProjects = [];
-        $scope.numPerPage = 2;
+        $scope.numPerPage = 10;
         $scope.currentPage = 1;
         // set body class
         $rootScope.bodyClass = tstBodyClass.returned.dashboard;
@@ -20,7 +20,7 @@
 
             Projects.findAllForCompany({id: user.companyId}, function (projects) {
                 $scope.projects = projects;
-                console.log($scope.projects);
+                console.log($scope.projects.length);
                 updateList();
             }, function (error) {
                 console.log(error);
@@ -45,10 +45,6 @@
             return '';
         };
 
-        $scope.numPages = function () {
-            return Math.ceil($scope.projects.length / $scope.numPerPage);
-        };
-
         $scope.$watch("currentPage + numPerPage", function() {
             updateList();
         });
@@ -59,6 +55,7 @@
             , end = begin + $scope.numPerPage;
 
             $scope.filteredProjects = $scope.projects.slice(begin, end);
+            $scope.totalPages = Math.ceil($scope.projects.length / $scope.numPerPage);
         }
 
         $scope.deleteProject = function(project) {

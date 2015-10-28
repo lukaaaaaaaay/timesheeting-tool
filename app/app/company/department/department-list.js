@@ -75,11 +75,7 @@ angular.module('tsm')
   			}
   		);
   	}
-
-  	$scope.numPages = function () {
-    	return Math.ceil($scope.departments.length / $scope.numPerPage);
-  	};
-
+    
   	$scope.$watch("currentPage + numPerPage", function() {
     	updateList();
   	});
@@ -91,5 +87,9 @@ angular.module('tsm')
 
     	$scope.filteredDepartments = $scope.departments.slice(begin, end);
   	}
+
+    $scope.formatDate = function (date) {
+        return moment(date).format('D/MM/YYYY');
+    }
 
 });
