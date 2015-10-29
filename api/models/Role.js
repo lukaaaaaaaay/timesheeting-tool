@@ -18,10 +18,10 @@ module.exports = {
       notNull: true,
       unique: true
     },
-    users: {
-      collection: 'User',
-      via: 'roles'
-    },
+    // users: {
+    //   collection: 'User',
+    //   via: 'roleId'
+    // },
     // permissions: {
     //   type: 'array'
     // }
