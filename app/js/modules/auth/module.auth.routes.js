@@ -6,8 +6,7 @@
      */
     angular.module(tst.modules.auth.name).config([
         '$routeProvider',
-        '$httpProvider',
-        function ($routeProvider, $httpProvider) {
+        function ($routeProvider) {
             $routeProvider.when(tst.modules.auth.routes.login, {
                 controller: tst.modules.auth.controllers.login,
                 templateUrl: tst.modules.auth.views.login

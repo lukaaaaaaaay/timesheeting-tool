@@ -5,7 +5,7 @@
      * Directive for securing UI Elements
      * Hide/Show element based on users role.
      */
-    angular.module(tst.modules.auth.name).directive(tst.modules.auth.directive.access, [
+    angular.module(tst.modules.auth.name).directive(tst.modules.auth.directives.access, [
         tst.modules.auth.services.authorization,
         function (authorization) {
             return {

@@ -21,18 +21,19 @@
                     email: email,
                     password: password
                 })
-                .success(function(data) {
-                    currentUser = data;
+                .success(function(resp) {
+                    currentUser = resp;
 
                     // We're logged in, but we don't know roles. :(. 
                     // Let's change that.
-                    if(!data.roles) {
-                        $http.get(tst.modules.app.url + '/user/'+ data.id +'/roles')
-                        .then(function (roles) {
-                          currentUser.roles = [roles.data[0].name];
-                          defer.resolve(currentUser);
-                         });
-                    };
+                    // if(!resp.data.roles) {
+                    $http.get(tst.modules.app.url + '/role/'+ currentUser.roleId)
+                    .then(function (roles) {
+                        console.log("role is" + JSON.stringify(roles.data));
+                        currentUser.roles = [roles.data.name];
+                        defer.resolve(currentUser);
+                    });
+                    // };
 
                     // Broadcasts a userLoggedIn event for subscribers.
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, currentUser);
