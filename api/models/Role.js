@@ -6,8 +6,7 @@
 */
 
 module.exports = {
-  autoPK: true,
-  autoCreatedBy: false,
+  tableName: 'roles',
   autoCreatedAt: false,
   autoUpdatedAt: false,
 
@@ -20,7 +19,7 @@ module.exports = {
     },
     // users: {
     //   collection: 'User',
-    //   via: 'roleId'
+    //   via: 'roles'
     // },
     // permissions: {
     //   type: 'array'

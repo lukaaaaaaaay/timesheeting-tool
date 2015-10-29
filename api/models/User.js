@@ -1,4 +1,5 @@
-// var Gravatar = require('machinepack-gravatar');
+var Gravatar = require('machinepack-gravatar');
+var Promise = require('promise');
 
 /**
  * User Model
@@ -8,6 +9,8 @@
  */
 
 var User = {
+  tableName: 'users',
+
   attributes: {
 
     // A firstName and lastName are used to generate a fullName,
@@ -18,24 +21,22 @@ var User = {
     // An email is used to authenticate a user, along with a password.
     email: {type: 'email', unique: true, index: true, required: true},
 
-    /* 
-     * Associations (aka relational attributes)
-     */
-    // A user can only have one role
-    roleId: {model: 'Role', required: true, defaultsTo: 2},
+    // A role can only have one role (default is director at the moment)
+    roleId: { model: 'Role', required: true, defaultsTo: 3},
+
     // A user can have many passports
-    passport: {collection: 'Passport', via: 'user'},
+    passports: {collection: 'Passport', via: 'user'},
 
     // organizations: {},
 
-    // getGravatarUrl: function () {
-    //   return Gravatar.getImageUrl({
-    //     emailAddress: this.email,
-    //     gravatarSize: 400,
-    //     rating: 'g',
-    //     useHttps: true,
-    //   }).execSync();
-    // },
+    getGravatarUrl: function () {
+      return Gravatar.getImageUrl({
+        emailAddress: this.email,
+        gravatarSize: 400,
+        rating: 'g',
+        useHttps: true,
+      }).execSync();
+    },
 
     getFullName: function (){
         return this.firstName + ' ' + this.lastName;
@@ -43,7 +44,7 @@ var User = {
 
     toJSON: function () {
       var user = this.toObject();
-      // user.gravatarUrl = this.getGravatarUrl();
+      user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
       delete user.password;
       delete user.confirmPassword;
@@ -62,6 +63,15 @@ var User = {
     return new Promise(function (resolve, reject) {
       sails.services.passport.protocols.local.createUser(user, function (error, created) {
         if (error) return reject(error);
+
+        Role.findOne({name: 'director' }).exec(function findOneCB(err, found){
+              if (err) return next(err);
+              if (found) {
+                // assign the director role to the created user
+                created.role = found.id; // the role is the id we found
+                created.save();  // save new user object
+              }
+            });
 
         resolve(created);
       });
