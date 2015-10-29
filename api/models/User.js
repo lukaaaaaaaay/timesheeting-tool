@@ -23,7 +23,7 @@ var User = {
      */
     // A user can only have one role
     roleId: {model: 'Role', required: true, defaultsTo: 2},
-    // A user can have many passports
+    // A user can have one passport (for now)
     passport: {model: 'Passport', via: 'user'},
 
     // organizations: {},
