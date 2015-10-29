@@ -6,6 +6,7 @@
  */
 
  var Status = {
+ 	tableName: 'statuses',
  	attributes: {
  		
  		// id: {

@@ -6,6 +6,7 @@
  */
 
  var Project = {
+   tableName: 'projects',
  	attributes: {
  		
  		// id: {

@@ -6,6 +6,7 @@
  */
 
  module.exports = {
+   tableName: 'departments',
  	attributes: {
  		
  		// id: {
