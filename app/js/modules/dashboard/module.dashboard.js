@@ -4,7 +4,10 @@
     tst.modules.dashboard = {
         name: 'dashboard',
         controllers: {
-            dashboard: 'dashboardCtrl'
+            home: 'homeCtrl'
+        },
+        views: {
+            home: 'js/modules/dashboard/html/home.tmpl.html'
         },
         routes: {
             home: '/home'
