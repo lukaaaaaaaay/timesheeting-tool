@@ -41,11 +41,7 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   mysqlServer: {
-    adapter: 'sails-mysql',
-    host: 'localhost',
-    user: 'webadmin',
-    password: 'password',
-    database: 'timesheeting'
+    adapter: 'sails-mysql'
   },
 
   /***************************************************************************
