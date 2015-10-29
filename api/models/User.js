@@ -1,4 +1,5 @@
 var Gravatar = require('machinepack-gravatar');
+var Promise = require('promise');
 
 /**
  * User Model
@@ -8,6 +9,8 @@ var Gravatar = require('machinepack-gravatar');
  */
 
 var User = {
+  tableName: 'users',
+
   attributes: {
 
     // A firstName and lastName are used to generate a fullName,
@@ -18,13 +21,10 @@ var User = {
     // An email is used to authenticate a user, along with a password.
     email: {type: 'email', unique: true, index: true, required: true},
 
-    // A role can be 'admin'. 'director' etc.
-    roles: {
-        collection: 'Role',
-        via: 'users'
-    },
+    // A role can only have one role (default is director at the moment)
+    roleId: { model: 'Role', required: true, defaultsTo: 3},
 
-    // Associations (aka relational attributes)
+    // A user can have many passports
     passports: {collection: 'Passport', via: 'user'},
 
     // organizations: {},
