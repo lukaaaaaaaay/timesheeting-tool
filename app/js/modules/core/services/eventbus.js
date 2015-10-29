@@ -2,7 +2,8 @@
     'use strict';
 
     /**
-     * Provides a eventing mechanism which can broadcast and subscribe to application wide events.
+     * Provides a basic eventing mechanism which can broadcast and subscribe to application wide events.
+     * Abstracts Angular's RootScope emitter. 
      */
     angular.module(tst.modules.core.name).factory(tst.modules.core.services.eventbus, [
         '$rootScope',

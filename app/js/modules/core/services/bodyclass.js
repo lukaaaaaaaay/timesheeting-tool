@@ -2,7 +2,7 @@
     'use strict';
 
     /**
-     * Provides a eventing mechanism which can broadcast and subscribe to application wide events.
+     * Provides a service for changing the class of the body element
      */
     angular.module(tst.modules.core.name).factory(tst.modules.core.services.bodyclass, [
         

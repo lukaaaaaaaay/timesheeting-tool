@@ -1,15 +1,18 @@
 (function (angular, tst) {
     'use strict';
 
+    /*
+     * Provides Authentication for TST.
+     */
     angular.module(tst.modules.auth.name).factory(tst.modules.auth.services.authentication, [
         '$q',
         '$http',
-        'eventbus',
+        tst.modules.core.services.eventbus,
         function ($q, $http, eventbus) {
             var currentUser,
 
             /**
-             *
+             * Login
              */
             login = function (email, password) {
                 var defer = $q.defer();
@@ -43,7 +46,7 @@
             },
 
             /**
-             *
+             * Logout
              */
             logout = function () {
                 // we should only remove the current user.
@@ -55,7 +58,7 @@
             },
 
             /**
-             *
+             * getCurrentLoginUser
              */
             getCurrentLoginUser = function () {
                 return currentUser;

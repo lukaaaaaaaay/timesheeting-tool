@@ -1,6 +1,9 @@
 (function (angular, tst) {
     'use strict';
 
+/*
+ * Kick Starts the auth module
+ */
 angular.module(tst.modules.auth.name).run([
     '$rootScope',
     '$location',
@@ -8,8 +11,9 @@ angular.module(tst.modules.auth.name).run([
     function ($rootScope, $location, authorization) {
         var routeChangeRequiredAfterLogin = false,
             loginRedirectUrl;
+
+        // Whenever the route changes, check if the route requires authorization.
         $rootScope.$on('$routeChangeStart', function (event, next) {
-                
             var authorised;
             if (routeChangeRequiredAfterLogin && next.originalPath !== tst.modules.auth.routes.login) {
                 routeChangeRequiredAfterLogin = false;
@@ -18,7 +22,6 @@ angular.module(tst.modules.auth.name).run([
                 authorised = authorization.authorize(next.access.loginRequired,
                                                      next.access.roles,
                                                      next.access.roleCheckType);
-
 
                 if (authorised === tst.modules.auth.enums.authorised.loginRequired) {
                     routeChangeRequiredAfterLogin = true;
@@ -29,5 +32,6 @@ angular.module(tst.modules.auth.name).run([
                 }
             }
         });
+
     }]);
 }(angular, tst));

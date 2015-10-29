@@ -1,6 +1,9 @@
 (function (angular, tst) {
     'use strict';
 
+    /*
+     * Registration controller
+     */
     angular.module(tst.modules.auth.name).controller(tst.modules.auth.controllers.register, [
         '$scope',
         '$location',
@@ -12,6 +15,7 @@
             // validate email entered on the fly
             $scope.emailPattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
+            // Handles registration
             $scope.register = function () {
                 $scope.invalidRegistration = false;
                 $scope.isBusy = true;

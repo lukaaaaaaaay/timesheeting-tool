@@ -1,24 +1,26 @@
 (function (angular, tst) {
     'use strict';
 
+    /*
+     * Defines routes handled by the auth module
+     */
     angular.module(tst.modules.auth.name).config([
         '$routeProvider',
         '$httpProvider',
         function ($routeProvider, $httpProvider) {
             $routeProvider.when(tst.modules.auth.routes.login, {
                 controller: tst.modules.auth.controllers.login,
-                templateUrl: 'js/modules/auth/html/login.tmpl.html'
+                templateUrl: tst.modules.auth.views.login
             });
             $routeProvider.when(tst.modules.auth.routes.register, {
                 controller: tst.modules.auth.controllers.register,
-                templateUrl: 'js/modules/auth/html/register.tmpl.html'
+                templateUrl: tst.modules.auth.views.register
             });
             $routeProvider.when(tst.modules.auth.routes.notAuthorised, {
                 controller: tst.modules.auth.controllers.login,
-                templateUrl: 'js/modules/auth/html/not-authorised.tmpl.html'
+                templateUrl: tst.modules.auth.views.notAuthorised
             });
 
-            //$routeProvider.otherwise({ redirectTo: tst.modules.salespage.routes.home });
             $routeProvider.otherwise({ redirectTo: tst.modules.auth.routes.login });
         }]);
 

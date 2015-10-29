@@ -3,10 +3,14 @@
 
     var tst = window.tst = window.tst || {};
 
+    /** 
+     * This is our global config object. 
+     * Define constants that are used globally.
+     */
     tst.modules = {
         app: {
-            url: 'http://localhost:1337',
-            name: 'tst'
+            name: 'tst',
+            url: 'http://localhost:1337'
         }
     };
 }(window));

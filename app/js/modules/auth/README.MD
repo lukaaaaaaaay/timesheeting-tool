@@ -4,8 +4,8 @@ This module contains a set of components (views, controllers, services, directiv
 Including: 
  * Login 
  * Logout
- * User Registration
  * Reset password
- * update account
  * authorization
+ * User Registration *Should this be in the auth module or an account module?*
+ * update account *Should this be in the auth module or an account module?*
  etc.

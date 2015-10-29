@@ -1,6 +1,7 @@
 (function (angular, tst) {
     'use strict';
 
+    // Login controller
     angular.module(tst.modules.auth.name).controller(tst.modules.auth.controllers.login, [
         '$scope',
         '$location',
@@ -10,6 +11,7 @@
             $scope.isBusy = false;
             $scope.invalidLogin = false;
 
+            // handles login
             $scope.login = function () {
                 $scope.invalidLogin = false;
                 $scope.isBusy = true;
