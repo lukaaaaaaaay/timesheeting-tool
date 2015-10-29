@@ -26,12 +26,10 @@
             access: 'access'
         },
         controllers: {
-            login: 'loginCtrl',
-            register: 'registerCtrl'
+            login: 'loginCtrl'
         },
         views: {
             login: 'js/modules/auth/html/login.tmpl.html',
-            register: 'js/modules/auth/html/register.tmpl.html',
             notAuthorised: 'js/modules/auth/html/not-authorised.tmpl.html'
         },
         services: {
@@ -40,7 +38,6 @@
         },
         routes: {
             login: '/login',
-            register: '/register',
             notAuthorised: '/not-authorised'
         }
     };

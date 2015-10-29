@@ -11,10 +11,6 @@
                 controller: tst.modules.auth.controllers.login,
                 templateUrl: tst.modules.auth.views.login
             });
-            $routeProvider.when(tst.modules.auth.routes.register, {
-                controller: tst.modules.auth.controllers.register,
-                templateUrl: tst.modules.auth.views.register
-            });
             $routeProvider.when(tst.modules.auth.routes.notAuthorised, {
                 controller: tst.modules.auth.controllers.login,
                 templateUrl: tst.modules.auth.views.notAuthorised

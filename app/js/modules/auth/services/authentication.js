@@ -24,16 +24,13 @@
                 .success(function(resp) {
                     currentUser = resp;
 
-                    // We're logged in, but we don't know roles. :(. 
+                    // We're logged in, but we don't know the roles name. :(. 
                     // Let's change that.
-                    // if(!resp.data.roles) {
                     $http.get(tst.modules.app.url + '/role/'+ currentUser.roleId)
                     .then(function (roles) {
-                        console.log("role is" + JSON.stringify(roles.data));
                         currentUser.roles = [roles.data.name];
                         defer.resolve(currentUser);
                     });
-                    // };
 
                     // Broadcasts a userLoggedIn event for subscribers.
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, currentUser);
