@@ -16,7 +16,7 @@
                 $scope.invalidLogin = false;
                 $scope.isBusy = true;
                 authentication.login($scope.loginModel.email, $scope.loginModel.password).then(function () {
-                    $location.path(tst.modules.account.routes.manageAccount);
+                    $location.path(tst.modules.dashboard.routes.home);
                 }, function () {
                     $scope.invalidLogin = true;
                 })['finally'](function () {
