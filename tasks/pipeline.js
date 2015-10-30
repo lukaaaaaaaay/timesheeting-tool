@@ -67,6 +67,10 @@ var jsFilesToInject = [
     'js/modules/auth/**/*.js',
     'js/modules/auth/module.auth.run.js',
 
+    'js/modules/account/module.account.js',
+    'js/modules/account/module.account.routes.js',
+    'js/modules/account/**/*.js',
+
     'js/modules/dashboard/module.dashboard.js',
     'js/modules/dashboard/module.dashboard.routes.js',
     'js/modules/dashboard/**/*.js',
