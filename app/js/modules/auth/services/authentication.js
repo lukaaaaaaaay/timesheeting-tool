@@ -12,17 +12,15 @@
             var currentUser,
 
             createUser = function (user) {
-                console.log(user);
                 var defer = $q.defer();
 
                 $http.post( tst.modules.api.url + '/api/users', user)
                 .success(function(resp) {
                     currentUser = resp;
-                    console.log("resp is");
-                    console.log(currentUser);
 
                     // We're authenticated, but we don't know the roles name. :(. 
                     // Let's change that.
+                    // todo: abstact this. use eventbus to run on both userRegistered events and userloggedin events
                     $http.get(tst.modules.api.url + '/role/'+ currentUser.roleId)
                     .then(function (roles) {
                         currentUser.roles = [roles.data.name];
@@ -38,13 +36,6 @@
                 }.bind(this));
 
                 return defer.promise;
-
-
-                        // firstName: $scope.user.firstName,
-                        // lastName: $scope.user.lastName,
-                        // email: $scope.user.email,
-                        // password: $scope.user.password,
-                        // confirmPassword: $scope.user.confirmPassword,
             },
             /**
              * Login
@@ -61,6 +52,7 @@
 
                     // We're authenticated, but we don't know the roles name. :(. 
                     // Let's change that.
+                    // todo: abstact this. use eventbus to run this on both userRegistered events and userloggedin events
                     $http.get(tst.modules.api.url + '/role/'+ currentUser.roleId)
                     .then(function (roles) {
                         currentUser.roles = [roles.data.name];
