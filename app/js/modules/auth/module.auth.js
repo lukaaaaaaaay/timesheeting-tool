@@ -20,7 +20,8 @@
         },
         events: {
           userLoggedIn: 'auth:user:loggedIn',
-          userLoggedOut: 'auth:user:loggedOut'
+          userLoggedOut: 'auth:user:loggedOut',
+          userRegistered: 'auth:user:registered'
         },
         directives: {
             access: 'access'

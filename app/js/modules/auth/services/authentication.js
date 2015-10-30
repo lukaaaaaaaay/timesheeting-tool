@@ -21,7 +21,7 @@
                     console.log("resp is");
                     console.log(currentUser);
 
-                    // We're logged in, but we don't know the roles name. :(. 
+                    // We're authenticated, but we don't know the roles name. :(. 
                     // Let's change that.
                     $http.get(tst.modules.api.url + '/role/'+ currentUser.roleId)
                     .then(function (roles) {
@@ -30,7 +30,7 @@
                     });
 
                     // Broadcasts a userRegistered event for subscribers.
-                    // eventbus.broadcast(tst.modules.auth.events.userRegistered, currentUser);
+                    eventbus.broadcast(tst.modules.auth.events.userRegistered, currentUser);
                 })
                 .error(function(err) {
                     this.logout();
@@ -59,7 +59,7 @@
                 .success(function(resp) {
                     currentUser = resp;
 
-                    // We're logged in, but we don't know the roles name. :(. 
+                    // We're authenticated, but we don't know the roles name. :(. 
                     // Let's change that.
                     $http.get(tst.modules.api.url + '/role/'+ currentUser.roleId)
                     .then(function (roles) {
