@@ -9,7 +9,8 @@
         name: 'tst-core',
         services: {
             eventbus: 'eventbus',
-            bodyclass: 'bodyclass'
+            bodyclass: 'bodyclass',
+            notifier: 'notifier'
         }
     };
 
