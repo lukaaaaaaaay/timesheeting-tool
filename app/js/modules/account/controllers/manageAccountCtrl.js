@@ -6,9 +6,8 @@
      */
     angular.module(tst.modules.account.name).controller(tst.modules.account.controllers.manageAccount, [
         '$scope',
-        '$location',
-        tst.modules.auth.services.authentication
-        function ($scope, $location, authentication, eventbus) {
+        tst.modules.auth.services.authentication,
+        function ($scope, authentication) {
             $scope.user = {};
             $scope.errors = {};
 

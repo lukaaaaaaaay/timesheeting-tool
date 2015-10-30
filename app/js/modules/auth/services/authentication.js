@@ -11,13 +11,48 @@
         function ($q, $http, eventbus) {
             var currentUser,
 
+            createUser = function (user) {
+                console.log(user);
+                var defer = $q.defer();
+
+                $http.post( tst.modules.api.url + '/api/users', user)
+                .success(function(resp) {
+                    currentUser = resp;
+                    console.log("resp is");
+                    console.log(currentUser);
+
+                    // We're logged in, but we don't know the roles name. :(. 
+                    // Let's change that.
+                    $http.get(tst.modules.api.url + '/role/'+ currentUser.roleId)
+                    .then(function (roles) {
+                        currentUser.roles = [roles.data.name];
+                        defer.resolve(currentUser);
+                    });
+
+                    // Broadcasts a userRegistered event for subscribers.
+                    // eventbus.broadcast(tst.modules.auth.events.userRegistered, currentUser);
+                })
+                .error(function(err) {
+                    this.logout();
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+
+
+                        // firstName: $scope.user.firstName,
+                        // lastName: $scope.user.lastName,
+                        // email: $scope.user.email,
+                        // password: $scope.user.password,
+                        // confirmPassword: $scope.user.confirmPassword,
+            },
             /**
              * Login
              */
             login = function (email, password) {
                 var defer = $q.defer();
 
-                $http.post( tst.modules.app.url + '/auth/local', {
+                $http.post( tst.modules.api.url + '/auth/local', {
                     email: email,
                     password: password
                 })
@@ -26,7 +61,7 @@
 
                     // We're logged in, but we don't know the roles name. :(. 
                     // Let's change that.
-                    $http.get(tst.modules.app.url + '/role/'+ currentUser.roleId)
+                    $http.get(tst.modules.api.url + '/role/'+ currentUser.roleId)
                     .then(function (roles) {
                         currentUser.roles = [roles.data.name];
                         defer.resolve(currentUser);
@@ -63,6 +98,7 @@
             };
 
             return {
+                createUser: createUser,
                 login: login,
                 logout: logout,
                 getCurrentLoginUser: getCurrentLoginUser

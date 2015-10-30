@@ -7,6 +7,9 @@
      */
     tst.modules.account = {
         name: 'account',
+        services: {
+            userModel: 'userModel'
+        },
         controllers: {
             manageAccount: 'manageAccountCtrl',
             resetPassword: 'resetPasswordCtrl',
@@ -20,7 +23,7 @@
         routes: {
             manageAccount: '/account/manage',
             resetPassword: '/account/reset-password',
-            register: '/account/register'
+            register: '/register'
         }
     };
     /**
