@@ -37,5 +37,10 @@ angular.module('tsm')
         url: '/department/:id',
         templateUrl: 'app/company/department/view-department.html',
         controller: 'DepartmentCtrl'
+      })
+      .state('dashboard.edit-department', {
+        url: '/department/edit/:id',
+        templateUrl: 'app/company/department/edit-department.html',
+        controller: 'EditDepartmentCtrl'
       });
   });

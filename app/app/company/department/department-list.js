@@ -30,31 +30,7 @@ angular.module('tsm')
       });
 
   	}
-
-  	init();
-
-  	$scope.renameDepartment = function(department) {
-      // show rename form model. Cancel not yet working correctly.
-      var prev = {};
-      prev = angular.copy(department);
-      $scope.editing = department;
-      ngDialog.openConfirm({
-        template: '/components/dialogs/rename-dept.html',
-        controller: ['$scope', function($scope) {
-          $scope.department = $scope.$parent.editing;
-        }],
-        scope: $scope
-      }).then(function(success) {
-          Department.update({id: department.id}, department, function(success) {
-            notifier.success('Success', 'Department renamed!');
-          }, function (error) {
-            notifier.error('Error', 'There was an error renaming the department!');
-          })
-      }, function(cancelled) {
-        $scope.editing = prev;
-      });
-  	}
-
+    
   	$scope.deleteDepartment = function(department) {
       // show confirm dialog to ensure user really wants to delete something.
   		ngDialog.openConfirm({
@@ -74,8 +50,8 @@ angular.module('tsm')
   				
   			}
   		);
-  	}
-    
+  	};
+
   	$scope.$watch("currentPage + numPerPage", function() {
     	updateList();
   	});
@@ -90,6 +66,7 @@ angular.module('tsm')
 
     $scope.formatDate = function (date) {
         return moment(date).format('D/MM/YYYY');
-    }
+    };
 
+    init();
 });
