@@ -77,8 +77,6 @@ module.exports = {
      */
     create: function (req, res) {
         // todo
-
-        console.log("user controller.");
         if (!req.user) {
           this.createDirector(req, res);
         } else {
@@ -159,7 +157,6 @@ module.exports = {
       
             sails.models.passport.findOne({
               protocol: 'local', user: user.id }, function (err, passport) {
-                console.log(passport);
               if (passport) {
                 passport.validatePassword(password, function (err, res) {
                   if (err) {

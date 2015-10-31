@@ -20,7 +20,7 @@
 
             Projects.findAllForCompany({id: user.companyId}, function (projects) {
                 $scope.projects = projects;
-                console.log($scope.projects.length);
+                console.log($scope.projects);
                 updateList();
             }, function (error) {
                 console.log(error);

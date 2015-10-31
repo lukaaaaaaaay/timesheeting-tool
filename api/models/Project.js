@@ -47,20 +47,20 @@
  			required: true
  		},
 
-      // projectManager: function () {
-      //    User.findOne(this.projectManagerId, function (err, user) {
+      projectManager: function () {
+         console.log(this.projectManagerId);
+         User.findOne(this.projectManagerId, function (err, user) {
+            if(err) return "";
             
-      //       if(err) return "";
-            
-      //       return user.fullName;
-      //    });
-      // },
+            return user.fullName + " " + user.lastName;
+         });
+      },
 
-      // toJSON: function () {
-      //    var project = this.toObject();
-      //    project.projectManager = this.projectManager();
-      //    return project;
-      // }
+      toJSON: function () {
+         var project = this.toObject();
+         project.projectManager = this.projectManager();
+         return project;
+      }
 
  	},
    /**

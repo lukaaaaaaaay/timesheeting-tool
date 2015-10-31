@@ -22,15 +22,15 @@
 						<th>Project Name</th>
 						<th>Status</th>
 						<th>Project Manager</th>
-						<th>Date Created</th>
-						<th>Date Due</th>
+						<th>Start Date</th>
+						<th>Due Date</th>
 						<th/>
 					</tr>
 					<tr ng-repeat="project in filteredProjects | limitTo:numPerPage">
 						<td>{{project.id}}</td>
 						<td><a href="/#/dashboard/project/{{project.id}}">{{project.name}}</a></td>
 						<td>{{statusAsText(project.statusId)}}</td>
-						<td>{{project.getProjectManagerName()}}</td>
+						<td>{{project.projectManagerId}}</td>
 						<td>{{formatDate(project.startDate)}}</td>
 						<td>{{formatDate(project.dueDate)}}</td>
 						<td>
