@@ -17,6 +17,6 @@
     /**
      * This loads our core module and dependancies.
      */
-    angular.module(tst.modules.core.name, []);
+    angular.module(tst.modules.core.name, ['toastr']);
 
 }(angular, tst));
