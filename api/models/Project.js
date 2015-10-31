@@ -47,20 +47,20 @@
  			required: true
  		},
 
-      projectManager: function () {
-         User.findOne(this.projectManagerId, function (err, user) {
+      // projectManager: function () {
+      //    User.findOne(this.projectManagerId, function (err, user) {
             
-            if(err) return "";
+      //       if(err) return "";
             
-            return user.fullName;
-         });
-      },
+      //       return user.fullName;
+      //    });
+      // },
 
-      toJSON: function () {
-         var project = this.toObject();
-         project.projectManager = this.projectManager();
-         return project;
-      }
+      // toJSON: function () {
+      //    var project = this.toObject();
+      //    project.projectManager = this.projectManager();
+      //    return project;
+      // }
 
  	},
    /**
@@ -83,7 +83,7 @@
    */
    findAllForProjectManager: function(projectManagerId, cb) {
       
-      Project.find({projectManagerId: projectManagerId }).exec(function (err, projects) {
+      this.find({projectManagerId: projectManagerId }).exec(function (err, projects) {
          if (err) return cb(err);
 
          return cb(null, projects);
@@ -97,7 +97,7 @@
    */
    findAllForStatus: function(statusId, cb) {
       
-      Project.find({statusId: statusId }).exec(function (err, projects) {
+      this.find({statusId: statusId }).exec(function (err, projects) {
          if (err) return cb(err);
 
          return cb(null, projects);
@@ -111,7 +111,7 @@
    */
    findAllForProjectManagerAndStatus: function(query, cb) {
       
-      Project.find({projectManagerId: query.pmId, statusId: query.statusId }).exec(function (err, projects) {
+      this.find({projectManagerId: query.pmId, statusId: query.statusId }).exec(function (err, projects) {
          if (err) return cb(err);
 
          return cb(null, projects);
@@ -125,7 +125,7 @@
    */
    findAllForCompanyAndStatus: function(query, cb) {
       
-      Project.find({companyId: query.companyId, statusId: query.statusId }).exec(function (err, projects) {
+      this.find({companyId: query.companyId, statusId: query.statusId }).exec(function (err, projects) {
          if (err) return cb(err);
 
          return cb(null, projects);

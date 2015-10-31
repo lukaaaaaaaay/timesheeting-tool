@@ -17,7 +17,7 @@ module.exports.bootstrap = function(cb) {
   // Role.create({ id: 1, name: 'admin'}).exec(console.log);
   // Role.create({ id: 2, name: 'director' }).exec(console.log);
   
-  // // statuses
+  // // // statuses
   // Status.create({ id: 1, name: 'Incomplete'}).exec(console.log);
   // Status.create({ id: 2, name: 'In Progress' }).exec(console.log);
   // Status.create({ id: 3, name: 'Testing'}).exec(console.log);
