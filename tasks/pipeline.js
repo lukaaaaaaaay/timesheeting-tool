@@ -16,9 +16,9 @@
 var cssFilesToInject = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
   'bower_components/font-awesome/css/font-awesome.css',
-  'bower_components/toastr/toastr.min.css',
-  'bower_components/ng-dialog/css/ngDialog.min.css',
-  'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
+  'bower_components/angular-toastr/dist/angular-toastr.min.css',
+  // 'bower_components/ng-dialog/css/ngDialog.min.css',
+  // 'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
   'styles/**/*.css'
 ];
 
@@ -30,29 +30,18 @@ var jsFilesToInject = [
   'js/dependencies/sails.io.js',
 
   // bower components here
-  '/bower_components/jquery/dist/jquery.js',
+  // '/bower_components/jquery/dist/jquery.js',
   '/bower_components/angular/angular.js',
-  '/bower_components/bootstrap/dist/js/bootstrap.js',
-  '/bower_components/angular-base64/angular-base64.js',
+  // '/bower_components/bootstrap/dist/js/bootstrap.js',
+  // '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-route/angular-route.js',
-  '/bower_components/angular-cookies/angular-cookies.js',
-  '/bower_components/angular-resource/angular-resource.js',
-  '/bower_components/angular-sanitize/angular-sanitize.js',
-  '/bower_components/angular-ui-router/release/angular-ui-router.js',
-  '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-  '/bower_components/toastr/toastr.min.js',
-  '/bower_components/ng-dialog/js/ngDialog.min.js',
-  
-  // OLD TST
-  // 'app/app/app.js',
-  // 'app/*.js',
-  // 'components/**/*.js',
-  // 'app/**/*.js',
-
-  // All of the rest of your client-side js files
-  // will be injected here in no particular order.
-  // 'js/**/*.js'
-
+  // '/bower_components/angular-cookies/angular-cookies.js',
+  // '/bower_components/angular-resource/angular-resource.js',
+  // '/bower_components/angular-sanitize/angular-sanitize.js',
+  // '/bower_components/angular-ui-router/release/angular-ui-router.js',
+  // '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+  '/bower_components/angular-toastr/dist/angular-toastr.min.js',
+  // '/bower_components/ng-dialog/js/ngDialog.min.js',
 
     // NEW TST
     'js/tst.js',
