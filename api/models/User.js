@@ -1,4 +1,5 @@
 var Gravatar = require('machinepack-gravatar');
+var Promise = require('promise');
 
 /**
  * User Model
@@ -8,6 +9,8 @@ var Gravatar = require('machinepack-gravatar');
  */
 
 var User = {
+  tableName: 'users',
+
   attributes: {
 
     // A firstName and lastName are used to generate a fullName,
@@ -18,16 +21,17 @@ var User = {
     // An email is used to authenticate a user, along with a password.
     email: {type: 'email', unique: true, index: true, required: true},
 
-    // A role can be 'admin'. 'director' etc.
-    role: {
-        model: 'Role'
-    },
+    // A role can only have one role (default is director at the moment)
+    roleId: { model: 'Role', required: true, defaultsTo: 3},
 
     companyId: {
         model: 'Company'
     },
 
     // Associations (aka relational attributes)
+
+    // A user can have many passports
+
     passports: {collection: 'Passport', via: 'user'},
 
     // organizations: {},
@@ -66,6 +70,15 @@ var User = {
     return new Promise(function (resolve, reject) {
       sails.services.passport.protocols.local.createUser(user, function (error, created) {
         if (error) return reject(error);
+
+        Role.findOne({name: 'director' }).exec(function findOneCB(err, found){
+              if (err) return next(err);
+              if (found) {
+                // assign the director role to the created user
+                created.role = found.id; // the role is the id we found
+                created.save();  // save new user object
+              }
+            });
 
         resolve(created);
       });

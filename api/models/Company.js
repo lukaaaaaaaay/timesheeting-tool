@@ -6,6 +6,7 @@
  */
 
  var Company = {
+   tableName: 'companies',
  	attributes: {
  		
  		// id: {
@@ -17,7 +18,8 @@
  		companyName: {
  			type: 'string',
  			required: true,
- 			unique: true
+ 			unique: true,
+         columnName: 'name'
  		},
 
  		address: {

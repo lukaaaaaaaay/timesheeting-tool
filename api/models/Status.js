@@ -10,6 +10,7 @@
   	autoCreatedBy: false,
   	autoCreatedAt: false,
   	autoUpdatedAt: false,
+ 	tableName: 'statuses',
  	
  	attributes: {
  

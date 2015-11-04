@@ -25,13 +25,11 @@ module.exports.routes = {
   // Auth Routes
   'POST /auth/local': {
     controller: 'AuthController',
-    action: 'callback',
-    roles: ["public"]
+    action: 'callback'
   },
   'POST /auth/local/:action': {
     controller: 'AuthController',
-    action: 'callback',
-    roles: ["public"]
+    action: 'callback'
   },
   // TODO: Third-party auth
   // 'get /auth/:provider': 'AuthController.provider',
@@ -66,8 +64,7 @@ module.exports.routes = {
   },
   'POST /api/users': {
     controller : 'UserController',
-    action     : 'create',
-    //roles      : ["public"]
+    action     : 'create'
   },
   'GET /api/users/:id': {
     controller : 'UserController',
