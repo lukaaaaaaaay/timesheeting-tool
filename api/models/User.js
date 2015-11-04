@@ -24,7 +24,14 @@ var User = {
     // A role can only have one role (default is director at the moment)
     roleId: { model: 'Role', required: true, defaultsTo: 3},
 
+    companyId: {
+        model: 'Company'
+    },
+
+    // Associations (aka relational attributes)
+
     // A user can have many passports
+
     passports: {collection: 'Passport', via: 'user'},
 
     // organizations: {},

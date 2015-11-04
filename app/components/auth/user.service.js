@@ -6,7 +6,13 @@ var users = angular.module('tsm.users', ['ngResource']);
 users.factory('Users', function ($resource) {
     return $resource('/api/users', {}, {
         query: { method: 'GET', isArray: true },
-        create: { method: 'POST' }
+        create: { method: 'POST' },
+        findAllForCompany: {
+            method: 'GET',
+            url: '/api/users/company/:id',
+            params: {id: '@id'},
+            isArray: true
+        }
     })
 });
 
