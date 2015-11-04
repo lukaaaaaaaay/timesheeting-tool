@@ -6,19 +6,18 @@
  */
 
  var Status = {
+ 	autoPK: true,
+  	autoCreatedBy: false,
+  	autoCreatedAt: false,
+  	autoUpdatedAt: false,
  	tableName: 'statuses',
  	
  	attributes: {
- 		
- 		// id: {
- 		// 	type: 'int',
- 		// 	primaryKey: true,
- 		// 	unique: true,
- 		// },
-
+ 
  		name: {
  			type: 'string',
  			required: true,
+ 			unique: true
  		},
 
  	},

@@ -9,17 +9,11 @@
    tableName: 'companies',
  	attributes: {
  		
- 		// id: {
- 		// 	type: 'int',
- 		// 	primaryKey: true,
- 		// 	unique: true,
- 		// },
-
  		companyName: {
  			type: 'string',
  			required: true,
  			unique: true,
-         columnName: 'name'
+         	columnName: 'name'
  		},
 
  		address: {
@@ -60,18 +54,17 @@
  		}
  	},
  	/**
-   	* Find a company based on its director.
-   	*
-   	* @param {Object}   company - The found company
-   	*/
-   	findByDirectorId: function(directorId, cb) {
-   		console.log(directorId)
-   		Company.find({directorId: directorId }).exec(function (err, company) {
-   			if (err) return cb(err);
+   * Find a company based on its director.
+   *
+   * @param {Object}   company - The found company
+   */
+	findByDirectorId: function(directorId, cb) {
+		Company.find({directorId: directorId }).exec(function (err, company) {
+			if (err) return cb(err);
 
-   			return cb(null, company);
-   		});
-   	}
+			return cb(null, company);
+		});
+	}
  }
 
  module.exports = Company;

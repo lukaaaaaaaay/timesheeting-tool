@@ -57,6 +57,11 @@ module.exports.routes = {
     action     : 'find',
     roles      : ["admin"]
   },
+  'GET /api/users/company/:id' : {
+    controller : 'UserController',
+    action: 'findAllForCompany',
+    roles: ["admin", "director"]
+  },
   'POST /api/users': {
     controller : 'UserController',
     action     : 'create'
@@ -157,7 +162,7 @@ module.exports.routes = {
     action     : 'findAllForCompany',
     roles      : ["admin", "director"]
   },
-  'GET /api/projects/user/:id': {
+  'GET /api/projects/manager/:id': {
     controller : 'ProjectController',
     action     : 'findAllForProjectManager',
     roles      : ["admin", "director"]
@@ -181,6 +186,17 @@ module.exports.routes = {
     controller : 'ProjectController',
     action     : 'destroy',
     roles      : ["admin", "director"]
-  }
-  
+  },
+
+  // Status Routes
+  'GET /api/statuses': {
+    controller : 'ProjectController',
+    action: 'findStatuses',
+    //roles: ["admin", "director"]
+  },
+  'GET /api/statuses/:id': {
+    controller : 'ProjectController',
+    action: 'findStatus',
+    //roles: ["admin", "director"]
+  }  
 };

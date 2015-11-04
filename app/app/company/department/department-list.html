@@ -14,14 +14,14 @@
 						<th>Date Created</th>
 						<th/>
 					</tr>
-					<tr ng-repeat="d in filteredDepartments | limitTo:numPerPage">
+					<tr ng-repeat="d in filteredDepartments">
 						<td>{{d.id}}</td>
 						<td><a href="/#/dashboard/department/{{d.id}}">{{d.name}}</a></td>
-						<td>{{d.createdAt}}</td>
+						<td>{{formatDate(d.createdAt)}}</td>
 						<td>
-							<button type="button" class="btn btn-warning" title="Rename Department" ng-click="renameDepartment(d)">
+							<a href="/#/dashboard/department/edit/{{d.id}}" class="btn btn-warning" title="Rename Department">
 								<i class="fa fa-pencil-square-o"></i>
-							</button>
+							</a>
 							<button type="button" class="btn btn-danger" title="Delete Department" ng-click="deleteDepartment(d)">
 								<i class="fa fa-trash-o"></i>
 							</button>
@@ -36,6 +36,7 @@
 				<pagination 
   					ng-model="currentPage"
   					total-items="departments.length" 
+  					items-per-page="numPerPage"
   					previous-text="&laquo;"
   					next-text="&raquo;">
 				</pagination>
