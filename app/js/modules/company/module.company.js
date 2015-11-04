@@ -4,20 +4,27 @@
     tst.modules.company = {
         name: 'company',
         controllers: {
-            create: 'createCtrl'
+            create: 'createCtrl',
+            edit: 'editCtrl',
+            view: 'viewCtrl'
         },
         views: {
-            create: 'js/modules/company/html/create.tmpl.html'
+            create: 'js/modules/company/html/create.tmpl.html',
+            edit: 'js/modules/company/html/edit.tmpl.html',
+            view: 'js/modules/company/html/view.tmpl.html'
         },
         services: {
             api: 'api',
         },
         routes: {
-            create: '/company/create'
+            create: '/company/create',
+            edit: '/company/edit',
+            view: '/company/view'
         }
     };
 
     angular.module(tst.modules.company.name, [
-        'ngRoute'
+        tst.modules.core.name,
+        tst.modules.auth.name
     ]);
 }(angular, tst));

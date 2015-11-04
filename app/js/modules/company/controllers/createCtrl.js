@@ -5,9 +5,10 @@
         .controller(tst.modules.company.controllers.create, [
         '$scope',
         '$location',
+        tst.modules.core.services.notifier,
         tst.modules.auth.services.authentication,
         tst.modules.company.services.api,
-        function ($scope, $location, authentication, api) {
+        function ($scope, $location, notifier, authentication, api) {
             $scope.company = {};
 
             function init() {
