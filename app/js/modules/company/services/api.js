@@ -9,12 +9,14 @@
         '$http',
         tst.modules.core.services.eventbus,
         function ($q, $http, eventbus) {
+    
             var currentCompany,
+
 
             /**
              * createCompany
              */
-            createCompany = function (company) {
+            createCompany = function (company, callback) {
                 var defer = $q.defer();
 
                 $http.post( tst.modules.api.url + '/api/companies', company)
@@ -23,6 +25,7 @@
 
                     // TODO: Broadcasts a companyRegistered event for subscribers.
                     //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
+                    callback(company);
                 })
                 .error(function(err) {
                     defer.reject(err);

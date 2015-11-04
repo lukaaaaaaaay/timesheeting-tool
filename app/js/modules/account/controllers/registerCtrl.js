@@ -28,8 +28,8 @@
                     password: $scope.user.password,
                     confirmPassword: $scope.user.confirmPassword,
                 }).then(function () {
-                    // TODO: redirect to company creation screen
-                    $location.path(tst.modules.dashboard.routes.home);
+                    // redirect to company creation screen
+                    $location.path(tst.modules.company.routes.create);
                 }, function () {
                         $scope.invalidRegistration = true;
                 })['finally'](function () {

@@ -11,8 +11,10 @@
             $scope.company = {};
 
             function init() {
-                $scope.company.directorId = authentication.getCurrentLoginUser();
-                console.log($scope.company.directorId);
+                // todo: Don't set ID here. Let server handle the company owner based on whoever is authenticated during creation.
+                // we need to authenticate when we query the server anyways, so use that.
+                // $scope.company.directorId = authentication.getCurrentLoginUser();
+                // console.log($scope.company.directorId);
             }
             init();
 
