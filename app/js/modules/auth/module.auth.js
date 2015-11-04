@@ -21,7 +21,8 @@
         events: {
           userLoggedIn: 'auth:user:loggedIn',
           userLoggedOut: 'auth:user:loggedOut',
-          userRegistered: 'auth:user:registered'
+          userRegistered: 'auth:user:registered',
+          failed: 'auth:failed'
         },
         directives: {
             access: 'access'
@@ -45,10 +46,11 @@
 
 
     /**
-     * This loads our auth module and loads dependancies.
+     * This loads our dependancies.
      */
     angular.module(tst.modules.auth.name, [
-        'ngRoute',
+        'LocalStorageModule',
+        'base64',
         tst.modules.core.name
     ]);
 
