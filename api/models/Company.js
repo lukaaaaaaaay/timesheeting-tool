@@ -9,17 +9,11 @@
    tableName: 'companies',
  	attributes: {
  		
- 		// id: {
- 		// 	type: 'int',
- 		// 	primaryKey: true,
- 		// 	unique: true,
- 		// },
-
  		companyName: {
  			type: 'string',
  			required: true,
  			unique: true,
-         columnName: 'name'
+         	columnName: 'name'
  		},
 
  		address: {

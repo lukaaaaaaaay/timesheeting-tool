@@ -108,11 +108,11 @@ module.exports = {
         User.register(user)
           .then(function (user) {
             sails.log('created new user', user);
-            res.ok(user);
+            return res.ok(user);
           })
           .catch(function (error) {
             sails.log.error(error);
-            res.badRequest(error);
+            return res.badRequest(error);
           });
 
           
@@ -196,7 +196,7 @@ module.exports = {
               if (passport) {
                 //update the password and hash
                 passport.password = password;
-                passport.beforeUpdate(passport, function (err, res) {
+                passport.save(passport, function (err, res) {
                   if (err) {
                     return next(err);
                   }
@@ -204,8 +204,6 @@ module.exports = {
                   if (!res) {
                     return next(req.__('Error.Passport.Password.NotSet'));
                   } else {
-                    //hashing worked, save new password
-                    passport.save();
                     return response.ok();
                   }
                 });
