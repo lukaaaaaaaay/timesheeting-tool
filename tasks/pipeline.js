@@ -47,7 +47,6 @@ var jsFilesToInject = [
     'js/tst.js',
 
     'js/modules/core/module.core.js',
-    //'js/modules/core/module.core.routes.js',
     'js/modules/core/**/*.js',
     'js/modules/core/module.core.run.js',
 
@@ -60,6 +59,11 @@ var jsFilesToInject = [
     'js/modules/account/module.account.routes.js',
     'js/modules/account/**/*.js',
 
+
+    'js/modules/company/module.company.js',
+    'js/modules/company/module.company.routes.js',
+    'js/modules/company/**/*.js',
+    
     'js/modules/dashboard/module.dashboard.js',
     'js/modules/dashboard/module.dashboard.routes.js',
     'js/modules/dashboard/**/*.js',
