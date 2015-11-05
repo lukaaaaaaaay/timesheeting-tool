@@ -9,6 +9,7 @@
    tableName: 'companies',
  	attributes: {
  		
+ 		// A company has a name
  		companyName: {
  			type: 'string',
  			required: true,
@@ -16,34 +17,45 @@
          	columnName: 'name'
  		},
 
+ 		// A company has an (optional) description
+ 		description: {
+ 			type: 'string'
+ 		},
+
+ 		// A company has an (optional) address
  		address: {
  			type: 'string',
  			size: 250
  		},
 
+ 		// A company has an (optional) suburb
  		suburb: {
  			type: 'string',
  			size: 100
  		},
 
- 		// possible relation with another table of states?
+ 		// A company has an (optional) state
  		state: {
  			type: 'string'
  		},
- 		//possible relation with another table of countries
+ 		
+ 		// A company has an (optional) country
  		country: {
  			type: 'string'
  		},
 
+ 		// A company has an (optional) postcode
  		postcode: {
  			type: 'string',
  			size: 16
  		},
 
- 		description: {
- 			type: 'string'
+ 		// A company must be created by a user (TODO)
+ 		createdby: {
+ 			model: 'User'
  		},
 
+ 		// A company must have a director
  		directorId: {
  			model: 'User',
  			//required: true

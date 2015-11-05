@@ -30,19 +30,18 @@
  			type: 'datetime'
  		},
 
- 		// A task has a status
+ 		// A task must have a status
  		statusId: {
  			model: 'Status',
  			required: true
  		},
 
- 		// A task has a creator
+ 		// A task is created by a user (TODO)
  		createdBy: {
  			model: 'User',
- 			required: true
  		},
 
- 		// A task belongs to a project
+ 		// A task must belong to a project
  		projectId: {
  			model: 'Project',
  			required: true
