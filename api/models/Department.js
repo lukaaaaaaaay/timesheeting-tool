@@ -16,20 +16,27 @@
  		// 	unique: true,
  		// },
 
+      // A department has a name
  		name: {
  			type: 'string',
  			required: true,
  		},
 
+      // A department has an (optional) description
       description: {
          type: 'string',
       },
 
+      // A department must be created by a user (TODO)
+      createdBy: {
+         model: 'User'
+      },
+
+      // A department must belong to a company
  		companyId: {
  			model: 'Company',
  			required: true
  		},
-
  	},
 
  	/**

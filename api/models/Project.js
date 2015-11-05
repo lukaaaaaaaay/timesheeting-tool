@@ -16,34 +16,41 @@
  		// 	unique: true,
  		// },
 
+      // A project has a name
  		name: {
  			type: 'string',
  			required: true,
  		},
 
+      // A project has an (optional) description
       description: {
          type: 'string'
       },
 
+      // A project must have a start date
  		startDate: {
  			type: 'datetime',
  			required: true
  		},
 
+      // A project has an (optional) due date
  		dueDate: {
  			type: 'datetime'
  		},
  		
+      // A project must have a status
  		statusId: {
  			model: 'Status',
          required: true
  		},
 
+      // A project must have a manager
  		projectManagerId: {
  			model: 'User',
  			required: true
  		},
 
+      // A project must belong to a company
  		companyId: {
  			model: 'Company',
  			required: true

@@ -37,7 +37,7 @@ module.exports = function (req, res, next) {
     req.currentRole = null;
 
     // get the role object
-    Role.findOne({id: req.user.role }).exec(function findOneCB(err, found){
+    Role.findOne({id: req.user.roleId }).exec(function findOneCB(err, found){
       if (err) return next(err);
       if (found) {
         req.currentRole = found;
