@@ -14,13 +14,13 @@
         },
         bodyClass: {
             home: 'tst-body'
+        },
+        sidebarMenu: {
+            selected: 1,
+            showDropdown: false,
+            activeSubmenu: 0,
+            collapsed: false
         }
-        // sidebarMenu: {
-        //     selected: 1,
-        //     showDropdown: false,
-        //     activeSubmenu: 0,
-        //     collapsed: false
-        // }
     };
 
     angular.module(tst.modules.dashboard.name, [
