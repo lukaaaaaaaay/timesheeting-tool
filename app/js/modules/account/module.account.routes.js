@@ -7,7 +7,8 @@
             // Registration route
             $routeProvider.when(tst.modules.account.routes.register, {
                 controller: tst.modules.account.controllers.register,
-                templateUrl: tst.modules.account.views.register
+                templateUrl: tst.modules.account.views.register,
+                bodyClass: tst.modules.account.bodyClass.register
             });
 
             // Manage Account
@@ -16,7 +17,8 @@
                 templateUrl: tst.modules.account.views.manageAccount,
                 access: {
                     loginRequired: true
-                }
+                },
+                bodyClass: tst.modules.account.bodyClass.manageAccount
             });
 
             // Reset Password
@@ -25,7 +27,8 @@
                 templateUrl: tst.modules.account.views.resetPassword,
                 access: {
                     loginRequired: true
-                }
+                },
+                bodyClass: tst.modules.account.bodyClass.resetPassword
             });
 
         }]);

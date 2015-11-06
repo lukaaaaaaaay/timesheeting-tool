@@ -10,7 +10,8 @@
                 access: {
                     loginRequired: true,
                     roles: ['Admin', 'Director', 'Staff']
-                }
+                },
+                bodyClass: tst.modules.dashboard.bodyClass.home
             });
         }]);
 }(angular, tst));

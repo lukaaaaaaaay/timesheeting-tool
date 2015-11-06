@@ -41,6 +41,10 @@
         routes: {
             login: '/login',
             notAuthorised: '/not-authorised'
+        }, 
+        bodyClass: {
+            login: 'tst-single-form',
+            notAuthorised: 'tst-body'
         }
     };
 

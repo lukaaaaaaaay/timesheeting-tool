@@ -24,6 +24,11 @@
             manageAccount: '/account/manage',
             resetPassword: '/account/reset-password',
             register: '/register'
+        }, 
+        bodyClass: {
+            manageAccount: 'tst-body',
+            resetPassword: 'tst-body',
+            register: 'tst-single-form'
         }
     };
     /**

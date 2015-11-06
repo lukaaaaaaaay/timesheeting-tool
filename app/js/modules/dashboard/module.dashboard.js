@@ -11,10 +11,20 @@
         },
         routes: {
             home: '/home'
+        },
+        bodyClass: {
+            home: 'tst-body'
         }
+        // sidebarMenu: {
+        //     selected: 1,
+        //     showDropdown: false,
+        //     activeSubmenu: 0,
+        //     collapsed: false
+        // }
     };
 
     angular.module(tst.modules.dashboard.name, [
-        'ngRoute'
+        tst.modules.core.name,
+        tst.modules.auth.name
     ]);
 }(angular, tst));

@@ -20,6 +20,11 @@
             create: '/company/create',
             edit: '/company/edit',
             view: '/company/view'
+        },
+        bodyClass: {
+            create: 'tst-body',
+            edit: 'tst-body',
+            view: 'tst-body',
         }
     };
 

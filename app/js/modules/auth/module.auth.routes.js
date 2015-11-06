@@ -9,11 +9,13 @@
         function ($routeProvider) {
             $routeProvider.when(tst.modules.auth.routes.login, {
                 controller: tst.modules.auth.controllers.login,
-                templateUrl: tst.modules.auth.views.login
+                templateUrl: tst.modules.auth.views.login,
+                bodyClass: tst.modules.auth.bodyClass.login
             });
             $routeProvider.when(tst.modules.auth.routes.notAuthorised, {
                 controller: tst.modules.auth.controllers.login,
-                templateUrl: tst.modules.auth.views.notAuthorised
+                templateUrl: tst.modules.auth.views.notAuthorised,
+                bodyClass: tst.modules.auth.bodyClass.notAuthorised
             });
 
             $routeProvider.otherwise({ redirectTo: tst.modules.auth.routes.login });

@@ -11,7 +11,8 @@
                 access: {
                     loginRequired: true,
                     roles: ['Admin', 'Director']
-                }
+                },
+                bodyClass: tst.modules.company.bodyClass.create
             });
 
             $routeProvider.when(tst.modules.company.routes.edit, {
@@ -20,7 +21,8 @@
                 access: {
                     loginRequired: true,
                     roles: ['Admin', 'Director']
-                }
+                },
+                bodyClass: tst.modules.company.bodyClass.edit
             });
 
             $routeProvider.when(tst.modules.company.routes.view, {
@@ -29,7 +31,8 @@
                 access: {
                     loginRequired: true,
                     // roles: ['Admin', 'Director']
-                }
+                },
+                bodyClass: tst.modules.company.bodyClass.view
             });
 
         }]);
