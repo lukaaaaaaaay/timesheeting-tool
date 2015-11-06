@@ -29,35 +29,15 @@ var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
 
-  // bower components here
-  // '/bower_components/jquery/dist/jquery.js',
+  // Bower Components are brought in here
   '/bower_components/angular/angular.js',
-  // '/bower_components/bootstrap/dist/js/bootstrap.js',
   '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-local-storage/dist/angular-local-storage.js',
   '/bower_components/angular-route/angular-route.js',
-<<<<<<< HEAD
-  // '/bower_components/angular-cookies/angular-cookies.js',
-  // '/bower_components/angular-resource/angular-resource.js',
-  // '/bower_components/angular-sanitize/angular-sanitize.js',
-  // '/bower_components/angular-ui-router/release/angular-ui-router.js',
-  // '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   '/bower_components/angular-toastr/dist/angular-toastr.min.js',
-  // '/bower_components/ng-dialog/js/ngDialog.min.js',
-=======
-  '/bower_components/angular-cookies/angular-cookies.js',
-  '/bower_components/angular-resource/angular-resource.js',
-  '/bower_components/angular-sanitize/angular-sanitize.js',
-  '/bower_components/angular-ui-router/release/angular-ui-router.js',
-  '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-  '/bower_components/toastr/toastr.min.js',
-  '/bower_components/ng-dialog/js/ngDialog.min.js',
-  '/bower_components/underscore/underscore-min.js',
-  '/bower_components/moment/min/moment.min.js',
   
-  // Dependencies like jQuery, or Angular are brought in here
+  // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',
->>>>>>> 9f0b17c1fc912891fa2b32ae50b9df2b6395d921
 
     // NEW TST
     'js/tst.js',
@@ -74,7 +54,6 @@ var jsFilesToInject = [
     'js/modules/account/module.account.js',
     'js/modules/account/module.account.routes.js',
     'js/modules/account/**/*.js',
-
 
     'js/modules/company/module.company.js',
     'js/modules/company/module.company.routes.js',

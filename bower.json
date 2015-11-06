@@ -22,16 +22,6 @@
     "angular-local-storage": "~0.2.3",
     "angular-route": "~1.4.7",
     "angular-toastr": "~1.5.0",
-    "bootstrap": "~3.3.5",
-<<<<<<< HEAD
-    "font-awesome": "~4.4.0"
-=======
-    "font-awesome": "~4.4.0",
-    "jquery": "~2.1.4",
-    "ng-dialog": "ngDialog#~0.5.5",
-    "toastr": "~2.1.2",
-    "underscore": "1.8.3",
-    "moment": "2.10.0"
->>>>>>> 9f0b17c1fc912891fa2b32ae50b9df2b6395d921
+    "bootstrap": "~3.3.5"
   }
 }
