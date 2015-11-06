@@ -12,21 +12,6 @@
 module.exports.bootstrap = function(cb) {
   // Load Passport strategies
   sails.services.passport.loadStrategies();
-<<<<<<< HEAD
-
-
-// Find or create roles
- Role.findOrCreate({ id: 3, name:'Director'}).exec(function createFindCB(err, record){
-  console.log('Created: '+record.name+'?');
-});
-  Role.findOrCreate({id: 2, name:'Admin'}).exec(function createFindCB(err, record){
-   console.log('Created: '+record.name+'?');
- });
-
-   Role.findOrCreate({id: 1, name:'Staff'}).exec(function createFindCB(err, record){
-    console.log('Created: '+record.name+'?');
-  });
-=======
   
   //roles
   //Role.create({ id: 1, name: 'admin'}).exec(console.log);
@@ -38,7 +23,6 @@ module.exports.bootstrap = function(cb) {
   //Status.create({ id: 3, name: 'Testing'}).exec(console.log);
   //Status.create({ id: 4, name: 'Complete' }).exec(console.log);
   //Status.create({ id: 5, name: 'Cancelled'}).exec(console.log);
->>>>>>> 9f0b17c1fc912891fa2b32ae50b9df2b6395d921
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
