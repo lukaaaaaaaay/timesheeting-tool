@@ -11,15 +11,15 @@
 
 // CSS files to inject in order
 //
-// (if you're using SASS with the built-in default config, you'll want
-//  to change `assets/styles/importer.saas` instead.)
+// (If you're injecting SASS, you'll want
+//  to change `app/css/importer.scss` instead.)
 var cssFilesToInject = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
   'bower_components/font-awesome/css/font-awesome.css',
   'bower_components/angular-toastr/dist/angular-toastr.min.css',
   // 'bower_components/ng-dialog/css/ngDialog.min.css',
   // 'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
-  'styles/**/*.css'
+  'css/**/*.css'
 ];
 
 

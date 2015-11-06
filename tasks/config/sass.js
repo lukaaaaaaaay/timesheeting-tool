@@ -4,13 +4,13 @@ module.exports = function(grunt) {
         dev: {
             files: [{
                 expand: true,
-                cwd: 'app/assets/styles/',
+                cwd: 'app/css/',
                 src: ['importer.scss'],
-                dest: '.tmp/public/assets/styles/',
+                dest: '.tmp/public/css/',
                 ext: '.css'
             }]
         }
     });
 
-    // grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 };
