@@ -81,7 +81,8 @@ var Passport = {
     // https://github.com/balderdashy/waterline
     user: { model: 'User', required: true, columnName: 'userId'},
 
-    /**
+
+      /**
      * Validate password used by the local strategy.
      *
      * @param {string}   password The password to validate
@@ -90,7 +91,6 @@ var Passport = {
     validatePassword: function (password, next) {
       bcrypt.compare(password, this.password, next);
     }
-
   },
 
   /**

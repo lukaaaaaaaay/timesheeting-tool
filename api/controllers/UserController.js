@@ -27,6 +27,27 @@ module.exports = {
         })
     },
 
+    /**
+     * Return all the Users in the system associated with a particular company
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+    findAllForCompany: function (req, res) {
+        User.find({companyId: req.param('id')}, function (err, users) {
+          if (err) return res.negotiate(err);
+
+          if(users && users.length == 0) {
+              sails.log.warn("successful transaction but no users found..");
+          }
+          else {
+              sails.log.info(users.length + " users found");
+          }
+
+          res.ok(users);
+        });
+    },
+
         /**
      * Return a single User matching the supplied Id
      *
@@ -87,16 +108,15 @@ module.exports = {
         User.register(user)
           .then(function (user) {
             sails.log('created new user', user);
-            res.ok(user);
+            return res.ok(user);
           })
           .catch(function (error) {
             sails.log.error(error);
-            res.badRequest(error);
+            return res.badRequest(error);
           });
 
           
         },
-
 
       /**
        * Update an existing User
@@ -137,7 +157,6 @@ module.exports = {
       
             sails.models.passport.findOne({
               protocol: 'local', user: user.id }, function (err, passport) {
-                console.log(passport);
               if (passport) {
                 passport.validatePassword(password, function (err, res) {
                   if (err) {
@@ -177,7 +196,7 @@ module.exports = {
               if (passport) {
                 //update the password and hash
                 passport.password = password;
-                passport.beforeUpdate(passport, function (err, res) {
+                passport.save(passport, function (err, res) {
                   if (err) {
                     return next(err);
                   }
@@ -185,8 +204,6 @@ module.exports = {
                   if (!res) {
                     return next(req.__('Error.Passport.Password.NotSet'));
                   } else {
-                    //hashing worked, save new password
-                    passport.save();
                     return response.ok();
                   }
                 });

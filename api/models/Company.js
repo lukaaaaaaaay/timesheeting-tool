@@ -9,47 +9,53 @@
    tableName: 'companies',
  	attributes: {
  		
- 		// id: {
- 		// 	type: 'int',
- 		// 	primaryKey: true,
- 		// 	unique: true,
- 		// },
-
+ 		// A company has a name
  		companyName: {
  			type: 'string',
  			required: true,
  			unique: true,
-         columnName: 'name'
+         	columnName: 'name'
  		},
 
+ 		// A company has an (optional) description
+ 		description: {
+ 			type: 'string'
+ 		},
+
+ 		// A company has an (optional) address
  		address: {
  			type: 'string',
  			size: 250
  		},
 
+ 		// A company has an (optional) suburb
  		suburb: {
  			type: 'string',
  			size: 100
  		},
 
- 		// possible relation with another table of states?
+ 		// A company has an (optional) state
  		state: {
  			type: 'string'
  		},
- 		//possible relation with another table of countries
+ 		
+ 		// A company has an (optional) country
  		country: {
  			type: 'string'
  		},
 
+ 		// A company has an (optional) postcode
  		postcode: {
  			type: 'string',
  			size: 16
  		},
 
- 		description: {
- 			type: 'string'
+ 		// A company must be created by a user (TODO)
+ 		createdby: {
+ 			model: 'User'
  		},
 
+ 		// A company must have a director
  		directorId: {
  			model: 'User',
  			//required: true
@@ -60,18 +66,17 @@
  		}
  	},
  	/**
-   	* Find a company based on its director.
-   	*
-   	* @param {Object}   company - The found company
-   	*/
-   	findByDirectorId: function(directorId, cb) {
-   		console.log(directorId)
-   		Company.find({directorId: directorId }).exec(function (err, company) {
-   			if (err) return cb(err);
+   * Find a company based on its director.
+   *
+   * @param {Object}   company - The found company
+   */
+	findByDirectorId: function(directorId, cb) {
+		Company.find({directorId: directorId }).exec(function (err, company) {
+			if (err) return cb(err);
 
-   			return cb(null, company);
-   		});
-   	}
+			return cb(null, company);
+		});
+	}
  }
 
  module.exports = Company;

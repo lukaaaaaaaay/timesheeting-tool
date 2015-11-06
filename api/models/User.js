@@ -21,8 +21,22 @@ var User = {
     // An email is used to authenticate a user, along with a password.
     email: {type: 'email', unique: true, index: true, required: true},
 
+    createdBy: {
+      model: 'User'
+    },
+
     // A role can only have one role (default is director at the moment)
-    roleId: { model: 'Role', required: true, defaultsTo: 3},
+    roleId: { model: 'Role', required: true, defaultsTo: 2},
+
+    companyId: {
+        model: 'Company'
+    },
+
+    departmentId: {
+      model: 'Department'
+    },
+
+    // Associations (aka relational attributes)
 
     // A user can have many passports
     passports: {collection: 'Passport', via: 'user'},

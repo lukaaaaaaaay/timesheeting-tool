@@ -6,16 +6,13 @@ var localProtocol = require('../services/protocols/local');
  * user for a single request.
  */
 module.exports = function (req, res, next) {
-  console.log("inbasicauth");
   var auth = req.headers.authorization;
   if (!auth || auth.search('Basic ') !== 0) {
     return next();
   }
-  // if (process.env.NODE_ENV === 'production' && !req.secure) {
-  //   return res.status(403).json({ error: 'https required for basic auth. refusing login request' });
-  // }
-
-  console.log("doing: basic auth");
+  if (process.env.NODE_ENV === 'production' && !req.secure) {
+    return res.status(403).json({ error: 'https required for basic auth. refusing login request' });
+  }
 
   var authString = new Buffer(auth.split(' ')[1], 'base64').toString();
   var email = authString.split(':')[0];
@@ -37,10 +34,10 @@ module.exports = function (req, res, next) {
     req.user = user;
     req.authenticated = true;
     req.passport = passport;
-    req.currentRole = user.roleId;
+    req.currentRole = null;
 
     // get the role object
-    Role.findOne({id: req.user.role }).exec(function findOneCB(err, found){
+    Role.findOne({id: req.user.roleId }).exec(function findOneCB(err, found){
       if (err) return next(err);
       if (found) {
         req.currentRole = found;
