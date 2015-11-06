@@ -8,7 +8,7 @@
     tst.modules.account = {
         name: 'account',
         services: {
-            userModel: 'userModel'
+            api: 'api'
         },
         controllers: {
             manageAccount: 'manageAccountCtrl',
@@ -29,6 +29,9 @@
     /**
      * This loads our core module and dependancies.
      */
-    angular.module(tst.modules.account.name, []);
+    angular.module(tst.modules.account.name, [
+        tst.modules.core.name,
+        tst.modules.auth.name
+    ]);
 
 }(angular, tst));

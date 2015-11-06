@@ -4,7 +4,7 @@
     /*
      * Provides Authentication for TST.
      */
-    angular.module(tst.modules.account.name).factory(tst.modules.account.services.userModel, [
+    angular.module(tst.modules.account.name).factory(tst.modules.account.services.api, [
         '$http',
         function ($http) {
             var path = '/api/users/',
