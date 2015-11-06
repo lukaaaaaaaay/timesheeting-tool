@@ -10,8 +10,7 @@
 
 ## Purpose
 
-The `core` module contains logic relevant globally across the entire app.
-This includes:
+The `core` module manages the $rootscope and contains logic relevant globally across the entire app. This includes:
 
 + Loading, initializing and management of global events.
 + Loading, initializing and management of toastr notifier.
