@@ -84,18 +84,31 @@ module.exports = {
     },
 
     /**
-     * Create a new user
+     * Create a new staff user
      *
      * @param {Object} req
      * @param {Object} res
      */
     createStaff: function (req, res) {
         // todo
-        res.forbidden();
+        var user;
+
+        user = req.allParams();
+        
+        User.registerStaff(user)
+          .then(function (user) {
+            sails.log('created new staff user', user);
+            return res.ok(user);
+          })
+          .catch(function (error) {
+            sails.log.error(error);
+            return res.badRequest(error);
+          });
+
     },
 
       /**
-       * Create a new user
+       * Create a new director user
        *
        * @param {Object} req
        * @param {Object} res
@@ -107,7 +120,7 @@ module.exports = {
         
         User.register(user)
           .then(function (user) {
-            sails.log('created new user', user);
+            sails.log('created new director', user);
             return res.ok(user);
           })
           .catch(function (error) {

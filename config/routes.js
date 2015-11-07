@@ -192,11 +192,50 @@ module.exports.routes = {
   'GET /api/statuses': {
     controller : 'ProjectController',
     action: 'findStatuses',
-    //roles: ["admin", "director"]
+    //roles: ["admin", "director"] - uncomment when we have the other roles created.
   },
   'GET /api/statuses/:id': {
     controller : 'ProjectController',
     action: 'findStatus',
-    //roles: ["admin", "director"]
+    //roles: ["admin", "director"] - uncomment when we have the other roles created.
   }  
+
+  // Task Routes
+  'GET /api/tasks': {
+    controller : 'TaskController',
+    action     : 'find',
+    roles      : ["admin"]
+  },
+  'GET /api/tasks/project/:id': {
+    controller : 'TaskController',
+    action     : 'findAllForProject',
+    roles      : ["admin", "director"]
+  },
+  'GET /api/tasks/status/:id': {
+    controller : 'TaskController',
+    action     : 'findAllForStatus',
+    roles      : ["admin", "director"]
+  },
+  'GET /api/tasks/:id': {
+    controller : 'TaskController',
+    action     : 'findOne',
+    roles      : ["admin", "director"]
+  },
+  'POST /api/tasks': {
+    controller : 'TaskController',
+    action     : 'create',
+    roles      : ["admin", "director"]
+  },
+
+  'PUT /api/tasks/:id': {
+    controller : 'TaskController',
+    action     : 'update',
+    roles      : ["admin", "director"]
+  },
+  'DELETE /api/tasks/:id': {
+    controller : 'TaskController',
+    action     : 'destroy',
+    roles      : ["admin"]
+  },
+
 };

@@ -41,6 +41,9 @@ var User = {
     // A user can have many passports
     passports: {collection: 'Passport', via: 'user'},
 
+    // A user can have many tasks - need to make many-many relationship so we can query properly. 
+    tasks: {collection: 'Task', via: 'user'},
+
     // organizations: {},
 
     getGravatarUrl: function () {
@@ -68,7 +71,7 @@ var User = {
   },
 
   /**
-   * Register a new user
+   * Register a new user with director permissions
    * Returns a promise.
    *
    * @param {Object}   user The soon-to-be-created User
@@ -90,7 +93,33 @@ var User = {
         resolve(created);
       });
     });
+  },
+
+  /**
+   * Register a new user with regular staff permissions
+   * Returns a promise.
+   *
+   * @param {Object}   user The soon-to-be-created User
+   */
+  registerStaff: function (user) {
+    return new Promise(function (resolve, reject) {
+      sails.services.passport.protocols.local.createUser(user, function (error, created) {
+        if (error) return reject(error);
+
+        Role.findOne({name: 'staff' }).exec(function findOneCB(err, found){
+              if (err) return next(err);
+              if (found) {
+                // assign the staff role to the created user
+                created.role = found.id; 
+                created.save(); 
+              }
+            });
+
+        resolve(created);
+      });
+    });
   }
+
 };
 
 module.exports = User;
