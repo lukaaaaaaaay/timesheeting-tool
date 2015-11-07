@@ -39,31 +39,37 @@ var jsFilesToInject = [
   // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',
 
-    // NEW TST
-    'js/tst.js',
+  // Import TST global config
+  'js/tst.js',
 
-    'js/modules/core/module.core.js',
-    'js/modules/core/**/*.js',
-    'js/modules/core/module.core.run.js',
+  // Import TST Core
+  'js/modules/core/module.core.js',
+  'js/modules/core/**/*.js',
+  'js/modules/core/module.core.run.js',
 
-    'js/modules/auth/module.auth.js',
-    'js/modules/auth/module.auth.routes.js',
-    'js/modules/auth/**/*.js',
-    'js/modules/auth/module.auth.run.js',
+  // Import TST auth
+  'js/modules/auth/module.auth.js',
+  'js/modules/auth/module.auth.routes.js',
+  'js/modules/auth/**/*.js',
+  'js/modules/auth/module.auth.run.js',
 
-    'js/modules/account/module.account.js',
-    'js/modules/account/module.account.routes.js',
-    'js/modules/account/**/*.js',
+  // Import TST accounts
+  'js/modules/account/module.account.js',
+  'js/modules/account/module.account.routes.js',
+  'js/modules/account/**/*.js',
 
-    'js/modules/company/module.company.js',
-    'js/modules/company/module.company.routes.js',
-    'js/modules/company/**/*.js',
-    
-    'js/modules/dashboard/module.dashboard.js',
-    'js/modules/dashboard/module.dashboard.routes.js',
-    'js/modules/dashboard/**/*.js',
+  // Import TST orgs
+  'js/modules/company/module.company.js',
+  'js/modules/company/module.company.routes.js',
+  'js/modules/company/**/*.js',
+  
+  // Import TST dashboard
+  'js/modules/dashboard/module.dashboard.js',
+  'js/modules/dashboard/module.dashboard.routes.js',
+  'js/modules/dashboard/**/*.js',
 
-    'js/app.js'
+  // Import TST startup
+  'js/app.js'
 
 ];
 
@@ -77,10 +83,10 @@ var jsFilesToInject = [
 // with the linker, no problem-- you'll just want to make sure the precompiled
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
-var templateFilesToInject = [
-  'templates/*.html'
-  //'templates/**/*.html'
-];
+// var templateFilesToInject = [
+//   'templates/*.html'
+//   //'templates/**/*.html'
+// ];
 
 
 
@@ -93,6 +99,6 @@ module.exports.cssFilesToInject = cssFilesToInject.map(function(path) {
 module.exports.jsFilesToInject = jsFilesToInject.map(function(path) {
   return '.tmp/public/' + path;
 });
-module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
-  return 'app/' + path;
-});
+// module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
+//   return 'app/' + path;
+// });
