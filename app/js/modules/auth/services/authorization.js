@@ -19,8 +19,7 @@
             role, i;
 
         roleCheckType = roleCheckType || tst.modules.auth.enums.roleCheckType.atLeastOne;
-
-        if (loginRequired === true && user === undefined) {
+        if (loginRequired === true && user === null) {
             result = tst.modules.auth.enums.authorised.loginRequired;
         } else if ((loginRequired === true && user !== undefined) &&
             (requiredRoles === undefined || requiredRoles.length === 0)) {
@@ -28,6 +27,10 @@
             result = tst.modules.auth.enums.authorised.authorised;
         } else if (requiredRoles) {
             loweredRoles = [];
+
+            // if(!user) {
+            //     return tst.modules.auth.enums.authorised.notAuthorised;
+            // };
 
             angular.forEach(user.roles, function (role) {
                 loweredRoles.push(role.toLowerCase());
