@@ -29,6 +29,8 @@ var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
 
+  '/bower_components/jquery/dist/jquery.js',
+
   // Bower Components are brought in here
   '/bower_components/angular/angular.js',
   '/bower_components/angular-base64/angular-base64.js',
