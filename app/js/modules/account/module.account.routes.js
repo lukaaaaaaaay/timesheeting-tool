@@ -2,33 +2,42 @@
     'use strict';
 
     angular.module(tst.modules.account.name).config([
-        '$routeProvider',
-        function ($routeProvider) {
+        '$stateProvider',
+        function ($stateProvider) {
             // Registration route
-            $routeProvider.when(tst.modules.account.routes.register, {
+            $stateProvider.state(tst.modules.account.states.register, {
+                url: tst.modules.account.routes.register,
                 controller: tst.modules.account.controllers.register,
                 templateUrl: tst.modules.account.views.register,
-                bodyClass: tst.modules.account.bodyClass.register
+                data: {
+                    bodyClass: tst.modules.account.bodyClass.register,
+                }
             });
 
             // Manage Account
-            $routeProvider.when(tst.modules.account.routes.manageAccount, {
+            $stateProvider.state(tst.modules.account.states.manageAccount, {
+                url: tst.modules.account.routes.manageAccount,
                 controller: tst.modules.account.controllers.manageAccount,
                 templateUrl: tst.modules.account.views.manageAccount,
                 access: {
                     loginRequired: true
                 },
-                bodyClass: tst.modules.account.bodyClass.manageAccount
+                data: {
+                    bodyClass: tst.modules.account.bodyClass.manageAccount,
+                }
             });
 
             // Reset Password
-            $routeProvider.when(tst.modules.account.routes.resetPassword, {
+            $stateProvider.state(tst.modules.account.states.resetPassword, {
+                url: tst.modules.account.routes.resetPassword,
                 controller: tst.modules.account.controllers.resetPassword,
                 templateUrl: tst.modules.account.views.resetPassword,
                 access: {
                     loginRequired: true
                 },
-                bodyClass: tst.modules.account.bodyClass.resetPassword
+                data: {
+                    bodyClass: tst.modules.account.bodyClass.resetPassword,
+                }
             });
 
         }]);
