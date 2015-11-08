@@ -6,9 +6,9 @@
      */
     angular.module(tst.modules.account.name).controller(tst.modules.account.controllers.register, [
         '$scope',
-        '$location',
+        '$state',
         tst.modules.auth.services.authentication,
-        function ($scope, $location, authentication) {
+        function ($scope, $state, authentication) {
             $scope.user = {};
             $scope.errors = {};
             console.log("register");
@@ -29,7 +29,7 @@
                     confirmPassword: $scope.user.confirmPassword,
                 }).then(function () {
                     // redirect to company creation screen
-                    $location.path(tst.modules.company.routes.create);
+                    $state.go(tst.modules.company.states.create);
                 }, function () {
                         $scope.invalidRegistration = true;
                 })['finally'](function () {

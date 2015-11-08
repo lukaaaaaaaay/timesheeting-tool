@@ -43,6 +43,8 @@
 
             // todo: maybe move this to account module... user registration isn't reall auth.
             createUser = function (user) {
+                    var email = user.email;
+                    var password = user.password;
 
                     var deferred = $q.defer();
 

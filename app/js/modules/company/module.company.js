@@ -3,6 +3,11 @@
 
     tst.modules.company = {
         name: 'company',
+        states: {
+            create: 'company-create',
+            edit: 'company-edit',
+            view: 'company-view'
+        },
         controllers: {
             create: 'createCtrl',
             edit: 'editCtrl',

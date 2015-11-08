@@ -4,9 +4,9 @@
     // Login controller
     angular.module(tst.modules.auth.name).controller(tst.modules.auth.controllers.login, [
         '$scope',
-        '$location',
+        '$state',
         tst.modules.auth.services.authentication,
-        function ($scope, $location, authentication) {
+        function ($scope, $state, authentication) {
             $scope.loginModel = {};
             $scope.isBusy = false;
             $scope.invalidLogin = false;
@@ -16,7 +16,7 @@
                 $scope.invalidLogin = false;
                 $scope.isBusy = true;
                 authentication.login($scope.loginModel.email, $scope.loginModel.password).then(function () {
-                    $location.path(tst.modules.dashboard.routes.home);
+                    $state.go(tst.modules.dashboard.states.home);
                 }, function () {
                     $scope.invalidLogin = true;
                 })['finally'](function () {

@@ -13,7 +13,7 @@ angular.module(tst.modules.auth.name).run([
             loginRedirectUrl;
 
         // Whenever the route changes, check if the route requires authorization.
-        $rootScope.$on('$routeChangeStart', function (event, next) {
+        $rootScope.$on('$stateChangeStart', function (event, next) {
             var authorised;
             if (routeChangeRequiredAfterLogin && next.originalPath !== tst.modules.auth.routes.login) {
                 routeChangeRequiredAfterLogin = false;
