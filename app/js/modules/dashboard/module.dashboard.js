@@ -3,6 +3,9 @@
 
     tst.modules.dashboard = {
         name: 'dashboard',
+        states: {
+            home: 'home'
+        },
         controllers: {
             home: 'homeCtrl'
         },
