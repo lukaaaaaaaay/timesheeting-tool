@@ -1,0 +1,146 @@
+<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+
+<!-- todo: move navbar into it's own file -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Timesheeting Tool</a>
+    </div>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown dropdown-user">
+          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <img src="{{user.gravatarUrl}}" class="img-circle avatar"> {{user.firstName}} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/#/account"><i class="fa fa-cogs"></i> Account Settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li><a href="/#/logout" title="Log out"><i class="fa fa-sign-out"></i> Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- todo: move this into its own file -->
+<div class="tst-sidebar-wrap">
+  <div class="tst-sidebar" ng-class="(sidebarMenu.collapsed) ? 'tst-sidebar-collapsed' : 'tst-sidebar-full'">
+    <div class="tst-sidebar-toggle-wrap text-right">
+      <a href="javascript:;" class="tst-sidebar-toggler" ng-click="toggleCollapsed()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <ul class="tst-sidebar-menu">
+      <li ng-class="{active: sidebarMenu.selected == 1}">
+        <a href="/#/home" ng-click="setSelectedMenu(1)">
+          <i class="fa fa-tachometer"></i>
+          <span class="title">Dashboard</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+      <li ng-class="{active: sidebarMenu.selected == 2, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1}">
+        <a href="javascript:;" ng-click="toggleDropdown(1)">
+          <i class="fa fa-building"></i>
+          <span class="title">Company</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1">
+          <li>
+            <a href="/#/dashboard/company">
+              View Details
+            </a>
+          </li>
+          <li>
+            <a href="/#/dashboard/company/edit">
+              Edit Details
+            </a>
+          </li>
+          <li>
+            <a href="/#/dashboard/department/create">
+              Create Department
+            </a>
+          </li>
+          <li>
+            <a href="/#/dashboard/departments">
+              Department List
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li ng-class="{active: sidebarMenu.selected == 3, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 2}">
+        <a href="javascript:;" ng-click="toggleDropdown(2)">
+          <i class="fa fa-bar-chart"></i>
+          <span class="title">Project</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 2">
+          <li>
+            <a href="">Create Project</a>
+          </li>
+          <li>
+            <a href="">Project List</a>
+          </li>
+          <li>
+            <a href="">Department List</a>
+          </li>
+        </ul>
+      </li>
+      <li ng-class="{active: sidebarMenu.selected == 4}">
+        <a href="javascript:;">
+          <i class="fa fa-tasks"></i>
+          <span class="title">Tasks</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+      <li access="Staff" ng-class="{active: sidebarMenu.selected == 5}">
+        <a href="javascript:;" >
+          <i class="fa fa-users"></i>
+          <span class="title">Staff</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="tst-page-container">
+    <h1>Home</h1>
+
+    <p>
+        <a href="#/users">This link requires the user to have admin permissions</a>
+    </p>
+
+    <p>
+        You will see this button if you are a Staff User: <a class="btn btn-primary" access="Staff">Can You See Me?</a>
+    </p>
+    <p>
+        You will see this button if you are a Director User: <a class="btn btn-primary" access="Director">Can You See Me?</a>
+    </p>
+    <p>
+        You will see this button if you are a Admin User: <a class="btn btn-primary" access="Admin">Can You See Me?</a>
+    </p>
+
+</div>
+
+<script>
+$(document).ready(function() {
+
+  $(".tst-sidebar-toggler").on("click", function() {
+    if($("body").hasClass("sidebar-closed")) {
+      $("body").removeClass("sidebar-closed");
+    }
+    else {
+      $("body").addClass("sidebar-closed"); 
+    }
+  });
+});
+</script>

@@ -2,9 +2,9 @@ var acl = require("../services/acl.js");
 // ACL Hook verification
 module.exports = function (req, res, next) {
     var role     = null;
-
+    sails.log.debug("req.currentRole is: " + req.currentRole);
     if (req.currentRole) {
-        role = req.currentRole.name;    //todo: pass the entire object into acl.isAllowed(), not just the name
+        role = req.currentRole.name.toLowerCase();    //todo: pass the entire object into acl.isAllowed(), not just the name
     }
 
     if ( acl.isAllowed(role, req.url, req.method) ) {
