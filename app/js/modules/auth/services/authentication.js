@@ -43,6 +43,9 @@
 
             // todo: maybe move this to account module... user registration isn't reall auth.
             createUser = function (user) {
+                    // lets save the email and password
+                    var email = user.email;
+                    var password = user.password;
 
                     var deferred = $q.defer();
 
@@ -102,12 +105,12 @@
                         // we've confirmed credentials match a user
                         console.log('Successfully authenticated');
 
+                        // record the credentials
+                        setCredentials(email, password);
+
                         // turn the response string to a user object
                         var data = request.responseText;
                         var user = JSON.parse(data);
-
-                        // record the credentials
-                        setCredentials(email, password);
 
                         //attach roles to user object
                         angular.extend(user, {
