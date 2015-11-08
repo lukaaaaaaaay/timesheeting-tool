@@ -20,9 +20,30 @@
  			type: 'string'
  		},
 
- 		tasks: {collection: 'Task', via: 'category'},
+ 		companyId: {
+ 			model: 'Company',
+ 			required: true
+ 		},
+
+ 		tasks: {
+ 			collection: 'Task', 
+ 			via: 'category'
+ 		},
 
  	},
+
+ 	/**
+	* Finds all tasks for a project.
+	* 
+	* @param {int}	companyId - The company id
+	*/
+ 	findAllForCompany: function (companyId, cb) {
+ 		Category.find({companyId: companyId }).exec(function (err, categories) {
+			if (err) return cb(err);
+
+			return cb(null, categories);
+		});
+ 	}
  	
  }
 
