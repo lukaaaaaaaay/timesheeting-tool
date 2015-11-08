@@ -25,6 +25,20 @@
             create: 'tst-body',
             edit: 'tst-body',
             view: 'tst-body',
+        },
+        sidebarMenu: {
+            edit: {
+                selected: 2,
+                showDropdown: true,
+                activeSubmenu: 1,
+                collapsed: false
+            },
+            view: {
+                selected: 2,
+                showDropdown: true,
+                activeSubmenu: 1,
+                collapsed: false
+            },
         }
     };
 

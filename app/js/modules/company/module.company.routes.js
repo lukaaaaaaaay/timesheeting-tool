@@ -22,7 +22,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                bodyClass: tst.modules.company.bodyClass.edit
+                bodyClass: tst.modules.company.bodyClass.edit,
+                sidebarMenu: tst.modules.company.sidebarMenu.edit
             });
 
             $routeProvider.when(tst.modules.company.routes.view, {
@@ -32,7 +33,8 @@
                     loginRequired: true,
                     // roles: ['Admin', 'Director']
                 },
-                bodyClass: tst.modules.company.bodyClass.view
+                bodyClass: tst.modules.company.bodyClass.view,
+                sidebarMenu: tst.modules.company.sidebarMenu.view
             });
 
         }]);

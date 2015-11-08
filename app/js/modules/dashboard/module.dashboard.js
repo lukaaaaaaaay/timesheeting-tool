@@ -16,10 +16,12 @@
             home: 'tst-body'
         },
         sidebarMenu: {
-            selected: 1,
-            showDropdown: false,
-            activeSubmenu: 0,
-            collapsed: false
+            home: {
+                selected: 1,
+                showDropdown: false,
+                activeSubmenu: 0,
+                collapsed: false
+            }
         }
     };
 
