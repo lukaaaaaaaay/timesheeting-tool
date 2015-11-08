@@ -43,8 +43,6 @@
 
             // todo: maybe move this to account module... user registration isn't reall auth.
             createUser = function (user) {
-                    // record the credentials
-                    setCredentials(user.email, user.password);
 
                     var deferred = $q.defer();
 
@@ -104,15 +102,26 @@
                         // we've confirmed credentials match a user
                         console.log('Successfully authenticated');
 
-                        //attach roles to user object and save it
-                        user.roles = ['Director']; // todo: don't hardcode this. WTF.
+                        // turn the response string to a user object
+                        var data = request.responseText;
+                        var user = JSON.parse(data);
+
+                        // record the credentials
+                        setCredentials(email, password);
+
+                        //attach roles to user object
+                        angular.extend(user, {
+                            roles: ['Director'], // todo: don't hardcode this stuff. WTF.
+                        });
+
+                        // save the user object in local storage
                         localStorage.set('tst-user', user);
 
-                        eventbus.broadcast(tst.modules.auth.events.userRegistered, user);
+                        eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                     }, function () {
                         // some error in credential check
                         logout();
-                        eventbus.broadcast(tst.modules.auth.events.failed, user);
+                        eventbus.broadcast(tst.modules.auth.events.failed);
                     });
 
                     return promise;
@@ -122,9 +131,6 @@
              * Login
              */
             login = function (email, password) {
-                // record the credentials
-                setCredentials(email, password);
-
                 var deferred = $q.defer();
 
                 /**
@@ -151,9 +157,9 @@
                 };
                 request.open('POST', tst.modules.api.url + '/auth/local');
                 request.setRequestHeader('Accept', 'application/json');
+                var params = { email: email, password: password };
 
-                var params = "email="+email+"&password="+password;
-                request.send(params);
+                request.send( JSON.stringify(params) );
 
                 /**
                 * Allow subscribers to the promise to add a
@@ -184,15 +190,26 @@
                     // we've confirmed credentials match a user
                     console.log('Successfully authenticated');
 
-                    // attach the roles to the user
-                    user.roles = ['Director'];
+                    // turn the response string to a user object
+                    var data = request.responseText;
+                    var user = JSON.parse(data);
+
+                    // record the credentials
+                    setCredentials(email, password);
+
+                    //attach roles to user object
+                    angular.extend(user, {
+                        roles: ['Director'], // todo: don't hardcode this stuff. WTF.
+                    });
+
+                    // save the user object in local storage
                     localStorage.set('tst-user', user);
 
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                 }, function () {
                     // some error in credential check
                     logout();
-                    eventbus.broadcast(tst.modules.auth.events.failed, user);
+                    eventbus.broadcast(tst.modules.auth.events.failed);
                 });
 
                 return promise;
