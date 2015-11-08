@@ -27,7 +27,7 @@
 
  		tasks: {
  			collection: 'Task', 
- 			via: 'category'
+ 			via: 'categories'
  		},
 
  	},

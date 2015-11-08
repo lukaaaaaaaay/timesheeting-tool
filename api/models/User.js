@@ -42,7 +42,7 @@ var User = {
     passports: {collection: 'Passport', via: 'user'},
 
     // A user can have many tasks - need to make many-many relationship so we can query properly. 
-    tasks: {collection: 'Task', via: 'user'},
+    tasks: {collection: 'Task', via: 'members'},
 
     // organizations: {},
 
