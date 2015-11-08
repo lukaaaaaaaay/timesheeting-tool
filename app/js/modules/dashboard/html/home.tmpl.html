@@ -32,7 +32,86 @@
 
 
 
-
+<!-- todo: move this into its own file -->
+<div class="tst-sidebar-wrap">
+  <div class="tst-sidebar" ng-class="(sidebarMenu.collapsed) ? 'tst-sidebar-collapsed' : 'tst-sidebar-full'">
+    <div class="tst-sidebar-toggle-wrap text-right">
+      <a href="javascript:;" class="tst-sidebar-toggler" ng-click="toggleCollapsed()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <ul class="tst-sidebar-menu">
+      <li ng-class="{active: sidebarMenu.selected == 1}">
+        <a href="/#/home" ng-click="setSelectedMenu(1)">
+          <i class="fa fa-tachometer"></i>
+          <span class="title">Dashboard</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+      <li ng-class="{active: sidebarMenu.selected == 2, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1}">
+        <a href="javascript:;" ng-click="toggleDropdown(1)">
+          <i class="fa fa-building"></i>
+          <span class="title">Company</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1">
+          <li>
+            <a href="/#/dashboard/company">
+              View Details
+            </a>
+          </li>
+          <li>
+            <a href="/#/dashboard/company/edit">
+              Edit Details
+            </a>
+          </li>
+          <li>
+            <a href="/#/dashboard/department/create">
+              Create Department
+            </a>
+          </li>
+          <li>
+            <a href="/#/dashboard/departments">
+              Department List
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li ng-class="{active: sidebarMenu.selected == 3, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 2}">
+        <a href="javascript:;" ng-click="toggleDropdown(2)">
+          <i class="fa fa-bar-chart"></i>
+          <span class="title">Project</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 2">
+          <li>
+            <a href="">Create Project</a>
+          </li>
+          <li>
+            <a href="">Project List</a>
+          </li>
+          <li>
+            <a href="">Department List</a>
+          </li>
+        </ul>
+      </li>
+      <li ng-class="{active: sidebarMenu.selected == 4}">
+        <a href="javascript:;">
+          <i class="fa fa-tasks"></i>
+          <span class="title">Tasks</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+      <li access="Staff" ng-class="{active: sidebarMenu.selected == 5}">
+        <a href="javascript:;" >
+          <i class="fa fa-users"></i>
+          <span class="title">Staff</span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 <div class="tst-page-container">
     <h1>Home</h1>
 
@@ -52,3 +131,16 @@
 
 </div>
 
+<script>
+$(document).ready(function() {
+
+  $(".tst-sidebar-toggler").on("click", function() {
+    if($("body").hasClass("sidebar-closed")) {
+      $("body").removeClass("sidebar-closed");
+    }
+    else {
+      $("body").addClass("sidebar-closed"); 
+    }
+  });
+});
+</script>
