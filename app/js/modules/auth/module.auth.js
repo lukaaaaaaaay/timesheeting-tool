@@ -7,6 +7,10 @@
      */
     tst.modules.auth = {
         name: 'auth',
+        states: {
+            login: 'login',
+            notAuthorised: 'not-authorised'
+        }, 
         enums: {
             authorised: {
                 authorised: 0,
