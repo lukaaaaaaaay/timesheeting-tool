@@ -189,10 +189,6 @@
                     // record the credentials
                     setCredentials(email, password);
 
-                    angular.extend(user, {
-                        thingOne: 'one',
-                        thingTwo: 'two'
-                    });
                     //attach roles to user object and save it
                     user.roles = ['Director']; // todo: don't hardcode this stuff. WTF.
                     localStorage.set('tst-user', user);
