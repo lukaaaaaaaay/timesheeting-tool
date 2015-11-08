@@ -30,6 +30,11 @@
             create: 'tst-body',
             edit: 'tst-body',
             view: 'tst-body',
+        },
+        sidebarMenu: {
+            selected: 2,
+            showDropdown: true,
+            activeSubmenu: 1
         }
     };
 
