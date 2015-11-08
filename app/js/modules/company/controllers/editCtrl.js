@@ -26,7 +26,7 @@
 
             $scope.updateCompany = function(form) {
                 if(form.$valid) {
-                    api.update({id: $scope.company.id}, $scope.company, function(company) {
+                    api.updateCompany({id: $scope.company.id}, $scope.company, function(company) {
                         notifier.success('Success', 'Company details updated!');
                         reset();
                     }, function(error) {

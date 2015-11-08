@@ -35,6 +35,28 @@
             },
 
             /**
+             * updateCompany
+             */
+
+             updateCompany = function (company, callback) {
+                var defer = $q.defer();
+
+                $http.put( tst.modules.api.url + '/api/companies/' + company.id, company)
+                .success(function(resp) {
+                    currentCompany = resp;
+
+                    // TODO: Broadcasts a companyRegistered event for subscribers.
+                    //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
+                    callback(company);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            /**
              * getCurrentCompany
              */
             getCurrentCompany = function () {
