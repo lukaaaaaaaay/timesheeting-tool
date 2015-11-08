@@ -198,7 +198,7 @@ module.exports.routes = {
     controller : 'ProjectController',
     action: 'findStatus',
     //roles: ["admin", "director"] - uncomment when we have the other roles created.
-  }  
+  },  
 
   // Task Routes
   'GET /api/tasks': {
@@ -237,5 +237,38 @@ module.exports.routes = {
     action     : 'destroy',
     roles      : ["admin"]
   },
+
+  // Category Routes
+  'GET /api/categories': {
+    controller : 'CategoryController',
+    action     : 'find',
+    roles      : ["admin"]
+  },
+  'GET /api/categories/company/:id': {
+    controller : 'CategoryController',
+    action     : 'findAllForCompany',
+    roles      : ["admin", "director"]
+  },
+  'GET /api/categories/:id': {
+    controller : 'CategoryController',
+    action     : 'findOne',
+    roles      : ["admin", "director"]
+  },
+  'POST /api/categories': {
+    controller : 'CategoryController',
+    action     : 'create',
+    roles      : ["admin", "director"]
+  },
+  'PUT /api/categories/:id': {
+    controller : 'CategoryController',
+    action     : 'update',
+    roles      : ["admin", "director"]
+  },
+  'DELETE /api/categories/:id': {
+    controller : 'CategoryController',
+    action     : 'destroy',
+    roles      : ["admin"]
+  }
+
 
 };
