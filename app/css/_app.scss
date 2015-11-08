@@ -1,38 +1,3 @@
-
-/* vars */
-$orange: #D66A2B;
-$blue-gray: #555E69;
-$light-gray: #5E6671;
-$dark-blue-gray: #49525D;
-$teal: #1caf9a;
-
-/* Mixin */
-@mixin ubuntu {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 400;
-}
-
-@mixin ubuntu-light {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 300;
-}
-
-@mixin ubuntu-bold {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-}
-
-@mixin transition {
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out; 
-}
-
-@mixin text-center {
-    text-align: center;
-}
-
 /* Body */
 .tst-single-form {
     background: $dark-blue-gray;
@@ -49,46 +14,6 @@ $teal: #1caf9a;
     a:hover {
         color: #DA5405;
     }
-}
-
-/* Fonts */
-
-h1, h2, h3, h4, h5, h6, th {
-    @include ubuntu
-}
-
-p, label, a, span, input, button, td {
-    @include ubuntu-light
-}
-
-a:hover, a:focus {
-    text-decoration: none;
-}
-
-.bold {
-    font-weight: 600;
-}
-
-/* Colours - use these for quick font color changes */
-
-.orange {
-    color: $orange;
-}
-
-.teal {
-    color: #1CAF9A;
-}
-
-.blue {
-    color: #4984B9;
-}
-
-.purple {
-    color: #7D6A9F;
-}
-
-.blue-gray {
-    color: $dark-blue-gray;
 }
 
 /* Nav */
