@@ -83,6 +83,7 @@ var User = {
 
         Role.findOne({name: 'director' }).exec(function findOneCB(err, found){
               if (err) return next(err);
+              console.log(found);
               if (found) {
                 // assign the director role to the created user
                 created.role = found.id; // the role is the id we found

@@ -7,7 +7,7 @@
     angular.module(tst.modules.app.name, [
         // Angular modules
         'ngRoute',
-
+        
         // TST core famework
         tst.modules.core.name,
         tst.modules.auth.name,

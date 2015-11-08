@@ -232,6 +232,7 @@ passport.callback = function (req, res, next) {
       // the authentication process by attempting to obtain an access token. If
       // access was granted, the user will be logged in. Otherwise, authentication
       // has failed.
+      console.log('got to authenticate')
       this.authenticate(provider, options, next)(req, res, req.next);
     }
   }

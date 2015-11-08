@@ -152,7 +152,12 @@
                 request.open('POST', tst.modules.api.url + '/auth/local');
                 request.setRequestHeader('Accept', 'application/json');
 
-                var params = "email="+email+"&password="+password;
+                //var params = "email="+email+"&password="+password;
+                var params = {
+                    email: email,
+                    password: password
+                };
+                
                 request.send(params);
 
                 /**

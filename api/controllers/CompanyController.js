@@ -78,19 +78,24 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-                Company.create(req.body, function (err, company) {
-                    if (err) return res.negotiate(err);
-                
-                    // debugging - remove later.. or not, server logs are helpful.
-                    if(company) {
-                        sails.log.info('created: ' + company.companyName);
-                        res.ok(company);
-                    }
-                    else {
-                        sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');
-                        res.badRequest('Company with the id ' + req.body.id + ' could not be created.');
-                    }
-                });
+        var company = req.body;
+        console.log(req.user);
+        if(req.user) {
+            company.directorId = req.user.id;
+        }
+        Company.create(company, function (err, company) {
+            if (err) return res.negotiate(err);
+        
+            // debugging - remove later.. or not, server logs are helpful.
+            if(company) {
+                sails.log.info('created: ' + company.companyName);
+                res.ok(company);
+            }
+            else {
+                sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');
+                res.badRequest('Company with the id ' + req.body.id + ' could not be created.');
+            }
+        });
 
     },
 

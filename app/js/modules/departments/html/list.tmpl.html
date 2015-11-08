@@ -1,0 +1,45 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="page-heading teal">Departments</h3>
+			<div class="search-bar">
+
+			</div>
+			<div class="table-responsive">
+				<table class="table tst-list" ng-show="departments && departments.length > 0" >
+					<tr class="blue-gray">
+						<th>Id</th>
+						<th>Department Name</th>
+						<th>Date Created</th>
+						<th/>
+					</tr>
+					<tr ng-repeat="d in filteredDepartments">
+						<td>{{d.id}}</td>
+						<td><a href="/#/dashboard/department/{{d.id}}">{{d.name}}</a></td>
+						<td>{{formatDate(d.createdAt)}}</td>
+						<td>
+							<a href="/#/dashboard/department/edit/{{d.id}}" class="btn btn-warning" title="Rename Department">
+								<i class="fa fa-pencil-square-o"></i>
+							</a>
+							<button type="button" class="btn btn-danger" title="Delete Department" ng-click="deleteDepartment(d)">
+								<i class="fa fa-trash-o"></i>
+							</button>
+						</td>
+					</tr>
+				</table>
+				<p ng-show="!departments || departments.length == 0">
+					<strong> There currently aren't any departments for this company. </strong>
+				</p>
+			</div>
+			<div class="text-right">
+				<pagination 
+  					ng-model="currentPage"
+  					total-items="departments.length" 
+  					items-per-page="numPerPage"
+  					previous-text="&laquo;"
+  					next-text="&raquo;">
+				</pagination>
+			</div>
+		</div>
+	</div>
+</div>

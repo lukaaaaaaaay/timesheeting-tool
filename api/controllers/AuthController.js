@@ -50,6 +50,8 @@ module.exports = {
     };
 
     sails.services.passport.callback(req, res, function (err, user) {
+      console.log("err " + err);
+      console.log("user " + user);
       if (err || !user) {
         sails.log.warn(user, err);
         return negotiateError(err);

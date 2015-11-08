@@ -17,8 +17,8 @@ var cssFilesToInject = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
   'bower_components/font-awesome/css/font-awesome.css',
   'bower_components/angular-toastr/dist/angular-toastr.min.css',
-  // 'bower_components/ng-dialog/css/ngDialog.min.css',
-  // 'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
+  'bower_components/ng-dialog/css/ngDialog.min.css',
+  'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
   'css/**/*.css'
 ];
 
@@ -34,7 +34,9 @@ var jsFilesToInject = [
   '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-local-storage/dist/angular-local-storage.js',
   '/bower_components/angular-route/angular-route.js',
+  '/bower_components/angular-ui-router/release/angular-ui-router.min.js',
   '/bower_components/angular-toastr/dist/angular-toastr.min.js',
+  '/bower_components/ng-dialog/js/ngDialog.min.js',
   
   // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',
