@@ -13,7 +13,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                bodyClass: tst.modules.department.bodyClass.create
+                bodyClass: tst.modules.department.bodyClass.create,
+                sidebarMenu: tst.modules.department.sidebarMenu.create
             });
 
             $stateProvider.state(tst.modules.department.states.edit, {
@@ -24,7 +25,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                bodyClass: tst.modules.department.bodyClass.edit
+                bodyClass: tst.modules.department.bodyClass.edit,
+                sidebarMenu: tst.modules.department.sidebarMenu.edit
             });
 
             $stateProvider.state(tst.modules.department.states.view, {
@@ -35,7 +37,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                bodyClass: tst.modules.department.bodyClass.view
+                bodyClass: tst.modules.department.bodyClass.view,
+                sidebarMenu: tst.modules.department.sidebarMenu.view
             });
 
             $stateProvider.state(tst.modules.department.states.list, {
@@ -46,7 +49,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                bodyClass: tst.modules.department.bodyClass.list
+                bodyClass: tst.modules.department.bodyClass.list,
+                sidebarMenu: tst.modules.department.sidebarMenu.list
             });
 
         }]);

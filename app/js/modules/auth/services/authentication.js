@@ -38,10 +38,8 @@
 
             // todo: maybe move this to account module... user registration isn't reall auth.
             createUser = function (user) {
-<<<<<<< HEAD
-=======
                     // lets save the email and password
->>>>>>> 821e0e70cc09d0f7cb7fcd7f676123b44e29cca5
+
                     var email = user.email;
                     var password = user.password;
 
