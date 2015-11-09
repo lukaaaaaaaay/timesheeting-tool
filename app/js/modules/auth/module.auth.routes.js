@@ -26,7 +26,7 @@
                 }
             });
 
-            // $urlRouterProvider.otherwise( tst.modules.auth.routes.login );
+            $urlRouterProvider.otherwise( tst.modules.auth.routes.login );
         }]);
 
 

@@ -9,12 +9,7 @@
         'localStorageService',
         '$base64',
         tst.modules.core.services.eventbus,
-        function ($q, localStorage, $base64, eventbus) {
-
-            //tood: temporary. clear storage on init. force login
-            localStorage.remove('tst-auth');
-            localStorage.remove('tst-last-activity');
-            localStorage.remove('tst-user');     
+        function ($q, localStorage, $base64, eventbus) {   
 
             /**
             * Set the user credentials
@@ -220,16 +215,20 @@
             /**
              * Logout
              */
-            logout = function () {
+            logout = function (callback) {
                 // Clear the currentUser and wipe the local storage
                 localStorage.remove('tst-auth');
                 localStorage.remove('tst-last-activity');
-                localStorage.remove('tst-user');      
+                localStorage.remove('tst-user');    
+
+                console.log("logging out");  
 
                 // Routing back to login page is something we shouldn't
                 // do here as we are mixing responsibilities if we do.
                 // Broadcasts a userLoggedOut event so it can be listened to by the handler.
                 eventbus.broadcast(tst.modules.auth.events.userLoggedOut);
+
+                callback;
             },
 
             /**

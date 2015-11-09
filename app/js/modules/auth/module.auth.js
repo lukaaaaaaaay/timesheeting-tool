@@ -29,7 +29,8 @@
           failed: 'auth:failed'
         },
         directives: {
-            access: 'access'
+            access: 'access',
+            logout: 'logout'
         },
         controllers: {
             login: 'loginCtrl'
