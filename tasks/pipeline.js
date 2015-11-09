@@ -31,6 +31,7 @@ var jsFilesToInject = [
 
   // Bower Components are brought in here
   '/bower_components/angular/angular.js',
+  '/bower_components/jquery/dist/jquery.js',
   '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-bootstrap/ui-bootstrap.min.js',
   '/bower_components/angular-local-storage/dist/angular-local-storage.js',
