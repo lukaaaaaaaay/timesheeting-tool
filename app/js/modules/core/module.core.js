@@ -10,6 +10,7 @@
         services: {
             eventbus: 'eventbus',
             bodyclass: 'bodyclass',
+            sidebarmenu: 'sidebarmenu',
             notifier: 'notifier'
         }
     };

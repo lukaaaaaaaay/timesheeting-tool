@@ -35,9 +35,18 @@
             view: 'tst-body',
         },
         sidebarMenu: {
-            selected: 2,
-            showDropdown: true,
-            activeSubmenu: 1
+            edit: {
+                selected: 2,
+                showDropdown: true,
+                activeSubmenu: 1,
+                collapsed: false
+            },
+            view: {
+                selected: 2,
+                showDropdown: true,
+                activeSubmenu: 1,
+                collapsed: false
+            },
         }
     };
 
