@@ -6,9 +6,10 @@
      */
     angular.module(tst.modules.company.name).factory(tst.modules.company.services.api, [
         '$q',
+        'localStorageService',
         '$http',
         tst.modules.core.services.eventbus,
-        function ($q, $http, eventbus) {
+        function ($q, localStorage, $http, eventbus) {
     
             var currentCompany,
 
@@ -23,8 +24,14 @@
                 .success(function(resp) {
                     currentCompany = resp;
 
+                    // Save currentCompany to localstorage on creation
+                    // todo: subscribe to logout event and clear currentCompany, 
+                    // todo: also subscribe to login event to store currentCompany on login
+                    localStorage.set('tst-currentCompany', currentCompany);
+
+
                     // TODO: Broadcasts a companyRegistered event for subscribers.
-                    //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
+                    eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
                     callback(company);
                 })
                 .error(function(err) {
@@ -38,7 +45,7 @@
              * getCurrentCompany
              */
             getCurrentCompany = function () {
-                return currentCompany;
+                return localStorage.get('tst-currentCompany');
             };
 
             return {

@@ -8,6 +8,9 @@
             edit: 'company-edit',
             view: 'company-view'
         },
+        events: {
+          companyRegistered: 'tst:company:registered'
+        },
         controllers: {
             create: 'createCtrl',
             edit: 'editCtrl',
