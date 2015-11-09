@@ -11,15 +11,15 @@
 
 // CSS files to inject in order
 //
-// (if you're using SASS with the built-in default config, you'll want
-//  to change `assets/styles/importer.saas` instead.)
+// (If you're injecting SASS, you'll want
+//  to change `app/css/importer.scss` instead.)
 var cssFilesToInject = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
   'bower_components/font-awesome/css/font-awesome.css',
-  'bower_components/toastr/toastr.min.css',
-  'bower_components/ng-dialog/css/ngDialog.min.css',
-  'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
-  'styles/**/*.css'
+  'bower_components/angular-toastr/dist/angular-toastr.min.css',
+  // 'bower_components/ng-dialog/css/ngDialog.min.css',
+  // 'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
+  'css/**/*.css'
 ];
 
 
@@ -29,36 +29,48 @@ var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
 
-  // bower components here
-  '/bower_components/jquery/dist/jquery.js',
+  // Bower Components are brought in here
   '/bower_components/angular/angular.js',
-  '/bower_components/bootstrap/dist/js/bootstrap.js',
   '/bower_components/angular-base64/angular-base64.js',
-  '/bower_components/angular-route/angular-route.js',
-  '/bower_components/angular-cookies/angular-cookies.js',
-  '/bower_components/angular-resource/angular-resource.js',
-  '/bower_components/angular-sanitize/angular-sanitize.js',
+  '/bower_components/angular-local-storage/dist/angular-local-storage.js',
   '/bower_components/angular-ui-router/release/angular-ui-router.js',
-  '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-  '/bower_components/toastr/toastr.min.js',
-  '/bower_components/ng-dialog/js/ngDialog.min.js',
-  '/bower_components/underscore/underscore-min.js',
-  '/bower_components/moment/min/moment.min.js',
+  '/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
   
-  // Dependencies like jQuery, or Angular are brought in here
+  // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',
 
-  'app/app/app.js',
+  // Import TST global config
+  'js/tst.js',
 
-  'app/*.js',
+  // Import TST Core
+  'js/modules/core/module.core.js',
+  'js/modules/core/**/*.js',
+  'js/modules/core/module.core.run.js',
 
-  'components/**/*.js',
+  // Import TST auth
+  'js/modules/auth/module.auth.js',
+  'js/modules/auth/module.auth.routes.js',
+  'js/modules/auth/**/*.js',
+  'js/modules/auth/module.auth.run.js',
 
-  'app/**/*.js',
+  // Import TST accounts
+  'js/modules/account/module.account.js',
+  'js/modules/account/module.account.routes.js',
+  'js/modules/account/**/*.js',
 
-  // All of the rest of your client-side js files
-  // will be injected here in no particular order.
-  'js/**/*.js'
+  // Import TST orgs
+  'js/modules/company/module.company.js',
+  'js/modules/company/module.company.routes.js',
+  'js/modules/company/**/*.js',
+  
+  // Import TST dashboard
+  'js/modules/dashboard/module.dashboard.js',
+  'js/modules/dashboard/module.dashboard.routes.js',
+  'js/modules/dashboard/**/*.js',
+
+  // Import TST startup
+  'js/app.js'
+
 ];
 
 
@@ -71,10 +83,10 @@ var jsFilesToInject = [
 // with the linker, no problem-- you'll just want to make sure the precompiled
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
-var templateFilesToInject = [
-  'templates/*.html'
-  //'templates/**/*.html'
-];
+// var templateFilesToInject = [
+//   'templates/*.html'
+//   //'templates/**/*.html'
+// ];
 
 
 
@@ -87,6 +99,6 @@ module.exports.cssFilesToInject = cssFilesToInject.map(function(path) {
 module.exports.jsFilesToInject = jsFilesToInject.map(function(path) {
   return '.tmp/public/' + path;
 });
-module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
-  return 'app/' + path;
-});
+// module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
+//   return 'app/' + path;
+// });

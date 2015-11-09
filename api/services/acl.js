@@ -1,7 +1,7 @@
-    var roles  = ["public", "staff", "admin"]; // an array of roles in system
-    var rules  = {}; // todo: get roles from database
+    var roles  = ["staff", "admin", "director"]; // an array of roles in system
+    var rules  = {};                            // todo: get roles from database
     var routes = {}; // 
-    var defaultRole; // 
+    var defaultRole = "public"; // 
     var currentRole; //
     var defaultPolicy = "allow";
     var acl = {};

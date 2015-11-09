@@ -4,7 +4,7 @@
  * ---------------------------------------------------------------
  *
  * Watch for changes on
- * - files in the `assets` folder
+ * - files in the `app` folder
  * - the `tasks/pipeline.js` file
  * and re-run the appropriate tasks.
  *

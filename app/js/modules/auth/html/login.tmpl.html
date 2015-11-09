@@ -1,0 +1,49 @@
+<div class="alert alert-danger" role="alert" ng-show="invalidLogin">Oh snap! Email and password combination not recognised</div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-ms-offset-3 panel">
+
+<form class="form" role="form" ng-submit="login()">
+
+<div class="panel-heading text-center">
+  <h3>Login</h3>
+</div>
+
+<div class="panel-body">
+
+  <div class="form-group">
+    <label>Email</label>
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-envelope-o"></i></span>
+        <input type="email" name="email" id="email" placeholder="Email address" class="form-control" ng-model="loginModel.email" required />
+        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <input type="password" name="password" id="password" placeholder="Password" class="form-control" ng-model="loginModel.password" required />
+        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <p>
+        <input type="checkbox"> Remember me?
+      </p>
+    </div>
+
+  </div>
+  <div class="panel-footer">
+    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">
+        <i class="fa" ng-class="{'fa-cog fa-spin': loading, 'fa-sign-in': !loading}"></i>
+        <span>Login</span>
+    </button>
+    <div class="lower-footer text-center">
+      <a href="reset-password.html" class="small-link">Forgot your password?</a>
+    </div>
+  </div>
+
+</form>
+</div>
