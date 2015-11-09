@@ -19,7 +19,8 @@
      */
     angular.module(tst.modules.core.name, [
         'toastr', 
-        'ngDialog'
+        'ngDialog',
+        'ui.bootstrap'
     ]);
 
 }(angular, tst));

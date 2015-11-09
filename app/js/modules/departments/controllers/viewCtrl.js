@@ -5,14 +5,14 @@
         .controller(tst.modules.department.controllers.view, [
         '$scope',
         '$location',
+        '$stateParams',
         tst.modules.core.services.notifier,
         tst.modules.department.services.api,
-        function ($scope, $location, notifier, api, ngDialog, $stateParams) {
+        function ($scope, $location, $stateParams, notifier, api) {
             $scope.department = {};
 
             function init() {
-                // get active company
-                api.getCurrentDepartment({id: $stateParams.id}, function (department) {
+                api.getCurrentDepartment($stateParams.id, function (department) {
                     $scope.department = department;
                 }, function(error) {
                     console.log(error);

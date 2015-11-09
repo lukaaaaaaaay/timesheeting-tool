@@ -60,7 +60,7 @@
             deleteDepartment = function (id, callback) {
                 var defer = $q.defer();
 
-                $http.delete( tst.modules.api.url + '/api/departments/' + department.id)
+                $http.delete( tst.modules.api.url + '/api/departments/' + id)
                 .success(function(resp) {
                     callback(resp);
                 })

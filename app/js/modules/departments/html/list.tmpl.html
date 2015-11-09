@@ -15,13 +15,13 @@
 					</tr>
 					<tr ng-repeat="d in filteredDepartments">
 						<td>{{d.id}}</td>
-						<td><a href="/#/dashboard/department/{{d.id}}">{{d.name}}</a></td>
+						<td><a href="/#/department/view/{{d.id}}">{{d.name}}</a></td>
 						<td>{{formatDate(d.createdAt)}}</td>
 						<td>
-							<a href="/#/dashboard/department/edit/{{d.id}}" class="btn btn-warning" title="Rename Department">
+							<a href="/#/department/edit/{{d.id}}" class="btn btn-warning" title="Rename Department">
 								<i class="fa fa-pencil-square-o"></i>
 							</a>
-							<button type="button" class="btn btn-danger" title="Delete Department" ng-click="deleteDepartment(d)">
+							<button type="button" class="btn btn-danger" title="Delete Department" ng-click="deleteDepartment(d.id)">
 								<i class="fa fa-trash-o"></i>
 							</button>
 						</td>

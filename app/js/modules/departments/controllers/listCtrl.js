@@ -15,14 +15,14 @@
             $scope.numPerPage = 10;
             $scope.currentPage = 1;
 
-            $scope.deleteDepartment = function() {
+            $scope.deleteDepartment = function(id) {
                 // show confirm dialog to ensure user really wants to delete something.
                 ngDialog.openConfirm({
                   template: tst.modules.department.views.dialog,
                   scope: $scope 
                 }).then(
                     function(success) {
-                        api.deleteDepartment({id: $scope.department.id}, function(success){
+                        api.deleteDepartment(id, function(success){
                                 notifier.success('Success', 'Department deleted');
                                 $location.path(tst.modules.department.routes.list);
                             },function(error) {

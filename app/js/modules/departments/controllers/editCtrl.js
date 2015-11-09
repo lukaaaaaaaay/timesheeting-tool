@@ -6,14 +6,15 @@
         '$scope',
         '$location',
         'ngDialog',
+        '$stateParams',
         tst.modules.core.services.notifier,
         tst.modules.department.services.api,
-        function ($scope, $location, notifier, api, ngDialog, $stateParams) {
+        function ($scope, $location, ngDialog, $stateParams, notifier, api) {
             $scope.department = {};
 
             $scope.updateDepartment = function(form) {
                 if(form.$valid) {
-                    api.updateDepartment({id: $scope.department.id}, $scope.department, function(department) {
+                    api.updateDepartment($scope.department, function(department) {
                         notifier.success('Success', 'Department details updated!');
                         reset();
                     }, function(error) {
@@ -33,7 +34,7 @@
                   scope: $scope 
                 }).then(
                     function(success) {
-                        api.deleteDepartment({id: $scope.department.id}, function(success){
+                        api.deleteDepartment($scope.department.id, function(success){
                                 notifier.success('Success', 'Department deleted');
                                 $location.path(tst.modules.department.routes.list);
                             },function(error) {
@@ -53,7 +54,7 @@
 
             function init() {
                 // get active department
-                api.getCurrentDepartment({id: $stateParams.id}, function (department) {
+                api.getCurrentDepartment($stateParams.id, function (department) {
                     $scope.department = department;
                 }, function (error) {
                     notifier.error('Error', 'There was an error retrieving the department with the id ' + $stateParams.id);
