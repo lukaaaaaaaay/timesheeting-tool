@@ -8,19 +8,19 @@
         tst.modules.auth.services.authentication,
         function ($scope, $state, authentication) {
             $scope.loginModel = {};
-            $scope.isBusy = false;
+            $scope.loading = false;
             $scope.invalidLogin = false;
 
             // handles login
             $scope.login = function () {
                 $scope.invalidLogin = false;
-                $scope.isBusy = true;
+                $scope.loading = true;
                 authentication.login($scope.loginModel.email, $scope.loginModel.password).then(function () {
                     $state.go(tst.modules.dashboard.states.home);
                 }, function () {
                     $scope.invalidLogin = true;
                 })['finally'](function () {
-                    $scope.isBusy = false;
+                    $scope.loading = false;
                 });
             };
         }

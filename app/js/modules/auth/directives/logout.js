@@ -1,10 +1,6 @@
 (function (angular, tst) {
     'use strict';
 
-    /**
-     * Directive for securing UI Elements
-     * Hide/Show element based on users role.
-     */
     angular.module(tst.modules.auth.name).directive(tst.modules.auth.directives.logout, [
         '$timeout',
         tst.modules.auth.services.authentication,
