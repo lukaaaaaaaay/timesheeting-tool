@@ -6,19 +6,24 @@
         '$scope',
         'sidebarmenu',     
         function ($scope, sidebarMenu) {
+        	$scope.sidebarMenu = {};
         	// sidebar menu
 		    $scope.setSelectedMenu = function (selection) {
-		        sidebarmenu.setSelectedMenu(selection);
+		        sidebarMenu.setSelectedMenu(selection);
+		        $scope.sidebarMenu.selected = sidebarMenu.getSelectedMenu();
 		    };
 
 		    // sidebar menu
 		    $scope.toggleDropdown = function (selection) {
-		        sidebarmenu.toggleDropdown(selection);
+		        sidebarMenu.toggleDropdown(selection);
+		        $scope.sidebarMenu.showDropdown = sidebarMenu.getDropdownState();
+		        $scope.sidebarMenu.activeSubmenu = sidebarMenu.getActiveDropdown();
 		        
 		    };
 
 		    $scope.toggleCollapsed = function () {
-		        sidebarmenu.toggleCollapsed();
+		        sidebarMenu.toggleCollapsed();
+		        $scope.sidebarMenu.collapsed = sidebarMenu.getCollapsedState();
 		    };
         }
 

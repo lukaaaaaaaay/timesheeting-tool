@@ -40,13 +40,33 @@
 
             toggleCollapsed = function () {
                 $rootScope.sidebarMenu.collapsed = !$rootScope.sidebarMenu.collapsed
+            },
+
+            getCollapsedState = function() {
+                return $rootScope.sidebarMenu.collapsed;
+            },
+
+            getSelectedMenu = function() {
+                return $rootScope.sidebarMenu.selected;
+            },
+
+            getDropdownState = function() {
+                return $rootScope.sidebarMenu.activeSubmenu;
+            },
+
+            getActiveDropdown = function() {
+                return $rootScope.sidebarMenu.showDropdown;
             };
 
             return {
                 init: init,
                 setSelectedMenu: setSelectedMenu,
                 toggleDropdown: toggleDropdown,
-                toggleCollapsed: toggleCollapsed
+                toggleCollapsed: toggleCollapsed,
+                getCollapsedState: getCollapsedState,
+                getSelectedMenu: getSelectedMenu,
+                getActiveDropdown: getActiveDropdown,
+                getDropdownState: getDropdownState
             };
         }
     ]);
