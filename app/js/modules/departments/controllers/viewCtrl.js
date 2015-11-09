@@ -12,7 +12,7 @@
 
             function init() {
                 // get active company
-                api.getAllDepartments({id: $stateParams.id}, function (department) {
+                api.getCurrentDepartment({id: $stateParams.id}, function (department) {
                     $scope.department = department;
                 }, function(error) {
                     console.log(error);

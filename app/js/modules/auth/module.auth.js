@@ -7,6 +7,10 @@
      */
     tst.modules.auth = {
         name: 'auth',
+        states: {
+            login: 'login',
+            notAuthorised: 'not-authorised'
+        }, 
         enums: {
             authorised: {
                 authorised: 0,
@@ -25,7 +29,8 @@
           failed: 'auth:failed'
         },
         directives: {
-            access: 'access'
+            access: 'access',
+            logout: 'logout'
         },
         controllers: {
             login: 'loginCtrl'

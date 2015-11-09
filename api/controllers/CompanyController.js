@@ -78,18 +78,23 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        var company = req.body;
-        console.log(req.user);
-        if(req.user) {
-            company.directorId = req.user.id;
-        }
-        Company.create(company, function (err, company) {
+        Company.create(req.body, function (err, company) {
             if (err) return res.negotiate(err);
+
+            console.log("user is: ");
+            console.log(req.user);
         
             // debugging - remove later.. or not, server logs are helpful.
             if(company) {
                 sails.log.info('created: ' + company.companyName);
-                res.ok(company);
+
+                // Assign the company to the logged in user
+                User.findOne({id:req.user.id}).populate('companyId').exec(function(error,user){
+                    user.companyId = { id: company.id };
+                    user.save(function (err) {
+                        res.ok(company);
+                    });
+                });                        
             }
             else {
                 sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');

@@ -4,10 +4,9 @@
     angular.module(tst.modules.company.name)
         .controller(tst.modules.company.controllers.edit, [
         '$scope',
-        '$location',
         tst.modules.core.services.notifier,
         tst.modules.company.services.api,
-        function ($scope, $location, notifier, api) {
+        function ($scope, notifier, api) {
             $scope.company = {};
 
             function init() {

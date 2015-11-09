@@ -17,6 +17,9 @@
     /**
      * This loads our core module and dependancies.
      */
-    angular.module(tst.modules.core.name, ['toastr', 'ngDialog']);
+    angular.module(tst.modules.core.name, [
+        'toastr', 
+        'ngDialog'
+    ]);
 
 }(angular, tst));

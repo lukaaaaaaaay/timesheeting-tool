@@ -10,9 +10,9 @@
 
             var init = function() {
                 // Whenever the route changes, add the sidebar menu to scope.
-                $rootScope.$on('$routeChangeStart', function (event, next) {
-                    if (next.sidebarMenu !== undefined) {
-                        $rootScope.sidebarMenu = next.sidebarMenu;
+                $rootScope.$on('$stateChangeStart', function (event, next, nextParams, from, fromParams) {
+                    if (next.data.sidebarMenu !== undefined) {
+                        $rootScope.sidebarMenu = next.data.sidebarMenu;
                     }
                 });
             };

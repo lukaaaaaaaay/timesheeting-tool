@@ -24,7 +24,8 @@
             <li><a href="#">Separated link</a></li>
           </ul>
         </li>
-        <li><a href="/#/logout" title="Log out"><i class="fa fa-sign-out"></i> Log out</a></li>
+        <li><a href="#" title="Log out" logout>
+        <i class="fa" ng-class="{'fa-cog fa-spin': loading, 'fa-sign-out': !loading}"></i> Log out</a></li>
       </ul>
     </div>
   </div>

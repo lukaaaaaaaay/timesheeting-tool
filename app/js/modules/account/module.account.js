@@ -7,6 +7,11 @@
      */
     tst.modules.account = {
         name: 'account',
+        states: {
+            manageAccount: 'manage-account',
+            resetPassword: 'reset-password',
+            register: 'register'
+        }, 
         services: {
             api: 'api'
         },

@@ -33,7 +33,6 @@ var jsFilesToInject = [
   '/bower_components/angular/angular.js',
   '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-local-storage/dist/angular-local-storage.js',
-  '/bower_components/angular-route/angular-route.js',
   '/bower_components/angular-ui-router/release/angular-ui-router.min.js',
   '/bower_components/angular-toastr/dist/angular-toastr.min.js',
   '/bower_components/ng-dialog/js/ngDialog.min.js',
@@ -64,6 +63,11 @@ var jsFilesToInject = [
   'js/modules/company/module.company.js',
   'js/modules/company/module.company.routes.js',
   'js/modules/company/**/*.js',
+
+  // Import TST departments
+  'js/modules/departments/module.department.js',
+  'js/modules/departments/module.department.routes.js',
+  'js/modules/departments/**/*.js',
   
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',

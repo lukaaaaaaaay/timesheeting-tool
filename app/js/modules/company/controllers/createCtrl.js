@@ -4,11 +4,10 @@
     angular.module(tst.modules.company.name)
         .controller(tst.modules.company.controllers.create, [
         '$scope',
-        '$location',
+        '$state',
         tst.modules.core.services.notifier,
-        tst.modules.auth.services.authentication,
         tst.modules.company.services.api,
-        function ($scope, $location, notifier, authentication, api) {
+        function ($scope, $state, notifier, api) {
             $scope.company = {};
 
             function init() {
@@ -22,7 +21,7 @@
             $scope.createCompany = function(form) {
                 if(form.$valid) {
                     api.createCompany($scope.company, function(company) {
-                        $location.path(tst.modules.dashboard.routes.home);
+                        $state.go(tst.modules.dashboard.states.home);
                     }, function(error) {
 
                     });

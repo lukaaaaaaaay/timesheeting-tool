@@ -92,12 +92,12 @@
                 return defer.promise;
             },
 
-            getAllDepartments = function(callback) {
+            getAllDepartments = function(id, callback) {
                 var defer = $q.defer();
 
-                $http.get( tst.modules.api.url + '/api/departments')
+                $http.get( tst.modules.api.url + '/api/departments/company/' + id)
                 .success(function(resp) {
-                    departments = resp;
+                    var departments = resp;
 
                     // TODO: Broadcasts a companyRegistered event for subscribers.
                     //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
@@ -114,7 +114,7 @@
                 createDepartment: createDepartment,
                 updateDepartment: updateDepartment,
                 deleteDepartment: deleteDepartment,
-                getAllDepartments: getCurrentDepartment,
+                getAllDepartments: getAllDepartments,
                 getCurrentDepartment: getCurrentDepartment
             };
         }

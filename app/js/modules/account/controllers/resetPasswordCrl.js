@@ -6,10 +6,10 @@
      */
     angular.module(tst.modules.account.name).controller(tst.modules.account.controllers.resetPassword, [
         '$scope',
-        '$location',
+        '$state',
         tst.modules.auth.services.authentication,
         // tst.modules.core.services.eventbus,
-        function ($scope, $location, authentication) {
+        function ($scope, $state, authentication) {
             $scope.user = {};
             $scope.errors = {};
 

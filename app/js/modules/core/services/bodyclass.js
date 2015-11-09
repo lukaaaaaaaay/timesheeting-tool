@@ -10,12 +10,9 @@
 
             var init = function() {
                 // Whenever the route changes, add the body class.
-                $rootScope.$on('$routeChangeStart', function (event, next) {
-                    console.log("bodyclassing");
-                    if (next.bodyClass !== undefined) {
-                        console.log("bodyclass is: ");
-                        console.log(next.bodyClass);
-                        $rootScope.bodyClass = next.bodyClass;
+                $rootScope.$on('$stateChangeStart', function (event, next, nextParams, from, fromParams) {
+                    if (next.data.bodyClass !== undefined) {
+                        $rootScope.bodyClass = next.data.bodyClass;
                     }
                 });
             };

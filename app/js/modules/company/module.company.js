@@ -3,6 +3,14 @@
 
     tst.modules.company = {
         name: 'company',
+        states: {
+            create: 'company-create',
+            edit: 'company-edit',
+            view: 'company-view'
+        },
+        events: {
+          companyRegistered: 'tst:company:registered'
+        },
         controllers: {
             create: 'createCtrl',
             edit: 'editCtrl',
@@ -14,7 +22,7 @@
             view: 'js/modules/company/html/view.tmpl.html'
         },
         services: {
-            api: 'api',
+            api: 'companyApi',
         },
         routes: {
             create: '/company/create',
@@ -25,6 +33,11 @@
             create: 'tst-body',
             edit: 'tst-body',
             view: 'tst-body',
+        },
+        sidebarMenu: {
+            selected: 2,
+            showDropdown: true,
+            activeSubmenu: 1
         }
     };
 

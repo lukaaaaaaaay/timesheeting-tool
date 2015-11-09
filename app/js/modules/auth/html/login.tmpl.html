@@ -37,7 +37,7 @@
   </div>
   <div class="panel-footer">
     <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">
-        <i class="fa" ng-class="{'fa-cog fa-spin': isBusy, 'fa-sign-in': !isBusy}"></i>
+        <i class="fa" ng-class="{'fa-cog fa-spin': loading, 'fa-sign-in': !loading}"></i>
         <span>Login</span>
     </button>
     <div class="lower-footer text-center">

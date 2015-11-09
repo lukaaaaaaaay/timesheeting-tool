@@ -8,7 +8,8 @@
         'ngDialog',
         tst.modules.core.services.notifier,
         tst.modules.department.services.api,
-        function ($scope, $location, notifier, api, ngDialog) {
+        tst.modules.company.services.api,
+        function ($scope, $location, ngDialog, notifier, api, companyApi) {
             $scope.departments = [];
             $scope.filteredDepartments = [];
             $scope.numPerPage = 10;
@@ -57,7 +58,8 @@
 
             function init() {
                 // get active company
-                api.getAllDepartments({}, function (departments) {
+                var companyId = companyApi.getCurrentCompany();
+                api.getAllDepartments(companyId, function (departments) {
                     $scope.departments = departments;
                     updateList();
                 }, function(error) {
@@ -67,7 +69,6 @@
             }
 
             init();
-            
 
         }
     ]);
