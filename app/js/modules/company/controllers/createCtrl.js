@@ -6,9 +6,8 @@
         '$scope',
         '$state',
         tst.modules.core.services.notifier,
-        tst.modules.auth.services.authentication,
         tst.modules.company.services.api,
-        function ($scope, $state, notifier, authentication, api) {
+        function ($scope, $state, notifier, api) {
             $scope.company = {};
 
             function init() {

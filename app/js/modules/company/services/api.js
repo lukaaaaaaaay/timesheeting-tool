@@ -30,7 +30,7 @@
                     localStorage.set('tst-currentCompany', currentCompany);
 
 
-                    // TODO: Broadcasts a companyRegistered event for subscribers.
+                    // Broadcasts a companyRegistered event for subscribers.
                     eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
                     callback(company);
                 })

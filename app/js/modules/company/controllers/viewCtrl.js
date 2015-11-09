@@ -4,8 +4,6 @@
     angular.module(tst.modules.company.name)
         .controller(tst.modules.company.controllers.view, [
         '$scope',
-        // '$location',
-        //tst.modules.core.services.notifier,
         tst.modules.company.services.api,
         function ($scope, api) {
             $scope.company = {};
