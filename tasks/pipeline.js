@@ -34,7 +34,7 @@ var jsFilesToInject = [
   '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-local-storage/dist/angular-local-storage.js',
   '/bower_components/angular-ui-router/release/angular-ui-router.js',
-  '/bower_components/angular-toastr/dist/angular-toastr.min.js',
+  '/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
   
   // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',
