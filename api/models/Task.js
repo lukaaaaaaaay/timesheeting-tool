@@ -12,7 +12,7 @@
  		// A task has a name
  		name: {
  			type: 'string',
- 			required: 'true'
+ 			required: true
  		},
 
  		// A task has an (optional) description
@@ -48,19 +48,19 @@
  		},
 
  		// A task can have many categories
- 		//categories: {collection: 'Category', via: 'task'},
+ 		//categories: {collection: 'Category', via: 'taskId'},
 
  		// A task can have many members
- 		//members: {collection: 'User', via: 'task'},
+ 		//members: {collection: 'User', via: 'taskId'},
 
  		// A task can have many items
- 		//items: {collection: 'Item', via: 'task'},
+ 		//items: {collection: 'Item', via: 'taskId'},
 
  		// A task can have many comments
- 		//comments: {collection: 'Comment', via: 'task'},
+ 		//comments: {collection: 'Comment', via: 'taskId'},
 
- 		// A task can have many timesheets?
- 		//timesheets: {collection: 'Timesheet', via: 'task'},
+ 		// A task can have many timesheets
+ 		timesheets: {collection: 'Timesheet', via: 'taskId'},
 
  		/**
 		 * Finds all tasks for a project.

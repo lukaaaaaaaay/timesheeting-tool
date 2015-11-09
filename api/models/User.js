@@ -25,7 +25,7 @@ var User = {
       model: 'User'
     },
 
-    // A role can only have one role (default is director at the moment)
+    // A user can only have one role (default is director at the moment)
     roleId: { model: 'Role', required: true, defaultsTo: 2},
 
     companyId: {
@@ -36,12 +36,15 @@ var User = {
       model: 'Department'
     },
 
-    // Associations (aka relational attributes)
-
     // A user can have many passports
     passports: {collection: 'Passport', via: 'user'},
 
-    // organizations: {},
+    // A user can create many tasks
+    tasks: {collection: 'Task', via: 'createdBy'},
+
+    // A user can have many timesheets
+    timesheets: {collection: 'Timesheet', via 'userId'},
+
 
     getGravatarUrl: function () {
       return Gravatar.getImageUrl({
