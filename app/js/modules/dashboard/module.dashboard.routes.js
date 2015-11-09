@@ -12,10 +12,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director', 'Staff']
                 },
-                data: {
-                    bodyClass: tst.modules.dashboard.bodyClass.home,
-                    sidebarMenu: tst.modules.dashboard.sidebarMenu.home
-                }
+                bodyClass: tst.modules.dashboard.bodyClass.home,
+                sidebarMenu: tst.modules.dashboard.sidebarMenu.home
             });
         }]);
 }(angular, tst));
