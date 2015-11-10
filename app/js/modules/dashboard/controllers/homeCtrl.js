@@ -6,6 +6,7 @@
         '$scope',
         'sidebarmenu',     
         function ($scope, sidebarMenu) {
+        	// TODO: Move to SidebarMenu directive.
         	$scope.sidebarMenu = tst.modules.dashboard.sidebarMenu.home;
 
         	$scope.$on('sidebarChanged', function (event, args) {
