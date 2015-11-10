@@ -48,10 +48,10 @@
  		},
 
  		// A task can have many categories
- 		//categories: {collection: 'Category', via: 'task'},
+ 		categories: {collection: 'Category', via: 'tasks'},
 
  		// A task can have many members
- 		//members: {collection: 'User', via: 'task'},
+ 		members: {collection: 'User', via: 'tasks'},
 
  		// A task can have many items
  		//items: {collection: 'Item', via: 'task'},
@@ -104,7 +104,7 @@
 
  				return cb(null, tasks);
  			});
- 		},
+ 		},  
  	},
  }
 

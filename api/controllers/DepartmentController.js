@@ -81,31 +81,27 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        //TODO: get new department id here
-        // Department.findOne(req.body.id, function(err, existing) {
-        //     if (err) return res.negotiate(err);
+        var newDepartment = req.body;
+        // Assign the company to the new department
+        Company.findOne({id:req.user.companyId}).exec(function(error,company){
+            newDepartment.companyId = company.id 
+            Department.create(newDepartment, function (err, department) {
+                if (err) return res.negotiate(err);
 
-        //     if(existing) {
-        //         sails.log.warn('Department with the id ' + req.body.id + ' already exists.');
-        //         res.badRequest('Department with the id ' + req.body.id + ' already exists.');
-        //     }
-        //     else {
-                Department.create(req.body, function (err, department) {
-                    if (err) return res.negotiate(err);
-                
-                    // debugging - remove later.. or not, server logs are helpful.
-                    if(department) {
-                        sails.log.info('Department created: ' + department.name);
-                        res.ok(department);
-                    }
-                    else {
-                        sails.log.warn('Department with the id ' + req.body.id + ' could not be created.');
-                        res.badRequest('Department with the id ' + req.body.id + ' could not be created.');
-                    }
+                // debugging - remove later.. or not, server logs are helpful.
+                if(department) {
                     
-                });
-        //     }
-        // });
+                    sails.log.info('Department created: ' + department.name);
+                    res.ok(department);
+                }
+                else {
+                    sails.log.warn('Department with the id ' + req.body.id + ' could not be created.');
+                    res.badRequest('Department with the id ' + req.body.id + ' could not be created.');
+                }
+                
+            });
+        }); 
+        
     },
 
     /**

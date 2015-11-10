@@ -2,13 +2,31 @@
     'use strict';
 
     angular.module(tst.modules.dashboard.name)
-        .controller(tst.modules.dashboard.controllers.home, [
-        '$rootScope',
-        function ($rootScope) {
-            // todo: should we hand over to core module to assign to $rootScope so we don't inject rootscope everywhere?
-            // tst.modules.core.services.sidebarMenu.init(tst.modules.dashboard.sidebarMenu);
-            $rootScope.sidebarMenu = tst.modules.dashboard.sidebarMenu;
-            
+        .controller(tst.modules.dashboard.controllers.home, [   
+        '$scope',
+        'sidebarmenu',     
+        function ($scope, sidebarMenu) {
+        	$scope.sidebarMenu = tst.modules.dashboard.sidebarMenu.home;
+
+        	$scope.$on('sidebarChanged', function (event, args) {
+        		$scope.sidebarMenu = args.sidebarMenu;
+        	});
+        	
+        	// sidebar menu
+		    $scope.setSelectedMenu = function (selection) {
+		        sidebarMenu.setSelectedMenu(selection);
+		    };
+
+		    // sidebar menu
+		    $scope.toggleDropdown = function (selection) {
+		        sidebarMenu.toggleDropdown(selection);
+		    };
+
+		    $scope.toggleCollapsed = function () {
+		        sidebarMenu.toggleCollapsed();
+		    };
         }
+
+
     ]);
 }(angular, tst));

@@ -38,6 +38,8 @@
 
             // todo: maybe move this to account module... user registration isn't reall auth.
             createUser = function (user) {
+                    // lets save the email and password
+
                     var email = user.email;
                     var password = user.password;
 
@@ -99,12 +101,12 @@
                         // we've confirmed credentials match a user
                         console.log('Successfully authenticated');
 
+                        // record the credentials
+                        setCredentials(email, password);
+
                         // turn the response string to a user object
                         var data = request.responseText;
                         var user = JSON.parse(data);
-
-                        // record the credentials
-                        setCredentials(email, password);
 
                         //attach roles to user object
                         angular.extend(user, {
@@ -202,6 +204,10 @@
                     // save the user object in local storage
                     localStorage.set('tst-user', user);
 
+                    // set current company id.
+                    if(user.companyId)
+                        localStorage.set('tst-companyId', user.companyId);
+
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                 }, function () {
                     // some error in credential check
@@ -220,6 +226,8 @@
                 localStorage.remove('tst-auth');
                 localStorage.remove('tst-last-activity');
                 localStorage.remove('tst-user');    
+                localStorage.remove('tst-companyId');
+                localStorage.remove('tst-currentCompany');
 
                 console.log("logging out");  
 

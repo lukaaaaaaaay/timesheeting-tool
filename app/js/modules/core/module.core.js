@@ -10,6 +10,7 @@
         services: {
             eventbus: 'eventbus',
             bodyclass: 'bodyclass',
+            sidebarmenu: 'sidebarmenu',
             notifier: 'notifier'
         }
     };
@@ -18,7 +19,9 @@
      * This loads our core module and dependancies.
      */
     angular.module(tst.modules.core.name, [
-        'toastr'
+        'toastr', 
+        'ngDialog',
+        'ui.bootstrap'
     ]);
 
 }(angular, tst));
