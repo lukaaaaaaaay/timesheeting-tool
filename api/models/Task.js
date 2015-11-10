@@ -12,7 +12,7 @@
  		// A task has a name
  		name: {
  			type: 'string',
- 			required: 'true'
+ 			required: true
  		},
 
  		// A task has an (optional) description
@@ -48,6 +48,8 @@
  		},
 
  		// A task can have many categories
+ 		// relationship between tasks and categories stored in separate table
+ 		// how to map?
  		categories: {collection: 'Category', via: 'tasks'},
 
  		// A task can have many members
