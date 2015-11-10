@@ -25,7 +25,7 @@ var User = {
       model: 'User'
     },
 
-    // A role can only have one role (default is director at the moment)
+    // A user can only have one role (default is director at the moment)
     roleId: { model: 'Role', required: true, defaultsTo: 2},
 
     companyId: {
