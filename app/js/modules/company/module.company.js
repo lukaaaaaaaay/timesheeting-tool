@@ -5,7 +5,7 @@
         name: 'company',
         states: {
             company: 'dashboard.company',
-            create: 'company-create',
+            create: 'company-create', //'sales.company.create'
             edit: 'dashboard.company.edit',
             view: 'dashboard.company.view'
         },
@@ -52,7 +52,6 @@
     };
 
     angular.module(tst.modules.company.name, [
-        tst.modules.core.name,
-        tst.modules.auth.name
+        tst.modules.core.name
     ]);
 }(angular, tst));
