@@ -4,8 +4,7 @@
     angular.module(tst.modules.dashboard.name).config([
         '$stateProvider',
         function ($stateProvider) {
-            /** PARENT STATE: This is the parent Dashboard state.
-            **/
+            /** PARENT STATE: This is the parent Dashboard state.**/
             $stateProvider.state(tst.modules.dashboard.states.dashboard, {
                 templateUrl: tst.modules.dashboard.views.dashboard,
                 controller: tst.modules.dashboard.controllers.dashboard,
