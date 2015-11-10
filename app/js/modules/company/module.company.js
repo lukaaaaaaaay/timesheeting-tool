@@ -4,9 +4,10 @@
     tst.modules.company = {
         name: 'company',
         states: {
+            company: 'dashboard.company',
             create: 'company-create',
-            edit: 'company-edit',
-            view: 'company-view'
+            edit: 'dashboard.company.edit',
+            view: 'dashboard.company.view'
         },
         events: {
           companyRegistered: 'tst:company:registered'
