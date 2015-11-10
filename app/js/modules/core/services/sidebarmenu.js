@@ -15,10 +15,13 @@
                         $rootScope.sidebarMenu = next.sidebarMenu;
                     }
                 });
+
+                broadcast();
             },
 
             setSelectedMenu = function (selection) {
                 $rootScope.sidebarMenu.selected = selection;
+                broadcast();
             },
 
             toggleDropdown = function (selection) {
@@ -35,38 +38,23 @@
                     $rootScope.sidebarMenu.activeSubmenu = 0;
                 }
 
-                console.log($rootScope.sidebarMenu);
+                broadcast();
             },
 
             toggleCollapsed = function () {
-                $rootScope.sidebarMenu.collapsed = !$rootScope.sidebarMenu.collapsed
-            },
-
-            getCollapsedState = function() {
-                return $rootScope.sidebarMenu.collapsed;
-            },
-
-            getSelectedMenu = function() {
-                return $rootScope.sidebarMenu.selected;
-            },
-
-            getDropdownState = function() {
-                return $rootScope.sidebarMenu.activeSubmenu;
-            },
-
-            getActiveDropdown = function() {
-                return $rootScope.sidebarMenu.showDropdown;
+                $rootScope.sidebarMenu.collapsed = !$rootScope.sidebarMenu.collapsed;
+                broadcast();
             };
+
+            function broadcast() {
+                $rootScope.$broadcast('sidebarChanged', {sidebarMenu: $rootScope.sidebarMenu});
+            }
 
             return {
                 init: init,
                 setSelectedMenu: setSelectedMenu,
                 toggleDropdown: toggleDropdown,
                 toggleCollapsed: toggleCollapsed,
-                getCollapsedState: getCollapsedState,
-                getSelectedMenu: getSelectedMenu,
-                getActiveDropdown: getActiveDropdown,
-                getDropdownState: getDropdownState
             };
         }
     ]);
