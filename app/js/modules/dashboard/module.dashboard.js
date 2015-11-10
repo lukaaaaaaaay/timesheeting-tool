@@ -27,7 +27,6 @@
     };
 
     angular.module(tst.modules.dashboard.name, [
-        tst.modules.core.name,
-        tst.modules.auth.name
+        tst.modules.core.name
     ]);
 }(angular, tst));

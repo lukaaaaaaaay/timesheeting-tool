@@ -48,20 +48,20 @@ var jsFilesToInject = [
   'js/modules/core/module.core.run.js',
 
   // Import TST auth
-  'js/modules/auth/module.auth.js',
-  'js/modules/auth/module.auth.routes.js',
-  'js/modules/auth/**/*.js',
-  'js/modules/auth/module.auth.run.js',
+  // 'js/modules/auth/module.auth.js',
+  // 'js/modules/auth/module.auth.routes.js',
+  // 'js/modules/auth/**/*.js',
+  // 'js/modules/auth/module.auth.run.js',
 
   // Import TST accounts
-  'js/modules/account/module.account.js',
-  'js/modules/account/module.account.routes.js',
-  'js/modules/account/**/*.js',
+  // 'js/modules/account/module.account.js',
+  // 'js/modules/account/module.account.routes.js',
+  // 'js/modules/account/**/*.js',
 
   // Import TST orgs
-  'js/modules/company/module.company.js',
-  'js/modules/company/module.company.routes.js',
-  'js/modules/company/**/*.js',
+  // 'js/modules/company/module.company.js',
+  // 'js/modules/company/module.company.routes.js',
+  // 'js/modules/company/**/*.js',
   
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',

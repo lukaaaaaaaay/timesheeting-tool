@@ -3,12 +3,17 @@
 
     angular.module(tst.modules.dashboard.name)
         .controller(tst.modules.dashboard.controllers.home, [
-        '$rootScope',
-        function ($rootScope) {
-            // todo: should we hand over to core module to assign to $rootScope so we don't inject rootscope everywhere?
-            // tst.modules.core.services.sidebarMenu.init(tst.modules.dashboard.sidebarMenu);
-            $rootScope.sidebarMenu = tst.modules.dashboard.sidebarMenu;
-            
+        '$scope',
+        tst.modules.core.services.eventbus,
+        function ($scope, eventbus) {
+            $scope.user = {
+                firstName: "Anonymous"
+            };
+
+            eventbus.subscribe('auth:user:loggedin', function (event, data) {
+                $scope.user = data; // override the anonymous user
+            });
+
         }
     ]);
 }(angular, tst));
