@@ -26,9 +26,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                data: {
-                    bodyClass: tst.modules.company.bodyClass.edit,
-                }
+                bodyClass: tst.modules.company.bodyClass.edit,
+                sidebarMenu: tst.modules.company.sidebarMenu.edit
             });
 
             $stateProvider.state(tst.modules.company.states.view, {
@@ -39,10 +38,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                data: {
-                    bodyClass: tst.modules.company.bodyClass.view,
-                    // sidebarMenu: tst.modules.company.sidebarMenu.view
-                }
+                bodyClass: tst.modules.company.bodyClass.view,
+                sidebarMenu: tst.modules.company.sidebarMenu.view
             });
 
         }]);

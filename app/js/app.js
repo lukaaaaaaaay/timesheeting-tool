@@ -15,6 +15,7 @@
         // App submodules
         tst.modules.account.name,
         tst.modules.company.name,
+        tst.modules.department.name,
         tst.modules.dashboard.name,
     ]);
 }(angular, tst));

@@ -25,6 +25,7 @@ module.exports = function (req, res, next) {
       return next(error);
     }
     if (!user) {
+      console.log('no user');
       req.authenticated = false;
       return next();
     }
@@ -39,6 +40,7 @@ module.exports = function (req, res, next) {
     // get the role object
     Role.findOne({id: req.user.roleId }).exec(function findOneCB(err, found){
       if (err) return next(err);
+
       if (found) {
         req.currentRole = found;
       }

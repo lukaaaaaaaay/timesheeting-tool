@@ -57,22 +57,22 @@
         </a>
         <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1">
           <li>
-            <a href="/#/dashboard/company">
+            <a href="/#/company/view">
               View Details
             </a>
           </li>
           <li>
-            <a href="/#/dashboard/company/edit">
+            <a href="/#/company/edit">
               Edit Details
             </a>
           </li>
           <li>
-            <a href="/#/dashboard/department/create">
+            <a href="/#/department/create">
               Create Department
             </a>
           </li>
           <li>
-            <a href="/#/dashboard/departments">
+            <a href="/#/departments">
               Department List
             </a>
           </li>
@@ -90,9 +90,6 @@
           </li>
           <li>
             <a href="">Project List</a>
-          </li>
-          <li>
-            <a href="">Department List</a>
           </li>
         </ul>
       </li>
@@ -133,15 +130,15 @@
 </div>
 
 <script>
-$(document).ready(function() {
+// $(document).ready(function() {
 
-  $(".tst-sidebar-toggler").on("click", function() {
-    if($("body").hasClass("sidebar-closed")) {
-      $("body").removeClass("sidebar-closed");
-    }
-    else {
-      $("body").addClass("sidebar-closed"); 
-    }
-  });
-});
+//   $(".tst-sidebar-toggler").on("click", function() {
+//     if($("body").hasClass("sidebar-closed")) {
+//       $("body").removeClass("sidebar-closed");
+//     }
+//     else {
+//       $("body").addClass("sidebar-closed"); 
+//     }
+//   });
+// });
 </script>
