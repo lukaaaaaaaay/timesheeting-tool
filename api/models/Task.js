@@ -12,7 +12,7 @@
  		// A task has a name
  		name: {
  			type: 'string',
- 			required: true
+ 			required: 'true'
  		},
 
  		// A task has an (optional) description
@@ -48,19 +48,19 @@
  		},
 
  		// A task can have many categories
- 		//categories: {collection: 'Category', via: 'taskId'},
+ 		categories: {collection: 'Category', via: 'tasks'},
 
  		// A task can have many members
- 		//members: {collection: 'User', via: 'taskId'},
+ 		members: {collection: 'User', via: 'tasks'},
 
  		// A task can have many items
- 		//items: {collection: 'Item', via: 'taskId'},
+ 		//items: {collection: 'Item', via: 'task'},
 
  		// A task can have many comments
- 		//comments: {collection: 'Comment', via: 'taskId'},
+ 		//comments: {collection: 'Comment', via: 'task'},
 
- 		// A task can have many timesheets
- 		timesheets: {collection: 'Timesheet', via: 'taskId'},
+ 		// A task can have many timesheets?
+ 		//timesheets: {collection: 'Timesheet', via: 'task'},
 
  		/**
 		 * Finds all tasks for a project.
@@ -104,7 +104,7 @@
 
  				return cb(null, tasks);
  			});
- 		},
+ 		},  
  	},
  }
 
