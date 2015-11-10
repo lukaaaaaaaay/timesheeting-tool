@@ -78,29 +78,29 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-                Company.create(req.body, function (err, company) {
-                    if (err) return res.negotiate(err);
+        Company.create(req.body, function (err, company) {
+            if (err) return res.negotiate(err);
 
-                    console.log("user is: ");
-                    console.log(req.user);
-                
-                    // debugging - remove later.. or not, server logs are helpful.
-                    if(company) {
-                        sails.log.info('created: ' + company.companyName);
+            console.log("user is: ");
+            console.log(req.user);
+        
+            // debugging - remove later.. or not, server logs are helpful.
+            if(company) {
+                sails.log.info('created: ' + company.companyName);
 
-                        // Assign the company to the logged in user
-                        User.findOne({id:req.user.id}).populate('companyId').exec(function(error,user){
-                            user.companyId = { id: company.id };
-                            user.save(function (err) {
-                                res.ok(company);
-                            });
-                        });                        
-                    }
-                    else {
-                        sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');
-                        res.badRequest('Company with the id ' + req.body.id + ' could not be created.');
-                    }
-                });
+                // Assign the company to the logged in user
+                User.findOne({id:req.user.id}).populate('companyId').exec(function(error,user){
+                    user.companyId = { id: company.id };
+                    user.save(function (err) {
+                        res.ok(company);
+                    });
+                });                        
+            }
+            else {
+                sails.log.warn('Company with the id ' + req.body.id + ' could not be created.');
+                res.badRequest('Company with the id ' + req.body.id + ' could not be created.');
+            }
+        });
 
     },
 

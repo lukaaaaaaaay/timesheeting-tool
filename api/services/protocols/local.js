@@ -141,7 +141,9 @@ exports.login = function (req, email, password, next) {
         protocol : 'local'
       , user     : user.id
       }, function (err, passport) {
+
         if (passport) {
+          console.log('found passport');
           passport.validatePassword(password, function (err, res) {
             if (err) {
               return next(err);

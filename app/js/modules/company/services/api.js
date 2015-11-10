@@ -27,7 +27,7 @@
                     // Save currentCompany to localstorage on creation
                     // todo: subscribe to logout event and clear currentCompany, 
                     // todo: also subscribe to login event to store currentCompany on login
-                    localStorage.set('tst-currentCompany', currentCompany);
+                    localStorage.set('tst-currentCompany', currentCompany.id);
 
 
                     // Broadcasts a companyRegistered event for subscribers.
@@ -42,14 +42,40 @@
             },
 
             /**
+             * updateCompany
+             */
+
+             updateCompany = function (company, callback) {
+                var defer = $q.defer();
+
+                $http.put( tst.modules.api.url + '/api/companies/' + company.id, company)
+                .success(function(resp) {
+                    currentCompany = resp;
+
+                    // TODO: Broadcasts a companyRegistered event for subscribers.
+                    //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
+                    callback(company);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            /**
              * getCurrentCompany
              */
             getCurrentCompany = function () {
-                return localStorage.get('tst-currentCompany');
+                if(localStorage.get('tst-currentCompany'))
+                    return localStorage.get('tst-currentCompany');
+
+                return localStorage.get('tst-companyId');
             };
 
             return {
                 createCompany: createCompany,
+                updateCompany: updateCompany,
                 getCurrentCompany: getCurrentCompany
             };
         }

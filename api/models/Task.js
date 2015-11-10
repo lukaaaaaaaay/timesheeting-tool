@@ -12,7 +12,7 @@
  		// A task has a name
  		name: {
  			type: 'string',
- 			required: 'true'
+ 			required: true
  		},
 
  		// A task has an (optional) description
@@ -48,10 +48,12 @@
  		},
 
  		// A task can have many categories
- 		//categories: {collection: 'Category', via: 'task'},
+ 		// relationship between tasks and categories stored in separate table
+ 		// how to map?
+ 		categories: {collection: 'Category', via: 'tasks'},
 
  		// A task can have many members
- 		//members: {collection: 'User', via: 'task'},
+ 		members: {collection: 'User', via: 'tasks'},
 
  		// A task can have many items
  		//items: {collection: 'Item', via: 'task'},
@@ -104,7 +106,7 @@
 
  				return cb(null, tasks);
  			});
- 		},
+ 		},  
  	},
  }
 

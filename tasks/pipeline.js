@@ -17,8 +17,8 @@ var cssFilesToInject = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
   'bower_components/font-awesome/css/font-awesome.css',
   'bower_components/angular-toastr/dist/angular-toastr.min.css',
-  // 'bower_components/ng-dialog/css/ngDialog.min.css',
-  // 'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
+  'bower_components/ng-dialog/css/ngDialog.min.css',
+  'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
   'css/**/*.css'
 ];
 
@@ -30,11 +30,16 @@ var jsFilesToInject = [
   'js/dependencies/sails.io.js',
 
   // Bower Components are brought in here
+  '/bower_components/jquery/dist/jquery.js',
   '/bower_components/angular/angular.js',
   '/bower_components/angular-base64/angular-base64.js',
+  '/bower_components/angular-bootstrap/ui-bootstrap.min.js',
   '/bower_components/angular-local-storage/dist/angular-local-storage.js',
-  '/bower_components/angular-ui-router/release/angular-ui-router.js',
-  '/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
+  '/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+  '/bower_components/angular-toastr/dist/angular-toastr.min.js',
+  '/bower_components/ng-dialog/js/ngDialog.min.js',
+  '/bower_components/underscore/underscore-min.js',
+  '/bower_components/moment/min/moment.min.js',
   
   // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',
@@ -48,20 +53,25 @@ var jsFilesToInject = [
   'js/modules/core/module.core.run.js',
 
   // Import TST auth
-  // 'js/modules/auth/module.auth.js',
-  // 'js/modules/auth/module.auth.routes.js',
-  // 'js/modules/auth/**/*.js',
-  // 'js/modules/auth/module.auth.run.js',
+  'js/modules/auth/module.auth.js',
+  'js/modules/auth/module.auth.routes.js',
+  'js/modules/auth/**/*.js',
+  'js/modules/auth/module.auth.run.js',
 
   // Import TST accounts
-  // 'js/modules/account/module.account.js',
-  // 'js/modules/account/module.account.routes.js',
-  // 'js/modules/account/**/*.js',
+  'js/modules/account/module.account.js',
+  'js/modules/account/module.account.routes.js',
+  'js/modules/account/**/*.js',
 
   // Import TST orgs
-  // 'js/modules/company/module.company.js',
-  // 'js/modules/company/module.company.routes.js',
-  // 'js/modules/company/**/*.js',
+  'js/modules/company/module.company.js',
+  'js/modules/company/module.company.routes.js',
+  'js/modules/company/**/*.js',
+
+  // Import TST departments
+  'js/modules/departments/module.department.js',
+  'js/modules/departments/module.department.routes.js',
+  'js/modules/departments/**/*.js',
   
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',
