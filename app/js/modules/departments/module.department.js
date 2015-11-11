@@ -24,7 +24,7 @@
             dialog: 'js/modules/departments/html/confirm-delete.html'
         },
         services: {
-            api: 'api',
+            api: 'departmentApi',
         },
         routes: {
             create: '/department/create',

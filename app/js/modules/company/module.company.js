@@ -52,6 +52,7 @@
     };
 
     angular.module(tst.modules.company.name, [
+        'LocalStorageModule',
         tst.modules.core.name
     ]);
 }(angular, tst));

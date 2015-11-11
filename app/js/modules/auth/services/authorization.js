@@ -21,7 +21,7 @@
         roleCheckType = roleCheckType || tst.modules.auth.enums.roleCheckType.atLeastOne;
         if (loginRequired === true && user === null) {
             result = tst.modules.auth.enums.authorised.loginRequired;
-        } else if ((loginRequired === true && user !== undefined) &&
+        } else if ((loginRequired === true && user !== null) &&
             (requiredRoles === undefined || requiredRoles.length === 0)) {
             // Login is required but no specific roles are specified.
             result = tst.modules.auth.enums.authorised.authorised;

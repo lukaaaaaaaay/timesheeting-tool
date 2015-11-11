@@ -8,14 +8,14 @@
             $stateProvider.state(tst.modules.dashboard.states.dashboard, {
                 templateUrl: tst.modules.dashboard.views.dashboard,
                 controller: tst.modules.dashboard.controllers.dashboard,
-                access: {
-                    loginRequired: true,
-                    roles: ['Admin', 'Director', 'Staff']
-                },
-                data: {
-                    bodyClass: tst.modules.dashboard.bodyClass.dashboard,
-                    sidebarMenu: tst.modules.dashboard.sidebarMenu.dashboard
-                }
+                // access: {
+                //     loginRequired: true,
+                //     roles: ['Admin', 'Director', 'Staff']
+                // },
+                // data: {
+                //     bodyClass: tst.modules.dashboard.bodyClass.dashboard,
+                //     sidebarMenu: tst.modules.dashboard.sidebarMenu.dashboard
+                // }
               });
 
             /** This state is the dashboard homepage*/
