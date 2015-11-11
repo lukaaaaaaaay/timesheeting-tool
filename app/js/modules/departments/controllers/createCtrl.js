@@ -6,9 +6,8 @@
         '$scope',
         '$location',
         tst.modules.core.services.notifier,
-        tst.modules.auth.services.authentication,
         tst.modules.department.services.api,
-        function ($scope, $location, notifier, authentication, departmentApi) {
+        function ($scope, $location, notifier, departmentApi) {
             $scope.department = {};
             var company = {};
 

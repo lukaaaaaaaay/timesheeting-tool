@@ -1,3 +1,4 @@
+<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
 
 <!-- todo: move navbar into it's own file -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -85,10 +86,10 @@
         </a>
         <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 2">
           <li>
-            <a href="/#/project/create">Create Project</a>
+            <a href="">Create Project</a>
           </li>
           <li>
-            <a href="/#/projects">Project List</a>
+            <a href="">Project List</a>
           </li>
         </ul>
       </li>
@@ -109,22 +110,9 @@
     </ul>
   </div>
 </div>
+
+
+
 <div class="tst-page-container">
-    <h1>Home</h1>
-
-    <h2>Hello, {{user.firstName}}</h2>
-    <p>
-        <a href="#/users">This link requires the user to have admin permissions</a>
-    </p>
-
-    <p>
-        You will see this button if you are a Staff User: <a class="btn btn-primary" access="Staff">Can You See Me?</a>
-    </p>
-    <p>
-        You will see this button if you are a Director User: <a class="btn btn-primary" access="Director">Can You See Me?</a>
-    </p>
-    <p>
-        You will see this button if you are a Admin User: <a class="btn btn-primary" access="Admin">Can You See Me?</a>
-    </p>
-
+    <ui-view />
 </div>

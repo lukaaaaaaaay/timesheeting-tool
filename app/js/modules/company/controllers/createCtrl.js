@@ -7,7 +7,7 @@
         '$state',
         tst.modules.core.services.notifier,
         tst.modules.company.services.api,
-        function ($scope, $state, notifier, api) {
+        function ($scope, $state, notifier, companyApi) {
             $scope.company = {};
 
             function init() {
@@ -20,7 +20,7 @@
 
             $scope.createCompany = function(form) {
                 if(form.$valid) {
-                    api.createCompany($scope.company, function(company) {
+                    companyApi.createCompany($scope.company, function(company) {
                         $state.go(tst.modules.dashboard.states.home);
                     }, function(error) {
 

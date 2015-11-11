@@ -9,7 +9,7 @@
         tst.modules.core.services.notifier,
         tst.modules.department.services.api,
         tst.modules.company.services.api,
-        function ($scope, $location, ngDialog, notifier, api, companyApi) {
+        function ($scope, $location, ngDialog, notifier, departmentApi, companyApi) {
             $scope.departments = [];
             $scope.filteredDepartments = [];
             $scope.numPerPage = 10;
@@ -22,7 +22,7 @@
                   scope: $scope 
                 }).then(
                     function(success) {
-                        api.deleteDepartment(id, function(success){
+                        departmentApi.deleteDepartment(id, function(success){
                                 notifier.success('Success', 'Department deleted');
                                 $location.path(tst.modules.department.routes.list);
                             },function(error) {
@@ -59,7 +59,7 @@
             function init() {
                 // get active company
                 var companyId = companyApi.getCurrentCompany();
-                api.getAllDepartments(companyId, function (departments) {
+                departmentApi.getAllDepartments(companyId, function (departments) {
                     $scope.departments = departments;
                     updateList();
                 }, function(error) {
