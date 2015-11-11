@@ -4,6 +4,12 @@
     angular.module(tst.modules.project.name).config([
         '$stateProvider',
         function ($stateProvider) {
+            $stateProvider.state(tst.modules.project.states.project, {
+              template: '<ui-view />',
+              controller: function($scope){
+                  console.log("project active");
+              }
+            });
 
             $stateProvider.state(tst.modules.project.states.create, {
                 url: tst.modules.project.routes.create,

@@ -11,25 +11,25 @@
 
             console.log("in child state");
 
-        	$scope.sidebarMenu = tst.modules.dashboard.sidebarMenu.home;
+      //   	$scope.sidebarMenu = tst.modules.dashboard.sidebarMenu.home;
 
-        	$scope.$on('sidebarChanged', function (event, args) {
-        		$scope.sidebarMenu = args.sidebarMenu;
-        	});
+      //   	$scope.$on('sidebarChanged', function (event, args) {
+      //   		$scope.sidebarMenu = args.sidebarMenu;
+      //   	});
         	
-        	// sidebar menu
-		    $scope.setSelectedMenu = function (selection) {
-		        sidebarMenu.setSelectedMenu(selection);
-		    };
+      //   	// sidebar menu
+		    // $scope.setSelectedMenu = function (selection) {
+		    //     sidebarMenu.setSelectedMenu(selection);
+		    // };
 
-		    // sidebar menu
-		    $scope.toggleDropdown = function (selection) {
-		        sidebarMenu.toggleDropdown(selection);
-		    };
+		    // // sidebar menu
+		    // $scope.toggleDropdown = function (selection) {
+		    //     sidebarMenu.toggleDropdown(selection);
+		    // };
 
-		    $scope.toggleCollapsed = function () {
-		        sidebarMenu.toggleCollapsed();
-		    };
+		    // $scope.toggleCollapsed = function () {
+		    //     sidebarMenu.toggleCollapsed();
+		    // };
         }
 
 

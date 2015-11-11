@@ -11,7 +11,7 @@
         function ($scope, $location, notifier, authentication, projectApi) {
             $scope.project = {};
 
-            $scope.createDepartment = function(form) {
+            $scope.createProject = function(form) {
                 if(form.$valid) {
                     projectApi.createProject($scope.project, function(project) {
                         notifier.success("success", "New project created");                        

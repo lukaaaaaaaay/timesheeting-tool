@@ -4,10 +4,11 @@
     tst.modules.project = {
         name: 'project',
         states: {
-            create: 'create-project', 
-            edit: 'edit-project',
-            view: 'view-project',
-            list: 'project-list'
+            project: 'dashboard.project',
+            create: 'dashboard.project.create', 
+            edit: 'dashboard.project.edit',
+            view: 'dashboard.project.view',
+            list: 'dashboard.project.list'
         },
         controllers: {
             create: 'createCtrl',
