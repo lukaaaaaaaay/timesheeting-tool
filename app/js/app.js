@@ -13,6 +13,7 @@
         tst.modules.auth.name,
 
         // App submodules
+        tst.modules.ui.name,
         tst.modules.account.name,
         tst.modules.company.name,
         tst.modules.department.name,

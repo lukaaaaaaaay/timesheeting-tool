@@ -31,6 +31,7 @@ var jsFilesToInject = [
 
   // Bower Components are brought in here
   '/bower_components/jquery/dist/jquery.js',
+  '/bower_components/bootstrap/dist/js/bootstrap.min.js',
   '/bower_components/angular/angular.js',
   '/bower_components/angular-base64/angular-base64.js',
   '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
@@ -57,6 +58,13 @@ var jsFilesToInject = [
   'js/modules/auth/module.auth.routes.js',
   'js/modules/auth/**/*.js',
   'js/modules/auth/module.auth.run.js',
+
+  // Import TST ui
+  'js/modules/ui/module.ui.js',
+  'js/modules/ui/navbar/module.navbar.js',
+  'js/modules/ui/navbar/**/*.js',
+  'js/modules/ui/sidebar/module.sidebar.js',
+  'js/modules/ui/sidebar/**/*.js',
 
   // Import TST accounts
   'js/modules/account/module.account.js',
