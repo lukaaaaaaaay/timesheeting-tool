@@ -4,6 +4,12 @@
     angular.module(tst.modules.department.name).config([
         '$stateProvider',
         function ($stateProvider) {
+            $stateProvider.state(tst.modules.department.states.department, {
+              template: '<ui-view />',
+              controller: function($scope){
+                  console.log("department active");
+              }
+            });
 
             $stateProvider.state(tst.modules.department.states.create, {
                 url: tst.modules.department.routes.create,

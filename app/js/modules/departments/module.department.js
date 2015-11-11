@@ -4,10 +4,11 @@
     tst.modules.department = {
         name: 'department',
         states: {
-            create: 'create-department', 
-            edit: 'edit-department',
-            view: 'view-department',
-            list: 'department-list'
+            department: 'dashboard.company.department',
+            create: 'dashboard.company.department.create', 
+            edit: 'dashboard.company.department.edit',
+            view: 'dashboard.company.department.view',
+            list: 'dashboard.company.department.list'
         },
         controllers: {
             create: 'createCtrl',
@@ -67,7 +68,6 @@
 
     angular.module(tst.modules.department.name, [
         tst.modules.core.name,
-        tst.modules.auth.name,
         tst.modules.company.name,
     ]);
 }(angular, tst));
