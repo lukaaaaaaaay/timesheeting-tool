@@ -41,7 +41,8 @@
         },
         services: {
             authentication: 'authentication',
-            authorization: 'authorization'
+            authorization: 'authorization',
+            authInterceptor: 'authInterceptor'
         },
         routes: {
             login: '/login',

@@ -10,7 +10,7 @@
             view: 'dashboard.company.view'
         },
         events: {
-          companyRegistered: 'tst:company:registered'
+          companyRegistered: 'company:org:registered'
         },
         controllers: {
             create: 'createCtrl',
@@ -30,6 +30,9 @@
             edit: '/company/edit',
             view: '/company/view'
         },
+        storage: {
+            companyId: 'tst-companyId'
+        }
         bodyClass: {
             create: 'tst-body',
             edit: 'tst-body',

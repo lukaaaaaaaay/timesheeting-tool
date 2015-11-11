@@ -27,7 +27,7 @@
                     // Save currentCompany to localstorage on creation
                     // todo: subscribe to logout event and clear currentCompany, 
                     // todo: also subscribe to login event to store currentCompany on login
-                    localStorage.set('tst-currentCompany', currentCompany.id);
+                    localStorage.set(tst.modules.company.storage.companyId, currentCompany.id);
 
 
                     // Broadcasts a companyRegistered event for subscribers.
@@ -67,10 +67,10 @@
              * getCurrentCompany
              */
             getCurrentCompany = function () {
-                if(localStorage.get('tst-currentCompany'))
-                    return localStorage.get('tst-currentCompany');
+                if(localStorage.get(tst.modules.company.storage.currentCompany)
+                    return localStorage.get(tst.modules.company.storage.currentCompany);
 
-                return localStorage.get('tst-companyId');
+                return localStorage.get(tst.modules.company.storage.currentCompany);
             };
 
             return {

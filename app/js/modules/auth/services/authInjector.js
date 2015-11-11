@@ -1,7 +1,7 @@
 (function (angular, tst) {
     'use strict';
 
-    angular.module(tst.modules.auth.name).factory('authInterceptor',
+    angular.module(tst.modules.auth.name).factory(tst.modules.auth.services.authInterceptor,
         [
             '$q',
             tst.modules.auth.services.authentication,
@@ -17,10 +17,11 @@
                     */
                     request: function(config) {
                             var auth = authentication.getCredentials();
+
                             if (auth) {
-                                console.log(auth);
                                 config.headers.authorization = auth;
                             }
+
                         return config;
                     },
 

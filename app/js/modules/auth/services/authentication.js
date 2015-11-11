@@ -224,8 +224,8 @@
                 localStorage.remove(tst.modules.auth.storage.authToken);
                 localStorage.remove(tst.modules.auth.storage.lastActivity);
                 localStorage.remove(tst.modules.auth.storage.currentUser);   
-                localStorage.remove('tst-companyId'); // tst.modules.company.storage.companyId
-                localStorage.remove('tst-currentCompany'); // tst.modules.company.storage.currentCompany
+                localStorage.remove(tst.modules.company.storage.companyId);
+                //localStorage.remove('tst-currentCompany'); // tst.modules.company.storage.currentCompany
 
                 console.log("logging out");  
 
