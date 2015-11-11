@@ -12,25 +12,32 @@ angular.module(tst.modules.auth.name).run([
         var routeChangeRequiredAfterLogin = false,
             loginRedirectUrl;
 
-        // Whenever the route changes, check if the route requires authorization.
+        /**
+         * Whenever the state changes, check if the state requires authorization.
+         */
         $rootScope.$on('$stateChangeStart', function (event, next, nextParams, from, fromParams) {
             var authorised;
+
+            // If the state requires login, redirect to login route
             if (routeChangeRequiredAfterLogin && from.url !== tst.modules.auth.routes.login) {
                 routeChangeRequiredAfterLogin = false;
                 $location.path(loginRedirectUrl).replace();
+            // Otherwise, Check if state has access config obj...
             } else if (next.access !== undefined) {
                 authorised = authorization.authorize(next.access.loginRequired,
                                                      next.access.roles,
                                                      next.access.roleCheckType);
-
+                // If authorization requires login, stop everything and redirect to login route
                 if (authorised === tst.modules.auth.enums.authorised.loginRequired) {
                     routeChangeRequiredAfterLogin = true;
                     loginRedirectUrl = from.url;
                     $location.path(tst.modules.auth.routes.login);
+                    // Otherwise; if not Authorised, stop everything and redirect to 404 route
                 } else if (authorised === tst.modules.auth.enums.authorised.notAuthorised) {
                     $location.path(tst.modules.auth.routes.notAuthorised).replace();
                 }
             }
+            // Otherwise, Just continue to the finish line... The user is allowed!!!
         });
 
     }]);

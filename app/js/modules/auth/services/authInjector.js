@@ -16,7 +16,7 @@
                     * is one found in the local storage
                     */
                     request: function(config) {
-                            var auth = authentication.getAuth();
+                            var auth = authentication.getCredentials();
                             if (auth) {
                                 console.log(auth);
                                 config.headers.authorization = auth;
@@ -33,7 +33,7 @@
                         // there is a failure to authentication
                         // so inform the authenticaton service
                         if (rejection.status === 401) {
-                            handleAuthFailure();
+                            authentication.handleAuthFailure();
                         }
 
                         return $q.reject(rejection);
