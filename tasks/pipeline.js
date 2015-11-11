@@ -73,6 +73,11 @@ var jsFilesToInject = [
   'js/modules/departments/module.department.routes.js',
   'js/modules/departments/**/*.js',
   
+  // Import TST projects
+  'js/modules/project/module.project.js',
+  'js/modules/project/module.project.routes.js',
+  'js/modules/project/**/*.js',
+
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',
   'js/modules/dashboard/module.dashboard.routes.js',
