@@ -12,7 +12,7 @@
             function init() {
                 // get active company
                 $scope.company = companyApi.getCurrentCompany();
-                console.log($scope.company);
+                // console.log($scope.company);
             }
             init();
 
