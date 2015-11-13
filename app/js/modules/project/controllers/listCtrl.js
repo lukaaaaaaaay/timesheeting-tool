@@ -14,19 +14,21 @@
             $scope.filteredProjects = [];
             $scope.numPerPage = 10;
             $scope.currentPage = 1;
+            var statuses = [];
 
-            $scope.deleteProject = function(id) {
+            $scope.deleteProject = function(project) {
                 // show confirm dialog to ensure user really wants to delete something.
                 ngDialog.openConfirm({
                   template: tst.modules.project.views.dialog,
                   scope: $scope 
                 }).then(
                     function(success) {
-                        projectApi.deleteProject(id, function(success){
+                        projectApi.deleteProject(project.id, function(success){
                                 notifier.success('Success', 'Project deleted');
-                                $location.path(tst.modules.project.routes.list);
+                                $scope.projects = _.reject($scope.projects, {id: project.id});
+                                updateList();
                             },function(error) {
-                      console.log(error)
+                                console.log(error)
                                 notifier.error('Error', 'Unable to delete project');
                             });
                     },
@@ -40,7 +42,7 @@
                 updateList();
             });
 
-            // refreshs list on page either because of page change or deletion.
+            // refreshes list on page either because of page change or deletion.
             function updateList() {
                 var begin = (($scope.currentPage - 1) * $scope.numPerPage)
                 , end = begin + $scope.numPerPage;
@@ -52,9 +54,13 @@
                 return moment(date).format('D/MM/YYYY');
             };
 
-            function reset() {
-                $scope.editProjectForm.$setPristine();
-            }
+            $scope.statusAsText = function (statusId) {
+                var status = _.find(statuses, {id: statusId})
+                if(status)
+                    return status.name;
+
+                return '';
+            };
 
             function init() {
                 // get active company
@@ -65,6 +71,13 @@
                 }, function(error) {
                     console.log(error);
                     notifier.error('Error', 'There was an error retrieving all the projects');
+                });
+
+                projectApi.getAllStatuses(function(allStatuses) {
+                    statuses = allStatuses;
+                }, function(error) {
+                    console.log(error);
+                    notifier.error('Error', 'There was an error retrieving all the statuses');
                 });
             }
 

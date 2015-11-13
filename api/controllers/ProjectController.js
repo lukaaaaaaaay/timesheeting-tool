@@ -196,15 +196,14 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-        // Project.findOne(req.body.id, function(err, existing) {
-        //     if (err) return res.negotiate(err);
+        var newProject = req.body;
+        Company.findOne({id:req.user.companyId}).exec(function (error,company){
+            if (error) return res.negotiate(error);
 
-        //     if(existing) {
-        //         sails.log.warn('Project with the id ' + req.body.id + ' already exists.');
-        //         res.badRequest('Project with the id ' + req.body.id + ' already exists.');
-        //     }
-        //     else {
-                Project.create(req.body, function (err, project) {
+            newProject.companyId = company.id;
+            newProject.statusId = 1;
+    
+                Project.create(newProject, function (err, project) {
                     if (err) return res.negotiate(err);
                 
                     // debugging - remove later.. or not, server logs are helpful.
@@ -218,8 +217,10 @@ module.exports = {
                     }
                     
                 });
-        //     }
-        // });
+            
+        });
+               
+        
         
     },
 

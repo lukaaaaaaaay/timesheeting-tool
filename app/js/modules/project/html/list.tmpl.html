@@ -28,13 +28,13 @@
 					</tr>
 					<tr ng-repeat="project in filteredProjects | limitTo:numPerPage">
 						<td>{{project.id}}</td>
-						<td><a href="/#/dashboard/project/{{project.id}}">{{project.name}}</a></td>
+						<td><a href="/#/project/view/{{project.id}}">{{project.name}}</a></td>
 						<td>{{statusAsText(project.statusId)}}</td>
 						<td>{{project.projectManagerId}}</td>
 						<td>{{formatDate(project.startDate)}}</td>
 						<td>{{formatDate(project.dueDate)}}</td>
 						<td>
-							<a href="/#/dashboard/projects/edit/{{project.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>
+							<a href="/#/project/edit/{{project.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>
 							<button type="button" class="btn btn-danger" ng-click="deleteProject(project)"><i class="fa fa-trash-o"></i></button>
 						</td>
 					</tr>

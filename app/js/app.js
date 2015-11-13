@@ -18,5 +18,6 @@
         tst.modules.company.name,
         tst.modules.department.name,
         tst.modules.dashboard.name,
+        tst.modules.project.name,
     ]);
 }(angular, tst));

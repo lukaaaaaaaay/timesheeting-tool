@@ -10,8 +10,11 @@
         tst.modules.project.services.api,
         function ($scope, $location, notifier, authentication, projectApi) {
             $scope.project = {};
+            $scope.managers = [];
+            $scope.submitted = false;
 
             $scope.createProject = function(form) {
+                $scope.submitted = true;
                 if(form.$valid) {
                     projectApi.createProject($scope.project, function(project) {
                         notifier.success("success", "New project created");                        
@@ -22,7 +25,33 @@
                 } else {
                     notifier.error('Error!', 'There are resolved validation errors. Please resolve before re-submitting.');
                 }   
+            };
+
+            $scope.validateDate = function(form, start, end) {
+                if(end) {
+                    if(end <= start) {
+                        form.dueDate.$setValidity('invalidDate', false);
+                        form.startDate.$setValidity('invalidDate', false);
+                    }
+                    else {
+                        form.dueDate.$setValidity('invalidDate', true);
+                        form.startDate.$setValidity('invalidDate', true);
+                    }
+                }
+
+            };
+
+            function init() {
+                var companyId = authentication.getCurrentLoginUser().companyId;
+                projectApi.getAllUsersForCompany(companyId, function(users) {
+                    $scope.managers = users;
+                }, function(error) {
+                    console.log(error);
+                    notifier.error('Error', 'Unable to retrieve all users for the company ' + companyId);
+                });
             }
+
+            init();
         }
     ]);
 }(angular, tst));

@@ -4,10 +4,10 @@
 		</div>
 		<div class="col-sm-8">
 			<h2 class="teal">{{project.name}}<h2>
-			<h4>Due: {{project.dueDate}}</h4>
+			<h4>Due: {{formatDate(project.dueDate)}}</h4>
 			<p>
 				<strong>Start Date: </strong>
-				{{project.startDate}} <br/>
+				{{formatDate(project.startDate)}} <br/>
 				<strong>Status: </strong>
 				{{statusAsText(project.statusId)}} <br/>
 				<strong>Project Manager: </strong>

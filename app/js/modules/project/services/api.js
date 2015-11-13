@@ -95,9 +95,44 @@
 
                 $http.get( tst.modules.api.url + '/api/projects/company/' + id)
                 .success(function(resp) {
-                    var departments = resp;
+                    var projects = resp;
 
-                    callback(departments);
+                    callback(projects);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            /**
+            * getAllUsersForCompany
+            */
+            getAllUsersForCompany = function(id, callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/users/company/' + id)
+                .success(function(resp) {
+                    var users = resp;
+
+                    callback(users);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            getAllStatuses = function(callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/statuses')
+                .success(function(resp) {
+                    var statuses = resp;
+
+                    callback(statuses);
                 })
                 .error(function(err) {
                     defer.reject(err);
@@ -107,11 +142,13 @@
             };
 
             return {
-                createDepartment: createDepartment,
-                updateDepartment: updateDepartment,
-                deleteDepartment: deleteDepartment,
+                createProject: createProject,
+                updateProject: updateProject,
+                deleteProject: deleteProject,
                 getAllProjects: getAllProjects,
-                getCurrentProject: getCurrentProject
+                getCurrentProject: getCurrentProject,
+                getAllUsersForCompany: getAllUsersForCompany,
+                getAllStatuses: getAllStatuses
             };
         }
     ]);

@@ -8,13 +8,42 @@
         'ngDialog',
         '$stateParams',
         tst.modules.core.services.notifier,
+        tst.modules.auth.services.authentication,
         tst.modules.project.services.api,
-        function ($scope, $location, ngDialog, $stateParams, notifier, api) {
+        function ($scope, $location, ngDialog, $stateParams, notifier, authentication, projectApi) {
             $scope.project = {};
+            $scope.managers = [];
+            $scope.statuses = [];
+            $scope.submitted = false;
+
+            function init() {
+                var companyId = authentication.getCurrentLoginUser().companyId;
+                // get active project
+                projectApi.getCurrentProject($stateParams.id, function (project) {
+                    setProject(project);
+                }, function (error) {
+                    notifier.error('Error', 'There was an error retrieving the project with the id ' + $stateParams.id);
+                });
+
+                projectApi.getAllUsersForCompany(companyId, function (users) {
+                    $scope.managers = users;
+                }, function (error) {
+                    notifier.error('Error', 'Unable to find users for company ' + user.companyId);    
+                });
+
+                projectApi.getAllStatuses(function(allStatuses) {
+                    $scope.statuses = allStatuses;
+                }, function(error) {
+                    console.log(error);
+                    notifier.error('Error', 'There was an error retrieving all the statuses');
+                });
+
+            }
 
             $scope.updateProject = function(form) {
+                $scope.submitted = true;
                 if(form.$valid) {
-                    api.updateProject($scope.project, function(project) {
+                    projectApi.updateProject($scope.project, function(project) {
                         notifier.success('Success', 'Department details updated!');
                         reset();
                     }, function(error) {
@@ -34,7 +63,7 @@
                   scope: $scope 
                 }).then(
                     function(success) {
-                        api.deleteProject($scope.project.id, function(success){
+                        projectApi.deleteProject($scope.project.id, function(success){
                                 notifier.success('Success', 'Department deleted');
                                 $location.path(tst.modules.project.routes.list);
                             },function(error) {
@@ -48,19 +77,31 @@
                 );
             };
 
+            $scope.validateDate = function(form, start, end) {
+                if(end) {
+                    if(end <= start) {
+                        form.dueDate.$setValidity('invalidDate', false);
+                        form.startDate.$setValidity('invalidDate', false);
+                    }
+                    else {
+                        form.dueDate.$setValidity('invalidDate', true);
+                        form.startDate.$setValidity('invalidDate', true);
+                    }
+                }
+
+            };
+
             function reset() {
                 $scope.editProjectForm.$setPristine();
             }
 
-            function init() {
-                // get active project
-                api.getCurrentProject($stateParams.id, function (project) {
-                    $scope.project = project;
-                }, function (error) {
-                    notifier.error('Error', 'There was an error retrieving the project with the id ' + $stateParams.id);
-                });
-
+            function setProject (project) {
+                $scope.project = project;
+                $scope.project.startDate = new Date($scope.project.startDate.toString());
+                $scope.project.dueDate = new Date($scope.project.dueDate.toString());
             }
+
+            
             init();
             
         }

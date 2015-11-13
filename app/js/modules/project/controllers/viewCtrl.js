@@ -7,10 +7,11 @@
         '$location',
         '$stateParams',
         'ngDialog',
-        tst.modules.project.services.notifier,
-        tst.modules.department.services.api,
-        function ($scope, $location, $stateParams, ngDialog, notifier, api) {
+        tst.modules.core.services.notifier,
+        tst.modules.project.services.api,
+        function ($scope, $location, $stateParams, ngDialog, notifier, projectApi) {
             $scope.project = {};
+            var statuses = [];
 
             $scope.deleteProject = function(id) {
                 // show confirm dialog to ensure user really wants to delete something.
@@ -33,13 +34,33 @@
                 );
             };
 
+            $scope.statusAsText = function (statusId) {
+                var status = _.find(statuses, {id: statusId})
+                if(status)
+                    return status.name;
+
+                return '';
+            };
+
+            $scope.formatDate = function (date) {
+                return moment(date).format('D/MM/YYYY');
+            };
+
             function init() {
-                api.getCurrentProject($stateParams.id, function (project) {
+                projectApi.getCurrentProject($stateParams.id, function (project) {
                     $scope.project = project;
                 }, function(error) {
                     console.log(error);
                     notifier.error('Error', 'There was an error retrieving the project with the id ' + $stateParams.id);
                 });
+
+                projectApi.getAllStatuses(function(allStatuses) {
+                    statuses = allStatuses;
+                }, function(error) {
+                    console.log(error);
+                    notifier.error('Error', 'There was an error retrieving all the statuses');
+                });
+
             }
 
             init();
