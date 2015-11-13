@@ -24,6 +24,7 @@ angular.module(tst.modules.auth.name).run([
                 $location.path(loginRedirectUrl).replace();
             // Otherwise, Check if state has access config obj...
             } else if (next.access !== undefined) {
+                // Ask the authorization service if we're authorised
                 authorised = authorization.authorize(next.access.loginRequired,
                                                      next.access.roles,
                                                      next.access.roleCheckType);

@@ -52,7 +52,7 @@
             login: 'tst-single-form',
             notAuthorised: 'tst-body'
         },
-        storage {
+        storage: {
             currentUser: 'tst-currentUser',
             authToken: 'tst-authToken',
             lastActivity: 'tst-lastActivity'

@@ -10,6 +10,7 @@
         '$base64',
         tst.modules.core.services.eventbus,
         function ($q, localStorage, $base64, eventbus) {   
+            var currentUser;
 
             /**
             * Set the user credentials
@@ -99,9 +100,6 @@
                         // we've confirmed credentials match a user
                         console.log('Successfully authenticated');
 
-                        // save the credentials
-                        setCredentials(email, password);
-
                         // turn the response string to a user object
                         var data = request.responseText;
                         var user = JSON.parse(data);
@@ -111,8 +109,12 @@
                             roles: ['Director'], // todo: don't hardcode this stuff. WTF.
                         });
 
-                        // save the user object in local storage and broadcast it to subscribers
+                        // save the credentials
+                        setCredentials(email, password);
+                        currentUser = user;
                         localStorage.set(tst.modules.auth.storage.currentUser, user);
+
+                        // broadcast the user to subscribers
                         eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                     }, function () {
                         // some error in credential check, logout and broadcast it to subscribers
@@ -191,21 +193,21 @@
                     var data = request.responseText;
                     var user = JSON.parse(data);
 
-                    // record the credentials
-                    setCredentials(email, password);
-
                     //attach roles to user object
                     angular.extend(user, {
                         roles: ['Director'], // todo: don't hardcode this stuff. WTF.
                     });
 
-                    // save the user object in local storage
+                    // save the credentials
+                    setCredentials(email, password);
+                    currentUser = user;
                     localStorage.set(tst.modules.auth.storage.currentUser, user);
 
-                    // set current company id.
+                    // set current company id, if and only if the user has a companyID.
                     if(user.companyId)
-                        localStorage.set('tst-companyId', user.companyId);
+                        localStorage.set(tst.modules.company.storage.companyId, user.companyId);
 
+                    // broadcast the user to subscribers
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                 }, function () {
                     // some error in credential check
@@ -221,6 +223,7 @@
              */
             var logout = function (callback) {
                 // Clear the currentUser and wipe the local storage
+                currentUser = undefined;
                 localStorage.remove(tst.modules.auth.storage.authToken);
                 localStorage.remove(tst.modules.auth.storage.lastActivity);
                 localStorage.remove(tst.modules.auth.storage.currentUser);   
@@ -250,7 +253,10 @@
              * getCurrentLoginUser
              */
             var getCurrentLoginUser = function () {
-                return localStorage.get(tst.modules.auth.storage.currentUser);
+                if (localStorage.get(tst.modules.auth.storage.currentUser))
+                    return localStorage.get(tst.modules.auth.storage.currentUser);
+
+                return currentUser;
             };
 
             return {

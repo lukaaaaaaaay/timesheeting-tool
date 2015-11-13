@@ -22,10 +22,10 @@
         roleCheckType = roleCheckType || tst.modules.auth.enums.roleCheckType.atLeastOne;
 
         // If login is required, and no user exists, then login is required.
-        if (loginRequired === true && user === null) {
+        if (loginRequired === true && user === undefined) {
             result = tst.modules.auth.enums.authorised.loginRequired;
         // Otherwise, if Login is required and a user exists but no specific roles are nessesary, then allow...
-        } else if ((loginRequired === true && user !== null) &&
+        } else if ((loginRequired === true && user !== undefined) &&
             (requiredRoles === undefined || requiredRoles.length === 0)) {
             result = tst.modules.auth.enums.authorised.authorised;
         // Otherwise,
