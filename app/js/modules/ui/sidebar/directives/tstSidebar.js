@@ -5,9 +5,8 @@
         .directive(tst.modules.ui.sidebar.directive, function() {
             var controller = [
                 '$scope',
-                '$location',
                 'sidebarmenu',
-                function ($scope, $location, sidebarMenu) {
+                function ($scope, sidebarMenu) {
                     $scope.sidebarMenu = tst.modules.dashboard.sidebarMenu.dashboard;
 
                     $scope.$on('sidebarChanged', function (event, args) {

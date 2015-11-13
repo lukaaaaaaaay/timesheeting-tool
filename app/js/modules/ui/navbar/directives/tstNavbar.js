@@ -5,10 +5,8 @@
         .directive(tst.modules.ui.navbar.directive, function() {
             var controller = [
                 '$scope',
-                '$location',
-                tst.modules.core.services.notifier,
                 tst.modules.auth.services.authentication,
-                function ($scope, $location, notifier, authentication) {
+                function ($scope, authentication) {
                     $scope.user = authentication.getCurrentLoginUser();
                 }
             ];

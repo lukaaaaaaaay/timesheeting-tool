@@ -15,7 +15,6 @@
     angular.module(tst.modules.ui.name, [
         'navbar',
         'sidebar'
-        //tst.modules.ui.sidebar.name
     ]);
 
 }(angular, tst));

@@ -3,7 +3,6 @@
 
     tst.modules.ui.sidebar = {
         name: 'sidebar',
-        controller:  'sidebarCtrl',
         view: 'js/modules/ui/sidebar/html/sidebar.tmpl.html',
         directive: 'tstSidebar',
     };
