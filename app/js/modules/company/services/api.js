@@ -67,10 +67,10 @@
              * getCurrentCompany
              */
             getCurrentCompany = function () {
-                if(localStorage.get(tst.modules.company.storage.currentCompany)
-                    return localStorage.get(tst.modules.company.storage.currentCompany);
+                if(localStorage.get(tst.modules.company.storage.companyId))
+                    return localStorage.get(tst.modules.company.storage.companyId);
 
-                return localStorage.get(tst.modules.company.storage.currentCompany);
+                return currentCompany;
             };
 
             return {

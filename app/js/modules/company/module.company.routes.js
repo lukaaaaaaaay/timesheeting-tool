@@ -4,6 +4,7 @@
     angular.module(tst.modules.company.name).config([
         '$stateProvider', 
         function ($stateProvider) {
+            // STATE: Parent
             $stateProvider.state(tst.modules.company.states.company, {
               template: '<ui-view />',
               controller: function($scope){
@@ -11,6 +12,7 @@
               }
             });
 
+            // STATE: Create Company
             $stateProvider.state(tst.modules.company.states.create, {
                 url: tst.modules.company.routes.create,
                 controller: tst.modules.company.controllers.create,
@@ -24,6 +26,7 @@
                 }
             });
 
+            // STATE: Edit company
             $stateProvider.state(tst.modules.company.states.edit, {
                 url: tst.modules.company.routes.edit,
                 controller: tst.modules.company.controllers.edit,
@@ -36,6 +39,7 @@
                 sidebarMenu: tst.modules.company.sidebarMenu.edit
             });
 
+            // STATE: View company
             $stateProvider.state(tst.modules.company.states.view, {
                 url: tst.modules.company.routes.view,
                 controller: tst.modules.company.controllers.view,

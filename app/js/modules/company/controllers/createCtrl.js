@@ -4,13 +4,14 @@
     angular.module(tst.modules.company.name)
         .controller(tst.modules.company.controllers.create, [
         '$scope',
-        '$state',
+        '$location',
         tst.modules.core.services.notifier,
         tst.modules.company.services.api,
-        function ($scope, $state, notifier, companyApi) {
+        function ($scope, $location, notifier, companyApi) {
             $scope.company = {};
 
             function init() {
+                console.log("company create init");
                 // todo: Don't set ID here. Let server handle the company owner based on whoever is authenticated during creation.
                 // we need to authenticate when we query the server anyways, so use that.
                 // $scope.company.directorId = authentication.getCurrentLoginUser();
@@ -21,7 +22,7 @@
             $scope.createCompany = function(form) {
                 if(form.$valid) {
                     companyApi.createCompany($scope.company, function(company) {
-                        $state.go(tst.modules.dashboard.states.home);
+                        $location.path(tst.modules.dashboard.routes.home);
                     }, function(error) {
 
                     });

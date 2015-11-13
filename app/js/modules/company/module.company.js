@@ -5,7 +5,7 @@
         name: 'company',
         states: {
             company: 'dashboard.company',
-            create: 'company-create', //'sales.company.create'
+            create: 'company-create', //'auth.company.create'
             edit: 'dashboard.company.edit',
             view: 'dashboard.company.view'
         },
@@ -32,7 +32,7 @@
         },
         storage: {
             companyId: 'tst-companyId'
-        }
+        },
         bodyClass: {
             create: 'tst-body',
             edit: 'tst-body',
