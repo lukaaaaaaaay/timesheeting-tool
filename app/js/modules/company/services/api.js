@@ -53,6 +53,8 @@
                 .success(function(resp) {
                     currentCompany = resp;
 
+                    localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
+                    
                     // TODO: Broadcasts a companyRegistered event for subscribers.
                     //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
                     callback(company);
@@ -74,16 +76,16 @@
                 var companyId = localStorage.get(tst.modules.company.storage.companyId);
 
                 // Get the currentUser based on the company ID
-                $http.get( tst.modules.api.url + '/api/companies/' + companyId)
-                .success(function(resp) {
-                    currentCompany = resp;
+                    $http.get( tst.modules.api.url + '/api/companies/' + companyId)
+                    .success(function(resp) {
+                        currentCompany = resp;
 
-                    localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
-                    return currentCompany;
-                })
-                .error(function(err) {
-                    defer.reject(err);
-                }.bind(this));
+                        localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
+                        return currentCompany;
+                    })
+                    .error(function(err) {
+                        defer.reject(err);
+                    }.bind(this));
 
             };
 

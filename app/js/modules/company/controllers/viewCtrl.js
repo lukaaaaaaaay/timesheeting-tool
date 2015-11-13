@@ -10,6 +10,7 @@
 
             function init() {
                 $scope.company = companyApi.getCurrentCompany();
+                console.log($scope.company);
             }
             init();
             
