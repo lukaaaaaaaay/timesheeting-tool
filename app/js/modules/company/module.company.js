@@ -31,7 +31,8 @@
             view: '/company/view'
         },
         storage: {
-            companyId: 'tst-companyId'
+            companyId: 'tst-companyId',
+            currentCompany: 'tst-currentCompany'
         },
         bodyClass: {
             create: 'tst-body',
@@ -56,6 +57,7 @@
 
     angular.module(tst.modules.company.name, [
         'LocalStorageModule',
-        tst.modules.core.name
+        tst.modules.core.name,
+        tst.modules.auth.name        
     ]);
 }(angular, tst));

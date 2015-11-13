@@ -28,6 +28,7 @@
                     // todo: subscribe to logout event and clear currentCompany, 
                     // todo: also subscribe to login event to store currentCompany on login
                     localStorage.set(tst.modules.company.storage.companyId, currentCompany.id);
+                    localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
 
 
                     // Broadcasts a companyRegistered event for subscribers.
@@ -67,10 +68,23 @@
              * getCurrentCompany
              */
             getCurrentCompany = function () {
-                if(localStorage.get(tst.modules.company.storage.companyId))
-                    return localStorage.get(tst.modules.company.storage.companyId);
+                if(localStorage.get(tst.modules.company.storage.currentCompany))
+                    return localStorage.get(tst.modules.company.storage.currentCompany);
 
-                return currentCompany;
+                var companyId = localStorage.get(tst.modules.company.storage.companyId);
+
+                // Get the currentUser based on the company ID
+                $http.get( tst.modules.api.url + '/api/companies/' + companyId)
+                .success(function(resp) {
+                    currentCompany = resp;
+
+                    localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
+                    return currentCompany;
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
             };
 
             return {
