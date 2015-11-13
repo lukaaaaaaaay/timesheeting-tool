@@ -14,6 +14,7 @@
                     if (next.sidebarMenu !== undefined) {
                         $rootScope.sidebarMenu = next.sidebarMenu;
                     }
+                    broadcast();
                 });
 
                 broadcast();
@@ -43,6 +44,10 @@
 
             toggleCollapsed = function () {
                 $rootScope.sidebarMenu.collapsed = !$rootScope.sidebarMenu.collapsed;
+                if($rootScope.sidebarMenu.collapsed)
+                    $rootScope.bodyClass = 'tst-body sidebar-closed';
+                else 
+                    $rootScope.bodyClass = 'tst-body';
                 broadcast();
             };
 
