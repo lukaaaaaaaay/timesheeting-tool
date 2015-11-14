@@ -12,6 +12,20 @@ angular.module(tst.modules.auth.name).run([
         var routeChangeRequiredAfterLogin = false,
             loginRedirectUrl;
 
+
+        // Listen for logout request and redirect.
+        eventbus.subscribe(tst.modules.auth.events.userLoggedOut, function (event) {
+            $location.path(tst.modules.auth.routes.login);
+        });
+
+        // Listen for login request and add the currentUser to the $rootScope.
+        eventbus.subscribe(tst.modules.auth.events.userLoggedIn, function (event, user) {
+            // It's very handy to add references to currentUser to the $rootScope
+            // so that we can access them from any scope within our application.
+            console.log("adding " + user.email + " to rootScope");
+            $rootScope.currentUser = user;
+        });
+            
         /**
          * Whenever the state changes, check if the state requires authorization.
          */
