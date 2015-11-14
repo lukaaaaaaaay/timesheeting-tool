@@ -84,6 +84,8 @@ module.exports = {
         var newDepartment = req.body;
         // Assign the company to the new department
         Company.findOne({id:req.user.companyId}).exec(function(error,company){
+            if (error) return res.negotiate(error);
+            
             newDepartment.companyId = company.id 
             Department.create(newDepartment, function (err, department) {
                 if (err) return res.negotiate(err);
