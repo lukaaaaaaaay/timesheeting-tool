@@ -19,9 +19,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                data: {
-                    bodyClass: tst.modules.company.bodyClass.create,
-                }
+                bodyClass: tst.modules.company.bodyClass.create,
+                
             });
 
             $stateProvider.state(tst.modules.company.states.edit, {

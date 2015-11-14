@@ -31,12 +31,13 @@ var jsFilesToInject = [
 
   // Bower Components are brought in here
   '/bower_components/jquery/dist/jquery.js',
+  '/bower_components/bootstrap/dist/js/bootstrap.min.js',
   '/bower_components/angular/angular.js',
   '/bower_components/angular-base64/angular-base64.js',
-  '/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+  '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   '/bower_components/angular-local-storage/dist/angular-local-storage.js',
   '/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-  '/bower_components/angular-toastr/dist/angular-toastr.tpls.js',
+  '/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
   '/bower_components/ng-dialog/js/ngDialog.min.js',
   '/bower_components/underscore/underscore-min.js',
   '/bower_components/moment/min/moment.min.js',
@@ -58,6 +59,13 @@ var jsFilesToInject = [
   'js/modules/auth/**/*.js',
   'js/modules/auth/module.auth.run.js',
 
+  // Import TST ui
+  'js/modules/ui/module.ui.js',
+  'js/modules/ui/navbar/module.navbar.js',
+  'js/modules/ui/navbar/**/*.js',
+  'js/modules/ui/sidebar/module.sidebar.js',
+  'js/modules/ui/sidebar/**/*.js',
+
   // Import TST accounts
   'js/modules/account/module.account.js',
   'js/modules/account/module.account.routes.js',
@@ -73,6 +81,11 @@ var jsFilesToInject = [
   'js/modules/departments/module.department.routes.js',
   'js/modules/departments/**/*.js',
   
+  // Import TST projects
+  'js/modules/project/module.project.js',
+  'js/modules/project/module.project.routes.js',
+  'js/modules/project/**/*.js',
+
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',
   'js/modules/dashboard/module.dashboard.routes.js',

@@ -1,0 +1,112 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-8">
+			<h3 class="page-heading teal">Edit Project</h3>
+			<form name="editProjectForm" class="form-horizontal" novalidate>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Project Name</label>
+					</div>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="projectName" ng-model="project.name" required/>
+						<div class="error" 
+							ng-show="(editProjectForm.projectName.$dirty && editProjectForm.projectName.$invalid) 
+										|| (submitted && editProjectForm.projectName.$invalid)" >
+				            <span ng-show="editProjectForm.projectName.$error.required">
+				              The project name is required!
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Status</label>
+					</div>
+					<div class="col-sm-4">
+						<select class="form-control" name="status" ng-model="project.statusId" 
+								ng-options="status.id as status.name for status in statuses" required>
+							<option value="">Please select..</option>
+						</select>
+						<div class="error" 
+								ng-show="(editProjectForm.status.$dirty && editProjectForm.status.$invalid) 
+											|| (submitted && editProjectForm.status.$invalid)" >
+				            <span ng-show="editProjectForm.status.$error.required">
+				              You must select a project status!
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Start Date</label>
+					</div>
+					<div class="col-sm-3">
+						<input type="date" 
+								class="form-control" 
+								name="startDate" 
+								ng-model="project.startDate" 
+								required 
+								ng-change="validateDate(editProjectForm, project.startDate, project.dueDate)"/>
+						<div class="error" ng-show="(editProjectForm.startDate.$dirty && editProjectForm.startDate.$invalid) || (submitted && editProjectForm.startDate.$invalid)" >
+				            <span ng-show="editProjectForm.startDate.$error.required">
+				              The project start date is required!
+				            </span>
+				        </div>
+					</div>
+					<div class="col-sm-2">
+						<label class="control-label">Due Date</label>
+					</div>
+					<div class="col-sm-3">
+						<input type="date" 
+								class="form-control" 
+								name="dueDate" 
+								ng-model="project.dueDate" 
+								ng-change="validateDate(editProjectForm, project.startDate, project.dueDate)"/>
+<!-- 						<div class="error" ng-show="editProjectForm.dueDate.$dirty && editProjectForm.dueDate.$invalid" >
+				            <span ng-show="editProjectForm.dueDate.$error.required">
+				              The project due date is required!
+				            </span>
+				        </div> -->
+					</div>
+					<div class="col-sm-9 col-sm-offset-3 error" ng-show="(editProjectForm.startDate.$dirty && editProjectForm.startDate.$invalid) 
+												|| editProjectForm.dueDate.$invalid" >
+			            <span ng-show="editProjectForm.startDate.$error.invalidDate && editProjectForm.dueDate.$error.invalidDate">
+			              The due date must be greater than the start date.
+			            </span>
+			        </div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Project Manager</label>
+					</div>
+					<div class="col-sm-4">
+						<select class="form-control" name="projectManager" ng-model="project.projectManagerId" 
+								ng-options="item.id as item.fullName for item in managers" required>
+							<option value="">Please select..</option>
+						</select>
+						<div class="error" ng-show="(editProjectForm.projectManager.$dirty && editProjectForm.projectManager.$invalid) || (submitted && editProjectForm.projectManager.$invalid)" >
+				            <span ng-show="editProjectForm.projectManager.$error.required">
+				              You must assign a project manager!
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Description</label>
+					</div>
+					<div class="col-sm-9">
+						<textarea class="form-control" name="description" ng-model="project.description"></textarea> 
+					</div>
+				</div>
+				<div class="col-sm-6 form-buttons">
+					<a href="/#/projects" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to Project List</a>
+					<button type="button" class="btn btn-danger" ng-click="deleteProject()"><i class="fa fa-times"></i> Delete</button>
+				</div>	
+				<div class="col-sm-6 text-right form-buttons">
+					<button type="button" class="btn btn-primary" ng-click="updateProject(editProjectForm)"><i class="fa fa-check"></i> Save</button>
+				</div>								
+			</form>
+		</div>
+	</div>
+</div>
