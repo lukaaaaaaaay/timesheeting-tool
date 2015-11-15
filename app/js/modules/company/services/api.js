@@ -32,7 +32,7 @@
 
 
                     // Broadcasts a companyRegistered event for subscribers.
-                    // eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
+                    eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
                     callback(company);
                 })
                 .error(function(err) {
