@@ -58,7 +58,7 @@
 
             function init() {
                 // get active company
-                var companyId = companyApi.getCurrentCompany();
+                var companyId = companyApi.getCurrentCompany().id;
                 departmentApi.getAllDepartments(companyId, function (departments) {
                     $scope.departments = departments;
                     updateList();

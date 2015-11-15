@@ -8,7 +8,8 @@ angular.module(tst.modules.auth.name).run([
     '$rootScope',
     '$location',
     tst.modules.auth.services.authorization,
-    function ($rootScope, $location, authorization) {
+    tst.modules.core.services.eventbus,
+    function ($rootScope, $location, authorization, eventbus) {
         var routeChangeRequiredAfterLogin = false,
             loginRedirectUrl;
 

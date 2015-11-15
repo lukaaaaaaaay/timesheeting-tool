@@ -13,9 +13,9 @@
           companyRegistered: 'company:org:registered'
         },
         controllers: {
-            create: 'createCtrl',
-            edit: 'editCtrl',
-            view: 'viewCtrl'
+            create: 'companyCreateCtrl',
+            edit: 'companyEditCtrl',
+            view: 'companyViewCtrl'
         },
         views: {
             create: 'js/modules/company/html/create.tmpl.html',
