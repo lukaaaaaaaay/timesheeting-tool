@@ -57,14 +57,29 @@
           </li>
         </ul>
       </li>
-      <li ng-class="{active: sidebarMenu.selected == 4}">
+      <li ng-class="{active: sidebarMenu.selected == 4, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 3}">
         <a href="javascript:;">
           <i class="fa fa-tasks"></i>
           <span class="title">Tasks</span>
           <span class="arrow"></span>
         </a>
       </li>
-      <li access="Staff" ng-class="{active: sidebarMenu.selected == 5}">
+      <li ng-class="{active: sidebarMenu.selected == 5, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 4}">
+        <a href="javascript:;">
+          <i class="fa fa-tasks"></i>
+          <span class="title">Tasks</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 4">
+          <li>
+            <a href="/#/timesheet/create">Add a timesheet</a>
+          </li>
+          <li>
+            <a href="/#/timesheets">View Timesheets</a>
+          </li>
+        </ul>
+      </li>
+      <li access="Staff" ng-class="{active: sidebarMenu.selected == 6}">
         <a href="javascript:;" >
           <i class="fa fa-users"></i>
           <span class="title">Staff</span>

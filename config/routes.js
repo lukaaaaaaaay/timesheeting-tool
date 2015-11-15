@@ -268,7 +268,48 @@ module.exports.routes = {
     controller : 'CategoryController',
     action     : 'destroy',
     roles      : ["admin"]
-  }
+  },
 
+  // Task Routes
+  'GET /api/timesheets': {
+    controller : 'TimesheetController',
+    action     : 'find',
+    roles      : ["admin"]
+  },
+  'GET /api/timesheets/task/:id': {
+    controller : 'TimesheetController',
+    action     : 'findAllForTask',
+    roles      : ["admin", "director"]
+  },
+  'GET /api/timesheets/user/:id': {
+    controller : 'TimesheetController',
+    action     : 'findAllForUser',
+    roles      : ["admin", "director"]
+  },
+  'GET /api/timesheets/status/:id': {
+    controller : 'TimesheetController',
+    action     : 'findAllForStatus',
+    roles      : ["admin", "director"]
+  },
+  'GET /api/timesheets/:id': {
+    controller : 'TimesheetController',
+    action     : 'findOne',
+    roles      : ["admin", "director"]
+  },
+  'POST /api/timesheets': {
+    controller : 'TimesheetController',
+    action     : 'create',
+    roles      : ["admin", "director"]
+  },
+  'PUT /api/timesheets/:id': {
+    controller : 'TimesheetController',
+    action     : 'update',
+    roles      : ["admin", "director"]
+  },
+  'DELETE /api/timesheets/:id': {
+    controller : 'TimesheetController',
+    action     : 'destroy',
+    roles      : ["admin"]
+  },
 
 };
