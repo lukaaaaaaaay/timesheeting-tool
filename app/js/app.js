@@ -19,5 +19,6 @@
         tst.modules.department.name,
         tst.modules.dashboard.name,
         tst.modules.project.name,
+        tst.modules.timesheet.name
     ]);
 }(angular, tst));

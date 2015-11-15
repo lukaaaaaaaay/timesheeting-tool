@@ -107,16 +107,16 @@
             },
 
             /**
-            * getAllUsersForCompany
+            * getAllTasksForUser
             */
-            getAllUsersForCompany = function(id, callback) {
+            getAllTasksForUser = function(id, callback) {
                 var defer = $q.defer();
 
-                $http.get( tst.modules.api.url + '/api/users/company/' + id)
+                $http.get( tst.modules.api.url + '/api/tasks/user')
                 .success(function(resp) {
-                    var users = resp;
+                    var tasks = resp;
 
-                    callback(users);
+                    callback(tasks);
                 })
                 .error(function(err) {
                     defer.reject(err);
@@ -147,7 +147,7 @@
                 deleteTimesheet: deleteTimesheet,
                 getAllTimesheets: getAllTimesheets,
                 getCurrentTimesheet: getCurrentTimesheet,
-                getAllUsersForCompany: getAllUsersForCompany,
+                getAllTasksForUser: getAllTasksForUser,
                 getAllStatuses: getAllStatuses
             };
         }

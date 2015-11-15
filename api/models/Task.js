@@ -106,7 +106,7 @@
 
  				return cb(null, tasks);
  			});
- 		},  
+ 		},
  	},
  }
 

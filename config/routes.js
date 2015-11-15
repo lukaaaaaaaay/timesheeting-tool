@@ -211,6 +211,11 @@ module.exports.routes = {
     action     : 'findAllForProject',
     roles      : ["admin", "director"]
   },
+  'GET /api/tasks/user': {
+    controller : 'TaskController',
+    action     : 'findAllForUser',
+    roles      : ["admin", "director"]
+  },
   'GET /api/tasks/status/:id': {
     controller : 'TaskController',
     action     : 'findAllForStatus',
@@ -270,7 +275,7 @@ module.exports.routes = {
     roles      : ["admin"]
   },
 
-  // Task Routes
+  // Timesheet Routes
   'GET /api/timesheets': {
     controller : 'TimesheetController',
     action     : 'find',
