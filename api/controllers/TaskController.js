@@ -82,11 +82,7 @@ module.exports = {
             if (err) return res.negotiate(err);
             
             if(user) {
-
-                    console.log(user);
-                    res.ok(user);
-                
-                
+                res.ok(user.tasks);
             }
             else {
                 res.notFound('No Task found for this user');

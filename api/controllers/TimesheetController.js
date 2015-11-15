@@ -121,7 +121,14 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-                Timesheet.create(req.body, function (err, timesheet) {
+        var timesheet = req.body;
+
+        User.findOne(req.user.id, function (error, user) {
+            if (error) return res.negotiate(error);
+
+            timesheet.userId = user.id;
+            console.log(timesheet);
+            Timesheet.create(timesheet, function (err, timesheet) {
                     if (err) return res.negotiate(err);
                 
                     // debugging - remove later.. or not, server logs are helpful.
@@ -134,6 +141,8 @@ module.exports = {
                         res.badRequest('Timesheet with the id ' + req.body.id + ' could not be created.');
                     }
                 });
+        });
+                
 
     },
 

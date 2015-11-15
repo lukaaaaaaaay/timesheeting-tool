@@ -13,10 +13,11 @@
             $scope.tasks = [];
             $scope.submitted = false;
 
-            $scope.createProject = function(form) {
+            $scope.createTimesheet = function(form) {
                 $scope.submitted = true;
                 if(form.$valid) {
-                    timesheetApi.createProject($scope.timesheet, function(timesheet) {
+                    $scope.timesheet.statusId = 6;
+                    timesheetApi.createTimesheet($scope.timesheet, function(timesheet) {
                         notifier.success("success", "New timesheet created");                        
                         $location.path(tst.modules.timesheet.routes.list);
                     }, function(error) {
@@ -28,16 +29,16 @@
             };
 
             $scope.validateTime = function(form, start, end) {
-                if(end) {
-                    if(end <= start) {
-                        form.endTime.$setValidity('invalidDate', false);
-                        form.startTime.$setValidity('invalidDate', false);
-                    }
-                    else {
-                        form.endTime.$setValidity('invalidDate', true);
-                        form.startTime.$setValidity('invalidDate', true);
-                    }
-                }
+                // if(end) {
+                //     if(end <= start) {
+                //         form.endTime.$setValidity('invalidDate', false);
+                //         form.startTime.$setValidity('invalidDate', false);
+                //     }
+                //     else {
+                //         form.endTime.$setValidity('invalidDate', true);
+                //         form.startTime.$setValidity('invalidDate', true);
+                //     }
+                // }
 
             };
 
@@ -51,6 +52,8 @@
                     console.log(error);
                     notifier.error('Error', 'Unable to retrieve all tasks for the project ' + user.id);
                 });
+
+                $scope.timesheet.name = user.fullName;
             }
 
             init();
