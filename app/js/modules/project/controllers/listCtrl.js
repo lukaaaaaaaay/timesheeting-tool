@@ -64,7 +64,7 @@
 
             function init() {
                 // get active company
-                var companyId = companyApi.getCurrentCompany();
+                var companyId = companyApi.getCurrentCompany().id;
                 projectApi.getAllProjects(companyId, function (projects) {
                     $scope.projects = projects;
                     updateList();
