@@ -29,13 +29,14 @@
 					<tr ng-repeat="timesheet in filteredTimesheets | limitTo:numPerPage">
 						<td>{{timesheet.id}}</td>
 						<td><a href="/#/timesheet/view/{{timesheet.id}}">{{timesheet.name}}</a></td>
-						<td>{{taskAsText(timesheet.taskId)}}</td>
+						<!-- <td>{{taskAsText(timesheet.taskId)}}</td> -->
+						<td>{{timesheet.taskId}}</td>
 						<td>{{formatDate(timesheet.startTime)}}</td>
 						<td>{{formatDate(timesheet.endTime)}}</td>
 						<td>{{statusAsText(timesheet.statusId)}}</td>
 						<td>
 							<a href="/#/timesheet/edit/{{timesheet.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>
-							<button type="button" class="btn btn-danger" ng-click="deleteProject(timesheet)"><i class="fa fa-trash-o"></i></button>
+							<button type="button" class="btn btn-danger" ng-click="deleteTimesheet(timesheet)"><i class="fa fa-trash-o"></i></button>
 						</td>
 					</tr>
 				</table>

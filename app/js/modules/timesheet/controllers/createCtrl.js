@@ -44,7 +44,7 @@
 
             function init() {
                 var user = authentication.getCurrentLoginUser();
-
+                
                 timesheetApi.getAllTasksForUser(user.id, function(tasks) {
                     console.log(tasks);
                     $scope.tasks = tasks;

@@ -49,15 +49,16 @@
  			model: 'Task',
  			required: true
  		},
+ 	},
 
- 		/**
+ 	/**
 		 * Finds all timesheets for a task.
 		 * 
 		 * @param {int}	taskId - The task id.
  		 */
  		findAllForTask: function(taskId, cb) {
 
- 			Timesheet.find({taskId: taskId }).exec(function (err, timesheets) {
+ 			this.find({taskId: taskId }).exec(function (err, timesheets) {
  				if (err) return cb(err);
 
  				return cb(null, timesheets);
@@ -71,7 +72,7 @@
  		 */
  		findAllForUser: function(userId, cb) {
 
- 			Timesheet.find({userId: userId }).exec(function (err, timesheets) {
+ 			this.find({userId: userId }).exec(function (err, timesheets) {
  				if (err) return cb(err);
 
  				return cb(null, timesheets);
@@ -85,13 +86,12 @@
  		 */
  		findAllForStatus: function(statusId, cb) {
 
- 			Timesheet.find({statusId: statusId }).exec(function (err, timesheets) {
+ 			this.find({statusId: statusId }).exec(function (err, timesheets) {
  				if (err) return cb(err);
 
  				return cb(null, timesheets);
  			});
  		},
- 	},
  }
 
  module.exports = Timesheet;

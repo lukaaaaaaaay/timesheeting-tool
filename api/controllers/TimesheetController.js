@@ -78,7 +78,7 @@ module.exports = {
      * @param {Object} res
      */
     findAllForUser: function(req, res) {
-        Timesheet.findAllForUser({userId: req.param('id')}, function(err, timesheets) {
+        Timesheet.findAllForUser(req.param('id'), function(err, timesheets) {
             if (err) return res.negotiate(err);
             
 

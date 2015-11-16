@@ -314,7 +314,7 @@ module.exports.routes = {
   'DELETE /api/timesheets/:id': {
     controller : 'TimesheetController',
     action     : 'destroy',
-    roles      : ["admin"]
+    roles      : ["admin", "director"]
   },
 
 };

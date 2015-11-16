@@ -88,12 +88,31 @@
             },
 
             /**
-            * getAllTimesheets
+            * getAllTimesheetsForCompany
             */
-            getAllTimesheets = function(id, callback) {
+            getAllTimesheetsForCompany = function(id, callback) {
                 var defer = $q.defer();
 
                 $http.get( tst.modules.api.url + '/api/timesheets/company/' + id)
+                .success(function(resp) {
+                    var timesheets = resp;
+
+                    callback(timesheets);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            /**
+            * getAllTimesheetsForUser
+            */
+            getAllTimesheetsForUser = function(id, callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/timesheets/user/' + id)
                 .success(function(resp) {
                     var timesheets = resp;
 
@@ -139,16 +158,34 @@
                 }.bind(this));
 
                 return defer.promise;
+            },
+
+            getTaskName = function(id, callback) {
+                //var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/tasks/' + id)
+                .success(function(resp) {
+                    var task = resp;
+
+                    return task.name;
+                })
+                .error(function(err) {
+                    return ""
+                });
+
+                //return defer.promise;
             };
 
             return {
                 createTimesheet: createTimesheet,
                 updateTimesheet: updateTimesheet,
                 deleteTimesheet: deleteTimesheet,
-                getAllTimesheets: getAllTimesheets,
+                getAllTimesheetsForCompany: getAllTimesheetsForCompany,
+                getAllTimesheetsForUser: getAllTimesheetsForUser,
                 getCurrentTimesheet: getCurrentTimesheet,
                 getAllTasksForUser: getAllTasksForUser,
-                getAllStatuses: getAllStatuses
+                getAllStatuses: getAllStatuses,
+                getTaskName: getTaskName
             };
         }
     ]);
