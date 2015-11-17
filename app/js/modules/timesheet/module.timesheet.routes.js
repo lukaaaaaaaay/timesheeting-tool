@@ -1,7 +1,7 @@
 (function (angular, tst) {
     'use strict';
 
-    angular.module(tst.modules.timesheet.name).config([
+    angular.module('timesheet').config([
         '$stateProvider',
         function ($stateProvider) {
             $stateProvider.state(tst.modules.timesheet.states.timesheet, {

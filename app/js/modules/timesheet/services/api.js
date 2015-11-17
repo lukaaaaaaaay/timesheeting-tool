@@ -1,6 +1,6 @@
 (function (angular, tst) {
     'use strict';
-
+    
     /*
      * Provides Timesheet functionality for TST.
      */

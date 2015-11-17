@@ -10,11 +10,12 @@
             view: 'dashboard.project.view',
             list: 'dashboard.project.list'
         },
+        // need to prefix this with project to prevent conflicts with the timesheeting module. WTF!!!!
         controllers: {
-            create: 'createCtrl',
-            edit: 'editCtrl',
-            view: 'viewCtrl',
-            list: 'listCtrl'
+            create: 'projectCreateCtrl',
+            edit: 'projectEditCtrl',
+            view: 'projectViewCtrl',
+            list: 'projectListCtrl'
         },
         views: {
             create: 'js/modules/project/html/create.tmpl.html',
@@ -24,7 +25,7 @@
             dialog: 'js/modules/project/html/confirm-delete.html'
         },
         services: {
-            api: 'api',
+            api: 'projectApi',
         },
         routes: {
             create: '/project/create',
@@ -40,27 +41,27 @@
         },
         sidebarMenu: {
             edit: {
-                selected: 3,
+                selected: 5,
                 showDropdown: true,
-                activeSubmenu: 2,
+                activeSubmenu: 4,
                 collapsed: false
             },
             view: {
-                selected: 3,
+                selected: 5,
                 showDropdown: true,
-                activeSubmenu: 2,
+                activeSubmenu: 4,
                 collapsed: false
             },
             create: {
-                selected: 3,
+                selected: 5,
                 showDropdown: true,
-                activeSubmenu: 2,
+                activeSubmenu: 4,
                 collapsed: false
             },
             list: {
-                selected: 3,
+                selected: 5,
                 showDropdown: true,
-                activeSubmenu: 2,
+                activeSubmenu: 4,
                 collapsed: false
             },
         }
@@ -69,6 +70,5 @@
     angular.module(tst.modules.project.name, [
         tst.modules.core.name,
         tst.modules.auth.name,
-        tst.modules.company.name,
     ]);
 }(angular, tst));

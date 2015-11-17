@@ -65,9 +65,9 @@
         </a>
       </li>
       <li ng-class="{active: sidebarMenu.selected == 5, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 4}">
-        <a href="javascript:;">
-          <i class="fa fa-tasks"></i>
-          <span class="title">Timesheet</span>
+        <a href="javascript:;" ng-click="toggleDropdown(4)">
+          <i class="fa fa-calendar"></i>
+          <span class="title">Timesheets</span>
           <span class="arrow"></span>
         </a>
         <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 4">

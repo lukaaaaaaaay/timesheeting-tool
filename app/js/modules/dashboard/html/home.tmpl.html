@@ -7,6 +7,35 @@
     <p>
         <a href="#/users">This link requires the user to have admin permissions</a>
     </p>
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <h2 class="purple">Top Projects</h2>    
+        </div>
+        
+        <div class="col-md-4" ng-repeat="project in projects">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{project.name}}
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    
+            <p>
+                <strong>Start Date: </strong>
+                {{formatDate(project.startDate)}} <br/>
+                <strong>Due Date: </strong>
+                {{formatDate(project.dueDate)}} <br/>
+                <strong>Status: </strong>
+                {{statusAsText(project.statusId)}} <br/>
+                <div class="text-right">
+                <a href="/#/project/view/{{project.id}}">View <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <p>
         You will see this button if you are a Staff User: <a class="btn btn-primary" access="Staff">Can You See Me?</a>

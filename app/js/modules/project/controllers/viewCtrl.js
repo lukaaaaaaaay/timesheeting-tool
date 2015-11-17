@@ -61,6 +61,8 @@
                     notifier.error('Error', 'There was an error retrieving all the statuses');
                 });
 
+                console.log(tst.modules.project.name);
+
             }
 
             init();
