@@ -4,6 +4,21 @@
     angular.module(tst.modules.company.name).config([
         '$stateProvider', 
         function ($stateProvider) {
+            $stateProvider.state(tst.modules.company.states.company, {
+              template: '<ui-view />',
+              controller: function($scope){
+                  console.log("company active");
+              }
+            });
+
+            // $stateProvider.state('dashboard.company.view', {
+            //   url: '/company/lol',
+            //   // templateUrl: 'js/modules/company/html/view.tmpl.html',
+            //   controller: function($scope){
+            //     console.log("company view");
+            //   }
+            // });
+
 
             $stateProvider.state(tst.modules.company.states.create, {
                 url: tst.modules.company.routes.create,
@@ -13,9 +28,8 @@
                     loginRequired: true,
                     roles: ['Admin', 'Director']
                 },
-                data: {
-                    bodyClass: tst.modules.company.bodyClass.create,
-                }
+                bodyClass: tst.modules.company.bodyClass.create,
+                
             });
 
             $stateProvider.state(tst.modules.company.states.edit, {

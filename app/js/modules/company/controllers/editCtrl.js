@@ -6,7 +6,7 @@
         '$scope',
         tst.modules.core.services.notifier,
         tst.modules.company.services.api,
-        function ($scope, notifier, api) {
+        function ($scope, notifier, companyApi) {
             $scope.company = {};
 
             function init() {
@@ -17,7 +17,7 @@
                 // $rootScope.sidebarMenu.activeSubmenu = 1;
 
                 // get active company
-                $scope.company = api.getCurrentCompany();
+                $scope.company = companyApi.getCurrentCompany();
 
             }
             init();
@@ -25,7 +25,7 @@
 
             $scope.updateCompany = function(form) {
                 if(form.$valid) {
-                    api.updateCompany($scope.company, function(company) {
+                    companyApi.updateCompany($scope.company, function(company) {
                         notifier.success('Success', 'Company details updated!');
                         reset();
                     }, function(error) {

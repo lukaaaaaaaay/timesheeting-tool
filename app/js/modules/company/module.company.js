@@ -4,9 +4,10 @@
     tst.modules.company = {
         name: 'company',
         states: {
-            create: 'company-create',
-            edit: 'company-edit',
-            view: 'company-view'
+            company: 'dashboard.company',
+            create: 'company-create', //'sales.company.create'
+            edit: 'dashboard.company.edit',
+            view: 'dashboard.company.view'
         },
         events: {
           companyRegistered: 'tst:company:registered'
@@ -51,7 +52,7 @@
     };
 
     angular.module(tst.modules.company.name, [
-        tst.modules.core.name,
-        tst.modules.auth.name
+        'LocalStorageModule',
+        tst.modules.core.name
     ]);
 }(angular, tst));

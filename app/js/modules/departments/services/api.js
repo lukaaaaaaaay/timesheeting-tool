@@ -2,7 +2,7 @@
     'use strict';
 
     /*
-     * Provides Authentication for TST.
+     * Provides Department functionality for TST.
      */
     angular.module(tst.modules.department.name).factory(tst.modules.department.services.api, [
         '$q',
