@@ -13,6 +13,7 @@
 
             $stateProvider.state(tst.modules.staff.states.create, {
                 url: tst.modules.staff.routes.create,
+                controller: tst.modules.staff.controllers.create,
                 templateUrl: tst.modules.staff.views.create,
                 access: {
                     loginRequired: true,

@@ -7,8 +7,14 @@
             parent: 'dashboard.staff',
             create: 'dashboard.staff.create',
         },
+        controllers: {
+            create: 'staffCreateCtrl',
+        },
         views: {
             create: 'js/modules/staff/html/create.tmpl.html'
+        },
+        services: {
+            api: 'staffApi'
         },
         routes: {
             create: '/staff/create'
