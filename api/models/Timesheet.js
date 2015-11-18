@@ -7,13 +7,7 @@
  var Timesheet = {
  	tableName: 'timesheets',
 
- 	attributes: {
-
- 		// A timesheet has a name
- 		name: {
- 			type: 'string',
- 			required: true
- 		},
+ 	attributes: { 
 
  		// A timesheet has a start time
  		startTime: {
