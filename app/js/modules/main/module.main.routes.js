@@ -1,14 +1,17 @@
 (function (angular, tst) {
     'use strict';
 
-    angular.module('main').config([
+    angular.module(tst.modules.main.name).config([
         '$stateProvider',
         function ($stateProvider) {
 
-            $stateProvider.state('main', {
-                url: '/main',
+            $stateProvider.state(tst.modules.main.states.main, {
+                url: '/',
                 templateUrl: tst.modules.main.views.main,
                 bodyClass: tst.modules.main.bodyClass.main,
+                access: {
+                    loginRequired: false,
+                },
                 views: {
                     'home@main': {
                         templateUrl: tst.modules.main.views.home,
@@ -25,7 +28,8 @@
                     'contact@main': {
                         templateUrl: tst.modules.main.views.contact,
                         controller: function($scope) {}
-                    }
+                    },
+
                 }
             });
         }]);

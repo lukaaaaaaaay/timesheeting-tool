@@ -13,7 +13,7 @@
         // controllers: {
         // },
         views: {
-            main: 'js/modules/main/html/main..html',
+            main: 'js/modules/main/html/main.html',
             home: 'js/modules/main/html/home.tmpl.html',
             about: 'js/modules/main/html/about.tmpl.html',
             faqs: 'js/modules/main/html/faq.tmpl.html',
