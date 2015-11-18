@@ -9,12 +9,6 @@
 
  	attributes: {
 
- 		// A task has a name
- 		name: {
- 			type: 'string',
- 			required: true
- 		},
-
  		// A task has an (optional) description
  		description: {
  			type: 'string'
