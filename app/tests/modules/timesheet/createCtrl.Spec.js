@@ -13,7 +13,14 @@ describe('createCtrl', function() {
    
 	it('should create a timesheet', function() {
 
-		var timesheetToCreate = {...};
+		var timesheetToCreate = {
+         startTime: '2015-11-04 14:00:00',
+         endTime: '2015-11-06 14:00:00',
+         userId: 2,
+         statusId: 6,
+         approvedBy: 2
+         taskId: 1
+      };
 
 		// todo: pass the timesheetToCreate to the controller
 

@@ -13,7 +13,17 @@ describe ('createCtrl', function() {
 
 	it('should create a company', function() {
 
-		var companyToCreate = {name: 'Google', ...};
+		var companyToCreate = {
+         companyName: 'Google',
+         description: 'Test Company',
+         address: '123 Test Street',
+         suburb: 'Suburb',
+         state: 'TST',
+         country: 'Australia',
+         postcode: '1234',
+         createdBy: 1,
+         directorId: 1
+      };
 
 		// todo: pass the companyToCreate to the controller
 

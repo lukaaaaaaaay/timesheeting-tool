@@ -13,7 +13,15 @@ describe('createCtrl', function() {
    
 	it('should create a project', function() {
 
-		var projectToCreate = {...};
+		var projectToCreate = {
+			name: 'Test Project',
+			description: 'This is a test',
+			startDate: '2015-11-18 14:00:00',
+			dueDate: '2015-12-01 14:00:00',
+			statusId: 1,
+			projectManagerId: 2,
+			companyId: 1
+		};
 
 		// todo: pass the projectToCreate to the controller
 

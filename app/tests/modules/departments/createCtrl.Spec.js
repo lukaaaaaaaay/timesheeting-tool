@@ -13,7 +13,12 @@ describe('createCtrl', function() {
    
 	it('should create a department', function() {
 
-		var departmentToCreate = {...};
+		var departmentToCreate = {
+         name: 'Test Department',
+         description: 'This is a test',
+         createdBy: 1,
+         companyId: 1
+      };
 
 		// todo: pass the departmentToCreate to the controller
 
