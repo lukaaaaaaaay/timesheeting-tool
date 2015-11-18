@@ -56,6 +56,9 @@ var jsFilesToInject = [
   'js/modules/core/**/*.js',
   'js/modules/core/module.core.run.js',
 
+    // Import TST Main
+  'js/modules/main/module.main.js',
+
   // Import TST auth
   'js/modules/auth/module.auth.js',
   'js/modules/auth/module.auth.routes.js',

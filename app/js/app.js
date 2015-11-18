@@ -7,9 +7,10 @@
     angular.module(tst.modules.app.name, [
         // Angular modules
         'ui.router',
-        
+
         // TST core famework
         tst.modules.core.name,
+        'main',
         tst.modules.auth.name,
 
         // App submodules
