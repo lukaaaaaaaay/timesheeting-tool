@@ -79,7 +79,8 @@ module.exports = {
         if (!req.user) {
           this.createDirector(req, res);
         } else {
-          createStaff(req, res);
+          console.log(req.user.email + " is creating a new staff:")
+          this.createStaff(req, res);
         }
     },
 
@@ -94,7 +95,7 @@ module.exports = {
         var user;
 
         user = req.allParams();
-        
+
         User.registerStaff(user)
           .then(function (user) {
             sails.log('created new staff user', user);
