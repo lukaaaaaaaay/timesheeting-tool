@@ -11,5 +11,15 @@
               }
             });
 
+            $stateProvider.state(tst.modules.staff.states.create, {
+                url: tst.modules.staff.routes.create,
+                templateUrl: tst.modules.staff.views.create,
+                access: {
+                    loginRequired: true,
+                    roles: ['Admin', 'Director']
+                },
+                bodyClass: tst.modules.staff.bodyClass.create,
+                sidebarMenu: tst.modules.staff.sidebarMenu.create
+            });
         }]);
 }(angular, tst));
