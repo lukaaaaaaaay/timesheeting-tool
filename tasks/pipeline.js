@@ -19,6 +19,7 @@ var cssFilesToInject = [
   'bower_components/angular-toastr/dist/angular-toastr.min.css',
   'bower_components/ng-dialog/css/ngDialog.min.css',
   'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
+  'bower_components/angular-chart.js/dist/angular-chart.css',
   'css/**/*.css'
 ];
 
@@ -41,6 +42,8 @@ var jsFilesToInject = [
   '/bower_components/ng-dialog/js/ngDialog.min.js',
   '/bower_components/underscore/underscore-min.js',
   '/bower_components/moment/min/moment.min.js',
+  '/bower_components/Chart.js/Chart.min.js',
+  '/bower_components/angular-chart.js/dist/angular-chart.js',
   
   // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',

@@ -21,7 +21,8 @@
     angular.module(tst.modules.core.name, [
         'toastr', 
         'ngDialog',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'chart.js'
     ]);
 
 }(angular, tst));

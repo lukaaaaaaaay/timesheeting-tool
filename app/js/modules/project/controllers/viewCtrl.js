@@ -43,7 +43,10 @@
             };
 
             $scope.formatDate = function (date) {
-                return moment(date).format('D/MM/YYYY');
+                if(date)
+                    return moment(date).format('D/MM/YYYY');
+
+                return '-';
             };
 
             function init() {

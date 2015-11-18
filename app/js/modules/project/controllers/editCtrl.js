@@ -98,7 +98,8 @@
             function setProject (project) {
                 $scope.project = project;
                 $scope.project.startDate = new Date($scope.project.startDate.toString());
-                $scope.project.dueDate = new Date($scope.project.dueDate.toString());
+                if($scope.project.dueDate)
+                    $scope.project.dueDate = new Date($scope.project.dueDate.toString());
             }
 
             

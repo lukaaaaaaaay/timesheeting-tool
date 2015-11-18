@@ -41,27 +41,27 @@
         },
         sidebarMenu: {
             edit: {
-                selected: 5,
+                selected: 3,
                 showDropdown: true,
-                activeSubmenu: 4,
+                activeSubmenu: 2,
                 collapsed: false
             },
             view: {
-                selected: 5,
+                selected: 3,
                 showDropdown: true,
-                activeSubmenu: 4,
+                activeSubmenu: 2,
                 collapsed: false
             },
             create: {
-                selected: 5,
+                selected: 3,
                 showDropdown: true,
-                activeSubmenu: 4,
+                activeSubmenu: 2,
                 collapsed: false
             },
             list: {
-                selected: 5,
+                selected: 3,
                 showDropdown: true,
-                activeSubmenu: 4,
+                activeSubmenu: 2,
                 collapsed: false
             },
         }
