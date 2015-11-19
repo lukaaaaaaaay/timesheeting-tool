@@ -63,6 +63,7 @@
 
  		// A task can have many timesheets?
  		//timesheets: {collection: 'Timesheet', via: 'task'},
+    },
 
  		/**
 		 * Finds all tasks for a project.
@@ -107,7 +108,6 @@
  				return cb(null, tasks);
  			});
  		},  
- 	},
  }
 
  module.exports = Task;
