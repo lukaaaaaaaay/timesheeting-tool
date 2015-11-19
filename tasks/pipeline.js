@@ -75,6 +75,7 @@ var jsFilesToInject = [
   'js/modules/company/module.company.js',
   'js/modules/company/module.company.routes.js',
   'js/modules/company/**/*.js',
+  'js/modules/company/module.company.run.js',
 
   // Import TST departments
   'js/modules/departments/module.department.js',
@@ -85,6 +86,17 @@ var jsFilesToInject = [
   'js/modules/project/module.project.js',
   'js/modules/project/module.project.routes.js',
   'js/modules/project/**/*.js',
+
+  // Import TST tasks
+  'js/modules/tasks/module.tasks.js',
+  'js/modules/tasks/module.tasks.routes.js',
+  'js/modules/tasks/**/*.js',
+
+  // Import TST Staff module
+  'js/modules/staff/module.staff.js',
+  'js/modules/staff/module.staff.routes.js',
+  'js/modules/staff/**/*.js',
+
 
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',
