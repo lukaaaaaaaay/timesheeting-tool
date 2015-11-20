@@ -8,8 +8,9 @@
     tst.modules.account = {
         name: 'account',
         states: {
-            manageAccount: 'manage-account',
-            resetPassword: 'reset-password',
+            account: 'dashboard.account',
+            manageAccount: 'dashboard.manage-account',
+            resetPassword: 'dashboard.reset-password',
             register: 'register'
         }, 
         services: {
@@ -31,8 +32,8 @@
             register: '/register'
         }, 
         bodyClass: {
-            manageAccount: 'tst-body',
-            resetPassword: 'tst-body',
+            manageAccount: 'tst-body accounts',
+            resetPassword: 'tst-body accounts',
             register: 'tst-single-form'
         },
         sidebarMenu: {

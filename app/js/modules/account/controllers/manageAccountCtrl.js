@@ -19,13 +19,13 @@
 
 
             $scope.changeFirstName = function(form) {
-                // if(form.$valid) {
-                //     updateUser(form, "first name");
+                if(form.$valid) {
+                    updateUser(form, "first name");
                     
-                // }
-                // else {
-                //     notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
-                // }
+                }
+                else {
+                    notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
+                }
             };
 
             $scope.changeLastName = function(form) {

@@ -5,13 +5,11 @@
         name: 'main',
         states: {
             main: 'main',
-            home: 'home@main', 
-            about: 'about@main',
-            faqs: 'faqs@main',
-            contact: 'contact@main'
+            home: 'home', 
+            about: 'about',
+            faqs: 'faqs',
+            contact: 'contact'
         },
-        // controllers: {
-        // },
         views: {
             main: 'js/modules/main/html/main.html',
             home: 'js/modules/main/html/home.tmpl.html',
@@ -26,35 +24,9 @@
             faqs: 'tst-main-body',
             contact: 'tst-main-body'
         },
-        // sidebarMenu: {
-        //     edit: {
-        //         selected: 5,
-        //         showDropdown: true,
-        //         activeSubmenu: 4,
-        //         collapsed: false
-        //     },
-        //     view: {
-        //         selected: 5,
-        //         showDropdown: true,
-        //         activeSubmenu: 4,
-        //         collapsed: false
-        //     },
-        //     create: {
-        //         selected: 5,
-        //         showDropdown: true,
-        //         activeSubmenu: 4,
-        //         collapsed: false
-        //     },
-        //     list: {
-        //         selected: 5,
-        //         showDropdown: true,
-        //         activeSubmenu: 4,
-        //         collapsed: false
-        //     },
-        // }
     };
 
-    angular.module('main', [
+    angular.module(tst.modules.main.name, [
         tst.modules.core.name,
     ]);
 }(angular, tst));

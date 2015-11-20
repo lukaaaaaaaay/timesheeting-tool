@@ -7,27 +7,27 @@
 
             $stateProvider.state(tst.modules.main.states.main, {
                 url: '/',
-                templateUrl: tst.modules.main.views.main,
+                templateUrl: 'js/modules/main/html/main.html',
                 bodyClass: tst.modules.main.bodyClass.main,
                 access: {
                     loginRequired: false,
                 },
                 views: {
-                    'home@main': {
+                    'main.home': {
                         templateUrl: tst.modules.main.views.home,
-                        controller: function($scope) {}
+                        
                     },
-                    'about@main': {
+                    'main.about': {
                         templateUrl: tst.modules.main.views.about,
-                        controller: function($scope) {}
+                        
                     },
-                    'faqs@main': {
+                    'main.faqs': {
                         templateUrl: tst.modules.main.views.faqs,
-                        controller: function($scope) {}
+                        
                     },
-                    'contact@main': {
+                    'main.contact': {
                         templateUrl: tst.modules.main.views.contact,
-                        controller: function($scope) {}
+                        
                     },
 
                 }

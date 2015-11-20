@@ -10,7 +10,7 @@
 
         // TST core famework
         tst.modules.core.name,
-        'main',
+        tst.modules.main.name,
         tst.modules.auth.name,
 
         // App submodules
