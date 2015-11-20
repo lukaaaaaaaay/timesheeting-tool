@@ -5,8 +5,9 @@
      * Provides Authentication for TST.
      */
     angular.module(tst.modules.account.name).factory(tst.modules.account.services.api, [
+        '$q',
         '$http',
-        function ($http) {
+        function ($q, $http) {
             var path = '/api/users/',
 
             // function getUrl() {
@@ -32,8 +33,22 @@
               // return $http.post(tst.modules.api.url + path, item);
             },
 
-            update = function (id, item) {
-              return $http.put(getUrlForId(id), item);
+            updateUser = function (user, callback) {
+               var defer = $q.defer();
+
+                $http.put( getUrlForId(user.id), user)
+                .success(function(resp) {
+                    user = resp;
+
+                    // TODO: Broadcasts a companyRegistered event for subscribers.
+                    //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
+                    callback(user);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
             },
 
             destroy = function (id) {
@@ -43,8 +58,8 @@
             return {
                 // find: find,
                 // findOne: findOne,
-                create: create
-                // update: update,
+                create: create,
+                updateUser: updateUser,
                 // destroy: destroy
             };
         }

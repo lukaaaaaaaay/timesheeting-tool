@@ -5,7 +5,7 @@
     </ol>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-ms-offset-3 panel">
 
-            <form class="form" role="form" ng-submit="login()">
+            <form class="form" role="form" name="accountForm" ng-submit="updateUser(accountForm)">
                 <div class="account-header">
                     <h1 class="teal text-center">Your Details</h1>
                 </div>
@@ -13,58 +13,58 @@
                 <div class="panel-body">
                     <!-- todo: clean this up -->
                     <div class="account-row">
-                        <form class="form-horizontal" name="firstNameForm">
+                        <!-- <form class="form-horizontal" name="firstNameForm"> -->
                             <div class="col-sm-3">
                                 <label class="control-label">First Name</label>
                             </div>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="name" ng-model="user.firstName" required>
-                                    <span class="input-group-btn">
+                                    <!-- <span class="input-group-btn">
                                         <button class="btn btn-success" type="button" ng-click="changeFirstName(firstNameForm)"><i class="fa fa-floppy-o"></i></button>
-                                    </span>
+                                    </span> -->
                                 </div>
-                                <div class="error" ng-show="firstNameForm.name.$dirty && firstNameForm.name.$invalid" >
-                                    <span ng-show="firstNameForm.name.$error.required">
+                                <div class="error" ng-show="accountForm.name.$dirty && accountForm.name.$invalid" >
+                                    <span ng-show="accountForm.name.$error.required">
                                         The first name field is required!
                                     </span>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
 
                     <div class="account-row">
-                        <form class="form-horizontal" name="lastNameForm">
+                       <!--  <form class="form-horizontal" name="lastNameForm"> -->
                             <div class="col-sm-3">
                                 <label class="control-label">Last Name</label>
                             </div>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="name" ng-model="user.lastName">
-                                    <span class="input-group-btn">
+                                   <!--  <span class="input-group-btn">
                                         <button class="btn btn-success" type="button" ng-click="changeLastName(lastNameForm)"><i class="fa fa-floppy-o"></i></button>
-                                    </span>
+                                    </span> -->
                                 </div>
-                                <div class="error" ng-show="lastNameForm.name.$dirty && lastNameForm.name.$invalid" >
-                                    <span ng-show="lastNameForm.name.$error.required">
+                                <div class="error" ng-show="accountForm.name.$dirty && accountForm.name.$invalid" >
+                                    <span ng-show="accountForm.name.$error.required">
                                         The last name field is required!
                                     </span>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
 
                     <div class="account-row">
-                        <form class="form-horizontal" name="emailForm">
+                        <!-- <form class="form-horizontal" name="emailForm"> -->
                             <div class="col-sm-3">
                                 <label class="control-label">Email Address</label>
                             </div>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="email" ng-model="user.email">
-                                    <span class="input-group-btn">
+                                    <!-- <span class="input-group-btn">
                                         <button class="btn btn-success" type="button" ng-click="changeEmail(emailForm)"><i class="fa fa-floppy-o"></i></button>
-                                    </span>
+                                    </span> -->
                                 </div>
                                 <div class="error" ng-show="emailForm.email.$dirty && emailForm.email.$invalid" >
                                     <span ng-show="emailForm.email.$error.required">
@@ -72,7 +72,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
                     <div class="account-row">
                         <div class="col-sm-3">
@@ -109,22 +109,19 @@
                             <label class="control-label">Role</label>
                         </div>
                         <div class="col-sm-9">
-                            {{user.role}}
+                            {{user.roles[0]}}
                         </div>
                     </div>
 
                 </div>
-
-      </div>
-      <!-- <div class="panel-footer">
+        <div class="panel-footer">
         <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">
             <i class="fa" ng-class="{'fa-cog fa-spin': isBusy, 'fa-sign-in': !isBusy}"></i>
-            <span>Register</span>
+            <span>Update</span>
         </button>
-        <div class="lower-footer text-center">
-            <a href="/#/login" class="small-link">Already have an account?</a>
-        </div>
-      </div> -->
+      </div>
+      </div>
+      
 
 </form>
 </div>
