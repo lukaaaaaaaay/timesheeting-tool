@@ -32,3 +32,20 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	$('#contact input, #contact textarea').focus(function() {
+					$(this).prev("div").find("label").attr("style", "top: -1.5rem; left: 0");
+					console.log($(this).prev("div"));
+				});
+
+				$('#contact .form-control').focusout(function() {
+					console.log("focusout");
+					if(!$.trim($(this).val())) {
+						console.log('nothing entered')
+						$(this).prev("div").find("label").removeAttr("style");
+					}
+
+				});
+})
+</script>

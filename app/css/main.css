@@ -1,13 +1,22 @@
-body {
+body.tst-main-body, 
+.tst-main-body h1,
+.tst-main-body h2,
+.tst-main-body h3,
+.tst-main-body p,
+.tst-main-body div,
+.tst-main-body a,
+.tst-main-body span,
+.tst-main-body input,
+.tst-main-body label {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 400;
 }
 
-.tst-body {
+.tst-main-body {
 	padding-top: 70px;
 }
 
-.tst-body .navbar.sticky {
+.tst-main-body .navbar.sticky {
 	height: 70px;
 
 }
