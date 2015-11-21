@@ -35,20 +35,6 @@
             manageAccount: 'tst-body accounts',
             resetPassword: 'tst-body accounts',
             register: 'tst-single-form'
-        },
-        sidebarMenu: {
-            // manageAccount: {
-            //     selected: 2,
-            //     showDropdown: true,
-            //     activeSubmenu: 1,
-            //     collapsed: false
-            // },
-            // resetPassword: {
-            //     selected: 2,
-            //     showDropdown: true,
-            //     activeSubmenu: 1,
-            //     collapsed: false
-            // },
         }
     };
     /**
