@@ -18,8 +18,6 @@
                 $scope.submitted = true;
 
                 if(form.$valid) {
-                    console.log(form.project.projectId);
-
                     taskApi.createTask($scope.task, function(task) {
                         notifier.success("success", "New task created");                        
                         // $state.go(tst.modules.task.states.list);
