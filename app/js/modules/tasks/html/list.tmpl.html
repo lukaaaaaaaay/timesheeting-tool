@@ -25,7 +25,7 @@
                         <!-- <th>Project ID</th> -->
                         <th/>
                     </tr>
-                    <tr ng-repeat="task in filteredTasks | limitTo:numPerPage">
+                    <tr ng-repeat="task in tasks">
                         <td>{{task.id}}</td>
                         <td><a href="/#/task/view/{{task.id}}">{{task.name}}</a></td>
                         <td>{{formatDate(task.startDate)}}</td>

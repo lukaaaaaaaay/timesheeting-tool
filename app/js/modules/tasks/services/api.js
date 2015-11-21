@@ -8,7 +8,8 @@
         '$q',
         '$http',
         tst.modules.core.services.eventbus,
-        function ($q, $http, eventbus) {
+        tst.modules.project.services.api,
+        function ($q, $http, eventbus, projectApi) {
     
             var currentTask,
 
@@ -17,9 +18,6 @@
              */
             createTask = function (task, callback) {
                 var defer = $q.defer();
-
-                // each task must have a projectId
-                task.projectId = 1;
 
                 $http.post( tst.modules.api.url + '/api/tasks', task)
                 .success(function(resp) {
@@ -55,6 +53,27 @@
                 return defer.promise;
             },
 
+            getAllForUser = function(userId, callback) {
+            },
+
+            /**
+            * getAllTasksForCompany
+            */
+            getAllTasksForCompany = function(companyId, callback) {
+                var defer = $q.defer();
+
+                // Get all projects for companyId
+                projectApi.getAllProjects(companyId, function (projects) {
+                    // Get all tasks for each project
+                    _.each(projects, function(project) {
+                        getAllTasksForProject(project.id, function (tasks) {
+                            callback(tasks);
+                        });
+                    });
+                });
+                return defer.promise;
+            },
+
             getAllStatuses = function(callback) {
                 var defer = $q.defer();
 
@@ -74,6 +93,7 @@
             return {
                 createTask: createTask,
                 getAllTasksForProject: getAllTasksForProject,
+                getAllTasksForCompany: getAllTasksForCompany,
                 getAllStatuses: getAllStatuses
             };
         }

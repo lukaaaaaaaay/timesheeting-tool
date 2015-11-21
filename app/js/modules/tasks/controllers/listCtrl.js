@@ -65,23 +65,34 @@
 
             function init() {
                 // get active company
-                var companyId = companyApi.getCurrentCompany().id;
-                // Get all projects for company
-                projectApi.getAllProjects(companyId, function (projects) {
-                    console.log(projects);
-                    // Get all tasks for each project
-                    _.each(projects, function(project) {
-                        taskApi.getAllTasksForProject(project.id, function (tasks) {
-                            $scope.tasks = tasks
-                        });
-                    });
+                var companyId = $scope.currentUser.companyId;
 
-                    $scope.projects = projects;
-                    updateList();
+                // get all tasks for company
+                taskApi.getAllTasksForCompany(companyId, function (tasks) {
+                    console.log("getAllTasksForCompany callback");
+                    $scope.tasks = tasks;
                 }, function(error) {
+                    console.log("getAllTasksForCompany error");
                     console.log(error);
                     notifier.error('Error', 'There was an error retrieving all the projects');
                 });
+
+                // Get all projects for company
+                // projectApi.getAllProjects(companyId, function (projects) {
+                //     console.log(projects);
+                //     // Get all tasks for each project
+                //     _.each(projects, function(project) {
+                //         taskApi.getAllTasksForProject(project.id, function (tasks) {
+                //             $scope.tasks = tasks
+                //         });
+                //     });
+
+                //     $scope.projects = projects;
+                //     updateList();
+                // }, function(error) {
+                //     console.log(error);
+                //     notifier.error('Error', 'There was an error retrieving all the projects');
+                // });
 
                 projectApi.getAllStatuses(function(allStatuses) {
                     statuses = allStatuses;
