@@ -6,10 +6,11 @@
      */
     angular.module(tst.modules.account.name).controller(tst.modules.account.controllers.manageAccount, [
         '$scope',
+        'localStorageService',
         tst.modules.auth.services.authentication,
         tst.modules.account.services.api,
         tst.modules.core.services.notifier,
-        function ($scope, authentication, accountApi, notifier) {
+        function ($scope, localStorage, authentication, accountApi, notifier) {
             $scope.user = {};
             $scope.errors = {};
 
@@ -49,14 +50,15 @@
             //     // }
             // };
 
-            $scope.resetPassword = function() {
-                // $state.transitionTo('reset password - logged in');
-            };
+            // $scope.resetPassword = function() {
+            //     $state.transitionTo(tst.modules.account.states.resetPassword);
+            // };
 
             $scope.updateUser = function(form) {
                 if(form.$valid) {
                     accountApi.updateUser($scope.user, function (user) {
                         $scope.user = user;
+                        localStorage.set('tst-user', user);
                         notifier.success("Success", "User successfully updated!");
                     }, function (error) {
                         console.log(error);

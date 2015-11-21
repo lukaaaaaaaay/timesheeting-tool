@@ -9,8 +9,8 @@
         name: 'account',
         states: {
             account: 'dashboard.account',
-            manageAccount: 'dashboard.manage-account',
-            resetPassword: 'dashboard.reset-password',
+            manageAccount: 'dashboard.account.manage-account',
+            resetPassword: 'dashboard.account.reset-password',
             register: 'register'
         }, 
         services: {
