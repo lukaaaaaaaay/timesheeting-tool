@@ -20,18 +20,17 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        
-                <p>
-                    <strong>Start Date: </strong>
-                    {{formatDate(project.startDate)}} <br/>
-                    <strong>Due Date: </strong>
-                    {{formatDate(project.dueDate)}} <br/>
-                    <strong>Status: </strong>
-                    {{statusAsText(project.statusId)}} <br/>
-                    <div class="text-right">
-                    <a href="/#/project/view/{{project.id}}">View <i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </p>
+                        <p>
+                            <strong>Start Date: </strong>
+                            {{formatDate(project.startDate)}} <br/>
+                            <strong>Due Date: </strong>
+                            {{formatDate(project.dueDate)}} <br/>
+                            <strong>Status: </strong>
+                            {{statusAsText(project.statusId)}} <br/>
+                            <div class="text-right">
+                            <a href="/#/project/view/{{project.id}}">View <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </p>
                     </div>
                 </div>
             </div>
