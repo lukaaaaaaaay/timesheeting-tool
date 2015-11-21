@@ -12,6 +12,7 @@
         },
         views: {
             main: 'js/modules/main/html/main.html',
+            navbar: 'js/modules/main/html/navbar.tmpl.html',
             home: 'js/modules/main/html/home.tmpl.html',
             about: 'js/modules/main/html/about.tmpl.html',
             faqs: 'js/modules/main/html/faq.tmpl.html',
@@ -19,6 +20,7 @@
         },
         bodyClass: {
             main: 'tst-main-body',
+            navbar: 'tst-main-body',
             home: 'tst-main-body', 
             about: 'tst-main-body',
             faqs: 'tst-main-body',

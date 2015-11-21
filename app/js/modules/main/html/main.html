@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 	</head>
 	<body>  -->
+		<!-- <div ui-view="navbar"></div> -->
 		<nav class="navbar navbar-default navbar-fixed-top sticky">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -21,7 +22,7 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="nav">
 			    	<ul class="nav navbar-nav nav-left">
-				        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+				        <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
 				        <li><a href="#about">About</a></li>
 				        <li><a href="#faqs">FAQs</a></li>
 				        <li><a href="#contact">Contact</a></li>
@@ -134,17 +135,23 @@
 
 				$(function() {
   					$('a[href*=#]:not([href=#])').click(function() {
-    				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-					      var target = $(this.hash);
-					      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-					      if (target.length) {
-					        $('html,body').animate({
-					          scrollTop: target.offset().top
-					        }, 1000);
-					        return false;
-					      }
+    				    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+					        var target = $(this.hash);
+					      	var clicked = $(this);
+					      	$('#nav ul li').each(function (index) {
+								$(this).removeClass('active');
+							});
+					      	clicked.parent().addClass('active');
+
+					      	target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+					      	if (target.length) {
+					        	$('html,body').animate({
+					          		scrollTop: target.offset().top
+					        	}, 1000);
+					        	return false;
+					      	}
 					    }
-				  });
+				    });
 				});
 
 				$('#contact input, #contact textarea').focus(function() {

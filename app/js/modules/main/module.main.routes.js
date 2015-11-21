@@ -20,6 +20,10 @@
                     '': {
                         templateUrl: tst.modules.main.views.main,
                     },
+                    // 'navbar@main': {
+                    //     templateUrl: tst.modules.main.views.navbar,
+                        
+                    // },
                     'home@main': {
                         templateUrl: tst.modules.main.views.home,
                         
