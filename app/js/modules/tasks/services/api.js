@@ -53,7 +53,25 @@
                 return defer.promise;
             },
 
+
+            /**
+            * getAllForUser
+            */
             getAllForUser = function(userId, callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/tasks/user/' + userId)
+                .success(function(resp) {
+                    var tasks = resp;
+                    console.log(tasks);
+
+                    callback(tasks);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
             },
 
             /**
