@@ -26,23 +26,30 @@
             };
 
             function init() {
-                var companyId = authentication.getCurrentLoginUser().companyId;
+                var user = authentication.getCurrentLoginUser();
                 // TODO: CHANGE TO QUERY BY USER IF USER IS NOT A DIRECTOR
-                projectApi.getAllProjects(companyId, function (projects) {
-                    $scope.projects = projects.slice(0,3);
-                    projectApi.getAllStatuses(function(allStatuses) {
-                    statuses = allStatuses;
-                    calculateProjectBreakdown(projects, statuses);
-                    }, function(error) {
-                        console.log(error);
-                        notifier.error('Error', 'There was an error retrieving all the statuses');
+                if(user.roleId == 1) {
+                    projectApi.getAllProjects(function (projects) {
+                        $scope.projects = projects.slice(0,3);
+                        retrieveStatusesAndBreakdown($scope.projects);                    
+                    }, function (error) {
+                        notifier.error("Error", "Unable to find projects for the current user");
                     });
-                    
-                }, function (error) {
-                    notifier.error("Error", "Unable to find projects for the current user");
-                });
-
-                
+                } else if(user.roleId ==2) {
+                    projectApi.getAllProjectsForCompany(user.companyId, function (projects) {
+                        $scope.projects = projects.slice(0,3);
+                        retrieveStatusesAndBreakdown($scope.projects);
+                    }, function (error) {
+                        notifier.error("Error", "Unable to find projects for the current user");
+                    });
+                } else {
+                    projectApi.getAllProjectsForUser(user.id, function (projects) {
+                        $scope.projects = projects.slice(0,3);
+                        retrieveStatusesAndBreakdown($scope.projects);        
+                    }, function (error) {
+                        notifier.error("Error", "Unable to find projects for the current user");
+                    });
+                }
             }
 
             function calculateProjectBreakdown(projects, statuses) {
@@ -55,6 +62,16 @@
                         $scope.projectBreakdown.push(0);
                     }
                 });
+            }
+
+            function retrieveStatusesAndBreakdown(projects) {
+                projectApi.getAllStatuses(function(allStatuses) {
+                    statuses = allStatuses;
+                    calculateProjectBreakdown(projects, statuses);
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the statuses');
+                    });
             }
 
             init();

@@ -9,7 +9,8 @@
         tst.modules.core.services.notifier,
         tst.modules.project.services.api,
         tst.modules.company.services.api,
-        function ($scope, $location, ngDialog, notifier, projectApi, companyApi) {
+        tst.modules.auth.services.authentication,
+        function ($scope, $location, ngDialog, notifier, projectApi, companyApi, authentication) {
             $scope.projects = [];
             $scope.filteredProjects = [];
             $scope.numPerPage = 10;
@@ -66,15 +67,36 @@
             };
 
             function init() {
+                var user = authentication.getCurrentLoginUser();
                 // get active company
                 var companyId = companyApi.getCurrentCompany();
-                projectApi.getAllProjects(companyId, function (projects) {
-                    $scope.projects = projects;
-                    updateList();
-                }, function(error) {
-                    console.log(error);
-                    notifier.error('Error', 'There was an error retrieving all the projects');
-                });
+                if(user.roleId == 1) {
+                    projectApi.getAllProjects(function (projects) {
+                        $scope.projects = projects;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the projects');
+                    });
+                }
+                else if(user.roleId == 2) {
+                    projectApi.getAllProjectsForCompany(companyId, function (projects) {
+                        $scope.projects = projects;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the projects');
+                    });
+                } else {
+                    projectApi.getAllProjectsForUser(user.id, function (projects) {
+                        $scope.projects = projects;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the projects');
+                    });
+                }
+                
 
                 projectApi.getAllStatuses(function(allStatuses) {
                     statuses = allStatuses;

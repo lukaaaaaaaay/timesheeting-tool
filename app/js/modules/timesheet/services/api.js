@@ -87,6 +87,22 @@
                 return defer.promise;
             },
 
+            getAllTimesheets = function(callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/timesheets')
+                .success(function(resp) {
+                    var timesheets = resp;
+
+                    callback(timesheets);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
             /**
             * getAllTimesheetsForCompany
             */
@@ -180,6 +196,7 @@
                 createTimesheet: createTimesheet,
                 updateTimesheet: updateTimesheet,
                 deleteTimesheet: deleteTimesheet,
+                getAllTimesheets: getAllTimesheets,
                 getAllTimesheetsForCompany: getAllTimesheetsForCompany,
                 getAllTimesheetsForUser: getAllTimesheetsForUser,
                 getCurrentTimesheet: getCurrentTimesheet,

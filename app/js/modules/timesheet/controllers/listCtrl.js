@@ -71,13 +71,32 @@
                 var user = authentication.getCurrentLoginUser();
 
                 //TODO: Detect user role and return different set of timesheets depending on the role of user.
-                timesheetApi.getAllTimesheetsForUser(user.id, function (timesheets) {
-                    $scope.timesheets = timesheets;
-                    updateList();
-                }, function(error) {
-                    console.log(error);
-                    notifier.error('Error', 'There was an error retrieving all the timesheets');
-                });
+                if(user.roleId == 1) {
+                    timesheetApi.getAllTimesheets(function (timesheets) {
+                        $scope.timesheets = timesheets;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving the timesheets');
+                    }); 
+                } else if(user.roleId == 2) {
+                    timesheetApi.getAllTimesheetsForCompany(user.companyId, function (timesheets) {
+                        $scope.timesheets = timesheets;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving the timesheets');
+                    }); 
+                } else {
+                    timesheetApi.getAllTimesheetsForUser(user.id, function (timesheets) {
+                        $scope.timesheets = timesheets;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving the timesheets');
+                    });    
+                }
+                
 
                 timesheetApi.getAllStatuses(function(allStatuses) {
                     statuses = allStatuses;
