@@ -27,7 +27,7 @@
 
             function init() {
                 var user = authentication.getCurrentLoginUser();
-                // TODO: CHANGE TO QUERY BY USER IF USER IS NOT A DIRECTOR
+                
                 if(user.roleId == 1) {
                     projectApi.getAllProjects(function (projects) {
                         $scope.projects = projects.slice(0,3);
