@@ -1,7 +1,7 @@
 (function (angular, tst) {
     'use strict';
 
-    angular.module(tst.modules.project.name).config([
+    angular.module('project').config([
         '$stateProvider',
         function ($stateProvider) {
             $stateProvider.state(tst.modules.project.states.project, {

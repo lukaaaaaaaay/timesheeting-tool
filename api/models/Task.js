@@ -112,7 +112,7 @@
 
             return cb(null, tasks);
         });
-    },  
+    },
  }
 
  module.exports = Task;

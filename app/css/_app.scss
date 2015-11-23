@@ -497,6 +497,18 @@ table {
 }
 
 /* Account Page */
+.tst-body.accounts {
+    background: #fff;
+
+    .tst-sidebar {
+        display: none;  
+    }
+
+    .tst-page-container {
+        margin: 0;
+    }
+}
+
 .account-header {
     h1 {
         margin-top: 0;

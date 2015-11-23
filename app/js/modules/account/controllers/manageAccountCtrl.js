@@ -6,71 +6,69 @@
      */
     angular.module(tst.modules.account.name).controller(tst.modules.account.controllers.manageAccount, [
         '$scope',
+        'localStorageService',
         tst.modules.auth.services.authentication,
-        function ($scope, authentication) {
+        tst.modules.account.services.api,
+        tst.modules.core.services.notifier,
+        function ($scope, localStorage, authentication, accountApi, notifier) {
             $scope.user = {};
             $scope.errors = {};
 
             function init() {
                 $scope.user = authentication.getCurrentLoginUser();
+                console.log($scope.user);
             };
 
             init();
 
 
-            $scope.changeFirstName = function(form) {
-                // if(form.$valid) {
-                //     updateUser(form, "first name");
+            // $scope.changeFirstName = function(form) {
+            //     if(form.$valid) {
+            //         var result = updateUser($scope.user.id, $scope.user);
+            //         console.log(result);
+            //     }
+            //     else {
+            //         notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
+            //     }
+            // };
+
+            // $scope.changeLastName = function(form) {
+            //     // if(form.$valid) {
+            //     //     updateUser(form, "last name");
+            //     // }
+            //     // else {
+            //     //     notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
+            //     // }
+            // };
+
+            // $scope.changeEmail = function(form) {
+            //     // if(form.$valid) {
+            //     //     updateUser(form, "email");
+            //     // }
+            //     // else {
+            //     //     notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
+            //     // }
+            // };
+
+            // $scope.resetPassword = function() {
+            //     $state.transitionTo(tst.modules.account.states.resetPassword);
+            // };
+
+            $scope.updateUser = function(form) {
+                if(form.$valid) {
+                    accountApi.updateUser($scope.user, function (user) {
+                        $scope.user = user;
+                        localStorage.set('tst-user', user);
+                        notifier.success("Success", "User successfully updated!");
+                    }, function (error) {
+                        console.log(error);
+                        notifier.error("Error", "There was an error updating the user");
+                    });
                     
-                // }
-                // else {
-                //     notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
-                // }
-            };
-
-            $scope.changeLastName = function(form) {
-                // if(form.$valid) {
-                //     updateUser(form, "last name");
-                // }
-                // else {
-                //     notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
-                // }
-            };
-
-            $scope.changeEmail = function(form) {
-                // if(form.$valid) {
-                //     updateUser(form, "email");
-                // }
-                // else {
-                //     notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
-                // }
-            };
-
-            $scope.resetPassword = function() {
-                // $state.transitionTo('reset password - logged in');
-            };
-
-            function updateUser(form, fieldName) {
-                // User.update({id: $scope.user.id}, $scope.user, function (updatedUser) {
-                //     $scope.user = updatedUser;
-                //     form.$setPristine();
-                //     notifier.success('Success!', 'User ' + fieldName + ' updated');
-                // }, function (error) {
-                //     var message = 'There was an error updating the ' + fieldName + ' field.';
-                //     switch(fieldName) {
-                //         case 'first name':
-                //             break; 
-                //         case 'last name':
-                //             break;
-                //         case 'email': 
-                //             if(error.status == 400) {
-                //                 message =  error.data.invalidAttributes.email[0].message;
-                //             }
-
-                //             break;
-                //     }
-                //     notifier.error('Error!', message);
-                // })
+                }
+                else {
+                    notifier.error("Error", "There are validation errors with your submission. Please fix before updating your details.")
+                }
             };
         }
     ]);
