@@ -6,17 +6,20 @@
  */
 angular.module(tst.modules.auth.name).run([
     '$rootScope',
+    '$state',
     '$location',
+    'localStorageService',
     tst.modules.auth.services.authorization,
     tst.modules.core.services.eventbus,
-    function ($rootScope, $location, authorization, eventbus) {
+    function ($rootScope, $state, $location, localStorage, authorization, eventbus) {
         var routeChangeRequiredAfterLogin = false,
             loginRedirectUrl;
 
 
         // Listen for logout request and redirect.
         eventbus.subscribe(tst.modules.auth.events.userLoggedOut, function (event) {
-            $location.path(tst.modules.auth.routes.login);
+            // $location.path(tst.modules.auth.routes.login);
+            $state.go(tst.modules.main.states.main);
         });
 
         // Listen for login request and add the currentUser to the $rootScope.
@@ -25,6 +28,9 @@ angular.module(tst.modules.auth.name).run([
             // so that we can access them from any scope within our application.
             console.log("adding " + user.email + " to rootScope");
             $rootScope.currentUser = user;
+
+            // save it to local storage to persist.
+            localStorage.set(tst.modules.company.storage.currentUser, user);
         });
             
         /**

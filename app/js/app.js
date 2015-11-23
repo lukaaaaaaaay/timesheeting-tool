@@ -21,8 +21,9 @@
         tst.modules.project.name,
             tst.modules.tasks.name,
         tst.modules.staff.name,
+                tst.modules.timesheet.name,
+                
         tst.modules.dashboard.name
-        tst.modules.timesheet.name
         
     ]);
 }(angular, tst));

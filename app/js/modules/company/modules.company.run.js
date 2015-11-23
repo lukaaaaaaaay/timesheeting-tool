@@ -6,9 +6,9 @@
  */
 angular.module(tst.modules.company.name).run([
     '$rootScope',
-    '$location',
+    'localStorageService',
     tst.modules.core.services.eventbus,
-    function ($rootScope, $location, eventbus) {
+    function ($rootScope, localStorage, eventbus) {
 
 
         // Listen for companyRegistered event and add the currentCompany to the $rootScope.
@@ -17,6 +17,10 @@ angular.module(tst.modules.company.name).run([
             // so that we can access them from any scope within our application.
             console.log("adding " + org.companyName + " to rootScope");
             $rootScope.currentCompany = org;
+
+            // save it to local storage to persist.
+            localStorage.set(tst.modules.company.storage.companyId, org.id);
+            localStorage.set(tst.modules.company.storage.currentCompany, org);
         });
 
     }]);

@@ -105,9 +105,9 @@
                         var user = JSON.parse(data);
 
                         // //attach roles to user object
-                        // angular.extend(user, {
-                        //     roles: ['Director'], // todo: don't hardcode this stuff. WTF.
-                        // });
+                        angular.extend(user, {
+                            roles: ['Director'], // todo: don't hardcode this stuff. WTF.
+                        });
 
                         // save the credentials
                         setCredentials(email, password);

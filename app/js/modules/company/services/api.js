@@ -84,7 +84,7 @@
                         return currentCompany;
                     })
                     .error(function(err) {
-                        defer.reject(err);
+                        // defer.reject(err);
                     }.bind(this));
 
             };
