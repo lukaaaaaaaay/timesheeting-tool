@@ -70,8 +70,6 @@
                 var user = authentication.getCurrentLoginUser();
                 // get active company
                 var companyId = companyApi.getCurrentCompany();
-
-
                 if(user.roleId == 1) {
                     projectApi.getAllProjects(function (projects) {
                         $scope.projects = projects;
@@ -99,6 +97,7 @@
                     });
                 }
                 
+
                 projectApi.getAllStatuses(function(allStatuses) {
                     statuses = allStatuses;
                 }, function(error) {
