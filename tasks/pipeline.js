@@ -94,7 +94,6 @@ var jsFilesToInject = [
   'js/modules/project/module.project.routes.js',
   'js/modules/project/**/*.js',
 
-<<<<<<< HEAD
   // Import TST tasks
   'js/modules/tasks/module.tasks.js',
   'js/modules/tasks/module.tasks.routes.js',
@@ -104,13 +103,11 @@ var jsFilesToInject = [
   'js/modules/staff/module.staff.js',
   'js/modules/staff/module.staff.routes.js',
   'js/modules/staff/**/*.js',
-=======
+
   // Import TST timesheets
   'js/modules/timesheet/module.timesheet.js',
   'js/modules/timesheet/module.timesheet.routes.js',
   'js/modules/timesheet/**/*.js',
->>>>>>> upstream/master
-
 
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',
