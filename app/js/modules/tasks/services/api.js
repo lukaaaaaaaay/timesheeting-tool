@@ -33,6 +33,45 @@
             },
 
             /**
+            * updateTask
+            */
+            updateTask = function (task, callback) {
+                var defer = $q.defer();
+
+                $http.put( tst.modules.api.url + '/api/tasks/' + task.id, task)
+                .success(function(resp) {
+                    currentTask = resp;
+
+                    callback(currentTask);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+
+            /**
+             * getTask
+             */
+            getTask = function (id, callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/tasks/' + id)
+                .success(function(resp) {
+                    currentTask = resp;
+
+                    callback(currentTask);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            /**
             * getAllTasksForProject
             */
             getAllTasksForProject = function(projectId, callback) {
@@ -110,8 +149,11 @@
 
             return {
                 createTask: createTask,
+                updateTask, updateTask,
+                getTask: getTask,
                 getAllTasksForProject: getAllTasksForProject,
                 getAllTasksForCompany: getAllTasksForCompany,
+                getAllForUser: getAllForUser,
                 getAllStatuses: getAllStatuses
             };
         }

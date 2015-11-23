@@ -23,29 +23,29 @@
                 sidebarMenu: tst.modules.tasks.sidebarMenu.create
             });
 
-            // $stateProvider.state(tst.modules.project.states.edit, {
-            //     url: tst.modules.project.routes.edit,
-            //     controller: tst.modules.project.controllers.edit,
-            //     templateUrl: tst.modules.project.views.edit,
-            //     access: {
-            //         loginRequired: true,
-            //         roles: ['Admin', 'Director']
-            //     },
-            //     bodyClass: tst.modules.project.bodyClass.edit,
-            //     sidebarMenu: tst.modules.project.sidebarMenu.edit
-            // });
+            $stateProvider.state(tst.modules.tasks.states.edit, {
+                url: tst.modules.tasks.routes.edit,
+                controller: tst.modules.tasks.controllers.edit,
+                templateUrl: tst.modules.tasks.views.edit,
+                access: {
+                    loginRequired: true,
+                    roles: ['Admin', 'Director']
+                },
+                bodyClass: tst.modules.tasks.bodyClass.edit,
+                sidebarMenu: tst.modules.tasks.sidebarMenu.edit
+            });
 
-            // $stateProvider.state(tst.modules.project.states.view, {
-            //     url: tst.modules.project.routes.view,
-            //     controller: tst.modules.project.controllers.view,
-            //     templateUrl: tst.modules.project.views.view,
-            //     access: {
-            //         loginRequired: true,
-            //         roles: ['Admin', 'Director']
-            //     },
-            //     bodyClass: tst.modules.project.bodyClass.view,
-            //     sidebarMenu: tst.modules.project.sidebarMenu.view
-            // });
+            $stateProvider.state(tst.modules.tasks.states.view, {
+                url: tst.modules.tasks.routes.view,
+                controller: tst.modules.tasks.controllers.view,
+                templateUrl: tst.modules.tasks.views.view,
+                access: {
+                    loginRequired: true,
+                    roles: ['Admin', 'Director']
+                },
+                bodyClass: tst.modules.tasks.bodyClass.view,
+                sidebarMenu: tst.modules.tasks.sidebarMenu.view
+            });
 
             $stateProvider.state(tst.modules.tasks.states.list, {
                 url: tst.modules.tasks.routes.list,
