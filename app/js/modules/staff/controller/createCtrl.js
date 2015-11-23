@@ -17,7 +17,7 @@
                 if(form.$valid) {
                     staffApi.createUser($scope.staff, function(staff) {
                         notifier.success("success", "New user created");                        
-                        // $location.path(tst.modules.staff.routes.list);
+                        $state.go(tst.modules.staff.state.list);
                     }, function(error) {
                         notifier.error('Error', 'Unable to create new user');
                     });
@@ -27,7 +27,7 @@
             };
 
             function init() {
-                //todo: assign roles and departments to scope
+                //todo: assign roles and departments to scope.
             }
 
             init();

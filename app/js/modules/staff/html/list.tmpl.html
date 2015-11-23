@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="page-heading teal">Users</h3>
+            <!-- add search bar back in if time permits -->
+            <!-- <div class="search-bar">
+                <div class="col-lg-3 col-lg-offset-9">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>                      
+                    </div>
+                </div>
+                
+            </div> -->
+            <div class="clearfix"></div>
+            <div class="table-responsive">
+                <table class="table tst-list" ng-show="staff || staff.length > 0">
+                    <tr class="blue-gray">
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th/>
+                    </tr>
+                    <tr ng-repeat="user in filteredStaff | limitTo:numPerPage">
+                        <td>{{user.id}}</td>
+                        <td><a href="/#/user/view/{{user.id}}">{{user.firstName}} {{user.lastName}}</a></td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.roleId}}</td>
+                        <td>{{user.department}}</td>
+                        <td>
+                            <a href="/#/staff/edit/{{user.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>
+                            <button type="button" class="btn btn-danger" ng-click="deleteStaff(user)"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </table>
+                <p ng-show="!staff || staff.length == 0">
+                    <strong> There currently isn't any staff for this company. </strong>
+                </p>
+            </div>
+            <div class="text-right">
+                <div class="text-right">
+                <pagination 
+                    ng-model="currentPage"
+                    total-items="staff.length" 
+                    items-per-page="numPerPage"
+                    previous-text="&laquo;"
+                    next-text="&raquo;">
+                </pagination>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
