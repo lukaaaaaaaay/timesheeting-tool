@@ -31,11 +31,28 @@
         // Otherwise,
         } else if (requiredRoles) {
             loweredRoles = [];
+            var str;
 
             if (user) {
-                angular.forEach(user.roles, function (role) {
-                    loweredRoles.push(role.toLowerCase());
-                });
+
+                switch(user.roleId) {
+                    case 1:
+                        str = 'admin';
+                        break;
+                    case 2:
+                        str = 'director';
+                        break;
+                    case 3:
+                        str = 'pm';
+                        break;
+                    case 4:
+                        str = 'staff';
+                        break;
+                    default:
+                        str = '';
+                }
+
+                loweredRoles.push(str.toLowerCase());
             }
 
             for (i = 0; i < requiredRoles.length; i += 1) {

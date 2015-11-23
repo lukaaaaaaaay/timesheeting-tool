@@ -104,11 +104,6 @@
                         var data = request.responseText;
                         var user = JSON.parse(data);
 
-                        // //attach roles to user object
-                        angular.extend(user, {
-                            roles: ['Director'], // todo: don't hardcode this stuff. WTF.
-                        });
-
                         // save the credentials
                         setCredentials(email, password);
                         currentUser = user;
@@ -192,11 +187,6 @@
                     // turn the response string to a user object
                     var data = request.responseText;
                     var user = JSON.parse(data);
-
-                    //attach roles to user object
-                    angular.extend(user, {
-                        roles: ['Director'], // todo: don't hardcode this stuff. WTF.
-                    });
 
                     // save the credentials
                     setCredentials(email, password);

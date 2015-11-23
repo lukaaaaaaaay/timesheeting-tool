@@ -3,27 +3,16 @@
 
     angular.module(tst.modules.main.name).config([
         '$stateProvider',
-        function ($stateProvider) {
-
-            // $stateProvider.state(tst.modules.main.states.main, {
-            //   template: '<ui-view />',
-            //   controller: function($scope){
-            //       console.log("main active");
-            //   }
-            // });
+        '$urlRouterProvider',
+        function ($stateProvider, $urlRouterProvider) {
 
             $stateProvider.state(tst.modules.main.states.main, {
-                url: '/',
+                url: tst.modules.main.routes.main,
                 bodyClass: tst.modules.main.bodyClass.main,
-
                 views: {
                     '': {
                         templateUrl: tst.modules.main.views.main,
                     },
-                    // 'navbar@main': {
-                    //     templateUrl: tst.modules.main.views.navbar,
-                        
-                    // },
                     'home@main': {
                         templateUrl: tst.modules.main.views.home,
                         
@@ -40,8 +29,11 @@
                         templateUrl: tst.modules.main.views.contact,
                         
                     },
-
                 }
             });
+
+            // Redirect to sakespage if no state found
+            $urlRouterProvider.otherwise( tst.modules.main.routes.main );
+
         }]);
 }(angular, tst));
