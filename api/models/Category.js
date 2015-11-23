@@ -26,11 +26,7 @@
  		},
 
  		// relationship between tasks and categories stored in separate table
- 		// how to map?
- 		tasks: {
- 			collection: 'Task', 
- 			via: 'categories'
- 		},
+ 		tasks: {collection: 'task', through: 'taskcategory'}
 
  	},
 
