@@ -20,7 +20,7 @@
                 if(form.$valid) {
                     taskApi.createTask($scope.task, function(task) {
                         notifier.success("success", "New task created");                        
-                        // $state.go(tst.modules.task.states.list);
+                        $state.go(tst.modules.task.states.list);
                     }, function(error) {
                         notifier.error('Error', 'Unable to create new task');
                     });

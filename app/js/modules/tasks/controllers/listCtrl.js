@@ -19,11 +19,11 @@
 
             $scope.deleteTask = function(task) {
                 // todo: show confirm dialog to ensure user really wants to delete something.
-                // ngDialog.openConfirm({
-                //   template: tst.modules.task.views.dialog,
-                //   scope: $scope 
-                // }).then(
-                    // function(success) {
+                ngDialog.openConfirm({
+                  template: tst.modules.task.views.dialog,
+                  scope: $scope 
+                }).then(
+                    function(success) {
                         taskApi.deleteTask(task.id, function(success){
                                 notifier.success('Success', 'Task deleted');
                                 $scope.tasks = _.reject($scope.tasks, {id: task.id});
@@ -32,11 +32,11 @@
                                 console.log(error)
                                 notifier.error('Error', 'Unable to delete tasks');
                             });
-                    // },
-                    // function(error) {
+                    },
+                    function(error) {
                         
-                    // }
-                // );
+                    }
+                );
             };
 
             $scope.$watch("currentPage + numPerPage", function() {
