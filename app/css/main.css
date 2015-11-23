@@ -139,6 +139,11 @@ body.tst-main-body,
     box-shadow: none;
 }
 
+#contact img.img-responsive, .hero-image {
+    max-height: 800px;
+    width: 100%;
+}
+
 .teal {
   color: #1CAF9A; 
 }

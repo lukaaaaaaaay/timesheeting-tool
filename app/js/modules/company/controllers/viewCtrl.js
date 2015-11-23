@@ -9,14 +9,8 @@
             $scope.company = {};
 
             function init() {
-                // set sidebar menu
-                // todo: move this to a core service.     we should probably do something like sidebarMenuService.init(true, 2, 1)
-                // $rootScope.sidebarMenu.selected = 2;
-                // $rootScope.sidebarMenu.showDropdown = true;
-                // $rootScope.sidebarMenu.activeSubmenu = 1;
-
-                // TODO: Get current users company
                 $scope.company = companyApi.getCurrentCompany();
+                // console.log($scope.company);
             }
             init();
             

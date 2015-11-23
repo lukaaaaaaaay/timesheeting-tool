@@ -79,7 +79,8 @@ module.exports = {
         if (!req.user) {
           this.createDirector(req, res);
         } else {
-          createStaff(req, res);
+          console.log(req.user.email + " is creating a new staff:")
+          this.createStaff(req, res);
         }
     },
 
@@ -94,8 +95,11 @@ module.exports = {
         var user;
 
         user = req.allParams();
-        
-        User.registerStaff(user)
+
+        if(!user.roleId)
+          user.roleId = 4;  // todo: remove this hardcode    
+
+        User.register(user)
           .then(function (user) {
             sails.log('created new staff user', user);
             return res.ok(user);
@@ -118,6 +122,10 @@ module.exports = {
 
         user = req.allParams();
         
+        if(!user.roleId){
+          user.roleId = 2;  // todo: remove this hardcode
+        }
+
         User.register(user)
           .then(function (user) {
             sails.log('created new director', user);

@@ -7,7 +7,6 @@ module.exports = {
    * Log out an account and return success
    */
   logout: function (req, res) {
-    // todo
       req.logout();
       delete req.user;
       delete req.passport;

@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+        <div class="col-sm-8">
+            <h2 class="teal">View User</h2>
+
+            <p>
+                <strong>First Name: </strong>
+                {{user.firstName}}
+            </p>
+            <p>
+                <strong>Last Name: </strong>
+                {{user.lastName}}
+            </p>
+            <p>
+                <strong>Email: </strong>
+                {{user.email}}
+            </p>
+            <p>
+                <strong>Role: </strong>
+                {{user.roleId}}
+            </p>
+            <p>
+                <strong>Department: </strong>
+                {{user.department}}
+            </p>
+        </div>
+    </div>        
+    
+    <div class="col-sm-8">
+        <a href="/#/tasks" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to Task List</a>
+        <a href="/#/task/edit/{{task.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</a>
+        <button type="button" class="btn btn-danger" ng-click="deleteTask()"><i class="fa fa-times"></i> Delete</button>
+    </div>
+</div>

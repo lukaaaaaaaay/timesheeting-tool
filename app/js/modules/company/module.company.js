@@ -5,12 +5,12 @@
         name: 'company',
         states: {
             company: 'dashboard.company',
-            create: 'company-create', //'sales.company.create'
+            create: 'company-create', //'auth.company.create'
             edit: 'dashboard.company.edit',
             view: 'dashboard.company.view'
         },
         events: {
-          companyRegistered: 'tst:company:registered'
+          companyRegistered: 'company:org:registered'
         },
         controllers: {
             create: 'companyCreateCtrl',
@@ -29,6 +29,10 @@
             create: '/company/create',
             edit: '/company/edit',
             view: '/company/view'
+        },
+        storage: {
+            companyId: 'tst-companyId',
+            currentCompany: 'tst-currentCompany'
         },
         bodyClass: {
             create: 'tst-body',
@@ -53,6 +57,7 @@
 
     angular.module(tst.modules.company.name, [
         'LocalStorageModule',
-        tst.modules.core.name
+        tst.modules.core.name,
+        tst.modules.auth.name        
     ]);
 }(angular, tst));

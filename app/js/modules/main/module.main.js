@@ -3,6 +3,9 @@
 
     tst.modules.main = {
         name: 'main',
+        routes: {
+            main: '/'
+        },
         states: {
             main: 'main',
             home: 'home', 

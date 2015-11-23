@@ -10,15 +10,9 @@
             $scope.company = {};
 
             function init() {
-                
-                // set sidebar menu
-                // $rootScope.sidebarMenu.selected = 2;
-                // $rootScope.sidebarMenu.showDropdown = true;
-                // $rootScope.sidebarMenu.activeSubmenu = 1;
-
                 // get active company
                 $scope.company = companyApi.getCurrentCompany();
-
+                // console.log($scope.company);
             }
             init();
 

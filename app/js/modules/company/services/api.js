@@ -27,11 +27,12 @@
                     // Save currentCompany to localstorage on creation
                     // todo: subscribe to logout event and clear currentCompany, 
                     // todo: also subscribe to login event to store currentCompany on login
-                    localStorage.set('tst-currentCompany', currentCompany.id);
+                    localStorage.set(tst.modules.company.storage.companyId, currentCompany.id);
+                    localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
 
 
                     // Broadcasts a companyRegistered event for subscribers.
-                    // eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
+                    eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
                     callback(company);
                 })
                 .error(function(err) {
@@ -52,6 +53,8 @@
                 .success(function(resp) {
                     currentCompany = resp;
 
+                    localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
+                    
                     // TODO: Broadcasts a companyRegistered event for subscribers.
                     //eventbus.broadcast(tst.modules.company.events.companyRegistered, currentCompany);
                     callback(company);
@@ -67,10 +70,23 @@
              * getCurrentCompany
              */
             getCurrentCompany = function () {
-                if(localStorage.get('tst-currentCompany'))
-                    return localStorage.get('tst-currentCompany');
+                if(localStorage.get(tst.modules.company.storage.currentCompany))
+                    return localStorage.get(tst.modules.company.storage.currentCompany);
 
-                return localStorage.get('tst-companyId');
+                var companyId = localStorage.get(tst.modules.company.storage.companyId);
+
+                // Get the currentUser based on the company ID
+                    $http.get( tst.modules.api.url + '/api/companies/' + companyId)
+                    .success(function(resp) {
+                        currentCompany = resp;
+
+                        localStorage.set(tst.modules.company.storage.currentCompany, currentCompany);
+                        return currentCompany;
+                    })
+                    .error(function(err) {
+                        // defer.reject(err);
+                    }.bind(this));
+
             };
 
             return {

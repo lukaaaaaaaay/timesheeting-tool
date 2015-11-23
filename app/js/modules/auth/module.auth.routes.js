@@ -6,8 +6,8 @@
      */
     angular.module(tst.modules.auth.name).config([
         '$stateProvider',
-        '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
+        function ($stateProvider) {
+            // State: Login
             $stateProvider.state(tst.modules.auth.states.login, {
                 url: tst.modules.auth.routes.login,
                 controller: tst.modules.auth.controllers.login,
@@ -17,6 +17,7 @@
                 }
             });
 
+            // State: NotAuthorised
             $stateProvider.state(tst.modules.auth.states.notAuthorised, {
                 url: tst.modules.auth.routes.notAuthorised,
                 controller: tst.modules.auth.controllers.login,
@@ -26,7 +27,6 @@
                 }
             });
 
-            $urlRouterProvider.otherwise( tst.modules.auth.routes.login );
         }]);
 
 
