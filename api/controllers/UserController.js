@@ -96,9 +96,8 @@ module.exports = {
 
         user = req.allParams();
 
-        if(!user.roleId){
-          user.roleId = 4;  // todo: remove this hardcode
-        }
+        if(!user.roleId)
+          user.roleId = 4;  // todo: remove this hardcode    
 
         User.register(user)
           .then(function (user) {

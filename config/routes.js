@@ -94,12 +94,12 @@ module.exports.routes = {
   'GET /api/companies/director/:directorId': {
     controller : 'CompanyController',
     action     : 'findByDirectorId',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/companies/:id': {
     controller : 'CompanyController',
     action     : 'findOne',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'PUT /api/companies/:id': {
     controller : 'CompanyController',
@@ -128,12 +128,12 @@ module.exports.routes = {
   'GET /api/departments/company/:id': {
     controller : 'DepartmentController',
     action     : 'findAllByCompany',
-    roles      : ["admin", "director"] 
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/departments/:id': {
     controller : 'DepartmentController',
     action     : 'findOne',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'PUT /api/departments/:id': {
     controller : 'DepartmentController',
@@ -163,22 +163,22 @@ module.exports.routes = {
   'GET /api/projects/company/:id': {
     controller : 'ProjectController',
     action     : 'findAllForCompany',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/projects/manager/:id': {
     controller : 'ProjectController',
     action     : 'findAllForProjectManager',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/projects/status/:id': {
     controller : 'ProjectController',
     action     : 'findAllForStatus',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/projects/:id': {
     controller : 'ProjectController',
     action     : 'findOne',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'PUT /api/projects/:id': {
     controller : 'ProjectController',
@@ -195,14 +195,14 @@ module.exports.routes = {
   // Status Routes
   **************************************************/
   'GET /api/statuses': {
-    controller : 'ProjectController',
-    action: 'findStatuses',
-    //roles: ["admin", "director"] - uncomment when we have the other roles created.
+    controller  : 'ProjectController',
+    action      : 'findStatuses',
+    roles       : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/statuses/:id': {
-    controller : 'ProjectController',
-    action: 'findStatus',
-    //roles: ["admin", "director"] - uncomment when we have the other roles created.
+    controller  : 'ProjectController',
+    action      : 'findStatus',
+    roles       : ["admin", "director", "projectmanager", "staff"]
   },  
 
   /**************************************************
@@ -216,22 +216,22 @@ module.exports.routes = {
   'GET /api/tasks/project/:id': {
     controller : 'TaskController',
     action     : 'findAllForProject',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"] 
   },
-  'GET /api/tasks/user': {
+  'GET /api/tasks/user/:id': {
     controller : 'TaskController',
     action     : 'findAllForUser',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/tasks/status/:id': {
     controller : 'TaskController',
     action     : 'findAllForStatus',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/tasks/:id': {
     controller : 'TaskController',
     action     : 'findOne',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'POST /api/tasks': {
     controller : 'TaskController',
@@ -261,12 +261,12 @@ module.exports.routes = {
   'GET /api/categories/company/:id': {
     controller : 'CategoryController',
     action     : 'findAllForCompany',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/categories/:id': {
     controller : 'CategoryController',
     action     : 'findOne',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'POST /api/categories': {
     controller : 'CategoryController',
@@ -294,22 +294,22 @@ module.exports.routes = {
   'GET /api/timesheets/task/:id': {
     controller : 'TimesheetController',
     action     : 'findAllForTask',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/timesheets/user/:id': {
     controller : 'TimesheetController',
     action     : 'findAllForUser',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/timesheets/status/:id': {
     controller : 'TimesheetController',
     action     : 'findAllForStatus',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'GET /api/timesheets/:id': {
     controller : 'TimesheetController',
     action     : 'findOne',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'POST /api/timesheets': {
     controller : 'TimesheetController',
