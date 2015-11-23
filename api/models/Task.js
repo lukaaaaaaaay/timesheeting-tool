@@ -50,10 +50,10 @@
         // A task can have many categories
         // relationship between tasks and categories stored in separate table
         // how to map?
-        categories: {collection: 'Category', via: 'tasks'},
+        categories: {collection: 'category', through: 'taskcategory'},
 
         // A task can have many members
-        members: {collection: 'User', via: 'tasks'},
+        users: {collection: 'user', through'taskmember'},
 
         // A task can have many items
         //items: {collection: 'Item', via: 'task'},
