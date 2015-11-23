@@ -72,6 +72,27 @@ module.exports = {
     },
 
     /**
+     * Return all Tasks for a particular user
+     *
+     * @param {Object} req
+     * @param {Object} res
+     */
+    findAllForUser: function(req, res) {
+        User.findOne(req.user.id).populate('tasks').exec(function(err, user) {
+            if (err) return res.negotiate(err);
+            
+            if(user) {
+                res.ok(user.tasks);
+            }
+            else {
+                res.notFound('No Task found for this user');
+            }
+
+            
+        });
+    },
+
+    /**
      * Return all Tasks for a particular status
      *
      * @param {Object} req
@@ -100,19 +121,39 @@ module.exports = {
      * @param {Object} res
      */
     create: function (req, res) {
-                Task.create(req.body, function (err, task) {
-                    if (err) return res.negotiate(err);
+        Task.create(req.body, function (err, task) {
+            if (err) return res.negotiate(err);
+        
+            // debugging - remove later.. or not, server logs are helpful.
+            if(task) {
+                sails.log.info('created: ' + task.name);
+                if(task.members.length > 0) {
+                    task.members.forEach(function(_user, idx) {
+                        User.findOne(_user.id, function (error, user) {
+                            if (error) return res.negotiate(error);
+
+                            if(user.tasks) {
+                                user.tasks.add(task.id);
+                            }
+                            else {
+                                user.tasks = [];
+                                user.tasks.add(task.id);
+                            }    
+
+                            user.save();
+                        });
+                    })
+                        
+                    
+                }
                 
-                    // debugging - remove later.. or not, server logs are helpful.
-                    if(task) {
-                        sails.log.info('created: ' + task.name);
-                        res.ok(task);
-                    }
-                    else {
-                        sails.log.warn('Task with the id ' + req.body.id + ' could not be created.');
-                        res.badRequest('Task with the id ' + req.body.id + ' could not be created.');
-                    }
-                });
+                res.ok(task);
+            }
+            else {
+                sails.log.warn('Task with the id ' + req.body.id + ' could not be created.');
+                res.badRequest('Task with the id ' + req.body.id + ' could not be created.');
+            }
+        });
 
     },
 

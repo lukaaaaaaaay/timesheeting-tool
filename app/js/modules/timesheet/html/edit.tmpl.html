@@ -1,0 +1,118 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-8">
+			<h3 class="page-heading teal">Edit Timesheet</h3>
+			<form name="editTimesheetForm" class="form-horizontal" novalidate>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Name</label>
+					</div>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="timesheetName" ng-model="timesheet.name" required/>
+						<div class="error" 
+							ng-show="(editTimesheetForm.timesheetName.$dirty && editTimesheetForm.timesheetName.$invalid) 
+										|| (submitted && editTimesheetForm.timesheetName.$invalid)" >
+				            <span ng-show="editTimesheetForm.timesheetName.$error.required">
+				              The timesheet name is required!
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Task</label>
+					</div>
+					<div class="col-sm-4">
+						<select class="form-control" name="timesheetTask" ng-model="timesheet.taskId" 
+								ng-options="item.id as item.name for item in tasks" required>
+							<option value="">Please select..</option>
+						</select>
+						<div class="error" ng-show="(editTimesheetForm.timesheetTask.$dirty && editTimesheetForm.timesheetTask.$invalid) || (submitted && editTimesheetForm.timesheetTask.$invalid)" >
+				            <span ng-show="editTimesheetForm.timesheetTask.$error.required">
+				              You must assign a tasks
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Start Time</label>
+					</div>
+					<div class="col-sm-3">
+						<input type="date" 
+								class="form-control" 
+								name="startTime" 
+								ng-model="timesheet.startTime" 
+								required 
+								ng-change="validateTime(editTimesheetForm, timesheet.startTime, timesheet.endTime)"/>
+						<div class="error" 
+							ng-show="(editTimesheetForm.startTime.$dirty && editTimesheetForm.startTime.$invalid) || (submitted && editTimesheetForm.startTime.$invalid)" >
+				            <span ng-show="editTimesheetForm.startTime.$error.required">
+				              The timesheet start time is required!
+				            </span>
+				        </div>
+					</div>
+					<div class="col-sm-6">
+						<timepicker ng-model="timesheet.startTime" show-spinners="false"></timepicker>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">End Time</label>
+					</div>
+					<div class="col-sm-3">
+						<input type="date" 
+								class="form-control" 
+								name="endTime" 
+								ng-model="timesheet.endTime" 
+								required
+								ng-change="validateTime(editTimesheetForm, timesheet.startTime, timesheet.endTime)"/>
+						<div class="error" 
+							ng-show="(editTimesheetForm.endTime.$dirty && editTimesheetForm.endTime.$invalid) || (submitted && editTimesheetForm.endTime.$invalid)" >
+				            <span ng-show="editTimesheetForm.endTime.$error.required">
+				              The timesheet end time is required!
+				            </span>
+				        </div>
+					</div>
+					<div class="col-sm-6">
+						<timepicker ng-model="timesheet.endTime" show-spinners="false"></timepicker>
+					</div>
+					<div class="col-sm-9 col-sm-offset-3 error" ng-show="(editTimesheetForm.startTime.$dirty && editTimesheetForm.startTime.$invalid) 
+												&& (editTimesheetForm.endTime.$dirty && editTimesheetForm.endTime.$invalid)" >
+			            <span ng-show="editTimesheetForm.startTime.$error.invalidDate && editTimesheetForm.endTime.$error.invalidDate">
+			              The end time must be greater than the start time.
+			            </span>
+			        </div>
+			    </div>
+			    <!-- TODO: Hide from regular users -->
+			    <div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Status</label>
+					</div>
+					<div class="col-sm-4">
+						<select class="form-control" name="status" ng-model="timesheet.statusId" 
+								ng-options="status.id as status.name for status in statuses" required>
+							<option value="">Please select..</option>
+						</select>
+						<div class="error" 
+								ng-show="(editTimesheetForm.status.$dirty && editTimesheetForm.status.$invalid) 
+											|| (submitted && editTimesheetForm.status.$invalid)" >
+				            <span ng-show="editTimesheetForm.status.$error.required">
+				              You must select a timesheet status!
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<!-- END TODO: Hide from regular users -->
+			    <div class="col-sm-6 form-buttons">
+					<a href="/#/timesheets" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to Timesheet List</a>
+					<button type="button" class="btn btn-danger" ng-click="deleteTimesheet()"><i class="fa fa-times"></i> Delete</button>
+				</div>	
+				<div class="col-sm-6 text-right form-buttons">
+					<button type="button" class="btn btn-primary" ng-click="updateTimesheet(editTimesheetForm)"><i class="fa fa-check"></i> Save</button>
+				</div>		
+				
+			</form>
+		</div>
+	</div>
+</div>

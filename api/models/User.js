@@ -55,6 +55,10 @@ var User = {
       }).execSync();
     },
 
+    getUserTasks: function () {
+      return this.tasks;
+    },
+
     getFullName: function (){
         return this.firstName + ' ' + this.lastName;
     },
@@ -120,7 +124,6 @@ var User = {
       });
     });
   }
-
 };
 
 module.exports = User;

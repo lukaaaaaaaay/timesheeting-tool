@@ -90,10 +90,48 @@
             /**
             * getAllProjects
             */
-            getAllProjects = function(id, callback) {
+            getAllProjects = function(callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/projects')
+                .success(function(resp) {
+                    var projects = resp;
+
+                    callback(projects);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            /**
+            * getAllProjectsForCompany
+            */
+            getAllProjectsForCompany = function(id, callback) {
                 var defer = $q.defer();
 
                 $http.get( tst.modules.api.url + '/api/projects/company/' + id)
+                .success(function(resp) {
+                    var projects = resp;
+
+                    callback(projects);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            /**
+            * getAllProjectsForUser
+            */
+            getAllProjectsForUser = function(id, callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/projects/manager/' + id)
                 .success(function(resp) {
                     var projects = resp;
 
@@ -146,6 +184,8 @@
                 updateProject: updateProject,
                 deleteProject: deleteProject,
                 getAllProjects: getAllProjects,
+                getAllProjectsForCompany: getAllProjectsForCompany,
+                getAllProjectsForUser: getAllProjectsForUser,
                 getCurrentProject: getCurrentProject,
                 getAllUsersForCompany: getAllUsersForCompany,
                 getAllStatuses: getAllStatuses

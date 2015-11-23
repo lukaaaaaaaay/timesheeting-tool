@@ -1,0 +1,29 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+		</div>
+		<div class="col-sm-8">
+			<h2 class="teal">{{timesheet.name}}</h2>
+			<p>
+				<strong>Task: </strong>
+				<!-- {{taskAsText(timesheet.taskId)}} <br/> -->
+				{{timesheet.taskId}} <br />
+				<strong>Start Time: </strong>
+				{{formatDate(timesheet.startTime)}} <br/>
+				<strong>End Time: </strong>
+				{{formatDate(timesheet.endTime)}} <br/>
+				<strong>Status: </strong>
+				{{statusAsText(timesheet.statusId)}} <br/>
+				
+			</p>
+		</div>
+	</div>
+
+	<div class="col-sm-8">
+		<a href="/#/timesheets" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to Timesheet List</a>
+		<a href="/#/timesheet/edit/{{timesheet.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</a>
+		<button type="button" class="btn btn-danger" ng-click="deleteTimesheet()"><i class="fa fa-times"></i> Delete</button>
+	</div>
+		
+	
+</div>

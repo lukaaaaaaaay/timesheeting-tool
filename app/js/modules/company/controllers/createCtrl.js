@@ -15,6 +15,7 @@
                 // we need to authenticate when we query the server anyways, so use that.
                 // $scope.company.directorId = authentication.getCurrentLoginUser();
                 // console.log($scope.company.directorId);
+                console.log("init")
             }
             init();
 

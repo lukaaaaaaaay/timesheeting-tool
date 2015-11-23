@@ -1,0 +1,60 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="page-heading teal">Timesheets</h3>
+			<!-- add search bar back in if time permits -->
+			<!-- <div class="search-bar">
+				<div class="col-lg-3 col-lg-offset-9">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+					    <span class="input-group-btn">
+					    	<button class="btn btn-default" type="button">Go!</button>
+					    </span>						 
+			    	</div>
+				</div>
+				
+			</div> -->
+			<div class="clearfix"></div>
+			<div class="table-responsive">
+				<table class="table tst-list" ng-show="timesheets || timesheets.length > 0">
+					<tr class="blue-gray">
+						<th>Id</th>
+						<th>Name</th>
+						<th>Task</th>
+						<th>Start Time</th>
+						<th>End TIme</th>
+						<th>Status</th>
+						<th/>
+					</tr>
+					<tr ng-repeat="timesheet in filteredTimesheets | limitTo:numPerPage">
+						<td>{{timesheet.id}}</td>
+						<td><a href="/#/timesheet/view/{{timesheet.id}}">{{timesheet.name}}</a></td>
+						<!-- <td>{{taskAsText(timesheet.taskId)}}</td> -->
+						<td>{{timesheet.taskId}}</td>
+						<td>{{formatDate(timesheet.startTime)}}</td>
+						<td>{{formatDate(timesheet.endTime)}}</td>
+						<td>{{statusAsText(timesheet.statusId)}}</td>
+						<td>
+							<a href="/#/timesheet/edit/{{timesheet.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>
+							<button type="button" class="btn btn-danger" ng-click="deleteTimesheet(timesheet)"><i class="fa fa-trash-o"></i></button>
+						</td>
+					</tr>
+				</table>
+				<p ng-show="!timesheets || timesheets.length == 0">
+					<strong> You don't have any timesheets. <a href="/#/timesheet/create">Create one </a></strong>
+				</p>
+			</div>
+			<div class="text-right">
+				<div class="text-right">
+				<pagination 
+  					ng-model="currentPage"
+  					total-items="timesheets.length" 
+  					items-per-page="numPerPage"
+  					previous-text="&laquo;"
+  					next-text="&raquo;">
+				</pagination>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

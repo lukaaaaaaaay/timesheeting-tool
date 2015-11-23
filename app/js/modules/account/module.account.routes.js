@@ -4,14 +4,19 @@
     angular.module(tst.modules.account.name).config([
         '$stateProvider',
         function ($stateProvider) {
+            $stateProvider.state(tst.modules.account.states.account, {
+              template: '<ui-view />',
+              controller: function($scope){
+                  console.log("account active");
+              }
+            });
             // Registration route
             $stateProvider.state(tst.modules.account.states.register, {
                 url: tst.modules.account.routes.register,
                 controller: tst.modules.account.controllers.register,
                 templateUrl: tst.modules.account.views.register,
-                data: {
-                    bodyClass: tst.modules.account.bodyClass.register,
-                }
+                 bodyClass: tst.modules.account.bodyClass.register,
+                
             });
 
             // Manage Account
@@ -22,9 +27,8 @@
                 access: {
                     loginRequired: true
                 },
-                data: {
-                    bodyClass: tst.modules.account.bodyClass.manageAccount,
-                }
+                bodyClass: tst.modules.account.bodyClass.manageAccount,
+                
             });
 
             // Reset Password
@@ -35,9 +39,8 @@
                 access: {
                     loginRequired: true
                 },
-                data: {
-                    bodyClass: tst.modules.account.bodyClass.resetPassword,
-                }
+                bodyClass: tst.modules.account.bodyClass.resetPassword,
+                
             });
 
         }]);
