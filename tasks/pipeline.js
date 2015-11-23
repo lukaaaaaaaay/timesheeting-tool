@@ -19,6 +19,7 @@ var cssFilesToInject = [
   'bower_components/angular-toastr/dist/angular-toastr.min.css',
   'bower_components/ng-dialog/css/ngDialog.min.css',
   'bower_components/ng-dialog/css/ngDialog-theme-default.min.css',
+  'bower_components/angular-chart.js/dist/angular-chart.css',
   'css/**/*.css'
 ];
 
@@ -41,6 +42,8 @@ var jsFilesToInject = [
   '/bower_components/ng-dialog/js/ngDialog.min.js',
   '/bower_components/underscore/underscore-min.js',
   '/bower_components/moment/min/moment.min.js',
+  '/bower_components/Chart.js/Chart.min.js',
+  '/bower_components/angular-chart.js/dist/angular-chart.js',
   
   // Non-Bower Dependencies are brought in here
   'js/dependencies/**/*.js',
@@ -52,6 +55,10 @@ var jsFilesToInject = [
   'js/modules/core/module.core.js',
   'js/modules/core/**/*.js',
   'js/modules/core/module.core.run.js',
+
+    // Import TST Main
+  'js/modules/main/module.main.js',
+  'js/modules/main/module.main.routes.js',
 
   // Import TST auth
   'js/modules/auth/module.auth.js',
@@ -85,6 +92,12 @@ var jsFilesToInject = [
   'js/modules/project/module.project.js',
   'js/modules/project/module.project.routes.js',
   'js/modules/project/**/*.js',
+
+  // Import TST timesheets
+  'js/modules/timesheet/module.timesheet.js',
+  'js/modules/timesheet/module.timesheet.routes.js',
+  'js/modules/timesheet/**/*.js',
+
 
   // Import TST dashboard
   'js/modules/dashboard/module.dashboard.js',

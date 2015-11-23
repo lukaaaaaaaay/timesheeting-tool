@@ -1,0 +1,91 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-8">
+			<h3 class="page-heading teal">Create Timesheet</h3>
+			<form name="createTimesheetForm" class="form-horizontal" novalidate>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Name</label>
+					</div>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="timesheetName" ng-model="timesheet.name" required/>
+						<div class="error" 
+							ng-show="(createTimesheetForm.timesheetName.$dirty && createTimesheetForm.timesheetName.$invalid) 
+										|| (submitted && createTimesheetForm.timesheetName.$invalid)" >
+				            <span ng-show="createTimesheetForm.timesheetName.$error.required">
+				              The timesheet name is required!
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Task</label>
+					</div>
+					<div class="col-sm-4">
+						<select class="form-control" name="timesheetTask" ng-model="timesheet.taskId" 
+								ng-options="item.id as item.name for item in tasks" required>
+							<option value="">Please select..</option>
+						</select>
+						<div class="error" ng-show="(createTimesheetForm.timesheetTask.$dirty && createTimesheetForm.timesheetTask.$invalid) || (submitted && createTimesheetForm.timesheetTask.$invalid)" >
+				            <span ng-show="createTimesheetForm.timesheetTask.$error.required">
+				              You must assign a tasks
+				            </span>
+				        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3 text-right">
+						<label class="control-label">Start Time</label>
+					</div>
+					<div class="col-sm-3">
+						<input type="date" 
+								class="form-control" 
+								name="startTime" 
+								ng-model="timesheet.startTime" 
+								required 
+								ng-change="validateTime(createTimesheetForm, timesheet.startTime, timesheet.endTime)"/>
+						<div class="error" 
+							ng-show="(createTimesheetForm.startTime.$dirty && createTimesheetForm.startTime.$invalid) || (submitted && createTimesheetForm.startTime.$invalid)" >
+				            <span ng-show="createTimesheetForm.startTime.$error.required">
+				              The timesheet start time is required!
+				            </span>
+				        </div>
+					</div>
+					<div class="col-sm-6">
+						<timepicker ng-model="timesheet.startTime" show-spinners="false"></timepicker>
+					</div>
+					<div class="col-sm-3 text-right">
+						<label class="control-label">End Time</label>
+					</div>
+					<div class="col-sm-3">
+						<input type="date" 
+								class="form-control" 
+								name="endTime" 
+								ng-model="timesheet.endTime" 
+								required
+								ng-change="validateTime(createTimesheetForm, timesheet.startTime, timesheet.endTime)"/>
+						<div class="error" 
+							ng-show="(createTimesheetForm.endTime.$dirty && createTimesheetForm.endTime.$invalid) || (submitted && createTimesheetForm.endTime.$invalid)" >
+				            <span ng-show="createTimesheetForm.endTime.$error.required">
+				              The timesheet end time is required!
+				            </span>
+				        </div>
+					</div>
+					<div class="col-sm-6">
+						<timepicker ng-model="timesheet.endTime" show-spinners="false"></timepicker>
+					</div>
+					<div class="col-sm-9 col-sm-offset-3 error" ng-show="(createTimesheetForm.startTime.$dirty && createTimesheetForm.startTime.$invalid) 
+												&& (createTimesheetForm.endTime.$dirty && createTimesheetForm.endTime.$invalid)" >
+			            <span ng-show="createTimesheetForm.startTime.$error.invalidDate && createTimesheetForm.endTime.$error.invalidDate">
+			              The end time must be greater than the start time.
+			            </span>
+			        </div>
+			        <div class="col-sm-12 text-right form-buttons">
+						<button type="button" class="btn btn-primary" ng-click="createTimesheet(createTimesheetForm)"><i class="fa fa-check"></i> Save</button>
+					</div>	
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

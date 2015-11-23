@@ -1,14 +1,63 @@
 <div class="container-fluid">
   <div class="row">
   <div class="col-md-12">
-    <h1>Home</h1>
+    <!-- <h1>Home</h1> -->
 
     <h2>Hello, {{user.firstName}}</h2>
-    <p>
-        <a href="#/users">This link requires the user to have admin permissions</a>
-    </p>
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <h2 class="purple">Top Projects</h2>    
+        </div>
+        <div ng-show="projects.length > 0">
+            <div class="col-md-4" ng-repeat="project in projects">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {{project.name}}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <strong>Start Date: </strong>
+                            {{formatDate(project.startDate)}} <br/>
+                            <strong>Due Date: </strong>
+                            {{formatDate(project.dueDate)}} <br/>
+                            <strong>Status: </strong>
+                            {{statusAsText(project.statusId)}} <br/>
+                            <div class="text-right">
+                            <a href="/#/project/view/{{project.id}}">View <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="projects.length == 0">
+            <div class="col-md-12">
+                <p>There aren't any projects, <a href="/#/project/create">create one here</a>!
+            </div>
+        </div>
+    </div>
+    <div ng-show="projects.length > 0">
+        <div class="row clearfix">
+            <div class="col-md-6">
+                <h3 class="teal">Project Breakdown</h3>
+                <canvas id="doughnut" class="chart chart-doughnut"
+                    chart-data="projectBreakdown" chart-labels="projectLabels">
+                </canvas> 
+            </div>
+            <!-- TODO: Replace with Task data once completed -->
+            <div class="col-md-6">
+                <h3 class="blue">Task Breakdown</h3>
+                <canvas id="doughnut" class="chart chart-doughnut"
+                    chart-data="taskBreakdown" chart-labels="taskLabels">
+                </canvas> 
+            </div>
 
-    <p>
+        </div>
+    </div>
+
+   <!--  <p>
         You will see this button if you are a Staff User: <a class="btn btn-primary" access="Staff">Can You See Me?</a>
     </p>
     <p>
@@ -16,7 +65,7 @@
     </p>
     <p>
         You will see this button if you are a Admin User: <a class="btn btn-primary" access="Admin">Can You See Me?</a>
-    </p>
+    </p> -->
     </div>
   </div>
 </div>

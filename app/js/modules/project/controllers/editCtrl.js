@@ -44,7 +44,7 @@
                 $scope.submitted = true;
                 if(form.$valid) {
                     projectApi.updateProject($scope.project, function(project) {
-                        notifier.success('Success', 'Department details updated!');
+                        notifier.success('Success', 'Project details updated!');
                         reset();
                     }, function(error) {
                         console.log(error);
@@ -64,7 +64,7 @@
                 }).then(
                     function(success) {
                         projectApi.deleteProject($scope.project.id, function(success){
-                                notifier.success('Success', 'Department deleted');
+                                notifier.success('Success', 'Project deleted');
                                 $location.path(tst.modules.project.routes.list);
                             },function(error) {
                       console.log(error)
@@ -98,7 +98,8 @@
             function setProject (project) {
                 $scope.project = project;
                 $scope.project.startDate = new Date($scope.project.startDate.toString());
-                $scope.project.dueDate = new Date($scope.project.dueDate.toString());
+                if($scope.project.dueDate)
+                    $scope.project.dueDate = new Date($scope.project.dueDate.toString());
             }
 
             

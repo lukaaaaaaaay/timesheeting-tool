@@ -10,6 +10,7 @@
 
         // TST core famework
         tst.modules.core.name,
+        tst.modules.main.name,
         tst.modules.auth.name,
 
         // App submodules
@@ -19,5 +20,7 @@
         tst.modules.department.name,
         tst.modules.dashboard.name,
         tst.modules.project.name,
+        tst.modules.timesheet.name
+        
     ]);
 }(angular, tst));

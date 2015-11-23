@@ -1,0 +1,151 @@
+body.tst-main-body, 
+.tst-main-body h1,
+.tst-main-body h2,
+.tst-main-body h3,
+.tst-main-body p,
+.tst-main-body div,
+.tst-main-body a,
+.tst-main-body span,
+.tst-main-body input,
+.tst-main-body label {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+}
+
+.tst-main-body {
+	padding-top: 70px;
+}
+
+.tst-main-body .navbar.sticky {
+	height: 70px;
+
+}
+
+.navbar.navbar-default {
+	border: none;
+	box-shadow: 1px 1px 5px #888888;
+	-webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+@media screen and (min-width: 768px) {
+	.navbar.sticky .navbar-nav>li>a {
+	    padding-top: 25px;
+	    padding-bottom: 25px;
+	}
+
+	.navbar.sticky .navbar-brand {
+    	height: 70px;
+    	padding: 25px 15px;
+	}
+}
+
+.hero-image {
+	position: relative;
+}
+
+.hero-image-overlay {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.6;
+	background: #000;
+	z-index: 1;
+
+}
+
+.hero-text {
+    position: absolute;
+    top: 20rem;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    color: #fff;
+}
+
+.hero-text h1 {
+    line-height: 1.4;
+    margin-bottom: 3rem;
+}
+
+.btn-transparent {
+	color: #fff;
+	border: 1px solid #fff;
+	font-size: 20px;
+	text-transform: uppercase;
+	padding: 15px 50px;
+	-webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.btn-transparent:hover {
+	background: rgba(255,255,255,0.8);
+	border: none;
+	padding: 16px 51px;
+	color: #333;
+}
+
+.label-wrap {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+
+#about, #faqs {
+	padding: 5rem;
+}
+
+#faqs {
+	background: #f3f3f3;
+}
+
+#contact .hero-text {
+    top: 5rem;
+}
+
+#contact .btn-transparent.btn-block {
+	background: none;
+}
+
+#contact .btn-transparent.btn-block:hover {
+	background: rgba(255,255,255,0.8);
+}
+
+#contact label {
+    position: absolute;
+    left: 2rem;
+    top: 0.5rem;
+    font-weight: 400;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#contact input.form-control {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    color: #fff;
+    box-shadow: none;
+
+}
+
+#contact textarea.form-control {
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 0;
+    color: #fff;
+    box-shadow: none;
+}
+
+.teal {
+  color: #1CAF9A; 
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+	color: #fff;
+	background-color: #1CAF9A; 	
+}
+
+
