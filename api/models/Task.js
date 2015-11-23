@@ -53,7 +53,7 @@
         categories: {collection: 'category', through: 'taskcategory'},
 
         // A task can have many members
-        users: {collection: 'user', through'taskmember'},
+        users: {collection: 'user', through: 'taskmember'},
 
         // A task can have many items
         //items: {collection: 'Item', via: 'task'},
