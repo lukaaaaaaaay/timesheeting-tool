@@ -3,7 +3,6 @@
     "modules": {}
   },
   "hooks": {
-    "blueprints": false,
     "session": false,
     "sockets": false,
     "pubsub": false,
