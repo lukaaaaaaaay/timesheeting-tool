@@ -57,7 +57,7 @@ module.exports = {
      * @param {Object} res
      */
     findAllForProject: function(req, res) {
-        Task.findAllForProject({projectId: req.param('id')}, function(err, tasks) {
+        Task.findAllForProject(req.param('id'), function(err, tasks) {
             if (err) return res.negotiate(err);
             
 
