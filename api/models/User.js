@@ -41,6 +41,9 @@ var User = {
     // A user can have many passports
     passports: {collection: 'Passport', via: 'user'},
 
+
+    passwordResetToken: { type: 'json' },
+
     // A user can have many tasks - need to make many-many relationship so we can query properly. 
     tasks: {collection: 'Task', via: 'members'},
 
@@ -62,6 +65,15 @@ var User = {
     getFullName: function (){
         return this.firstName + ' ' + this.lastName;
     },
+
+    generatePasswordResetToken: function(cb) {
+      this.passwordResetToken = Token.generate();
+      this.save(function (err) {
+        if(err) return cb(err);
+        cb();
+      });
+    },
+
 
     toJSON: function () {
       var user = this.toObject();
@@ -86,6 +98,34 @@ var User = {
         if (error) return reject(error);
 
         resolve(created);
+      });
+    });
+  },
+
+
+
+  /**
+   * Create a new user
+   * Returns a promise.
+   *
+   * @param {Object}   user The soon-to-be-created User
+   */
+  createUser: function (user) {
+    return new Promise(function (resolve, reject) {
+      sails.models.user.create(user, function (err, created) {
+          if (err) sails.log(err);
+
+          //todo: set the createdBy
+          //created.createdBy = req.user()
+          //createdby.save();
+
+          // todo: Generate auth token and return it to the caller.
+          created.generatePasswordResetToken(function (err) {
+              resolve(created);
+          });
+
+          // todo: when a user enters password, connect passport to user
+          //services.protocols.local.connect(req, res, next)
       });
     });
   },

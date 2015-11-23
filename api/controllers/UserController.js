@@ -97,12 +97,12 @@ module.exports = {
         user = req.allParams();
 
         if(!user.roleId)
-          user.roleId = 4;  // todo: remove this hardcode    
+          user.roleId = 4;  // todo: remove this hardcode  
 
-        User.register(user)
+        User.createUser(user)
           .then(function (user) {
-            sails.log('created new staff user', user);
-            return res.ok(user);
+            sails.log('created new staff user', user);    
+            return res.ok(user); 
           })
           .catch(function (error) {
             sails.log.error(error);
