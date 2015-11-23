@@ -6,7 +6,7 @@
     "(Chris Clayton <s3427916@student.rmit.edu.au>)",
     "(Luke Phelan <s3197473@student.rmit.edu.au>)",
     "(Craig McQuinn <s3437693@student.rmit.edu.au>)",
-    "(Yimming Wang <s3418827@student.rmit.edu.au>)"
+    "(Yiming Wang <s3418827@student.rmit.edu.au>)"
   ],
   "license": "MIT",
   "ignore": [
@@ -28,7 +28,7 @@
     "font-awesome": "~4.4.0",
     "underscore": "1.8.3",
     "ng-dialog": "ngDialog#~0.5.5",
-    "moment": "2.10.0",
+    "moment": "2.10.6",
     "angular-chart.js": "~0.8.5",
     "Chart.js": "~1.0.2"
   },

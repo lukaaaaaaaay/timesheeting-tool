@@ -41,7 +41,8 @@
         },
         services: {
             authentication: 'authentication',
-            authorization: 'authorization'
+            authorization: 'authorization',
+            authInterceptor: 'authInterceptor'
         },
         routes: {
             login: '/login',
@@ -50,6 +51,11 @@
         bodyClass: {
             login: 'tst-single-form',
             notAuthorised: 'tst-body'
+        },
+        storage: {
+            currentUser: 'tst-currentUser',
+            authToken: 'tst-authToken',
+            lastActivity: 'tst-lastActivity'
         }
     };
 

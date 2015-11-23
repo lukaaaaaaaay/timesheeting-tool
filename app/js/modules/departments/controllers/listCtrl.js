@@ -9,7 +9,8 @@
         tst.modules.core.services.notifier,
         tst.modules.department.services.api,
         tst.modules.company.services.api,
-        function ($scope, $location, ngDialog, notifier, departmentApi, companyApi) {
+        '$timeout',
+        function ($scope, $location, ngDialog, notifier, departmentApi, companyApi, $timeout) {
             $scope.departments = [];
             $scope.filteredDepartments = [];
             $scope.numPerPage = 10;
@@ -24,7 +25,10 @@
                     function(success) {
                         departmentApi.deleteDepartment(id, function(success){
                                 notifier.success('Success', 'Department deleted');
-                                $location.path(tst.modules.department.routes.list);
+                                 $timeout(function() {
+                                    $scope.departments.splice(id,1);
+                                }, 0);
+                                // $location.path(tst.modules.department.routes.list);
                             },function(error) {
                       console.log(error)
                                 notifier.error('Error', 'Unable to delete department');
@@ -58,7 +62,7 @@
 
             function init() {
                 // get active company
-                var companyId = companyApi.getCurrentCompany();
+                var companyId = companyApi.getCurrentCompany().id;
                 departmentApi.getAllDepartments(companyId, function (departments) {
                     $scope.departments = departments;
                     updateList();

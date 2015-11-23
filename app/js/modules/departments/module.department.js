@@ -11,10 +11,10 @@
             list: 'dashboard.company.department.list'
         },
         controllers: {
-            create: 'createCtrl',
-            edit: 'editCtrl',
-            view: 'viewCtrl',
-            list: 'listCtrl'
+            create: 'departmentCreateCtrl',
+            edit: 'departmentEditCtrl',
+            view: 'departmentViewCtrl',
+            list: 'departmentListCtrl'
         },
         views: {
             create: 'js/modules/departments/html/create.tmpl.html',

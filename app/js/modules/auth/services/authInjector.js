@@ -1,7 +1,7 @@
 (function (angular, tst) {
     'use strict';
 
-    angular.module(tst.modules.auth.name).factory('authInterceptor',
+    angular.module(tst.modules.auth.name).factory(tst.modules.auth.services.authInterceptor,
         [
             '$q',
             tst.modules.auth.services.authentication,
@@ -16,11 +16,12 @@
                     * is one found in the local storage
                     */
                     request: function(config) {
-                            var auth = authentication.getAuth();
+                            var auth = authentication.getCredentials();
+
                             if (auth) {
-                                console.log(auth);
                                 config.headers.authorization = auth;
                             }
+
                         return config;
                     },
 
@@ -33,7 +34,7 @@
                         // there is a failure to authentication
                         // so inform the authenticaton service
                         if (rejection.status === 401) {
-                            handleAuthFailure();
+                            authentication.handleAuthFailure();
                         }
 
                         return $q.reject(rejection);
