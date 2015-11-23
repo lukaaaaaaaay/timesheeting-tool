@@ -6,8 +6,7 @@
      */
     angular.module(tst.modules.auth.name).config([
         '$stateProvider',
-        '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
+        function ($stateProvider) {
             // State: Login
             $stateProvider.state(tst.modules.auth.states.login, {
                 url: tst.modules.auth.routes.login,
@@ -28,8 +27,6 @@
                 }
             });
 
-            // Redirect to login if no state found
-            $urlRouterProvider.otherwise( tst.modules.auth.routes.login );
         }]);
 
 
