@@ -185,17 +185,46 @@ module.exports = {
         var token = req.body.token
 
         // find user by email
-        User.findOne(email, function (err, user) {
-          if (err) return next(err);
-          if (!user) return next(err);
+        User.findOne({email: email}, function (err, user) {
+          if (err) return res.negotiate(err);
+          if (!user) return res.badRequest("no user");
           //check if the token matches the users resetToken
+
+          //TODO: Check passwordResetToken.issuedAt date and check if token is still valid.
+
           if(user.passwordResetToken.value === token) {
             res.ok(user);
           } else {
-            res.badRequest();
+            res.badRequest("token is wrong");
           }
         });
        },
+
+       /**
+        * Set a users Password. Step 2 in activate account process.
+        *
+        * @param {Object} req
+        * @param {Object} res
+        */
+        createPassword: function(req, res) {
+           var password = req.body.newPassword;
+
+           User.findOne(req.body.userId, function(err, user) {
+             if (err) return res.negotiate(err);
+             if (!user) return res.badRequest("no user");
+
+             // todo: verify password
+
+             // conntect passport to user
+             sails.models.passport.create({
+              protocol : 'local'
+              , password : password
+              , user     : user.id
+             }, function (err, passport) {
+               res.ok(user);
+             });
+           });
+         },
 
       /**
        * Confirm an existing User's password. Step 1 in logged in reset password process.

@@ -10,7 +10,7 @@
       <div class="error" ng-show="!errors.isValid">
         <span>{{errors.message}}</span>
       </div>
-      <form name="activateAccountForm" ng-hide="passwordConfirmed">
+      <form name="activateAccountForm" ng-hide="accountActivated">
         <div class="form-group" ng-class="{ 'has-success': activateAccountForm.password.$valid && submitted,
                                               'has-error': activateAccountForm.password.$invalid && submitted }">
 
@@ -46,50 +46,50 @@
 
 
     <!-- TODO -->
-      <form name="resetPasswordFrm" ng-show="passwordConfirmed && !passwordReset">
-      <p>Complete the form below to reset your password.</p>
-        <div class="form-group" ng-class="{ 'has-success': resetPasswordFrm.password.$valid && submitted,
-                                              'has-error': resetPasswordFrm.password.$invalid && submitted }">
+      <form name="createPasswordForm" ng-show="accountActivated && !passwordCreated">
+      <p>Complete the form below to set your password.</p>
+        <div class="form-group" ng-class="{ 'has-success': createPasswordForm.password.$valid && submitted,
+                                              'has-error': createPasswordForm.password.$invalid && submitted }">
             <label>New Password</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-key"></i></span>
-              <input type="password" class="form-control" name="password" ng-model="passwords.newPassword" ng-minlength="8" required/>
+              <input type="password" class="form-control" name="password" ng-model="activation.newPassword" ng-minlength="8" required/>
             </div>
-            <div class="error" ng-show="resetPasswordFrm.password.$dirty && resetPasswordFrm.password.$invalid" >
-              <span ng-show="resetPasswordFrm.password.$error.required">
+            <div class="error" ng-show="createPasswordForm.password.$dirty && createPasswordForm.password.$invalid" >
+              <span ng-show="createPasswordForm.password.$error.required">
                 The password field is required!
               </span>
-              <span ng-show="resetPasswordFrm.password.$error.minlength">
+              <span ng-show="createPasswordForm.password.$error.minlength">
                 The password entered must be at least 8 characters.
               </span>
             </div>
         </div>
-        <div class="form-group" ng-class="{ 'has-success': resetPasswordFrm.confirmPassword.$valid && submitted,
-                                              'has-error': resetPasswordFrm.confirmPassword.$invalid && submitted }">
+        <div class="form-group" ng-class="{ 'has-success': createPasswordForm.confirmPassword.$valid && submitted,
+                                              'has-error': createPasswordForm.confirmPassword.$invalid && submitted }">
           <label>Confirm New Password</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-key"></i></span>
-            <input type="password" class="form-control" ng-model="passwords.confirmPassword" name="confirmPassword" compare-to="passwords.newPassword" required/>
+            <input type="password" class="form-control" ng-model="activation.confirmPassword" name="confirmPassword" compare-to="activation.newPassword" required/>
           </div>
-          <div class="error" ng-show="resetPasswordFrm.confirmPassword.$dirty && resetPasswordFrm.confirmPassword.$invalid" >
-            <span ng-show="resetPasswordFrm.confirmPassword.$error">
+          <div class="error" ng-show="createPasswordForm.confirmPassword.$dirty && createPasswordForm.confirmPassword.$invalid" >
+            <span ng-show="createPasswordForm.confirmPassword.$error">
               The password fields must match!
             </span>
           </div>
         </div>
         <div class="form-group text-right">
-          <a href="/#/account/manage" class="btn btn-default"><i class="fa fa-times"></i> Cancel</a>
-          <button type="button" ng-click="resetPassword(resetPasswordFrm)" class="btn btn-primary">
-            <i class="fa fa-check"></i> Reset Password
+          <a href="/#/" class="btn btn-default"><i class="fa fa-times"></i> Cancel</a>
+          <button type="button" ng-click="createPassword(createPasswordForm)" class="btn btn-primary">
+            <i class="fa fa-check"></i> Create Password & Login
           </button>
         </div>
         
         
       </form>
-      <div class="col-sm-12" ng-show="passwordReset">
+      <div class="col-sm-12" ng-show="passwordCreated">
         <h3>Success!</h3>
-        <p>Your password has been reset</p>
-        <a href="/#/account/manage"><i class="fa fa-arrow-left"></i> Back to Account Page</a>
+        <p>You are now loggedin</p>
+        <a href="/#/home"><i class="fa fa-arrow-left"></i> Go to Dashboard!</a>
       </div>
       </div>
     </div>
