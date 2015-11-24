@@ -51,6 +51,34 @@
                 return defer.promise;
             },
 
+            activateAccount = function (userInfo, callback) {
+                var defer = $q.defer();
+
+                $http.post(tst.modules.api.url + '/api/me/activate', userInfo)
+                .success(function(resp) {
+                    callback(resp);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            createPassword = function (userInfo, callback) {
+                var defer = $q.defer();
+
+                $http.post(tst.modules.api.url + '/api/me/activate/createPw', userInfo)
+                .success(function(resp) {
+                    callback(resp);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
             confirmPassword = function (userInfo, callback) {
                 var defer = $q.defer();
 
@@ -88,6 +116,8 @@
                 // findOne: findOne,
                 create: create,
                 updateUser: updateUser,
+                activateAccount: activateAccount,
+                createPassword: createPassword,
                 confirmPassword: confirmPassword,
                 resetPassword: resetPassword,
                 // destroy: destroy

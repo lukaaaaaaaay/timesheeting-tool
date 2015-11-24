@@ -9,7 +9,7 @@
         tst.modules.auth.services.authentication,
         tst.modules.tasks.services.api,
         tst.modules.project.services.api,
-        function ($scope, $location, notifier, authentication, taskApi, projectApi) {
+        function ($scope, $state, notifier, authentication, taskApi, projectApi) {
             $scope.task = {};
             $scope.allProjects = [];
             $scope.submitted = false;
@@ -20,7 +20,7 @@
                 if(form.$valid) {
                     taskApi.createTask($scope.task, function(task) {
                         notifier.success("success", "New task created");                        
-                        $state.go(tst.modules.task.states.list);
+                        $state.go(tst.modules.tasks.states.list);
                     }, function(error) {
                         notifier.error('Error', 'Unable to create new task');
                     });
@@ -51,9 +51,9 @@
                     notifier.error('Error', 'There was an error retrieving all the statuses');
                 });
 
-                var companyId = authentication.getCurrentLoginUser().companyId;
-                console.log(companyId);
-                projectApi.getAllProjects(companyId, function(projects) {
+                var user = authentication.getCurrentLoginUser();
+
+                projectApi.getAllProjectsForCompany(user.companyId, function(projects) {
                     console.log(projects);
                     $scope.allProjects = projects;
                 }, function(error) {

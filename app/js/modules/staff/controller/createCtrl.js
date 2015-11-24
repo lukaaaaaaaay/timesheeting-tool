@@ -4,10 +4,10 @@
     angular.module(tst.modules.staff.name)
         .controller(tst.modules.staff.controllers.create, [
         '$scope',
-        '$location',
+        '$state',
         tst.modules.core.services.notifier,
         tst.modules.staff.services.api,
-        function ($scope, $location, notifier, staffApi) {
+        function ($scope, $state, notifier, staffApi) {
             $scope.roles = {};
             $scope.departments = [];
             $scope.submitted = false;

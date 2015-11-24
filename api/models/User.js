@@ -41,6 +41,9 @@ var User = {
     // A user can have many passports
     passports: {collection: 'Passport', via: 'user'},
 
+
+    passwordResetToken: { type: 'json' },
+
     // A user can have many tasks - need to make many-many relationship so we can query properly. 
     tasks: {collection: 'Task', via: 'members'},
 
@@ -63,10 +66,20 @@ var User = {
         return this.firstName + ' ' + this.lastName;
     },
 
+    generatePasswordResetToken: function(cb) {
+      this.passwordResetToken = Token.generate();
+      this.save(function (err) {
+        if(err) return cb(err);
+        cb();
+      });
+    },
+
+
     toJSON: function () {
       var user = this.toObject();
       user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
+      // delete user.passwordResetToken;
       delete user.password;
       delete user.confirmPassword;
       delete user.passports;
@@ -86,6 +99,32 @@ var User = {
         if (error) return reject(error);
 
         resolve(created);
+      });
+    });
+  },
+
+
+
+  /**
+   * Create a new user
+   * Returns a promise.
+   *
+   * @param {Object}   user The soon-to-be-created User
+   */
+  createUser: function (user) {
+    return new Promise(function (resolve, reject) {
+      sails.models.user.create(user, function (err, created) {
+          if (err) sails.log(err);
+
+          // Generate activation token
+          // Will generate an object with a token value and the time it was issuedAt
+          // eg. { value: 'affe6049-84ea-4ba4-be48-a8eae3903ddd', issuedAt: '2015-11-24T02:39:37.085Z' } 
+          created.generatePasswordResetToken(function (err) {
+              resolve(created);
+          });
+
+          // todo: when a user enters password, connect passport to user
+          //services.protocols.local.connect(req, res, next)
       });
     });
   },

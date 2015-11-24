@@ -23,7 +23,7 @@
             list: 'js/modules/tasks/html/list.tmpl.html'
         },
         services: {
-            api: 'viewApi'
+            api: 'taskApi'
         },
         routes: { // todo: nest under projects?
             create: '/tasks/create', // or; /projects/:id/tasks/create ??? // create a task for project :id

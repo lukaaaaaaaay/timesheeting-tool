@@ -9,8 +9,8 @@
         tst.modules.core.services.notifier,
         tst.modules.tasks.services.api,
         tst.modules.project.services.api,
-        tst.modules.company.services.api,
-        function ($scope, $location, ngDialog, notifier, taskApi, projectApi, companyApi) {
+        tst.modules.auth.services.authentication,
+        function ($scope, $location, ngDialog, notifier, taskApi, projectApi, authentication) {
             $scope.tasks = [];
             $scope.filteredTasks = [];
             $scope.numPerPage = 10;
@@ -64,11 +64,10 @@
             };
 
             function init() {
-                // get active company
-                var companyId = $scope.currentUser.companyId;
+                var user = authentication.getCurrentLoginUser();
 
                 // get all tasks for company
-                taskApi.getAllTasksForCompany(companyId, function (tasks) {
+                taskApi.getAllTasksForCompany(user.companyId, function (tasks) {
                     console.log("getAllTasksForCompany callback");
                     $scope.tasks = tasks;
                 }, function(error) {
