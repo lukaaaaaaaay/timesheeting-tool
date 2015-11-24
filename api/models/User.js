@@ -79,6 +79,7 @@ var User = {
       var user = this.toObject();
       user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
+      // delete user.passwordResetToken;
       delete user.password;
       delete user.confirmPassword;
       delete user.passports;
