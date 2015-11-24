@@ -1,0 +1,97 @@
+
+
+<!-- <div class="container-fluid">
+  <div class="row"> -->
+    <div class="account-header" style="margin-top: 30px;">
+      <h1 class="teal text-center">Activate Account</h1>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 panel">
+    <div class="panel-body">
+      <div class="error" ng-show="!errors.isValid">
+        <span>{{errors.message}}</span>
+      </div>
+      <form name="activateAccountForm" ng-hide="passwordConfirmed">
+        <div class="form-group" ng-class="{ 'has-success': activateAccountForm.password.$valid && submitted,
+                                              'has-error': activateAccountForm.password.$invalid && submitted }">
+
+          <label>Email</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+            <input type="text" class="form-control" placeholder="Enter your email.." name="email" ng-model="activation.email" required/>
+          </div>
+
+          <label>Activation Token</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+            <input type="text" class="form-control" placeholder="Enter your activation token.." name="token" ng-model="activation.token" required/>
+          </div>
+          <!-- <div class="error" ng-show="activateAccountForm.password.$dirty && activateAccountForm.password.$invalid" >
+            <span ng-show="activateAccountForm.password.$error.required">
+              The password field is required!
+            </span>
+            <span ng-show="activateAccountForm.password.$error.minlength">
+              The password entered must be at least 8 characters.
+            </span>
+          </div> -->
+        </div>
+        <div class="form-group text-right">
+          <a href="/#/" class="btn btn-default"><i class="fa fa-times"></i> Cancel</a>
+          <button type="button" ng-click="activateAccount(activateAccountForm)" class="btn btn-primary">
+            <i class="fa fa-check"></i> Confirm
+          </button>
+        </div>
+      </form>
+
+
+
+
+    <!-- TODO -->
+      <form name="resetPasswordFrm" ng-show="passwordConfirmed && !passwordReset">
+      <p>Complete the form below to reset your password.</p>
+        <div class="form-group" ng-class="{ 'has-success': resetPasswordFrm.password.$valid && submitted,
+                                              'has-error': resetPasswordFrm.password.$invalid && submitted }">
+            <label>New Password</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-key"></i></span>
+              <input type="password" class="form-control" name="password" ng-model="passwords.newPassword" ng-minlength="8" required/>
+            </div>
+            <div class="error" ng-show="resetPasswordFrm.password.$dirty && resetPasswordFrm.password.$invalid" >
+              <span ng-show="resetPasswordFrm.password.$error.required">
+                The password field is required!
+              </span>
+              <span ng-show="resetPasswordFrm.password.$error.minlength">
+                The password entered must be at least 8 characters.
+              </span>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': resetPasswordFrm.confirmPassword.$valid && submitted,
+                                              'has-error': resetPasswordFrm.confirmPassword.$invalid && submitted }">
+          <label>Confirm New Password</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+            <input type="password" class="form-control" ng-model="passwords.confirmPassword" name="confirmPassword" compare-to="passwords.newPassword" required/>
+          </div>
+          <div class="error" ng-show="resetPasswordFrm.confirmPassword.$dirty && resetPasswordFrm.confirmPassword.$invalid" >
+            <span ng-show="resetPasswordFrm.confirmPassword.$error">
+              The password fields must match!
+            </span>
+          </div>
+        </div>
+        <div class="form-group text-right">
+          <a href="/#/account/manage" class="btn btn-default"><i class="fa fa-times"></i> Cancel</a>
+          <button type="button" ng-click="resetPassword(resetPasswordFrm)" class="btn btn-primary">
+            <i class="fa fa-check"></i> Reset Password
+          </button>
+        </div>
+        
+        
+      </form>
+      <div class="col-sm-12" ng-show="passwordReset">
+        <h3>Success!</h3>
+        <p>Your password has been reset</p>
+        <a href="/#/account/manage"><i class="fa fa-arrow-left"></i> Back to Account Page</a>
+      </div>
+      </div>
+    </div>
+<!--   </div>
+</div> -->
