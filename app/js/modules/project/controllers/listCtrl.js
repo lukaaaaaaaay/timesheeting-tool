@@ -69,7 +69,7 @@
             function init() {
                 var user = authentication.getCurrentLoginUser();
                 // get active company
-                var companyId = companyApi.getCurrentCompany();
+                var companyId = companyApi.getCurrentCompany().id;
                 if(user.roleId == 1) {
                     projectApi.getAllProjects(function (projects) {
                         $scope.projects = projects;
