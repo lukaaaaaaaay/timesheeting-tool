@@ -194,7 +194,6 @@ module.exports = {
           } else {
             res.badRequest();
           }
-          if
         });
        },
 

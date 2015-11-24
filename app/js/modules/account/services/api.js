@@ -102,6 +102,7 @@
                 // findOne: findOne,
                 create: create,
                 updateUser: updateUser,
+                activateAccount: activateAccount,
                 confirmPassword: confirmPassword,
                 resetPassword: resetPassword,
                 // destroy: destroy
