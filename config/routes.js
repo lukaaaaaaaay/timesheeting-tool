@@ -38,6 +38,10 @@ module.exports.routes = {
     action: 'me',
     roles: ["admin", "director", "projectmanager", "staff"]
   },
+  'POST /api/me/activate': {
+    controller: 'UserController',
+    action: 'activateAccount',
+  },
   'POST /api/me/confirmpw': {
     controller: 'UserController',
     action: 'confirmPassword',

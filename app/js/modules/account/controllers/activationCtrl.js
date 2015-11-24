@@ -20,12 +20,6 @@
                 newPassword: '',
                 confirmNewPassword: ''
             };
-
-            $scope.passwords = {
-                current: '',
-                newPassword: '',
-                confirmNewPassword: ''
-            };
             $scope.accountActivated = false;
             $scope.passwordReset = false;
             $scope.errors = {
@@ -57,10 +51,10 @@
                 }
             };
 
-            // $scope.resetPassword = function(form) {
+            // $scope.createPassword = function(form) {
             //     if(form.$valid) {
-            //         accountApi.resetPassword({userId: $scope.user.id, newPassword: $scope.passwords.newPassword}, function (success) {
-            //             notifier.success('Success', 'Your password has been reset');
+            //         accountApi.createPassword({userId: $scope.user.id, newPassword: $scope.passwords.newPassword}, function (success) {
+            //             notifier.success('Success', 'Your password has been created');
 
             //             authentication.login($scope.user.email, $scope.passwords.newPassword).then(function () {
             //                 $scope.errors.isValid = true;

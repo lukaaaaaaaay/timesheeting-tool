@@ -175,6 +175,30 @@ module.exports = {
       },
 
       /**
+       * Confirm a users activation token. Step 1 in activate account process.
+       *
+       * @param {Object} req
+       * @param {Object} res
+       */
+       activateAccount: function(req, res) {
+        var email = req.body.email;
+        var token = req.body.token
+
+        // find user by email
+        User.findOne(email, function (err, user) {
+          if (err) return next(err);
+          if (!user) return next(err);
+          //check if the token matches the users resetToken
+          if(user.passwordResetToken.value === token) {
+            res.ok(user);
+          } else {
+            res.badRequest();
+          }
+          if
+        });
+       },
+
+      /**
        * Confirm an existing User's password. Step 1 in logged in reset password process.
        *
        * @param {Object} req
