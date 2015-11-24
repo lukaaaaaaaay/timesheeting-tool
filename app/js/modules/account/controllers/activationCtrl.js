@@ -14,12 +14,19 @@
             $scope.user = {};
             $scope.errors = {};
 
+            $scope.activation = {
+                email: '',
+                token: '',
+                newPassword: '',
+                confirmNewPassword: ''
+            };
+
             $scope.passwords = {
                 current: '',
                 newPassword: '',
                 confirmNewPassword: ''
             };
-            $scope.passwordConfirmed = false;
+            $scope.accountActivated = false;
             $scope.passwordReset = false;
             $scope.errors = {
                 isValid: true,
@@ -36,14 +43,14 @@
 
             $scope.activateAccount = function (form) {
                 if(form.$valid) {
-                    // accountApi.activateAccount({userId: $scope.user.id, password: $scope.passwords.current}, function(success) {
-                    //     $scope.passwordConfirmed = true;
-                    //     $scope.errors.isValid = true;
-                    // }, function (error) {
-                    //     $scope.errors.isValid = false;
-                    //     $scope.errors.message = 'Unable to validate the password: ' + error.data;
-                    //     notifier.error('Error!', $scope.errors.message);
-                    // });
+                    accountApi.activateAccount({email: $scope.activation.email, token: $scope.activation.token}, function(success) {
+                        $scope.accountActivated = true;
+                        $scope.errors.isValid = true;
+                    }, function (error) {
+                        $scope.errors.isValid = false;
+                        $scope.errors.message = 'Unable to activate your account: ' + error.data;
+                        notifier.error('Error!', $scope.errors.message);
+                    });
                 }
                 else {
                    notifier.error('Error!', 'There are valiation errors with your submission. Please fix before continuing.'); 
