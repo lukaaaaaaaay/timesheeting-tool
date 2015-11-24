@@ -115,11 +115,9 @@ var User = {
       sails.models.user.create(user, function (err, created) {
           if (err) sails.log(err);
 
-          //todo: set the createdBy
-          //created.createdBy = req.user()
-          //createdby.save();
-
-          // todo: Generate auth token and return it to the caller.
+          // Generate activation token
+          // Will generate an object with a token value and the time it was issuedAt
+          // eg. { value: 'affe6049-84ea-4ba4-be48-a8eae3903ddd', issuedAt: '2015-11-24T02:39:37.085Z' } 
           created.generatePasswordResetToken(function (err) {
               resolve(created);
           });

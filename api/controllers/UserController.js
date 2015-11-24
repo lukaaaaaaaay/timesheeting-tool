@@ -96,8 +96,17 @@ module.exports = {
 
         user = req.allParams();
 
+        // Default to staff role if no specific roleId is passed.
+        // TODO: Check if loggedin user can assign to the passed in role. 
+        // (a director shouldn't be able to assign a user as an admin)
         if(!user.roleId)
-          user.roleId = 4;  // todo: remove this hardcode  
+          user.roleId = 4;  // todo: remove this hardcode
+
+        //todo: set the createdBy attribute to the logged in user
+        //user.createdBy = req.user;
+
+        //todo: set the company attribute to the logged in user's company
+        // user.companyId = req.user.companyId;
 
         User.createUser(user)
           .then(function (user) {
@@ -122,9 +131,12 @@ module.exports = {
 
         user = req.allParams();
         
-        if(!user.roleId){
+        if(!user.roleId)
           user.roleId = 2;  // todo: remove this hardcode
-        }
+
+        // todo: if the director is created by an admin
+        // set the createdBy attribute to the logged in user
+        //user.createdBy = req.user;
 
         User.register(user)
           .then(function (user) {
