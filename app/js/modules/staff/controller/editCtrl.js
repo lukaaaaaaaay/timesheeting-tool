@@ -12,7 +12,7 @@
             $scope.user = {};
             // $scope.departments = [];
             $scope.submitted = false;
-            $scope.roles = ['Admin', 'Director', 'Staff']; // this should be recieved from the server!
+            $scope.roles = ['Admin', 'Director', 'Staff']; // TODO: this should be recieved from the server!
 
             $scope.selectedRole = {};
 

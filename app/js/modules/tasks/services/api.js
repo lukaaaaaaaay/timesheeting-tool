@@ -120,7 +120,7 @@
                 var defer = $q.defer();
 
                 // Get all projects for companyId
-                projectApi.getAllProjects(companyId, function (projects) {
+                projectApi.getAllProjectsForCompany(companyId, function (projects) {
                     // Get all tasks for each project
                     _.each(projects, function(project) {
                         getAllTasksForProject(project.id, function (tasks) {

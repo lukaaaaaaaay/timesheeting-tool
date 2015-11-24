@@ -19,6 +19,15 @@
                 
             });
 
+            // Activation route
+            $stateProvider.state(tst.modules.account.states.activation, {
+                url: tst.modules.account.routes.activation,
+                controller: tst.modules.account.controllers.activation,
+                templateUrl: tst.modules.account.views.activation,
+                 bodyClass: tst.modules.account.bodyClass.activation,
+                
+            });
+
             // Manage Account
             $stateProvider.state(tst.modules.account.states.manageAccount, {
                 url: tst.modules.account.routes.manageAccount,

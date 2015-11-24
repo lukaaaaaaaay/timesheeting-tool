@@ -58,12 +58,21 @@
         </ul>
       </li>
       <li ng-class="{active: sidebarMenu.selected == 4, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 3}">
-        <a href="javascript:;">
-          <i class="fa fa-tasks"></i>
+        <a href="javascript:;" ng-click="toggleDropdown(3)">
+          <i class="fa fa-calendar"></i>
           <span class="title">Tasks</span>
           <span class="arrow"></span>
         </a>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 3">
+          <li>
+            <a href="/#/tasks/create">Add a task</a>
+          </li>
+          <li>
+            <a href="/#/tasks">View tasks</a>
+          </li>
+        </ul>
       </li>
+
       <li ng-class="{active: sidebarMenu.selected == 5, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 4}">
         <a href="javascript:;" ng-click="toggleDropdown(4)">
           <i class="fa fa-calendar"></i>
@@ -79,13 +88,38 @@
           </li>
         </ul>
       </li>
-      <li access="Staff" ng-class="{active: sidebarMenu.selected == 6}">
+      <li access="Director, Admin" ng-class="{active: sidebarMenu.selected == 6, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 5}">
+        <a href="javascript:;" ng-click="toggleDropdown(5)">
+          <i class="fa fa-calendar"></i>
+          <span class="title">Staff</span>
+          <span class="arrow"></span>
+        </a>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 5">
+          <li>
+            <a href="/#/staff/create">Add a user</a>
+          </li>
+          <li>
+            <a href="/#/staff">View Staff</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <!-- <li ng-class="{active: sidebarMenu.selected == 6}">
         <a href="javascript:;" >
           <i class="fa fa-users"></i>
           <span class="title">Staff</span>
           <span class="arrow"></span>
         </a>
-      </li>
+        <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 5">
+          <li>
+            <a href="/#/timesheet/create">Add a timesheet</a>
+          </li>
+          <li>
+            <a href="/#/timesheets">View Timesheets</a>
+          </li>
+        </ul>
+      </li> -->
     </ul>
   </div>
 </div>

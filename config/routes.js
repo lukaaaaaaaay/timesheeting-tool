@@ -38,6 +38,19 @@ module.exports.routes = {
     action: 'me',
     roles: ["admin", "director", "projectmanager", "staff"]
   },
+
+  // Activation endpoints
+  'POST /api/me/activate': {
+    controller: 'UserController',
+    action: 'activateAccount',
+  },
+  'POST /api/me/activate/createPw': {
+    controller: 'UserController',
+    action: 'createPassword',
+    // roles: ["admin", "director", "projectmanager", "staff"]
+  },
+
+  // Password Reset endpoints
   'POST /api/me/confirmpw': {
     controller: 'UserController',
     action: 'confirmPassword',
@@ -48,6 +61,7 @@ module.exports.routes = {
     action: 'resetPassword',
     roles: ["admin", "director", "projectmanager", "staff"]
   },
+
   'GET /api/users': {
     controller : 'UserController',
     action     : 'find',

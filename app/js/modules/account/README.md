@@ -10,7 +10,7 @@
 
 ## Purpose
 
-The `account` directory contains logic concerned with user accounts in TST.
+The `account` module contains logic concerned with user accounts in TST.
 
 ## FAQ
 

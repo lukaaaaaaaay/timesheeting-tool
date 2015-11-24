@@ -7,7 +7,7 @@
         tst.modules.core.services.notifier,
         tst.modules.auth.services.authentication,
         tst.modules.project.services.api,
-        //tst.modules.tasks.services.api,   
+        tst.modules.tasks.services.api,   
         //function ($scope, notifier, authentication, projectApi, taskApi) {
         function ($scope, notifier, authentication, projectApi, taskApi) {
             $scope.projects = [];
@@ -36,7 +36,7 @@
                 projectApi.getAllStatuses(function(allStatuses) {
                     statuses = allStatuses;
                     retrieveProjects(allStatuses);
-                    //retrieveTasks(allStatuses)
+                    retrieveTasks(allStatuses)
                     }, function(error) {
                         console.log(error);
                         notifier.error('Error', 'There was an error retrieving all the statuses');

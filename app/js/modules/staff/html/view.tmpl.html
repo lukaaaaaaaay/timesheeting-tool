@@ -25,12 +25,19 @@
                 <strong>Department: </strong>
                 {{user.department}}
             </p>
+
+            <!-- Display the Activation code -->
+            <p ng-if="user.passwordResetToken" access="Director">
+                <strong>Activation Code: </strong>
+                {{user.passwordResetToken.value}}
+            </p>
+
         </div>
     </div>        
     
     <div class="col-sm-8">
-        <a href="/#/tasks" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to Task List</a>
-        <a href="/#/task/edit/{{task.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</a>
-        <button type="button" class="btn btn-danger" ng-click="deleteTask()"><i class="fa fa-times"></i> Delete</button>
+        <a href="/#/staff" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to Staff List</a>
+        <a href="/#/user/edit/{{user.id}}" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</a>
+        <button type="button" class="btn btn-danger" ng-click="deleteStaff()"><i class="fa fa-times"></i> Delete</button>
     </div>
 </div>
