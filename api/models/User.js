@@ -45,7 +45,7 @@ var User = {
     passwordResetToken: { type: 'json' },
 
     // A user can have many tasks - need to make many-many relationship so we can query properly. 
-    tasks: {collection: 'Task', via: 'members'},
+    tasks: {collection: 'task', through: 'taskmember'},
 
     // organizations: {},
 
