@@ -17,7 +17,6 @@
                 templateUrl: tst.modules.tasks.views.create,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
                 },
                 bodyClass: tst.modules.tasks.bodyClass.create,
                 sidebarMenu: tst.modules.tasks.sidebarMenu.create
@@ -29,7 +28,6 @@
                 templateUrl: tst.modules.tasks.views.edit,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
                 },
                 bodyClass: tst.modules.tasks.bodyClass.edit,
                 sidebarMenu: tst.modules.tasks.sidebarMenu.edit
@@ -41,7 +39,6 @@
                 templateUrl: tst.modules.tasks.views.view,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
                 },
                 bodyClass: tst.modules.tasks.bodyClass.view,
                 sidebarMenu: tst.modules.tasks.sidebarMenu.view
@@ -52,8 +49,7 @@
                 controller: tst.modules.tasks.controllers.list,
                 templateUrl: tst.modules.tasks.views.list,
                 access: {
-                    loginRequired: true,
-                    roles: ['Admin', 'Director']
+                    loginRequired: true
                 },
                 bodyClass: tst.modules.tasks.bodyClass.list,
                 sidebarMenu: tst.modules.tasks.sidebarMenu.list
