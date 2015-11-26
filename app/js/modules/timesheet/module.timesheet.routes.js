@@ -17,7 +17,6 @@
                 templateUrl: tst.modules.timesheet.views.create,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
                 },
                 bodyClass: tst.modules.timesheet.bodyClass.create,
                 sidebarMenu: tst.modules.timesheet.sidebarMenu.create
@@ -29,7 +28,6 @@
                 templateUrl: tst.modules.timesheet.views.edit,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
                 },
                 bodyClass: tst.modules.timesheet.bodyClass.edit,
                 sidebarMenu: tst.modules.timesheet.sidebarMenu.edit
@@ -41,7 +39,6 @@
                 templateUrl: tst.modules.timesheet.views.view,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
                 },
                 bodyClass: tst.modules.timesheet.bodyClass.view,
                 sidebarMenu: tst.modules.timesheet.sidebarMenu.view
@@ -53,7 +50,6 @@
                 templateUrl: tst.modules.timesheet.views.list,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
                 },
                 bodyClass: tst.modules.timesheet.bodyClass.list,
                 sidebarMenu: tst.modules.timesheet.sidebarMenu.list

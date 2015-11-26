@@ -127,7 +127,8 @@ module.exports = {
             // debugging - remove later.. or not, server logs are helpful.
             if(task) {
                 sails.log.info('created: ' + task.name);
-                if(task.members.length > 0) {
+
+                if(task.members && task.members.length > 0) {
                     task.members.forEach(function(_user, idx) {
                         User.findOne(_user.id, function (error, user) {
                             if (error) return res.negotiate(error);
@@ -143,8 +144,6 @@ module.exports = {
                             user.save();
                         });
                     })
-                        
-                    
                 }
                 
                 res.ok(task);

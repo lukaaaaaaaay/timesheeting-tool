@@ -25,7 +25,6 @@
                 controller: tst.modules.dashboard.controllers.home,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director', 'Staff']
                 },
                 bodyClass: tst.modules.dashboard.bodyClass.home,
                 sidebarMenu: tst.modules.dashboard.sidebarMenu.home

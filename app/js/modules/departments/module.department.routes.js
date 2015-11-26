@@ -41,7 +41,7 @@
                 templateUrl: tst.modules.department.views.view,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
+                    roles: ['Admin', 'Director', 'ProjectManager']
                 },
                 bodyClass: tst.modules.department.bodyClass.view,
                 sidebarMenu: tst.modules.department.sidebarMenu.view
@@ -53,7 +53,7 @@
                 templateUrl: tst.modules.department.views.list,
                 access: {
                     loginRequired: true,
-                    roles: ['Admin', 'Director']
+                    roles: ['Admin', 'Director', 'ProjectManager']
                 },
                 bodyClass: tst.modules.department.bodyClass.list,
                 sidebarMenu: tst.modules.department.sidebarMenu.list
