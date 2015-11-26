@@ -82,6 +82,7 @@ module.exports = {
             if (err) return res.negotiate(err);
             
             if(user) {
+                sails.log.info('Tasks found ' + user.tasks.length);
                 res.ok(user.tasks);
             }
             else {
