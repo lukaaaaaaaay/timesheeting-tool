@@ -58,7 +58,8 @@
                     </div>
                     <div class="col-sm-4">
                     <!-- todo: loop through valid roles -->
-                        <select class="form-control" name="role" ng-model="staff.role">
+                        <select class="form-control" name="role" ng-model="staff.role"
+                                ng-options="role for role in roles">
                             <option value="">Please select..</option>
                         </select>
                         <div class="error" ng-show="(createStaffForm.role.$dirty && createStaffForm.role.$invalid) || (submitted && createStaffForm.projectManager.$invalid)" >
@@ -75,9 +76,11 @@
                     </div>
                     <div class="col-sm-4">
                     <!-- todo loop through valid departments -->
-                        <select class="form-control" name="department" ng-model="staff.department">
-                            <option value="">Please select..</option>
-                        </select>
+                      <select class="form-control" name="department" 
+                              ng-model="task.department" 
+                              ng-options="item.id as item.name for item in departments">
+                          <option value="">Please select..</option>
+                      </select>
                     </div>
                 </div>
 

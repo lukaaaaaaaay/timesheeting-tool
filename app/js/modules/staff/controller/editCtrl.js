@@ -40,7 +40,13 @@
                     notifier.error('Error', 'There was an error retrieving the user with the id ' + $stateParams.id);
                 });
 
-                //todo: assign roles and departments to scope
+                // Assign departments to scope.
+                departmentApi.getAllDepartments(companyId, function(allStatuses) {
+                    $scope.statuses = allStatuses;
+                }, function(error) {
+                    console.log(error);
+                    notifier.error('Error', 'There was an error retrieving all the statuses');
+                });
             }
 
             init();
