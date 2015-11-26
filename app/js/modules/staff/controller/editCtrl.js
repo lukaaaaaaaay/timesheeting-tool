@@ -13,7 +13,7 @@
             $scope.user = {};
             $scope.departments = [];
             $scope.submitted = false;
-            $scope.roles = ['Admin', 'Director', 'Staff']; // TODO: this should be recieved from the server!
+            $scope.roles = [{id: 1, name: 'Admin'},{id: 2, name: 'Director' },{id: 4, name: 'Staff'}]; // TODO: this should be recieved from the server!
 
             $scope.selectedRole = {};
 
@@ -37,12 +37,12 @@
                     $scope.user = user;
                     $scope.selectedRole = $scope.roles[user.roleId];
                                     // Assign departments to scope.
-                departmentApi.getAllDepartments($scope.user.companyId, function(allDepartments) {
-                    $scope.departments = allDepartments;
-                }, function(error) {
-                    console.log(error);
-                    notifier.error('Error', 'There was an error retrieving all the departments');
-                });
+                    departmentApi.getAllDepartments($scope.user.companyId, function(allDepartments) {
+                        $scope.departments = allDepartments;
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the departments');
+                    });
                 }, function(error) {
                     console.log(error);
                     notifier.error('Error', 'There was an error retrieving the user with the id ' + $stateParams.id);
