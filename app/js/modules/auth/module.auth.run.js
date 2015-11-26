@@ -19,7 +19,16 @@ angular.module(tst.modules.auth.name).run([
         // Listen for login failure request and redirect.
         eventbus.subscribe(tst.modules.auth.events.loginFailed, function (event) {
             // $location.path(tst.modules.auth.routes.login);
-            $state.go(tst.modules.main.states.main);
+
+            // Clear the currentUser and wipe the local storage
+            currentUser = undefined;
+            localStorage.remove(tst.modules.auth.storage.authToken);
+            localStorage.remove(tst.modules.auth.storage.lastActivity);
+            localStorage.remove(tst.modules.auth.storage.currentUser);   
+            localStorage.remove(tst.modules.company.storage.companyId);
+            localStorage.remove(tst.modules.company.storage.currentCompany);
+
+            $state.go(tst.modules.auth.states.login);
         });
 
         // Listen for logout request and redirect.

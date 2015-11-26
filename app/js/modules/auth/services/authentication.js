@@ -235,7 +235,7 @@
             */
             var handleAuthFailure = function() {
                 logout();
-                eventbus.broadcast(tst.modules.auth.events.failed);
+                eventbus.broadcast(tst.modules.auth.events.loginFailed);
             };
 
             /**
