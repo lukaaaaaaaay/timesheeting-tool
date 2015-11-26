@@ -67,6 +67,8 @@
 
     angular.module(tst.modules.tasks.name, [
         tst.modules.core.name,
-        tst.modules.project.name
+        tst.modules.project.name,
+
+        'isteven-multi-select'
     ]);
 }(angular, tst));

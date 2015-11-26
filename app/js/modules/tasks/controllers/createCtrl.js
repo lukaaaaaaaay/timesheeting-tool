@@ -9,10 +9,13 @@
         tst.modules.auth.services.authentication,
         tst.modules.tasks.services.api,
         tst.modules.project.services.api,
-        function ($scope, $state, notifier, authentication, taskApi, projectApi) {
+        tst.modules.staff.services.api,
+        function ($scope, $state, notifier, authentication, taskApi, projectApi, staffApi) {
             $scope.task = {};
             $scope.allProjects = [];
             $scope.allCategories = [];
+            $scope.allStaff = [];
+            $scope.currentStaff = [];
             $scope.submitted = false;
 
             $scope.createTask = function(form) {
@@ -53,6 +56,16 @@
                 });
 
                 var companyId = authentication.getCurrentLoginUser().companyId;
+
+
+                staffApi.getAllStaff(companyId, function(staff) {
+                    console.log(staff);
+                    $scope.allStaff = staff;
+                }, function(error) {
+                    console.log(error);
+                    notifier.error('Error', 'Unable to retrieve all staff for the company ' + user.companyId);
+                });
+
 
                 taskApi.getAllCategoriesForCompany(companyId, function(categories) {
                     console.log(categories);
