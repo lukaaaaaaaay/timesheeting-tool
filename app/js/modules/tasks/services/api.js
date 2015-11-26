@@ -71,6 +71,29 @@
                 return defer.promise;
             },
 
+
+            // getAllTasks // for admin
+            //getAllTasksForCompany
+            //getAllProjectsForUser
+
+            getAllTasks = function(callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/tasks/')
+                .success(function(resp) {
+                    var tasks = resp;
+                    console.log(tasks);
+
+                    callback(tasks);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+
             /**
             * getAllTasksForProject
             */
@@ -96,7 +119,7 @@
             /**
             * getAllForUser
             */
-            getAllForUser = function(userId, callback) {
+            getAllTasksForUser = function(userId, callback) {
                 var defer = $q.defer();
 
                 $http.get( tst.modules.api.url + '/api/tasks/user/' + userId)

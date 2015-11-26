@@ -66,32 +66,32 @@
             function init() {
                 var user = authentication.getCurrentLoginUser();
 
-                // get all tasks for company
-                taskApi.getAllTasksForCompany(user.companyId, function (tasks) {
-                    console.log("getAllTasksForCompany callback");
-                    $scope.tasks = tasks;
-                }, function(error) {
-                    console.log("getAllTasksForCompany error");
-                    console.log(error);
-                    notifier.error('Error', 'There was an error retrieving all the projects');
-                });
-
-                // Get all projects for company
-                // projectApi.getAllProjects(companyId, function (projects) {
-                //     console.log(projects);
-                //     // Get all tasks for each project
-                //     _.each(projects, function(project) {
-                //         taskApi.getAllTasksForProject(project.id, function (tasks) {
-                //             $scope.tasks = tasks
-                //         });
-                //     });
-
-                //     $scope.projects = projects;
-                //     updateList();
-                // }, function(error) {
-                //     console.log(error);
-                //     notifier.error('Error', 'There was an error retrieving all the projects');
-                // });
+                if(user.roleId == 1) {
+                    taskApi.getAllTasks(function (tasks) {
+                        $scope.tasks = tasks;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the tasks');
+                    });
+                }
+                else if(user.roleId == 2) {
+                    taskApi.getAllTasksForCompany(user.companyId, function (tasks) {
+                        $scope.tasks = tasks;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the tasks');
+                    });
+                } else {
+                    taskApi.getAllTasksForUser(user.id, function (tasks) {
+                        $scope.tasks = tasks;
+                        updateList();
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the tasks');
+                    });
+                }
 
                 projectApi.getAllStatuses(function(allStatuses) {
                     statuses = allStatuses;

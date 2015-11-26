@@ -26,10 +26,10 @@
             api: 'taskApi'
         },
         routes: { // todo: nest under projects?
-            create: '/tasks/create', // or; /projects/:id/tasks/create ??? // create a task for project :id
+            create: '/tasks/create',
             edit: '/task/edit/:id',
             view: '/task/view/:id',
-            list: '/tasks' // or; /projects/:id/tasks ??? // lists all tasks for project :id
+            list: '/tasks'
         },
         bodyClass: {
             create: 'tst-body',
