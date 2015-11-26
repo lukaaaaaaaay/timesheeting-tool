@@ -105,8 +105,9 @@
                         <label class="control-label">Category</label>
                     </div>
                     <div class="col-sm-4">
-                        <select class="form-control" name="category" ng-model="task.categories" 
-                                ng-options="item.id as item.name for item in categories" required>
+                        <select class="form-control" name="categories" ng-model="task.categories" 
+                                ng-options="item.id as item.name for item in allCategories" 
+                                >
                             <option value="">Please select..</option>
                         </select>
                         <div class="error" ng-show="(createTaskForm.category.$dirty && createTaskForm.category.$invalid) || (submitted && createTaskForm.category.$invalid)" >
