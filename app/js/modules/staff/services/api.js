@@ -53,7 +53,7 @@
             updateUser = function (user, callback) {
                 var defer = $q.defer();
 
-                $http.put( tst.modules.api.url + '/api/users', user)
+                $http.put( tst.modules.api.url + '/api/users', user.id)
                 .success(function(resp) {
                     var newUser = resp;
 

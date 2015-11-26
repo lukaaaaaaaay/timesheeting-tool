@@ -59,7 +59,7 @@
             list: {
                 selected: 4,
                 showDropdown: true,
-                activeSubmenu: 1,
+                activeSubmenu: 3,
                 collapsed: false
             }
         }

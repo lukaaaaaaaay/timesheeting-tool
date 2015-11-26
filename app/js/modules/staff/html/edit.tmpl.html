@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-sm-4">
                     <!-- todo loop through valid departments -->
-                        <select class="form-control" name="department" ng-model="user.department">
+                        <select class="form-control" name="department" ng-model="user.department" ng-options="department.id as department.name for department in departments">
                             <option value="">Please select..</option>
                         </select>
                     </div>
