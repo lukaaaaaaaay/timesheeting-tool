@@ -13,29 +13,29 @@
           <span class="arrow"></span>
         </a>
       </li>
-      <li access="Admin, Director, ProjectManager" ng-class="{active: sidebarMenu.selected == 2, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1}">
+      <li access="Director" ng-class="{active: sidebarMenu.selected == 2, open: sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1}">
         <a href="javascript:;" ng-click="toggleDropdown(1)">
           <i class="fa fa-building"></i>
           <span class="title">Company</span>
           <span class="arrow"></span>
         </a>
         <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 1">
-          <li access="Admin, Director">
+          <li>
             <a href="/#/company/view">
               View Details
             </a>
           </li>
-          <li access="Admin, Director">
+          <li>
             <a href="/#/company/edit">
               Edit Details
             </a>
           </li>
-          <li access="Admin, Director">
+          <li>
             <a href="/#/department/create">
               Create Department
             </a>
           </li>
-          <li access="Admin, Director">
+          <li>
             <a href="/#/departments">
               Department List
             </a>
@@ -95,10 +95,10 @@
           <span class="arrow"></span>
         </a>
         <ul class="tst-sidebar-submenu" ng-show="!sidebarMenu.collapsed && sidebarMenu.showDropdown && sidebarMenu.activeSubmenu == 5">
-          <li access="Admin, Director">
+          <li>
             <a href="/#/staff/create">Add a user</a>
           </li>
-          <li access="Admin, Director">
+          <li>
             <a href="/#/staff">View Staff</a>
           </li>
         </ul>

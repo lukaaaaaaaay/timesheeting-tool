@@ -71,6 +71,24 @@
                 return defer.promise;
             },
 
+            getAllTasks = function(callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/tasks/')
+                .success(function(resp) {
+                    var tasks = resp;
+                    console.log(tasks);
+
+                    callback(tasks);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+
             /**
             * getAllTasksForProject
             */
@@ -96,7 +114,7 @@
             /**
             * getAllForUser
             */
-            getAllForUser = function(userId, callback) {
+            getAllTasksForUser = function(userId, callback) {
                 var defer = $q.defer();
 
                 $http.get( tst.modules.api.url + '/api/tasks/user/' + userId)
@@ -145,6 +163,39 @@
                 }.bind(this));
 
                 return defer.promise;
+            },
+
+            // todo: move the following to a category service/module
+            getCategory = function(id, callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/categories/' + id)
+                .success(function(resp) {
+                    var categories = resp;
+
+                    callback(categories);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
+            },
+
+            getAllCategoriesForCompany = function(companyId, callback) {
+                var defer = $q.defer();
+
+                $http.get( tst.modules.api.url + '/api/categories/company/' + companyId)
+                .success(function(resp) {
+                    var categories = resp;
+
+                    callback(categories);
+                })
+                .error(function(err) {
+                    defer.reject(err);
+                }.bind(this));
+
+                return defer.promise;
             };
 
             return {
@@ -153,8 +204,10 @@
                 getTask: getTask,
                 getAllTasksForProject: getAllTasksForProject,
                 getAllTasksForCompany: getAllTasksForCompany,
-                getAllForUser: getAllForUser,
-                getAllStatuses: getAllStatuses
+                getAllForTasksUser: getAllTasksForUser,
+                getAllStatuses: getAllStatuses,
+                getCategory: getCategory,
+                getAllCategoriesForCompany: getAllCategoriesForCompany
             };
         }
     ]);

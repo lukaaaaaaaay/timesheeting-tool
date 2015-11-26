@@ -6,7 +6,8 @@
         '$scope',
         '$state',
         tst.modules.auth.services.authentication,
-        function ($scope, $state, authentication) {
+        tst.modules.core.services.notifier,
+        function ($scope, $state, authentication, notifier) {
             $scope.loginModel = {};
             $scope.loading = false;
             $scope.invalidLogin = false;
@@ -19,6 +20,7 @@
                     $state.go(tst.modules.dashboard.states.home);
                 }, function () {
                     $scope.invalidLogin = true;
+                    notifier.error('Error', 'Your login was invalid.');
                 })['finally'](function () {
                     $scope.loading = false;
                 });

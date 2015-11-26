@@ -88,7 +88,7 @@
                         notifier.error("Error", "Unable to find tasks for the current user");
                     });
                 } else {
-                    taskApi.getAllForUser(user.id, function (tasks) {
+                    taskApi.getAllTasksForUser(user.id, function (tasks) {
                         calculateTaskBreakdown(tasks, statuses);        
                     }, function (error) {
                         notifier.error("Error", "Unable to find tasks for the current user");

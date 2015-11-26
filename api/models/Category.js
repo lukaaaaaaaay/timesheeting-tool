@@ -36,7 +36,7 @@
 	* @param {int}	companyId - The company id
 	*/
  	findAllForCompany: function (companyId, cb) {
- 		Category.find({companyId: companyId }).exec(function (err, categories) {
+ 		this.find({companyId: companyId }).exec(function (err, categories) {
 			if (err) return cb(err);
 
 			return cb(null, categories);

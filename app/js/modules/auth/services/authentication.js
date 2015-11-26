@@ -112,9 +112,8 @@
                         // broadcast the user to subscribers
                         eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                     }, function () {
-                        // some error in credential check, logout and broadcast it to subscribers
-                        eventbus.broadcast(tst.modules.auth.events.failed);
-                        logout();
+                        // some error in credential check emit mesage to subscribers
+                        eventbus.broadcast(tst.modules.auth.events.loginFailed);
                     });
 
                     return promise;
@@ -201,8 +200,7 @@
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                 }, function () {
                     // some error in credential check
-                    logout();
-                    eventbus.broadcast(tst.modules.auth.events.failed);
+                    eventbus.broadcast(tst.modules.auth.events.loginFailed);
                 });
 
                 return promise;
@@ -235,8 +233,7 @@
             * Handle an authentication failure
             */
             var handleAuthFailure = function() {
-                logout();
-                eventbus.broadcast(tst.modules.auth.events.failed);
+                eventbus.broadcast(tst.modules.auth.events.loginFailed);
             };
 
             /**

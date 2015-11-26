@@ -8,7 +8,7 @@
         '$q',
         '$http',
         tst.modules.core.services.eventbus,
-        function ($q, $http, eventbus) {
+        function ($q, $http, eventbus, departmentApi) {
     
             /**
              * createStaffUser

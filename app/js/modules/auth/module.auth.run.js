@@ -13,12 +13,15 @@ angular.module(tst.modules.auth.name).run([
     tst.modules.core.services.eventbus,
     function ($rootScope, $state, $location, localStorage, authorization, eventbus) {
         var routeChangeRequiredAfterLogin = false,
-            loginRedirectUrl;
+            loginRedirectUrl;                
 
+        // Listen for login failure request and redirect.
+        eventbus.subscribe(tst.modules.auth.events.loginFailed, function (event) {            
+            $state.go(tst.modules.auth.states.login);
+        });
 
         // Listen for logout request and redirect.
         eventbus.subscribe(tst.modules.auth.events.userLoggedOut, function (event) {
-            // $location.path(tst.modules.auth.routes.login);
             $state.go(tst.modules.main.states.main);
         });
 

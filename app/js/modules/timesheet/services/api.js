@@ -147,7 +147,7 @@
             getAllTasksForUser = function(id, callback) {
                 var defer = $q.defer();
 
-                $http.get( tst.modules.api.url + '/api/tasks/user')
+                $http.get( tst.modules.api.url + '/api/tasks/user/' + id)
                 .success(function(resp) {
                     var tasks = resp;
 
