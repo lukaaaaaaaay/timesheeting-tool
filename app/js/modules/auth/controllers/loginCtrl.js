@@ -19,6 +19,7 @@
                     $state.go(tst.modules.dashboard.states.home);
                 }, function () {
                     $scope.invalidLogin = true;
+                    notifier.error('Error', 'Your login was invalid.');
                 })['finally'](function () {
                     $scope.loading = false;
                 });
