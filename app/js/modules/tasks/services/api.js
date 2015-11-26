@@ -71,11 +71,6 @@
                 return defer.promise;
             },
 
-
-            // getAllTasks // for admin
-            //getAllTasksForCompany
-            //getAllProjectsForUser
-
             getAllTasks = function(callback) {
                 var defer = $q.defer();
 
@@ -176,9 +171,9 @@
 
                 $http.get( tst.modules.api.url + '/api/categories/' + id)
                 .success(function(resp) {
-                    var statuses = resp;
+                    var categories = resp;
 
-                    callback(statuses);
+                    callback(categories);
                 })
                 .error(function(err) {
                     defer.reject(err);
@@ -192,9 +187,9 @@
 
                 $http.get( tst.modules.api.url + '/api/categories/company/' + companyId)
                 .success(function(resp) {
-                    var statuses = resp;
+                    var categories = resp;
 
-                    callback(statuses);
+                    callback(categories);
                 })
                 .error(function(err) {
                     defer.reject(err);
