@@ -26,7 +26,7 @@
           userLoggedIn: 'auth:user:loggedIn',
           userLoggedOut: 'auth:user:loggedOut',
           userRegistered: 'auth:user:registered',
-          failed: 'auth:failed'
+          loginFailed: 'auth:login:failed'
         },
         directives: {
             access: 'access',

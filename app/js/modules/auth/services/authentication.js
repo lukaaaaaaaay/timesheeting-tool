@@ -113,7 +113,7 @@
                         eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                     }, function () {
                         // some error in credential check, logout and broadcast it to subscribers
-                        eventbus.broadcast(tst.modules.auth.events.failed);
+                        eventbus.broadcast(tst.modules.auth.events.loginFailed);
                         logout();
                     });
 
@@ -201,8 +201,7 @@
                     eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                 }, function () {
                     // some error in credential check
-                    logout();
-                    eventbus.broadcast(tst.modules.auth.events.failed);
+                    eventbus.broadcast(tst.modules.auth.events.loginFailed);
                 });
 
                 return promise;
