@@ -8,8 +8,8 @@
         'ngDialog',
         tst.modules.core.services.notifier,
         tst.modules.staff.services.api,
-        tst.modules.company.services.api,
-        function ($scope, $location, ngDialog, notifier, staffApi, companyApi) {
+        tst.modules.auth.services.authentication,
+        function ($scope, $location, ngDialog, notifier, staffApi, authentication) {
             $scope.staff = [];
             $scope.filteredStaff = [];
             $scope.numPerPage = 10;
@@ -60,7 +60,7 @@
 
             function init() {
                 // get active company
-                var companyId = companyApi.getCurrentCompany().id;
+                var companyId = authentication.getCurrentLoginUser().companyId;                 
 
                 // Get all staff
                 staffApi.getAllStaff(companyId, function (staff) {
