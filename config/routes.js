@@ -328,12 +328,12 @@ module.exports.routes = {
   'POST /api/timesheets': {
     controller : 'TimesheetController',
     action     : 'create',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'PUT /api/timesheets/:id': {
     controller : 'TimesheetController',
     action     : 'update',
-    roles      : ["admin", "director"]
+    roles      : ["admin", "director", "projectmanager", "staff"]
   },
   'DELETE /api/timesheets/:id': {
     controller : 'TimesheetController',
