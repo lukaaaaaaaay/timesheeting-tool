@@ -112,9 +112,8 @@
                         // broadcast the user to subscribers
                         eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
                     }, function () {
-                        // some error in credential check, logout and broadcast it to subscribers
+                        // some error in credential check emit mesage to subscribers
                         eventbus.broadcast(tst.modules.auth.events.loginFailed);
-                        logout();
                     });
 
                     return promise;
@@ -234,7 +233,6 @@
             * Handle an authentication failure
             */
             var handleAuthFailure = function() {
-                logout();
                 eventbus.broadcast(tst.modules.auth.events.loginFailed);
             };
 
