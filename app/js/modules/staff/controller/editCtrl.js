@@ -8,11 +8,12 @@
         '$stateParams',
         tst.modules.core.services.notifier,
         tst.modules.staff.services.api,
-        function ($scope, $location, $stateParams, notifier, staffApi) {
+        tst.modules.department.services.api,
+        function ($scope, $location, $stateParams, notifier, staffApi, departmentApi) {
             $scope.user = {};
-            // $scope.departments = [];
+            $scope.departments = [];
             $scope.submitted = false;
-            $scope.roles = ['Admin', 'Director', 'Staff']; // TODO: this should be recieved from the server!
+            $scope.roles = [{id: 1, name: 'Admin'},{id: 2, name: 'Director' },{id: 4, name: 'Staff'}]; // TODO: this should be recieved from the server!
 
             $scope.selectedRole = {};
 
@@ -35,18 +36,19 @@
                 staffApi.getUser($stateParams.id, function (user) {
                     $scope.user = user;
                     $scope.selectedRole = $scope.roles[user.roleId];
+                                    // Assign departments to scope.
+                    departmentApi.getAllDepartments($scope.user.companyId, function(allDepartments) {
+                        $scope.departments = allDepartments;
+                    }, function(error) {
+                        console.log(error);
+                        notifier.error('Error', 'There was an error retrieving all the departments');
+                    });
                 }, function(error) {
                     console.log(error);
                     notifier.error('Error', 'There was an error retrieving the user with the id ' + $stateParams.id);
                 });
 
-                // Assign departments to scope.
-                departmentApi.getAllDepartments(companyId, function(allStatuses) {
-                    $scope.statuses = allStatuses;
-                }, function(error) {
-                    console.log(error);
-                    notifier.error('Error', 'There was an error retrieving all the statuses');
-                });
+
             }
 
             init();

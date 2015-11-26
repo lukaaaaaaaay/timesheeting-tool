@@ -45,7 +45,7 @@ var User = {
     passwordResetToken: { type: 'json' },
 
     // A user can have many tasks - need to make many-many relationship so we can query properly. 
-    tasks: {collection: 'task', through: 'taskmember'},
+    tasks: {collection: 'Task', via: 'users'},
 
     // organizations: {},
 
@@ -79,6 +79,7 @@ var User = {
       var user = this.toObject();
       user.gravatarUrl = this.getGravatarUrl();
       user.fullName = this.getFullName();
+      user.companyId = this.companyId;
       // delete user.passwordResetToken;
       delete user.password;
       delete user.confirmPassword;
