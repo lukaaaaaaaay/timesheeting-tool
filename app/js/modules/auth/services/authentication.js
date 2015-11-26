@@ -104,10 +104,15 @@
                         var data = request.responseText;
                         var user = JSON.parse(data);
 
+
                         // save the credentials
                         setCredentials(email, password);
                         currentUser = user;
                         localStorage.set(tst.modules.auth.storage.currentUser, user);
+
+                        // set current company id, if and only if the user has a companyID.
+                        if(user.companyId)
+                            localStorage.set(tst.modules.company.storage.companyId, user.companyId);
 
                         // broadcast the user to subscribers
                         eventbus.broadcast(tst.modules.auth.events.userLoggedIn, user);
