@@ -20,7 +20,7 @@
 
             $scope.createTask = function(form) {
                 $scope.submitted = true;
-
+                scope.task.users = $scope.currentStaff
                 if(form.$valid) {
                     taskApi.createTask($scope.task, function(task) {
                         notifier.success("success", "New task created");                        
